@@ -7,12 +7,12 @@ Eine neue Session steigt bei der genannten Phase wieder ein – nicht neu starte
 
 - Surface: `/` (Startseite, Marketing)
 - Mode: `Persuade` (Ziel: Miet-Anfrage)
-- Phase: `1. Discover`
+- Phase: `2. Research` (Discovery abgeschlossen)
 - Redesign mode: `greenfield`
 - Confirmed direction: `pending`
-- Current primary source: `docs/DISCOVERY.md`
-- Next permitted action: Produktwahrheit vervollständigen (Kontaktdaten, Einzugsgebiet, Wagenmodelle, Alleinstellung), dann Phase 2 Research.
-- Open decision or blocker: Reale Inhalte fehlen (Fotos, Preise, Kontakt, Standort).
+- Current primary source: `docs/DISCOVERY.md` + `fragebogen-infos.txt`
+- Next permitted action: Phase 2 Research (Referenz-Ledger) → Phase 3 Direction Contract mit 2–3 Richtungsvorschlägen zur Auswahl vorlegen.
+- Open decision or blocker: keiner (Produktwahrheit vollständig; Feinpreise/„Über uns" später).
 - Last visual evidence: `keine`
 
 > Phase 0 (Prepare) erledigt: Matt-Pocock-Engineering-Skills installiert (`.agents/skills/`, Symlinks in `.claude/skills/`), Tracker = lokal Markdown (`.scratch/`), Standard-Triage-Labels, single-context. Config in `docs/agents/`. Hinweis: Impeccable/Taste/Higgsfield aus WEB_WORKFLOW.md sind NICHT installiert.
