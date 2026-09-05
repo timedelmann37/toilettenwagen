@@ -11,3 +11,17 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ## Website work
 
 For any landing page, portfolio, campaign, or redesign work, read `WEB_WORKFLOW.md` before planning or editing UI. Update its Workflow state (`docs/WORKFLOW_STATE.md`) at every phase boundary.
+
+## Agent skills
+
+### Issue tracker
+
+Issues and specs live as markdown files under `.scratch/<feature-slug>/`. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+The five canonical triage roles, each label string equal to its name. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `CONTEXT.md` + `docs/adr/` at the repo root. See `docs/agents/domain.md`.
