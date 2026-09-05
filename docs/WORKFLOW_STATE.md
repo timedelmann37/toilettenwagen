@@ -15,6 +15,8 @@ Eine neue Session steigt bei der genannten Phase wieder ein – nicht neu starte
 - Open decision or blocker: Reale Inhalte fehlen (Fotos, Preise, Kontakt, Standort).
 - Last visual evidence: `keine`
 
+> Phase 0 (Prepare) erledigt: Matt-Pocock-Engineering-Skills installiert (`.agents/skills/`, Symlinks in `.claude/skills/`), Tracker = lokal Markdown (`.scratch/`), Standard-Triage-Labels, single-context. Config in `docs/agents/`. Hinweis: Impeccable/Taste/Higgsfield aus WEB_WORKFLOW.md sind NICHT installiert.
+
 ## Bestätigte Basics (aus Discovery-Gespräch)
 
 - **Geschäft:** Vermietung von Toilettenwagen (Toilettenwagen-hs). Primäres Ziel der Seite: Miet-**Anfrage** auslösen.
