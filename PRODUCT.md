@@ -42,12 +42,12 @@ Was eine Nachbar-Firma nicht wahrheitsgemäß kopieren kann:
 ## Capabilities and Constraints
 
 - **Drei Modelle** (Terminologie siehe `CONTEXT.md`):
-  - **S** – 2 Damen, 1 Herren + 2 Urinale; Heizung, warm+kalt fließend Wasser, Sensorarmaturen, Palmen-/Strand-Innenfolierung. Ab 175 € netto/Tag.
+  - **S** – 2 Damen, 1 Herren + 2 Urinale; Heizung, warm+kalt fließend Wasser, Sensorarmaturen. Ab 175 € netto/Tag.
   - **M** – 3 Damen, 1 Herren + 3 Urinale; kalt fließend Wasser. Ab 190 € netto/Tag.
   - **L** – 4 Damen, 2 Herren + 6 Urinale; kalt fließend Wasser. Ab 210 € netto/Tag.
 - Alle: ganzjährig beheizt, Waschbecken, Spiegel, Innen-/Außenbeleuchtung, Spülung, Tork-Papierspender.
 - Preise sind Richtwerte („Freestyle" je nach Ort/Anlass), kein Festpreis; Anzeige brutto/netto per Toggle (`docs/adr/0004`).
-- **Undecided (nicht erfinden):** feste Preisstaffelung, günstigster Wochenend-Ab-Preis, Service-Intervall bei langen Mieten, feste Partner (Caterer/Zelt), „Über uns"-Text.
+- **Undecided (nicht erfinden):** feste Preisstaffelung, günstigster Wochenend-Ab-Preis, Service-Intervall bei langen Mieten, feste Partner (Caterer/Zelt), „Über uns"-Text sowie die genaue Modellzuordnung der Palmen-/Strand-Innenfolierung. Das vorhandene Foto darf neutral als Innenansicht erscheinen, aber bis zur Bestätigung nicht als exklusives S-Merkmal.
 
 ## Brand Commitments
 

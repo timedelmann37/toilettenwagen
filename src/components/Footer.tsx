@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="mt-auto border-t border-line bg-surface">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3">
         <div>
-          <p className="font-semibold text-ink">{site.name}</p>
+          <p className="max-w-xs font-semibold text-ink">{site.legalName}</p>
           <p className="mt-2 text-sm text-ink-soft">
             {site.address.street}
             <br />
@@ -54,7 +54,7 @@ export function Footer() {
 
       <div className="border-t border-line">
         <p className="mx-auto max-w-6xl px-4 py-4 text-xs text-ink-soft sm:px-6">
-          © {new Date().getFullYear()} {site.legalName}
+          © {new Date().getFullYear()} {site.name}
         </p>
       </div>
     </footer>

@@ -10,9 +10,12 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "optimize:images": "node scripts/optimize-images.mjs"
+    "generate:social-preview": "node scripts/generate-social-preview.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "prepare:service-images": "node scripts/prepare-service-images.mjs"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
     "next": "16.3.4",
     "react": "19.2.8",
     "react-dom": "19.2.8"

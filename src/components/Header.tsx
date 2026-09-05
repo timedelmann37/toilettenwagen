@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { navLinks, site } from "@/lib/site";
@@ -32,58 +32,70 @@ function NavList({
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      setOpen(false);
+      menuButtonRef.current?.focus();
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-        <Link href="/" className="flex items-center gap-2" aria-label={site.name}>
+    <header className="sticky top-0 z-20 border-b border-line bg-bg">
+      <div className="mx-auto flex h-16 max-w-[88rem] items-center justify-between gap-4 px-4 md:h-[4.5rem] md:px-8 xl:px-12">
+        <Link
+          href="/"
+          className="flex items-center rounded-card transition-opacity hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+          aria-label={site.name}
+        >
           <Image
             src="/logo.png"
-            alt={site.name}
+            alt=""
             width={455}
             height={161}
-            priority
-            className="h-8 w-auto"
+            className="h-auto w-32 brightness-0 md:w-40"
           />
+          <span className="sr-only">{site.name}</span>
         </Link>
 
         <nav
           aria-label="Hauptnavigation"
-          className="hidden items-center gap-7 md:flex"
+          className="hidden items-center gap-6 lg:flex"
         >
-          <NavList linkClassName="text-sm font-medium text-ink-soft transition-colors hover:text-ink" />
+          <NavList linkClassName="text-sm font-semibold text-ink-soft underline-offset-8 transition-colors hover:text-ink hover:underline focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent" />
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <WhatsappButton size="sm" />
         </div>
 
         <button
+          ref={menuButtonRef}
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="mobile-menu"
-          aria-label={open ? "Menü schließen" : "Menü öffnen"}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-card text-ink md:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          className="inline-flex min-h-11 items-center justify-center rounded-full border border-line-strong px-4 text-sm font-semibold text-ink transition-colors hover:border-ink lg:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
-          <svg viewBox="0 0 24 24" className="h-6 w-6 stroke-current" fill="none" strokeWidth={2} aria-hidden="true">
-            {open ? (
-              <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
-            ) : (
-              <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
-            )}
-          </svg>
+          {open ? "Schließen" : "Menü"}
         </button>
       </div>
 
       {open && (
-        <div id="mobile-menu" className="border-t border-line bg-bg md:hidden">
+        <div id="mobile-menu" className="border-t border-line bg-bg lg:hidden">
           <nav
             aria-label="Hauptnavigation (mobil)"
-            className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3"
+            className="mx-auto flex max-w-[88rem] flex-col gap-1 px-4 py-3"
           >
             <NavList
-              linkClassName="rounded-card px-2 py-2 text-base font-medium text-ink hover:bg-surface"
+              linkClassName="min-h-11 rounded-card px-3 py-2.5 text-base font-semibold text-ink hover:bg-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               onNavigate={() => setOpen(false)}
             />
             <WhatsappButton className="mt-2 w-full" />

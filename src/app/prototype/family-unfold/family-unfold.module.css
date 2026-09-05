@@ -1,0 +1,775 @@
+.prototype {
+  --scroll-progress: 0;
+  background: #f2eee6;
+  color: #10253a;
+  min-height: 100%;
+  overflow: clip;
+}
+
+.prototype ::selection {
+  background: #165fd1;
+  color: #f8f4eb;
+}
+
+.prototypeNotice {
+  align-items: center;
+  background: #10253a;
+  color: #f8f4eb;
+  display: flex;
+  font-size: 0.75rem;
+  gap: 0.75rem;
+  justify-content: space-between;
+  letter-spacing: 0.02em;
+  padding: 0.6rem clamp(1rem, 4vw, 4rem);
+}
+
+.prototypeNotice strong {
+  color: #8bb6ff;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.scrollScene {
+  height: 235vh;
+  position: relative;
+}
+
+.stickyFrame {
+  background: #f2eee6;
+  height: calc(100svh - 4rem);
+  isolation: isolate;
+  overflow: hidden;
+  position: sticky;
+  top: 4rem;
+}
+
+.introCopy {
+  left: clamp(1.25rem, 5vw, 5rem);
+  max-width: 46rem;
+  opacity: calc(1 - min(1, var(--scroll-progress) * 2.8));
+  position: absolute;
+  top: clamp(2rem, 7vh, 5rem);
+  transform: translateY(calc(var(--scroll-progress) * -2rem));
+  z-index: 5;
+}
+
+.introCopy h1 {
+  font-size: clamp(3rem, 6.4vw, 6rem);
+  font-weight: 720;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+  max-width: 10ch;
+}
+
+.introCopy p {
+  color: #4e5e6b;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.5;
+  margin-top: 1.5rem;
+  max-width: 38rem;
+}
+
+.family {
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.model {
+  left: 50%;
+  margin: 0;
+  position: absolute;
+  top: 55%;
+  transform-origin: center center;
+  width: min(51vw, 52rem);
+  will-change: transform;
+}
+
+.imageWrap {
+  position: relative;
+}
+
+.vehicleImage {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.modelLetter {
+  align-items: center;
+  background: #165fd1;
+  border-radius: 999px;
+  bottom: 8%;
+  color: white;
+  display: flex;
+  font-size: clamp(1.1rem, 2vw, 1.65rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 760;
+  height: 2.4em;
+  justify-content: center;
+  position: absolute;
+  left: 8%;
+  width: 2.4em;
+}
+
+.modelCopy {
+  background: rgba(248, 245, 238, 0.96);
+  border: 1px solid #d8d2c7;
+  border-radius: 0.875rem;
+  box-shadow: 0 1rem 2.5rem rgba(16, 37, 58, 0.1);
+  margin: -1rem auto 0;
+  max-width: 31rem;
+  opacity: 0;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  position: relative;
+  width: 82%;
+}
+
+.capacity {
+  color: #10253a;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  font-weight: 720;
+}
+
+.layout {
+  color: #53616c;
+  font-size: 0.86rem;
+  margin-top: 0.2rem;
+}
+
+.modelCopy dl {
+  border-top: 1px solid #d8d2c7;
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 0.9rem;
+  padding-top: 0.8rem;
+}
+
+.modelCopy dl div {
+  align-items: baseline;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.modelCopy dt {
+  color: #6b7781;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.modelCopy dd {
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 670;
+  margin: 0;
+  text-align: right;
+}
+
+.scrollHint {
+  bottom: 1.5rem;
+  color: #566674;
+  font-size: 0.72rem;
+  left: 50%;
+  letter-spacing: 0.09em;
+  opacity: calc(1 - min(1, var(--scroll-progress) * 5));
+  position: absolute;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.companionScene {
+  height: 430vh;
+  position: relative;
+}
+
+.companionSticky {
+  background: #f2eee6;
+  height: calc(100svh - 4rem);
+  isolation: isolate;
+  overflow: hidden;
+  position: sticky;
+  top: 4rem;
+}
+
+.companionFamily {
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  transform-origin: center 60%;
+  width: 100%;
+  z-index: 2;
+}
+
+.companionHeroCopy {
+  left: clamp(1.25rem, 5vw, 5rem);
+  max-width: 46rem;
+  position: absolute;
+  top: clamp(2rem, 7vh, 5rem);
+  z-index: 5;
+}
+
+.companionHeroCopy h1 {
+  font-size: clamp(3rem, 6.4vw, 6rem);
+  font-weight: 720;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+  max-width: 10ch;
+}
+
+.companionHeroCopy p {
+  color: #4e5e6b;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.5;
+  margin-top: 1.5rem;
+  max-width: 35rem;
+}
+
+.companionFamilyVehicles {
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  transform: translateX(clamp(4rem, 10vw, 9rem));
+  width: 100%;
+}
+
+.companionFamilyModel {
+  left: 50%;
+  margin: 0;
+  position: absolute;
+  top: 59%;
+  width: min(51vw, 52rem);
+}
+
+.familyModelM {
+  transform: translate3d(-50%, -50%, 0) scale(0.58);
+}
+
+.familyModelL {
+  transform: translate3d(calc(-50% + 16vw), calc(-50% - 2vh), 0) rotate(2deg)
+    scale(0.62);
+}
+
+.companionWagon {
+  left: 50%;
+  margin: 0;
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  transform-origin: center;
+  width: min(56vw, 54rem);
+  will-change: transform;
+  z-index: 3;
+}
+
+.companionBody {
+  position: relative;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.prototypeAxle {
+  aspect-ratio: 1;
+  background-image: url("/fotos/wagen-s-cutout-prototype.webp");
+  background-position: 55% 89%;
+  background-repeat: no-repeat;
+  background-size: 952% auto;
+  border-radius: 50%;
+  bottom: 9.5%;
+  left: 55.5%;
+  opacity: 0;
+  position: absolute;
+  transform: scaleX(0.74);
+  width: 10.5%;
+  z-index: 1;
+}
+
+.companionBadge {
+  align-items: center;
+  background: #165fd1;
+  border-radius: 999px;
+  bottom: 7%;
+  color: #f8f4eb;
+  display: flex;
+  font-size: clamp(1.15rem, 2vw, 1.7rem);
+  font-weight: 760;
+  height: 2.45em;
+  justify-content: center;
+  left: 7%;
+  opacity: 0;
+  position: absolute;
+  width: 2.45em;
+}
+
+.companionChapters {
+  inset: 0;
+  position: absolute;
+  z-index: 4;
+}
+
+.companionChapter {
+  display: grid;
+  gap: clamp(1rem, 2vw, 2rem);
+  grid-template-columns: auto minmax(0, 1fr);
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 17%;
+  width: min(39vw, 37rem);
+}
+
+.companionChapter:nth-child(2) {
+  top: 24%;
+}
+
+.companionChapter:nth-child(3) {
+  top: 31%;
+}
+
+.companionChapter:first-child {
+  opacity: 1;
+}
+
+.chapterLeft {
+  left: clamp(1.25rem, 5vw, 5rem);
+}
+
+.chapterLetter {
+  color: #165fd1;
+  font-size: clamp(5rem, 9vw, 8.5rem);
+  font-weight: 760;
+  letter-spacing: -0.04em;
+  line-height: 0.75;
+}
+
+.chapterContent h2 {
+  font-size: clamp(2rem, 3.5vw, 3.7rem);
+  font-weight: 690;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  max-width: 13ch;
+}
+
+.chapterContent .capacity,
+.selectorFacts .capacity {
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+  margin-top: 1.4rem;
+}
+
+.chapterContent dl,
+.selectorFacts dl,
+.reducedMotionFallback dl {
+  border-top: 1px solid #cfc9bd;
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+}
+
+.chapterContent dl div,
+.selectorFacts dl div,
+.reducedMotionFallback dl div {
+  align-items: baseline;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.chapterContent dt,
+.selectorFacts dt,
+.reducedMotionFallback dt {
+  color: #61707b;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.chapterContent dd,
+.selectorFacts dd,
+.reducedMotionFallback dd {
+  font-size: 0.86rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 670;
+  margin: 0;
+  text-align: right;
+}
+
+.detailExplorer {
+  border-top: 1px solid #cfc9bd;
+  margin-top: 1.25rem;
+  padding-top: 0.85rem;
+}
+
+.detailTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1rem;
+}
+
+.detailTabs button {
+  border-bottom: 1px solid transparent;
+  color: #5a6975;
+  cursor: pointer;
+  font-size: 0.76rem;
+  font-weight: 680;
+  padding: 0.45rem 0;
+}
+
+.detailTabs button[aria-selected="true"] {
+  border-color: #165fd1;
+  color: #10253a;
+}
+
+.detailTabs button:focus-visible,
+.selectorControls button:focus-visible {
+  outline: 2px solid #165fd1;
+  outline-offset: 3px;
+}
+
+.detailPanel {
+  color: #435563;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin-top: 0.7rem;
+  min-height: 2.7rem;
+}
+
+.parkedContent {
+  left: clamp(1.25rem, 5vw, 5rem);
+  opacity: 0;
+  position: absolute;
+  top: 25%;
+  width: min(40vw, 39rem);
+  z-index: 5;
+}
+
+.parkedContent h2 {
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 690;
+  letter-spacing: -0.035em;
+  line-height: 0.94;
+  max-width: 12ch;
+}
+
+.parkedContent p {
+  border-top: 1px solid #cfc9bd;
+  color: #435563;
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  line-height: 1.55;
+  margin-top: 1.5rem;
+  max-width: 34rem;
+  padding-top: 1rem;
+}
+
+.reducedMotionFallback {
+  display: none;
+}
+
+.modelSelector {
+  background: #e8edef;
+  border-top: 1px solid #cfd6d7;
+  min-height: 100svh;
+  padding: clamp(5rem, 9vw, 9rem) clamp(1.25rem, 6vw, 6rem);
+}
+
+.selectorHeading {
+  align-items: end;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+}
+
+.selectorHeading h2 {
+  font-size: clamp(3rem, 6vw, 5.8rem);
+  font-weight: 690;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+  max-width: 12ch;
+}
+
+.selectorHeading p {
+  color: #435563;
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  line-height: 1.55;
+  max-width: 34rem;
+}
+
+.selectorControls {
+  border-bottom: 1px solid #c6cecf;
+  display: flex;
+  gap: 0.5rem;
+  margin-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: 1rem;
+}
+
+.selectorControls button {
+  align-items: center;
+  border: 1px solid #9eaaad;
+  border-radius: 999px;
+  color: #3e505d;
+  cursor: pointer;
+  display: flex;
+  font-size: 1rem;
+  font-weight: 740;
+  height: 3.15rem;
+  justify-content: center;
+  width: 3.15rem;
+}
+
+.selectorControls button[aria-pressed="true"] {
+  background: #165fd1;
+  border-color: #165fd1;
+  color: #f8f4eb;
+}
+
+.selectorStage {
+  align-items: center;
+  display: grid;
+  gap: clamp(2rem, 6vw, 6rem);
+  grid-template-columns: minmax(0, 1.35fr) minmax(19rem, 0.65fr);
+  min-height: 55vh;
+}
+
+.selectorVehicle {
+  justify-self: center;
+  width: min(62vw, 58rem);
+}
+
+.selectorFacts {
+  max-width: 30rem;
+}
+
+.outro {
+  background: #10253a;
+  color: #f8f4eb;
+  min-height: 70vh;
+  padding: clamp(5rem, 12vw, 11rem) clamp(1.25rem, 7vw, 7rem);
+}
+
+.outro p {
+  color: #8bb6ff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.outro h2 {
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  margin-top: 1rem;
+  max-width: 13ch;
+}
+
+.switcher {
+  backdrop-filter: blur(14px);
+  background: rgba(16, 37, 58, 0.94);
+  border-radius: 999px;
+  bottom: 1rem;
+  box-shadow: 0 0.8rem 2.4rem rgba(16, 37, 58, 0.26);
+  display: flex;
+  gap: 0.25rem;
+  left: 50%;
+  padding: 0.3rem;
+  position: fixed;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.switcher button {
+  border-radius: 999px;
+  color: #cbd5df;
+  cursor: pointer;
+  font-size: 0.72rem;
+  min-height: 2.5rem;
+  padding: 0.55rem 0.9rem;
+  transition: background-color 180ms ease-out, color 180ms ease-out;
+  white-space: nowrap;
+}
+
+.switcher button[aria-pressed="true"] {
+  background: #f8f4eb;
+  color: #10253a;
+}
+
+.switcher button:focus-visible {
+  outline: 2px solid #8bb6ff;
+  outline-offset: 2px;
+}
+
+@media (max-width: 800px) {
+  .prototypeNotice span {
+    display: none;
+  }
+
+  .stickyFrame {
+    height: calc(100svh - 4rem);
+  }
+
+  .introCopy {
+    top: 2.25rem;
+  }
+
+  .introCopy h1 {
+    font-size: clamp(2.7rem, 13vw, 4.5rem);
+  }
+
+  .introCopy p {
+    max-width: 31ch;
+  }
+
+  .model {
+    top: 53%;
+    width: 88vw;
+  }
+
+  .modelCopy {
+    width: 86%;
+  }
+
+  .companionScene {
+    height: 400vh;
+  }
+
+  .companionHeroCopy {
+    top: 2.25rem;
+  }
+
+  .companionHeroCopy h1 {
+    font-size: clamp(2.7rem, 13vw, 4.5rem);
+  }
+
+  .companionHeroCopy p {
+    max-width: 31ch;
+  }
+
+  .companionFamilyModel {
+    top: 57%;
+    width: 92vw;
+  }
+
+  .familyModelM {
+    transform: translate3d(-50%, -50%, 0) scale(0.54);
+  }
+
+  .familyModelL {
+    transform: translate3d(calc(-50% + 18vw), calc(-50% - 2vh), 0) rotate(2deg)
+      scale(0.58);
+  }
+
+  .companionWagon {
+    top: 46%;
+    width: 102vw;
+  }
+
+  .companionChapter {
+    bottom: 5.5rem;
+    gap: 0.8rem;
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+    left: 1rem;
+    right: auto;
+    top: auto;
+    width: calc(100vw - 2rem);
+  }
+
+  .companionChapter:nth-child(2),
+  .companionChapter:nth-child(3) {
+    top: auto;
+  }
+
+  .chapterLetter {
+    font-size: 4.5rem;
+  }
+
+  .chapterContent h2 {
+    font-size: clamp(1.7rem, 8vw, 2.4rem);
+    max-width: 17ch;
+  }
+
+  .chapterContent .capacity {
+    margin-top: 0.75rem;
+  }
+
+  .detailExplorer {
+    margin-top: 0.8rem;
+  }
+
+  .parkedContent {
+    bottom: 5.5rem;
+    left: 1rem;
+    top: auto;
+    width: calc(100vw - 2rem);
+  }
+
+  .parkedContent h2 {
+    font-size: clamp(2.2rem, 10vw, 3.5rem);
+    max-width: 15ch;
+  }
+
+  .modelSelector {
+    padding-bottom: 7rem;
+  }
+
+  .selectorHeading,
+  .selectorStage {
+    grid-template-columns: 1fr;
+  }
+
+  .selectorStage {
+    gap: 1.5rem;
+    padding-top: 2rem;
+  }
+
+  .selectorVehicle {
+    width: 100%;
+  }
+
+  .selectorFacts {
+    max-width: none;
+  }
+
+  .switcher {
+    max-width: calc(100vw - 1rem);
+    overflow-x: auto;
+  }
+
+  .switcher button {
+    padding-inline: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .model,
+  .modelCopy,
+  .introCopy {
+    transition: none;
+  }
+
+  .companionScene {
+    height: auto;
+  }
+
+  .companionSticky {
+    display: none;
+  }
+
+  .reducedMotionFallback {
+    display: grid;
+    gap: 3rem;
+    padding: 5rem clamp(1.25rem, 6vw, 6rem);
+  }
+
+  .reducedMotionFallback article {
+    border-top: 1px solid #cfc9bd;
+    display: grid;
+    gap: 1rem;
+    padding-top: 2rem;
+  }
+
+  .reducedMotionFallback .imageWrap {
+    max-width: 42rem;
+  }
+}
