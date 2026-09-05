@@ -11,9 +11,9 @@ Eine neue Session steigt bei der genannten Phase wieder ein – nicht neu starte
 - Redesign mode: `greenfield`
 - Confirmed direction: **Kandidat A – „Vertrauens-Katalog" (produktgeführt).** Direction Contract in `docs/design/direction-contract-home.md` (+ Impeccable-Kurzfassung `.impeccable/surfaces/src-app-page-tsx.md`).
 - Current primary source: `.scratch/startseite/spec.md` (Status: ready-for-agent) + `docs/design/direction-contract-home.md`
-- Next permitted action: Phase 6 – `/implement` (user-invocable) für **Ticket 01** (Fundament & App-Shell, einziger unblockierter Frontier-Ticket). Danach parallelisierbar: 02–08 (alle nur von 01 geblockt), dann 09, dann 10. Test-Seam: **Vitest + Testing Library**.
-- Open decision or blocker: keiner blockierend. Bewusst später: Datenschutztext (`docs/TODO-DATENSCHUTZ.md`), „Über uns"/Gründer-Block, exakte Wortmarke, finaler Font, Registergericht/MStV-Verantwortlicher im Impressum (⚠️ in `docs/IMPRESSUM.md`).
-- Last visual evidence: `keine`
+- Next permitted action: Phase 6 – `/implement` für den nächsten Frontier-Ticket. **Ticket 01 (Fundament & App-Shell) ist erledigt.** Frontier jetzt: **02–08** (alle nur von 01 geblockt, parallelisierbar); empfohlen als Nächstes **Ticket 02 (Hero)**. Danach 09 (Politur), 10 (Motion+Review). Test-Seam: **Vitest + Testing Library**.
+- Open decision or blocker: keiner blockierend. Bewusst später: Datenschutztext (`docs/TODO-DATENSCHUTZ.md`), „Über uns"/Gründer-Block, exakte Wortmarke, finaler Font, `og:image`, Logo-Behandlung auf hellem Grund, Registergericht/MStV-Verantwortlicher im Impressum (⚠️ in `docs/IMPRESSUM.md`).
+- Last visual evidence: Shell-Screenshot (Session 2026-09-05): Sticky-Nav + WhatsApp-CTA + Hero-Platzhalter + Sektions-Anker, warmes Off-White/Navy/Blau, Hanken Grotesk.
 
 > Phase 0 (Prepare) erledigt: Matt-Pocock-Engineering-Skills installiert (`.agents/skills/`, Symlinks in `.claude/skills/`), Tracker = lokal Markdown (`.scratch/`), Standard-Triage-Labels, single-context. Config in `docs/agents/`.
 > **Update (Session 2026-09-05):** Impeccable UND Taste-Skill sind jetzt installiert – `impeccable` (via `npx impeccable install`) und das taste-skill-Paket `Leonxlnx/taste-skill` (u.a. `design-taste-frontend`, `redesign-existing-projects`, `high-end-visual-design`) in `.agents/skills/` mit Symlinks in Claude Code. Higgsfield weiterhin nicht installiert (Asset-Generierung erst in Phase 5 relevant). Skills wurden bisher noch NICHT im Design-Prozess verwendet – Einsatz beginnt jetzt in Phase 3.
