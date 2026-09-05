@@ -7,17 +7,18 @@ Eine neue Session steigt bei der genannten Phase wieder ein – nicht neu starte
 
 - Surface: `/` (Startseite, Marketing)
 - Mode: `Persuade` (Ziel: Miet-Anfrage)
-- Phase: `3. Direction` (Discovery inkl. Grilling + Domain-Modeling abgeschlossen, Research abgeschlossen)
+- Phase: `4. Specify` (Direction bestätigt und dokumentiert)
 - Redesign mode: `greenfield`
-- Confirmed direction: `pending`
-- Current primary source: `docs/DISCOVERY.md` + `docs/RESEARCH.md` + `CONTEXT.md` + `docs/adr/`
-- Next permitted action: Phase 3 Direction – Design Read + Dials (Taste-Skill `design-taste-frontend`), dann 2–3 strukturell verschiedene Kandidaten (Basis: Richtungen A/B in `docs/RESEARCH.md` + gesicherte Grilling-Entscheidungen) via Impeccable `shape` zur User-Auswahl vorlegen; danach Direction Contract unter `docs/design/` schreiben.
-- Open decision or blocker: keiner blockierend. Bewusst später: Datenschutztext (`docs/TODO-DATENSCHUTZ.md`), „Über uns"/Gründer-Block, exakte Wortmarke, Registergericht/MStV-Verantwortlicher im Impressum (⚠️ in `docs/IMPRESSUM.md`).
+- Confirmed direction: **Kandidat A – „Vertrauens-Katalog" (produktgeführt).** Direction Contract in `docs/design/direction-contract-home.md` (+ Impeccable-Kurzfassung `.impeccable/surfaces/src-app-page-tsx.md`).
+- Current primary source: `docs/design/direction-contract-home.md` + `PRODUCT.md`
+- Next permitted action: Phase 4 Specify – `/to-spec` (Skill `to-spec`) auf Basis des Direction Contract; Test-Seam mit User klären, Spec im lokalen Tracker (`.scratch/`) veröffentlichen. Danach Phase 5 `/to-tickets`.
+- Open decision or blocker: keiner blockierend. Bewusst später: Datenschutztext (`docs/TODO-DATENSCHUTZ.md`), „Über uns"/Gründer-Block, exakte Wortmarke, finaler Font, Registergericht/MStV-Verantwortlicher im Impressum (⚠️ in `docs/IMPRESSUM.md`).
 - Last visual evidence: `keine`
 
 > Phase 0 (Prepare) erledigt: Matt-Pocock-Engineering-Skills installiert (`.agents/skills/`, Symlinks in `.claude/skills/`), Tracker = lokal Markdown (`.scratch/`), Standard-Triage-Labels, single-context. Config in `docs/agents/`.
 > **Update (Session 2026-09-05):** Impeccable UND Taste-Skill sind jetzt installiert – `impeccable` (via `npx impeccable install`) und das taste-skill-Paket `Leonxlnx/taste-skill` (u.a. `design-taste-frontend`, `redesign-existing-projects`, `high-end-visual-design`) in `.agents/skills/` mit Symlinks in Claude Code. Higgsfield weiterhin nicht installiert (Asset-Generierung erst in Phase 5 relevant). Skills wurden bisher noch NICHT im Design-Prozess verwendet – Einsatz beginnt jetzt in Phase 3.
 > Phase 2 (Research) erledigt: Referenz-Ledger in `docs/RESEARCH.md` aus lokaler Bibliothek `website-bib` (6 Referenzen, Kategorie-Defaults-zu-vermeiden, 2 tragfähige Richtungen A/B).
+> **Phase 3 (Direction) am 2026-09-05 abgeschlossen:** Taste-Skill `design-taste-frontend` → Design Read + Dials (VARIANCE 5 / MOTION 3 / DENSITY 4); 3 Kandidaten vorgelegt, User wählte **A „Vertrauens-Katalog"**. Impeccable: `PRODUCT.md` (init-Äquivalent aus vorhandener Wahrheit) + Direction Contract als Surface-Brief (`.impeccable/surfaces/src-app-page-tsx.md`) + `.impeccable/config.json` buildPath=code. Kein concept-seed-Roll (user-gepinnte Richtung schlägt Roll). Voller Direction Contract: `docs/design/direction-contract-home.md`.
 > **Grilling (`grill-with-docs`) am 2026-09-05 nachgeholt:** harte Interview-Runden (Q1–Q16) → gesicherte Entscheidungen: One-Pager + Sticky-Anker-Nav + `/impressum` & `/datenschutz`; Preis-Toggle Privat(brutto)/Firma(netto); WhatsApp-CTA + Anfrageformular; Google Maps + Cookie-Consent; echte Fotos vorerst (Hero = freigestellter S-Wagen), Higgsfield später; Kundenstimmen „Vorname + Initiale"; Hosting Hetzner Webhosting L (vorhanden) → statischer Next-Export + PHP-Mailer + SSH-Deploy. Domain-Modeling-Output: `CONTEXT.md` (Glossar) + ADR-0001..0004 in `docs/adr/`. Impressum-Entwurf in `docs/IMPRESSUM.md`, Datenschutz-TODO in `docs/TODO-DATENSCHUTZ.md`.
 
 ## Bestätigte Basics (aus Discovery-Gespräch)
