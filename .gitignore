@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# impeccable (transient build/review artifacts; keep config.json + surfaces)
+.impeccable/config.local.json
+.impeccable/review/
+.impeccable/build/
+.impeccable/mocks/
