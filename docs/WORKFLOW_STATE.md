@@ -7,11 +7,11 @@ Eine neue Session steigt bei der genannten Phase wieder ein – nicht neu starte
 
 - Surface: `/` (Startseite, Marketing)
 - Mode: `Persuade` (Ziel: Miet-Anfrage)
-- Phase: `4. Specify` (Direction bestätigt und dokumentiert)
+- Phase: `5. Plan assets and slices` (Spec veröffentlicht)
 - Redesign mode: `greenfield`
 - Confirmed direction: **Kandidat A – „Vertrauens-Katalog" (produktgeführt).** Direction Contract in `docs/design/direction-contract-home.md` (+ Impeccable-Kurzfassung `.impeccable/surfaces/src-app-page-tsx.md`).
-- Current primary source: `docs/design/direction-contract-home.md` + `PRODUCT.md`
-- Next permitted action: Phase 4 Specify – `/to-spec` (Skill `to-spec`) auf Basis des Direction Contract; Test-Seam mit User klären, Spec im lokalen Tracker (`.scratch/`) veröffentlichen. Danach Phase 5 `/to-tickets`.
+- Current primary source: `.scratch/startseite/spec.md` (Status: ready-for-agent) + `docs/design/direction-contract-home.md`
+- Next permitted action: Phase 5 – `/to-tickets` (user-invocable) auf Basis der Spec → Tracer-Bullet-Tickets unter `.scratch/startseite/issues/`, dem User zur Freigabe vorlegen. Test-Seam bestätigt: **Vitest + Testing Library** (PriceToggle, InquiryForm-Validierung, MapConsent-Gate). Danach Phase 6 `/implement`.
 - Open decision or blocker: keiner blockierend. Bewusst später: Datenschutztext (`docs/TODO-DATENSCHUTZ.md`), „Über uns"/Gründer-Block, exakte Wortmarke, finaler Font, Registergericht/MStV-Verantwortlicher im Impressum (⚠️ in `docs/IMPRESSUM.md`).
 - Last visual evidence: `keine`
 
