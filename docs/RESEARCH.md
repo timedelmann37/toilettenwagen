@@ -2,9 +2,9 @@
 
 > Quelle: lokale Inspirations-Bibliothek `C:\Users\timed\Desktop\website-bib` (`INDEX.md` + ausgewählte `meta.json`).
 > Regel (WEB_WORKFLOW): Referenzen entscheiden **Komposition, Rhythmus, Material, Interaktionsprinzip** – nie eine kopierte Seite oder Marke.
-> Gefiltert nach Brief: seriös/vertrauenswürdig, corporate-clean, warm/einladend, minimal, **wenig Animation**. Dark/Luxury/Brutalist/AI-Startup bewusst ausgeschlossen.
+> Gefiltert nach Brief: seriös/vertrauenswürdig, corporate-clean, warm/einladend und minimal. Der spätere Design-Dialog hat die gewünschte Bewegung von „wenig“ auf etwa **7/10** angehoben; sie bleibt an ein einziges erzählerisches Produktmotiv gebunden. Dark/Luxury/Brutalist/AI-Startup bleiben ausgeschlossen.
 
-## Ledger (6 Referenzen)
+## Ledger (7 Referenzen)
 
 ### 1. Calendly — `sites/calendly-com/`
 - **Job:** Palette + Conversion-Rhythmus für eine Service-/Buchungsseite.
@@ -41,6 +41,12 @@
 - **Prinzip:** Scroll-synchroner Sektions-Index (01 Problem / 02 Solution / 03 Impact), editoriale 2-Spalten (sticky Titel links, Body rechts). Kandidat für einen klaren Ablauf-Abschnitt – bei uns aber nur als *statische* Variante (Anti-Animation).
 - **Nicht kopieren:** Serif-Wortmarke (Cinzel), Grain/Noise, GSAP-Smooth-Scroll.
 - **Passung:** ★★★☆☆.
+
+### 7. Aevion / Riotters — `https://drone.riotters.com/`
+- **Job:** Referenz für die Scroll-Choreografie eines dauerhaft präsenten Produkts.
+- **Prinzip:** Ein freigestelltes Produkt bleibt als visueller Faden im Bild, verändert beim Scrollen Position und Zustand und hält an klaren Informationsstationen. Danach löst sich die gepinnte Sequenz auf und die normale Seite läuft weiter.
+- **Nicht kopieren:** Drohnen-/Tech-Ästhetik, 3D-Kamera, WebGL-Effekt, Typografie, Raster, Texte oder die kühle monochrome Welt. Unser Wagen bleibt fotografisch, warm und regional; die Bewegung dient dem Modellverständnis S → M → L.
+- **Passung:** ★★★★★ (Interaktionsprinzip, nicht Stilwelt).
 
 ## Evidenz-Trennung (WEB_WORKFLOW)
 

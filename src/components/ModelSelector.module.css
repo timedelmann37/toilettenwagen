@@ -1,0 +1,682 @@
+.selector {
+  scroll-margin-top: 4.5rem;
+  background: var(--bg);
+}
+
+.inner {
+  width: min(100%, 88rem);
+  margin: 0 auto;
+  padding: clamp(5rem, 9vw, 9rem) clamp(1rem, 4vw, 4.5rem) clamp(5rem, 9vw, 9rem);
+}
+
+.header {
+  max-width: 54rem;
+}
+
+.header h2 {
+  max-width: 13ch;
+  font-family: var(--font-display);
+  font-size: clamp(3.1rem, 6.5vw, 5.75rem);
+  font-weight: 650;
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.header p {
+  max-width: 38rem;
+  margin-top: 1.35rem;
+  color: var(--ink-soft);
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  line-height: 1.5;
+}
+
+.modelPicker {
+  min-width: 0;
+  margin: clamp(3rem, 6vw, 5rem) 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.modelPicker legend,
+.pricePicker legend {
+  margin-bottom: 0.75rem;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.modelChoices {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.modelChoices label {
+  position: relative;
+  min-width: 0;
+}
+
+.modelChoices label + label {
+  border-left: 1px solid var(--line);
+}
+
+.modelChoices input,
+.pricePicker input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.modelChoice {
+  display: grid;
+  min-height: 7.25rem;
+  cursor: pointer;
+  align-content: center;
+  gap: 0.35rem;
+  padding: 1.1rem clamp(1rem, 2vw, 2rem);
+  color: var(--ink-soft);
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.modelChoice strong {
+  font-family: var(--font-display);
+  font-size: clamp(2.35rem, 4vw, 3.75rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+}
+
+.modelChoice span {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.modelChoices input:checked + .modelChoice {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.modelChoices input:focus-visible + .modelChoice {
+  position: relative;
+  z-index: 1;
+  border-radius: var(--radius-card);
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.modelChoices input:checked:focus-visible + .modelChoice {
+  outline-color: var(--ink);
+}
+
+.modelChoice:active {
+  transform: translateY(1px);
+}
+
+.productView {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(25rem, 0.8fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: start;
+  margin-top: clamp(3rem, 6vw, 5rem);
+}
+
+.productStage {
+  position: sticky;
+  top: 7rem;
+  min-width: 0;
+  margin: 0;
+  padding-top: clamp(2rem, 8vw, 8rem);
+}
+
+.productStage picture,
+.productStage img {
+  display: block;
+  width: 100%;
+}
+
+.productStage img {
+  height: auto;
+  filter: drop-shadow(0 1.5rem 1.7rem rgb(22 43 57 / 0.14));
+}
+
+.productStage figcaption {
+  max-width: 34rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--line);
+  padding-top: 0.8rem;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.modelData {
+  border-radius: var(--radius-card);
+  background: var(--surface-strong);
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+}
+
+.modelLead h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 2.3vw, 2.2rem);
+  font-weight: 620;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.modelLead h3 span {
+  color: var(--accent-strong);
+  font-size: 1.75em;
+}
+
+.modelLead p {
+  max-width: 29rem;
+  margin-top: 1rem;
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  line-height: 1.45;
+}
+
+.priceBlock {
+  margin-top: 2rem;
+  border-top: 1px solid var(--line-strong);
+  padding-top: 1.5rem;
+}
+
+.pricePicker {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.pricePicker > div {
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-radius: 999px;
+  background: var(--surface);
+  padding: 0.25rem;
+}
+
+.pricePicker label {
+  position: relative;
+}
+
+.pricePicker label span {
+  display: grid;
+  min-height: 2.75rem;
+  cursor: pointer;
+  place-items: center;
+  border-radius: 999px;
+  padding: 0 1rem;
+  color: var(--ink-soft);
+  font-size: 0.84rem;
+  font-weight: 750;
+  white-space: nowrap;
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.pricePicker input:checked + span {
+  background: var(--ink);
+  color: var(--accent-contrast);
+}
+
+.pricePicker input:focus-visible + span {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.pricePicker label span:active {
+  transform: translateY(1px);
+}
+
+.price {
+  margin-top: 1.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.7rem, 5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.price span {
+  color: var(--ink-soft);
+  font-size: 0.36em;
+  font-weight: 650;
+  letter-spacing: 0;
+}
+
+.priceQualifier {
+  margin-top: 0.55rem;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.35rem 2rem;
+  margin-top: 2.25rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+}
+
+.facts div {
+  min-width: 0;
+}
+
+.wideFact {
+  grid-column: 1 / -1;
+}
+
+.facts dt {
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.facts dd {
+  margin-top: 0.3rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.equipment {
+  margin-top: 2.25rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+}
+
+.equipment h4 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 650;
+}
+
+.equipmentGroups {
+  display: grid;
+  gap: 1.35rem;
+  margin-top: 1rem;
+}
+
+.equipmentGroups p {
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  font-weight: 750;
+}
+
+.equipmentGroups ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem 1.25rem;
+  margin: 0.7rem 0 0;
+  padding: 0;
+  line-height: 1.35;
+  list-style: none;
+}
+
+.equipmentGroups li {
+  padding-left: 0.9rem;
+  text-indent: -0.9rem;
+}
+
+.equipmentGroups li::before {
+  content: "";
+  display: inline-block;
+  width: 0.4rem;
+  height: 1px;
+  margin: 0 0.5rem 0.32rem 0;
+  background: var(--accent);
+}
+
+.costNotes {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 2.25rem;
+  border-top: 1px solid var(--line-strong);
+  padding-top: 1.35rem;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+
+.inquiryLink,
+.recommendation a {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--accent);
+  padding: 0 1.35rem;
+  color: var(--accent-contrast);
+  font-weight: 750;
+  text-decoration: none;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.inquiryLink {
+  margin-top: 1.75rem;
+}
+
+.inquiryLink:hover,
+.recommendation a:hover {
+  background: var(--accent-strong);
+}
+
+.inquiryLink:active,
+.recommendation a:active {
+  transform: translateY(1px);
+}
+
+.inquiryLink:focus-visible,
+.recommendation a:focus-visible,
+.advisorForm button:focus-visible,
+.advisorForm input:focus-visible,
+.advisorForm select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.noScriptComparison {
+  margin-top: clamp(3rem, 6vw, 5rem);
+  border-top: 1px solid var(--line-strong);
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+
+.noScriptComparison header {
+  max-width: 42rem;
+}
+
+.noScriptComparison h3,
+.noScriptComparison h4 {
+  font-family: var(--font-display);
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+
+.noScriptComparison h3 {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1;
+}
+
+.noScriptComparison header p,
+.noScriptModels article > p,
+.noScriptEquipment > p {
+  margin-top: 0.75rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.noScriptModels {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 2.5rem;
+  background: var(--line-strong);
+}
+
+.noScriptModels article {
+  min-width: 0;
+  background: var(--surface-strong);
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.noScriptModels h4 {
+  color: var(--accent-strong);
+  font-size: 1.6rem;
+}
+
+.noScriptModels dl {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.noScriptModels dt {
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.noScriptModels dd {
+  margin-top: 0.2rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.noScriptEquipment {
+  margin-top: 1px;
+  background: var(--surface);
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.noScriptEquipment ul {
+  columns: 3 14rem;
+  column-gap: 2rem;
+  margin: 1rem 0 0;
+  padding-left: 1.1rem;
+  line-height: 1.5;
+}
+
+.advisor {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.72fr) minmax(22rem, 1fr) minmax(18rem, 0.82fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+  margin-top: clamp(5rem, 9vw, 9rem);
+  border-top: 1px solid var(--line-strong);
+  padding-top: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.advisorIntro h3 {
+  max-width: 10ch;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3.25rem);
+  font-weight: 650;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.advisorIntro p {
+  max-width: 25rem;
+  margin-top: 1rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+.advisorForm {
+  display: grid;
+  gap: 1rem;
+}
+
+.advisorForm label {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.advisorForm label > span {
+  font-size: 0.86rem;
+  font-weight: 750;
+}
+
+.advisorForm input,
+.advisorForm select {
+  width: 100%;
+  min-height: 3.25rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-card);
+  background: var(--surface-strong);
+  padding: 0 1rem;
+  color: var(--ink);
+  font: inherit;
+}
+
+.advisorForm button {
+  min-height: 3.25rem;
+  cursor: pointer;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ink);
+  padding: 0 1.4rem;
+  color: var(--accent-contrast);
+  font: inherit;
+  font-weight: 750;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.advisorForm button:hover {
+  background: var(--accent-strong);
+}
+
+.advisorForm button:active {
+  transform: translateY(1px);
+}
+
+.recommendation {
+  min-height: 8rem;
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  padding: 1.35rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+.recommendation h4 {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 650;
+  line-height: 1.15;
+}
+
+.recommendation h4 + p {
+  margin-top: 0.7rem;
+}
+
+.recommendation a {
+  margin-top: 1rem;
+}
+
+@media (max-width: 960px) {
+  .productView {
+    grid-template-columns: minmax(0, 0.9fr) minmax(22rem, 1.1fr);
+    gap: 2rem;
+  }
+
+  .productStage {
+    top: 6rem;
+  }
+
+  .advisor {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .recommendation {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 767px) {
+  .selector {
+    scroll-margin-top: 4rem;
+  }
+
+  .inner {
+    padding: 4.5rem 1rem;
+  }
+
+  .header h2 {
+    max-width: 11ch;
+    font-size: clamp(3rem, 14vw, 4rem);
+  }
+
+  .modelPicker {
+    margin-top: 2.75rem;
+  }
+
+  .modelChoice {
+    min-height: 6rem;
+    padding: 0.9rem 0.75rem;
+  }
+
+  .modelChoice strong {
+    font-size: 2.5rem;
+  }
+
+  .modelChoice span {
+    font-size: 0.72rem;
+    line-height: 1.2;
+  }
+
+  .productView {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2.75rem;
+  }
+
+  .productStage {
+    position: static;
+    padding-top: 0;
+  }
+
+  .modelData {
+    padding: 1.35rem;
+  }
+
+  .pricePicker > div {
+    display: grid;
+    width: 100%;
+  }
+
+  .pricePicker label span {
+    padding: 0 0.6rem;
+    font-size: 0.76rem;
+  }
+
+  .facts {
+    gap: 1.2rem 1rem;
+  }
+
+  .equipmentGroups ul {
+    grid-template-columns: 1fr;
+  }
+
+  .inquiryLink,
+  .recommendation a {
+    width: 100%;
+  }
+
+  .advisor {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 5rem;
+    padding-top: 3rem;
+  }
+
+  .advisorIntro h3 {
+    max-width: 12ch;
+  }
+
+  .recommendation {
+    grid-column: auto;
+  }
+
+  .noScriptModels {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modelChoice,
+  .pricePicker label span,
+  .inquiryLink,
+  .recommendation a,
+  .advisorForm button {
+    transition: none;
+  }
+}

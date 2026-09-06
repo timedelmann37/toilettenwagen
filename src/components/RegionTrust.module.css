@@ -1,0 +1,383 @@
+.region {
+  scroll-margin-top: 4.5rem;
+  overflow: hidden;
+  background: var(--surface-strong);
+}
+
+.inner {
+  width: min(100%, 88rem);
+  margin-inline: auto;
+  padding: clamp(7rem, 11vw, 11rem) clamp(1rem, 4vw, 4.5rem)
+    clamp(7rem, 11vw, 11rem);
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(20rem, 0.82fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: end;
+}
+
+.intro h2,
+.reviewsIntro h2 {
+  max-width: 10ch;
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 6.4vw, 5.8rem);
+  font-weight: 650;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.intro > div {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.intro p,
+.reviewsIntro p,
+.mapCopy p {
+  max-width: 40rem;
+  color: var(--ink-soft);
+  font-size: clamp(1.05rem, 1.45vw, 1.22rem);
+  line-height: 1.55;
+}
+
+.intro .radiusStatement {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 2.8vw, 2.5rem);
+  font-weight: 640;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+}
+
+.placeField {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.72fr) minmax(0, 1.28fr);
+  margin-top: clamp(5rem, 8vw, 7rem);
+  border-top: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.origin,
+.placeList {
+  padding: clamp(2rem, 4vw, 3.5rem) 0;
+}
+
+.origin {
+  display: grid;
+  align-content: center;
+  padding-right: clamp(2rem, 5vw, 5rem);
+}
+
+.origin span,
+.placeList > p {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.origin strong {
+  margin-top: 0.85rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 4vw, 3.8rem);
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.placeList {
+  border-left: 1px solid var(--line);
+  padding-left: clamp(2rem, 5vw, 5rem);
+}
+
+.placeList ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 1.3rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.placeList li {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  border-top: 1px solid var(--line);
+  padding: 0.65rem clamp(1rem, 2vw, 1.5rem) 0.65rem 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.7vw, 1.4rem);
+  font-weight: 620;
+}
+
+.placeList li:not(:last-child)::after {
+  margin-left: clamp(1rem, 2vw, 1.5rem);
+  color: var(--line-strong);
+  content: "·";
+}
+
+.mapStory {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: start;
+  margin-top: clamp(7rem, 11vw, 11rem);
+}
+
+.mapCopy {
+  position: sticky;
+  top: 7rem;
+  padding-top: 0.5rem;
+}
+
+.mapCopy h3 {
+  max-width: 13ch;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.2vw, 4rem);
+  font-weight: 640;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.mapCopy p {
+  margin-top: 1.6rem;
+}
+
+.whatsapp {
+  margin-top: 2rem;
+}
+
+.reviews {
+  margin-top: clamp(9rem, 14vw, 14rem);
+  border-top: 1px solid var(--line-strong);
+  padding-top: clamp(5rem, 9vw, 8rem);
+}
+
+.reviewsIntro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.9fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: end;
+}
+
+.reviewsIntro h2 {
+  max-width: 11ch;
+}
+
+.reviewField {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  margin-top: clamp(4rem, 8vw, 7rem);
+}
+
+.review {
+  display: grid;
+  align-content: space-between;
+  min-width: 0;
+  margin: 0;
+  border-top: 1px solid var(--line-strong);
+  padding: clamp(2rem, 4vw, 3.5rem);
+}
+
+.review blockquote {
+  margin: 0;
+}
+
+.review blockquote p {
+  color: var(--ink);
+  font-size: clamp(1.05rem, 1.4vw, 1.22rem);
+  line-height: 1.58;
+}
+
+.review figcaption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.review cite {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.review figcaption span {
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.reviewFeature {
+  grid-column: 1 / span 7;
+  grid-row: 1 / span 2;
+  min-height: 35rem;
+  border: 0;
+  border-radius: var(--radius-card) 0 0 var(--radius-card);
+  background: #ded8ca;
+}
+
+.reviewFeature blockquote p {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-weight: 560;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.reviewEileen,
+.reviewRalf {
+  grid-column: 8 / -1;
+  border-left: 1px solid var(--line-strong);
+  background: #e9ece9;
+}
+
+.reviewEileen {
+  border-radius: 0 var(--radius-card) 0 0;
+}
+
+.reviewRalf {
+  border-bottom: 1px solid var(--line-strong);
+  border-radius: 0 0 var(--radius-card) 0;
+}
+
+.reviewAlic,
+.reviewHans {
+  margin-top: clamp(3rem, 6vw, 5rem);
+  padding-right: clamp(2rem, 6vw, 6rem);
+  padding-left: 0;
+}
+
+.reviewAlic {
+  grid-column: 1 / span 6;
+}
+
+.reviewHans {
+  grid-column: 7 / -1;
+  border-left: 1px solid var(--line);
+  padding-left: clamp(2rem, 5vw, 5rem);
+}
+
+@media (max-width: 900px) {
+  .mapStory {
+    grid-template-columns: 1fr;
+  }
+
+  .mapCopy {
+    position: static;
+  }
+
+  .reviewFeature {
+    grid-column: 1 / span 8;
+  }
+
+  .reviewEileen,
+  .reviewRalf {
+    grid-column: 9 / -1;
+  }
+}
+
+@media (max-width: 767px) {
+  .region {
+    scroll-margin-top: 4rem;
+  }
+
+  .inner {
+    padding: 6rem 1rem;
+  }
+
+  .intro,
+  .reviewsIntro {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .intro h2,
+  .reviewsIntro h2 {
+    max-width: 10ch;
+    font-size: clamp(2.2rem, 11vw, 3.2rem);
+  }
+
+  .placeField {
+    grid-template-columns: 1fr;
+    margin-top: 4rem;
+  }
+
+  .origin {
+    padding-right: 0;
+  }
+
+  .placeList {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .placeList li {
+    font-size: 1.15rem;
+  }
+
+  .mapStory {
+    gap: 2.75rem;
+    margin-top: 6rem;
+  }
+
+  .mapCopy h3 {
+    font-size: clamp(2.45rem, 11vw, 3.2rem);
+  }
+
+  .reviews {
+    margin-top: 8rem;
+    padding-top: 5rem;
+  }
+
+  .reviewField {
+    grid-template-columns: 1fr;
+    margin-top: 4rem;
+  }
+
+  .reviewFeature,
+  .reviewEileen,
+  .reviewRalf,
+  .reviewAlic,
+  .reviewHans {
+    grid-column: 1;
+    grid-row: auto;
+    min-height: 0;
+    margin-top: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+    border-radius: 0;
+    padding: 2.25rem 0;
+    background: transparent;
+  }
+
+  .reviewFeature {
+    border-radius: var(--radius-card);
+    background: #ded8ca;
+    padding: 2.5rem 1.25rem;
+  }
+
+  .reviewFeature blockquote p {
+    font-size: clamp(1.55rem, 7vw, 2rem);
+  }
+
+  .reviewEileen {
+    margin-top: 2rem;
+  }
+
+  .review figcaption {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-top: 2rem;
+  }
+}

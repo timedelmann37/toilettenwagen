@@ -2,20 +2,24 @@
 
 /*
   Design-Tokens gemäß docs/design/direction-contract-home.md
-  OWN-WORLD: warmes Off-White als Grund, Deep-Navy-Text, EIN Blau als einziger Akzent,
-  warme Grau-Neutrals, ein weiches Radius-System. Ein helles Theme für die ganze Seite.
+  OWN-WORLD: warmes Off-White als Grund, Deep-Navy-Text, Hygiene-Blau als Markenakzent,
+  WhatsApp-Grün nur am zugehörigen Kanal, warme Grau-Neutrals und ein weiches Radius-System.
+  Ein helles Theme für die ganze Seite.
 */
 :root {
-  --bg: #f6f3ee; /* warmes Off-White (Grund) */
-  --surface: #fbfaf7; /* leicht hellere Fläche */
-  --surface-strong: #ffffff; /* reine Karten-/Kontrastfläche */
-  --ink: #12263a; /* Deep Navy (Haupttext) */
-  --ink-soft: #4c5a68; /* gedämpfter Text */
-  --line: #e7e0d4; /* warme Haarlinie */
-  --accent: #1f5fd0; /* der eine Blau-Akzent */
-  --accent-strong: #184fb0; /* Hover/aktiv */
-  --accent-contrast: #ffffff; /* Text auf Akzent */
-  --whatsapp: #1f8a4c; /* WhatsApp-Grün, nur für den WhatsApp-CTA */
+  --bg: #f2f2ee;
+  --surface: #e9ece9;
+  --surface-strong: #f8f8f4;
+  --ink: #142b3b;
+  --ink-soft: #526471;
+  --line: #d8ddda;
+  --line-strong: #aab6bc;
+  --accent: #246bb5;
+  --accent-strong: #185894;
+  --accent-contrast: #f9fbfc;
+  --whatsapp: #1e8449;
+  --whatsapp-strong: #176f3c;
+  --font-display: var(--font-bricolage), var(--font-hanken), sans-serif;
 }
 
 @theme inline {
@@ -25,10 +29,12 @@
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
   --color-accent-contrast: var(--accent-contrast);
   --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-strong: var(--whatsapp-strong);
 
   --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
 
@@ -38,15 +44,41 @@
   --radius-card: 0.875rem;
 }
 
-/* Color-Consistency-Lock: EIN Blau-Akzent (--accent) auf der ganzen Seite.
-   Ausnahme (bewusst): --whatsapp ist KEIN zweiter Design-Akzent, sondern die
-   funktionale Kanal-Markenfarbe – ausschließlich für den WhatsApp-CTA. */
-
 body {
   background: var(--color-bg);
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+a {
+  text-underline-offset: 0.22em;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 50;
+  min-height: 2.75rem;
+  transform: translateY(-200%);
+  border-radius: 999px;
+  background: var(--ink);
+  padding: 0.7rem 1rem;
+  color: var(--accent-contrast);
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 /* Motion-Budget (Dial 3): Bewegung immer reduzierbar. */

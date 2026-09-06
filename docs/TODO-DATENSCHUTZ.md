@@ -1,27 +1,26 @@
-# TODO – Datenschutzerklärung (offen, vor Go-Live zwingend)
+# Datenschutz: Technikabgleich und Freigabestatus
 
-> Status: **offen**. Bewusst auf später verschoben (Grilling 2026-09-05). Der finale Text hängt davon ab,
-> welche Komponenten am Ende tatsächlich eingebaut sind. **Vor dem Go-Live rechtlich verpflichtend (DE).**
+Stand: 5. September 2026. Die Route `/datenschutz/` beschreibt den aktuell gebauten Stand. Dieser Abgleich ersetzt keine abschließende rechtliche Prüfung.
 
-## Muss abgedeckt werden (Stand der Entscheidungen)
+## Im aktuellen Text abgedeckt
 
-- [ ] **Verantwortlicher** (UG, Anschrift, Vertretungsberechtigte – siehe Impressum).
-- [ ] **Google Maps** (ADR-0003): externe Requests + Datenübertragung an Google, Consent-Pflicht, Google-Rechtsgrundlage/Server USA.
-- [ ] **Cookie-Consent-Banner**: welche Cookies/Speicher, Einwilligung, Widerruf.
-- [ ] **Anfrageformular** (ADR-0002): erhobene Daten (Name, E-Mail, Telefon, Ort, Zeitraum, Anlass, Nachricht), Zweck, Speicherdauer, Rechtsgrundlage (Art. 6 Abs. 1 lit. b DSGVO – vorvertraglich).
-- [ ] **PHP-Mailversand**: Verarbeitung/Weiterleitung an `kontakt@…`, Hosting bei Hetzner (AVV mit Hetzner nötig).
-- [ ] **WhatsApp-Kontakt**: Hinweis auf Datenübertragung an Meta bei Nutzung des WhatsApp-Wegs.
-- [ ] **Hosting Hetzner Webhosting L**: Server-Logs, IP-Verarbeitung, Auftragsverarbeitungsvertrag.
-- [ ] **Fonts**: falls Webfonts genutzt → **selbst hosten** (kein Google-Fonts-CDN), sonst hier deklarieren.
-- [ ] **Google-Bewertungen/Einbindung**: falls Bewertungen live von Google eingebunden werden (nicht nur statische Zitate).
+- [x] Verantwortlicher mit bestätigter Firma, Anschrift, Telefon und E-Mail.
+- [x] Hetzner Webhosting und technisch erforderliche Server-Protokolle.
+- [x] Google Maps wird erst nach ausdrücklicher Einwilligung geladen.
+- [x] Die Kartenentscheidung liegt im lokalen Browser-Speicher und kann im Bereich `/#region` erneut geöffnet werden.
+- [x] Sitzungsspeicher für Wagengröße, Anlass und Preisansicht.
+- [x] WhatsApp als externer, erst beim Öffnen aktivierter Kontaktweg.
+- [x] Anfrageformular als ehrlicher lokaler Platzhalter ohne konfigurierten Versand-Endpunkt.
+- [x] Selbst ausgelieferte Webfonts ohne Laufzeitverbindung zu Google Fonts.
+- [x] Kundenstimmen als statische Inhalte ohne externes Bewertungs-Widget.
+- [x] Kein Analyse- oder Marketing-Tracking.
 
-## Entscheidungen, die die DS-Erklärung vereinfachen
+## Vor Veröffentlichung beziehungsweise Aktivierung offen
 
-- Formular selbst gehostet (kein Drittanbieter) → weniger Auftragsverarbeiter.
-- Fonts selbst hosten → kein externer Font-Request.
-- Kundenstimmen als statische Zitate („Vorname + Initiale") → keine Live-Google-Einbindung nötig.
+- [ ] Auftragsverarbeitungsvereinbarung mit Hetzner abschließen beziehungsweise bestätigen.
+- [ ] Tatsächliche Server-Log-Konfiguration und Löschfristen des gebuchten Webhosting-Pakets prüfen und den Text bei Abweichungen anpassen.
+- [ ] Datenschutzerklärung rechtlich final prüfen lassen.
+- [ ] Mailer vor Aktivierung technisch und datenschutzrechtlich vollständig abnehmen: Empfänger, Datenfelder, Rechtsgrundlage, Speicherdauer, Schutzmaßnahmen und Löschprozess.
+- [ ] Nach Aktivierung des Mailers den Abschnitt „Anfrageformular im aktuellen Projektstand“ vor dem produktiven Versand ersetzen.
 
-## Nächster Schritt
-
-Am Ende der Implementierung (Phase 9) die tatsächlich verbaute Komponentenliste gegen diese Checkliste prüfen,
-dann Datenschutzerklärung passgenau erstellen und `/datenschutz` befüllen.
+Der Mailer bleibt auf ausdrücklichen User-Wunsch zunächst deaktiviert. `NEXT_PUBLIC_INQUIRY_ENDPOINT` darf vor Abschluss der offenen Mailer-Punkte nicht in der Produktion gesetzt werden.

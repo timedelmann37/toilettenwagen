@@ -1,92 +1,408 @@
-# Spec: Startseite (Toilettenwagen-Vermietung)
+# Spec: Startseite — Modellfamilie als roter Faden
 
 Status: ready-for-agent
 
-> Synthese aus `docs/design/direction-contract-home.md`, `PRODUCT.md`, `CONTEXT.md`, `docs/DISCOVERY.md`, `docs/adr/`.
-> Terminologie durchgehend nach `CONTEXT.md`. Bindende Entscheidungen in ADR-0001..0004.
+> Verbindliche Synthese aus `docs/design/direction-contract-home.md`, `PRODUCT.md`, `CONTEXT.md`, `docs/DISCOVERY.md` und ADR-0001 bis ADR-0004.
+> Der A4-Prototyp unter `/prototype/family-unfold/?variant=a4` ist ausschließlich Interaktionsbeweis. Er ist weder Seitenvorlage noch Produktionscode.
 
-## Problem Statement
+## 1. Problem
 
-Ein potenzieller Kunde (privat, Firma, Veranstalter oder Kommune) im Umkreis von ca. 125 km um Niederdreisbach braucht für einen Termin einen sauberen, beheizten **Toilettenwagen**. Aktuell gibt es keine Website; Interessenten finden das Angebot nur über Kleinanzeigen und können sich weder ein Bild von den Wagen machen, noch Preise/Leistungen einschätzen, noch schnell und niederschwellig anfragen. Sie wissen nicht, ob ihr Anlass, ihre Region und ihr Termin bedient werden.
+Privatkunden, Veranstalter, Firmen und Kommunen benötigen für einen festen Ort und Termin eine gepflegte mobile Sanitärlösung. Vor einer Anfrage müssen sie schnell verstehen:
 
-## Solution
+- welche der drei Wagen-Größen grundsätzlich passt,
+- welche Ausstattung und Anschlüsse dazugehören,
+- welche Kostenlogik gilt,
+- ob der Ort im Einsatzgebiet liegt,
+- wie Lieferung und Abholung ablaufen,
+- und wie sie ohne Hürde ein persönliches Angebot erhalten.
 
-Eine schlichte, vertrauensbildende **One-Pager-Startseite** (`/`), die die echten Wagen zeigt, die drei **Modelle** (S/M/L) mit fairen Preisen vergleichbar macht, den USP („Liefer-/Abholtag kostenfrei", „alles dabei") und den Ablauf erklärt, das Einsatzgebiet zeigt und den Besucher an einem klaren Ziel entlangführt: eine **Anfrage** stellen — primär per WhatsApp, sekundär per Formular. Zwei separate Pflichtseiten `/impressum` und `/datenschutz` erfüllen die Rechtslage. Alles produktgeführt gemäß Direction Contract (Kandidat A „Vertrauens-Katalog").
+Eine gewöhnliche regionale Dienstleister-Landingpage würde die sachlichen Informationen zwar transportieren, aber weder die Qualität der Wagen noch den eigenständigen Produktcharakter glaubwürdig vermitteln. Die neue Seite muss deshalb Produktinszenierung, regionale Nähe und konkrete Planungshilfe in einer zusammenhängenden Erzählung verbinden.
 
-## User Stories
+## 2. Lösung und Erfolg
 
-1. Als Besucher möchte ich im ersten Viewport sofort erkennen, dass hier gepflegte Toilettenwagen vermietet werden, damit ich weiß, dass ich richtig bin.
-2. Als Besucher möchte ich im Hero einen echten, freigestellten Wagen sehen, damit ich die Qualität einschätzen kann.
-3. Als eiliger Besucher möchte ich den WhatsApp-Kontakt ohne Scrollen sehen, damit ich sofort anfragen kann.
-4. Als Besucher, der lieber nicht per WhatsApp schreibt, möchte ich einen zweiten Weg (Formular) sehen, damit ich trotzdem anfragen kann.
-5. Als Besucher möchte ich per Sticky-Ankernavigation zu Wagen, Leistungen, Ablauf, Einsatzgebiet und Kontakt springen, damit ich gezielt navigiere.
-6. Als Privatkunde möchte ich die drei Modelle S/M/L mit Kabinen-/Urinal-Anzahl und Ausstattung vergleichen, damit ich das passende auswähle.
-7. Als Privatkunde möchte ich Preise **brutto (inkl. MwSt.)** sehen, damit ich den echten Endpreis kenne.
-8. Als Firmenkunde möchte ich per Umschalter auf **Netto**-Preise wechseln, damit ich kalkulieren kann.
-9. Als Besucher möchte ich den Hinweis „zzgl. Anfahrt 1,10 €/km · Liefer-/Abholtag kostenfrei" bei den Preisen sehen, damit ich keine versteckten Kosten fürchte.
-10. Als Besucher möchte ich verstehen, dass Preise Richtwerte sind und ein individuelles Angebot folgt, damit meine Erwartung stimmt.
-11. Als Besucher möchte ich den USP „alles dabei" (Abwasserrohre, Frischwasserschläuche, Holz-Kanaldeckel) verstehen, damit ich den Mehrwert gegenüber der Konkurrenz sehe.
-12. Als Besucher möchte ich sehen, dass Liefer- und Abholtag nicht als Miettage zählen, damit ich die faire Berechnung erkenne.
-13. Als Besucher möchte ich den Ablauf (Anfrage → Angebot < 2 h → Lieferung → Abholung → Reinigung) sehen, damit ich weiß, was mich erwartet.
-14. Als Besucher möchte ich wissen, was ich selbst bereitstellen muss (Strom 230 V, Wasser, ebener Untergrund, Abwasseranschluss inkl. Genehmigung), damit ich vorbereitet bin.
-15. Als Besucher möchte ich das Einsatzgebiet auf einer Karte sehen, damit ich prüfe, ob mein Ort bedient wird.
-16. Als datenschutzbewusster Besucher möchte ich, dass die Google-Karte erst nach meiner Einwilligung lädt, damit meine Daten nicht ungefragt an Google gehen.
-17. Als Besucher möchte ich echte Kundenstimmen sehen, damit ich Vertrauen fasse.
-18. Als Besucher möchte ich im Anfrageformular Name, Kontakt, Ort/PLZ, Zeitraum, Modell, Anlass und Nachricht angeben, damit ein belastbares Angebot möglich ist.
-19. Als Besucher möchte ich beim Absenden klare Fehlermeldungen bekommen, wenn Pflichtangaben fehlen oder die E-Mail ungültig ist, damit ich die Anfrage korrigieren kann.
-20. Als Besucher möchte ich der Datenverarbeitung per Checkbox zustimmen, bevor ich absende, damit die Anfrage rechtskonform ist.
-21. Als Besucher möchte ich nach erfolgreichem Absenden eine Bestätigung sehen, damit ich weiß, dass die Anfrage raus ist.
-22. Als Besucher möchte ich bei einem Sendefehler eine verständliche Meldung + alternativen Kontaktweg sehen, damit ich nicht im Leeren stehe.
-23. Als Mobil-Besucher möchte ich die Seite einspaltig und gut lesbar sehen (Wagen-Bild oben), damit sie am Handy funktioniert.
-24. Als Besucher mit Sehbeeinträchtigung möchte ich ausreichenden Kontrast und lesbare Schrift (WCAG AA), damit ich die Inhalte erfassen kann.
-25. Als Tastatur-Nutzer möchte ich Navigation, Toggle und Formular vollständig per Tastatur bedienen können, damit ich nicht auf die Maus angewiesen bin.
-26. Als Besucher, der Bewegung reduziert hat (`prefers-reduced-motion`), möchte ich statische Inhalte ohne Animationen, damit mir nicht schlecht wird.
-27. Als Besucher möchte ich im Footer den vollständigen Firmennamen und Links zu Impressum und Datenschutz finden, damit ich die rechtlichen Angaben erreiche.
-28. Als Besucher möchte ich das Impressum mit allen Pflichtangaben (UG, Anschrift, Vertretung, HRB, USt-ID) sehen, damit die Firma verifizierbar ist.
-29. Als Besucher möchte ich die Öffnungs-/Erreichbarkeitszeiten sehen, damit ich weiß, wann ich Antwort erwarten kann.
-30. Als Suchender bei Google möchte ich die Seite über lokale Begriffe (Toilettenwagen mieten + Region) finden, damit ich sie überhaupt entdecke.
-31. Als Betreiber möchte ich, dass Anfragen aus dem Formular an `kontakt@mobile-sanitaeranlagen-hs.de` gemailt werden, damit ich sie bearbeiten kann.
-32. Als Betreiber möchte ich Basis-Spamschutz im Formular (Honeypot), damit ich nicht mit Spam zugeschüttet werde.
+Gebaut wird eine deutschsprachige One-Page-Startseite `/` mit den Rechtsseiten `/impressum` und `/datenschutz`.
 
-## Implementation Decisions
+Die **Modellfamilie** bildet den roten Faden: S, M und L eröffnen gemeinsam die Seite. Danach erklärt eine statisch vollständig lesbare Modellgeschichte die drei Größen. In Phase 8 wird daraus die bestätigte Scrollchoreografie, bei der sich derselbe Leitwagen aus dem Hero löst, rechts durch die Stationen S/M/L fährt und anschließend parkt. Von dort übernimmt die Servicestory bis zur Anfrage.
 
-- **Auslieferung:** Next.js 16 als **statischer Export** (`output: 'export'`, `images.unoptimized`), Deployment auf Hetzner Webhosting L (ADR-0001). Keine SSR/API-Routen.
-- **Seitenstruktur:** One-Pager `/` mit Sektionen in fester Reihenfolge (Hero → Wagen → „Alles dabei"/USP → Ablauf → Einsatzgebiet → Kundenstimmen → Anfrage → Footer) + separate Routen `/impressum`, `/datenschutz`.
-- **Navigation:** Sticky-Ankernavigation (einzeilig, ≤80px) mit Logo; Anker auf die Sektionen.
-- **Interaktive Leaves (Client Components, isoliert):** `PriceToggle` (Wagen-Sektion), `InquiryForm` (Anfrage), `MapConsent` (Einsatzgebiet). Restliche Seite statisch/serverseitig gerendert.
-- **Preis-Toggle:** Zustand Privat|Firma; Default **Privat/brutto** (ADR-0004). Brutto = Netto × 1,19, kaufmännisch gerundet. Zusatzzeile mit Anfahrt/Liefertag-Hinweis. Preise als Richtwerte („ab …").
-- **Modelle:** Datengetriebene Darstellung der drei Modelle (Name, Kabinen, Urinale, Ausstattung, Ab-Preis netto) aus einer zentralen Datenquelle; brutto wird abgeleitet.
-- **Anfrageformular:** Felder Name, E-Mail, Telefon, Ort/PLZ, Zeitraum (von–bis), Modell (S/M/L/„weiß nicht"), Anlass, Nachricht, DS-Checkbox. Pflicht: Name + mindestens ein Kontaktweg + Zeitraum + Ort + DS-Checkbox. Client-seitige Validierung vor Absenden; Honeypot-Feld gegen Spam.
-- **Formular-Backend:** POST an ein **PHP-Mail-Skript** auf demselben Webhosting, das an `kontakt@…` mailt (ADR-0002). Contract: Formular sendet Feldwerte; PHP antwortet mit Erfolg/Fehler; UI zeigt Bestätigungs-/Fehlerzustand. SMTP-/Mail-Zugangsdaten in der Umsetzung zu klären.
-- **Karte + Consent:** Cookie-Consent-Banner; Google-Maps-Embed lädt **erst nach Einwilligung** (ADR-0003). Vor Einwilligung Platzhalter mit Klick-zum-Laden.
-- **WhatsApp-CTA:** primärer, überall sichtbarer CTA (Deeplink aus `whatsapp unternehmenskonto.txt`) + Telefon/E-Mail.
-- **Assets:** echte Fotos vorab zu WebP optimiert, nach `public/` verschoben, sinnvoll benannt; Hero = freigestellter S-Wagen. Logo self-hosted. Fonts self-hosted (`@font-face`, kein Google-CDN).
-- **Theme:** ein helles Theme für die ganze Seite (Dark-Mode optional später), kein Sektions-Flip.
-- **SEO:** deutschsprachige Meta-Titel/Description, OG-Card, lokale Keywords; strukturierte Daten (LocalBusiness) optional.
+Erfolg bedeutet:
 
-## Testing Decisions
+1. Im ersten Viewport sind Produkt, Region und primäre Handlung verständlich.
+2. Ein Besucher kann S/M/L und Privat-/Gewerbepreise sicher vergleichen.
+3. Bedingungen, Service und Voraussetzungen sind vor der Anfrage klar.
+4. WhatsApp ist jederzeit leicht erreichbar.
+5. Eine qualifizierte Formularanfrage kann alternativ vollständig abgesendet werden.
+6. Alle Kerninhalte funktionieren statisch, mobil, per Tastatur und mit reduzierter Bewegung.
 
-- **Framework (neuer Seam):** Vitest + @testing-library/react (jsdom). Bisher kein Test-Setup im Repo — dies etabliert das Muster (Prior Art wird mit dem ersten Test geschaffen).
-- **Guter Test = nur externes Verhalten**, keine Implementierungsdetails: sichtbarer DOM, Rollen/Labels, Nutzerinteraktionen — nicht interne State-Variablen oder CSS-Klassen.
-- **Getestete Module (die drei Verhaltens-Leaves):**
-  - `PriceToggle` / Wagen-Sektion: Default zeigt Brutto-Preise inkl. MwSt.; Umschalten auf Firma zeigt Netto; Hinweiszeile vorhanden; per Tastatur bedienbar.
-  - `InquiryForm`: Absenden ohne Pflichtfelder zeigt Fehlermeldungen; ungültige E-Mail wird abgelehnt; fehlende DS-Checkbox blockiert Absenden; gültige Eingabe löst den Sende-Contract aus (Backend gemockt); Erfolg-/Fehlerzustand wird angezeigt.
-  - `MapConsent`: vor Einwilligung wird die Google-Karte NICHT geladen (kein Google-iframe/-Request im DOM); nach Klick auf Einwilligung wird sie geladen.
-- **Nicht per Test geprüft:** reine Optik, Layout, Farb-/Font-Treue → Phase 7 Visual QA. PHP-Mailversand selbst (außerhalb der JS-Testgrenze) → manuell verifiziert.
+## 3. Autorität und Grenzen
 
-## Out of Scope
+- Der [Direction Contract](../../docs/design/direction-contract-home.md) entscheidet visuelle Welt, Seitenmodell, Bildwelt, Anti-Ziele und spätere Motion.
+- `PRODUCT.md` und `docs/DISCOVERY.md` entscheiden Produktdaten und Claims.
+- `CONTEXT.md` entscheidet Begriffe. Insbesondere heißt die Conversion **Anfrage**, nicht Buchung oder Reservierung.
+- ADR-0001 entscheidet statischen Next.js-Export; ADR-0002 PHP-Mailer; ADR-0003 Google Maps mit Consent; ADR-0004 Privat-brutto/Gewerbe-netto.
+- Ein Implementierer darf keine Preise, Ausstattungen, Kundenstimmen, Statistiken, Zertifikate oder Verfügbarkeiten ergänzen.
+- Das Logo darf professionell aufbereitet, inhaltlich aber nicht verändert werden.
+- Produktion ersetzt nicht die bestehende Prototyp-Route; diese bleibt bis zur späteren Bereinigung als Entscheidungsnachweis bestehen.
 
-- Konkrete Design-Vorlagen/Comps, finale Layouts, finaler Font, Feinabstimmung → Phase 5/6/7.
-- Higgsfield-generierte Assets (später; vorerst echte Fotos).
-- „Über uns"/Gründer-Block (v2).
-- Finaler Datenschutz-Text (`docs/TODO-DATENSCHUTZ.md`; abhängig von verbauten Komponenten).
-- Exakte Wortmarke; Registergericht/MStV-Verantwortliche im Impressum (⚠️ in `docs/IMPRESSUM.md`).
-- Feste Preisstaffelung, Wochenend-Preise, Service-Intervalle, Partner.
-- Online-Buchung/Zahlung, Kalender/Verfügbarkeit, CMS, Mehrsprachigkeit, Dark-Mode.
+## 4. Zielgruppen und Hauptaufgabe
 
-## Further Notes
+Die Seite richtet sich gleichwertig an:
 
-- Bilder: 26 echte Fotos im Root (Handy-Qualität, meist 4:3/3:4); `s-wagen ohne schatten.jpg` ist freigestellt (Hero). `aussenbeleuchtung.jpeg` ist Banner-breit (2048×732).
-- Impressum-Entwurf liegt in `docs/IMPRESSUM.md` (offene ⚠️-Punkte).
-- Kundenstimmen: „Vorname + Initiale"/Google, Klarname nur mit Einwilligung.
-- Tickets folgen in Phase 5 via `/to-tickets` (Tracer-Bullets, Reihenfolge: Fundament → Hero/Direction-Proof → Wagen+Toggle → USP/Ablauf → Einsatzgebiet+Consent → Kundenstimmen → Anfrageformular → Rechtsseiten → Responsive/A11y/Perf → Motion → Visual-Review).
+- Privatkunden für Hochzeiten, Gartenpartys und Feiern,
+- Veranstalter für Kirmes, Märkte, Festivals und Sportveranstaltungen,
+- Firmen und Baustellen,
+- Kommunen und Behörden.
+
+Keine Zielgruppe erhält im Hero eine exklusive Bild- oder Sprachwelt. Die gemeinsame Hauptaufgabe lautet: **Eignung grob prüfen und eine qualifizierte Anfrage stellen.**
+
+## 5. Informations- und Interaktionsarchitektur
+
+Die Seite folgt nicht dem üblichen Baukasten aus Hero, Featurekarten, Icon-Ablauf, Testimonials und Kontaktband. Sie besitzt drei zusammenhängende Akte:
+
+### Akt I — Produkt verstehen
+
+1. **Ruhige Orientierung:** Logo, Ankernavigation und WhatsApp.
+2. **Die Familie:** S/M/L als gemeinsame Produktbühne im ersten Viewport.
+3. **Ein Wagen, drei Stationen:** Modellgeschichte S → M → L.
+4. **In Ruhe vergleichen:** Modellwechsler, Preisansicht und kompakte Auswahlhilfe.
+
+### Akt II — Zusammenarbeit verstehen
+
+5. **Der Wagen parkt. Der Service übernimmt:** faire Miettage, Inklusivzubehör, ganzjähriger Betrieb und schwierige Aufstellungen.
+6. **Was vor Ort zählt:** Anschlüsse, Untergrund und Genehmigung.
+7. **Von der Anfrage bis zur Abholung:** echter zeitlicher Ablauf und Buchungsvorlauf.
+
+### Akt III — Vertrauen und handeln
+
+8. **Aus Niederdreisbach. Für die Region:** Einsatzgebiet, consent-geschützte Karte und echte Kundenstimmen.
+9. **Sag uns Ort, Termin und Anlass:** WhatsApp und Anfrageformular.
+10. **Verbindlicher Abschluss:** Firma, Kontakt und Recht.
+
+Die Kapitel dürfen visuell ineinandergreifen. Sie dürfen nicht als zehn gleichförmige rechteckige Sektionen oder Kartenstapel umgesetzt werden.
+
+## 6. Seitenkapitel und sichtbare Anforderungen
+
+### 6.1 Navigation
+
+- Logo links; Anker **Wagen · Service · Ablauf · Region · Kontakt**.
+- WhatsApp als hervorgehobene Handlung.
+- Desktop einzeilig und ruhig; nach dem ersten Scroll funktional sticky.
+- Mobile als verständlich beschriftetes Menü mit sichtbarem Fokus, Escape-Schließen und Rückgabe des Fokus an den Auslöser.
+- Anchor-Sprünge landen unterhalb der sticky Navigation und verschieben keinen Fokus unkontrolliert.
+
+### 6.2 First Viewport — Die Familie
+
+- Drei freigestellte Wagen stehen getrennt, aber kompositorisch zusammengehörig; keine sterile Längenreihe.
+- Keine künstliche Studiofläche, Texturkulisse oder fotografische Karte hinter den Wagen.
+- Vorläufig ist dreimal derselbe aufbereitete S-Wagen zulässig. Labels und Modelldaten bleiben trotzdem korrekt S/M/L. Die Seite behauptet visuell nicht, dass die provisorischen Assets bereits maßhaltige M-/L-Abbildungen sind.
+- Kurzer Claim, knappe regionale Einordnung und ein konkretes Nutzenversprechen.
+- Primär-CTA **Per WhatsApp anfragen**; sekundärer Sprung **Anfrage vorbereiten**.
+- Logo, Handlung und mindestens ein klarer Produktbeweis sind ohne Scrollen sichtbar.
+- Technische Tabellen, WC-Aufteilung und lange Ausstattungstexte erscheinen nicht im ersten Viewport.
+
+### 6.3 Modellgeschichte S/M/L
+
+- Alle drei Stationen sind bereits in Phase 6 statisch und in normaler Dokumentreihenfolge vollständig verständlich.
+- Die Modellgeschichte ist eine knappe Größenstaffel: Pro Station erscheinen Modell, Kapazität und ein kurzer Eignungshinweis.
+- Ein gemeinsamer Wagen begleitet die drei Stationen; derselbe Freisteller wird nicht dreimal als separates Bild wiederholt.
+- Ab-Preis, Maße, WC-Aufteilung und Ausstattung erscheinen vollständig und nur einmal im direkt folgenden Modellwechsler.
+- Die spätere Bewegung ist kein Bestandteil des statischen Abnahmetests in Phase 6/7.
+- Für Phase 8 gilt die Choreografie des Direction Contracts: identischer Leitwagen, Hero-Ausbruch, rechte vertikale Spur, Stillstand S/M/L, Verlängerung nur zwischen Stationen, zweite Achse bei L, Parken vor dem Vergleich.
+
+### 6.4 Modellwechsler
+
+- Auswahl S/M/L aktualisiert als eine zusammenhängende Ansicht:
+  - Wagenbild,
+  - Kapazität,
+  - Maße,
+  - Damen-/Herrenaufteilung und Urinale,
+  - modellspezifische und gemeinsame Ausstattung,
+  - Ab-Preis.
+- Aktives Modell ist sichtbar, programmatisch erkennbar und per Tastatur auswählbar.
+- Kein automatisch laufendes Carousel und kein erzwungenes Wischen.
+- Ein direkter Anfrage-CTA übernimmt das gewählte Modell als unverbindliche Vorauswahl in das Formular.
+
+### 6.5 Preisansicht
+
+- Default: **Privat · brutto inkl. MwSt.**
+- Alternative: **Gewerbe · netto**.
+- Brutto wird aus Netto × 1,19 kaufmännisch auf Cent gerundet:
+  - S: 175,00 € netto / 208,25 € brutto,
+  - M: 190,00 € netto / 226,10 € brutto,
+  - L: 210,00 € netto / 249,90 € brutto.
+- Jede Ansicht verwendet „ab“ und „pro Miettag“.
+- In unmittelbarer Nähe steht unmissverständlich:
+  - Anfahrt 1,10 €/km, nicht im Mietpreis enthalten,
+  - Lieferung und Abholung werden separat berechnet,
+  - Liefer- und Abholtag zählen nicht als Miettage,
+  - das verbindliche Ergebnis folgt als individuelles Angebot.
+- Die Wahl darf lokal während des Seitenbesuchs erhalten bleiben; keine persistente Profilbildung.
+
+### 6.6 Kompakte Auswahlhilfe
+
+- Die v1-Auswahlhilfe ist bewusst klein und nicht als Buchungswizard inszeniert.
+- Eingaben: geschätzte Personenzahl und optional Anlass.
+- Ausgabe: das kleinste Modell, dessen veröffentlichte Kapazität die Personenzahl abdeckt.
+- Schwellen: bis 200 → S, 201–400 → M, 401–600 → L.
+- Über 600 oder fehlende/ungültige Zahl → persönliche Beratung statt automatischer Empfehlung.
+- Ergebnis immer als **unverbindliche Orientierung** bezeichnen; Anlass, Zeitraum, Anschlüsse und Verfügbarkeit können die persönliche Empfehlung verändern.
+- Ergebnis kann Modell und Anlass im Anfrageformular vorbefüllen.
+- Kein Preisangebot, keine Verfügbarkeitsprüfung und keine automatische Buchung.
+
+### 6.7 Serviceübergang
+
+Folgende Aussagen werden als wenige große, inhaltlich verschiedene Beweise inszeniert, nicht als gleichförmige Iconkarten:
+
+- Liefer- und Abholtag zählen nicht als Miettage.
+- Abwasserrohre, Frischwasserschläuche und maßgefertigte Holzabdeckungen sind dabei.
+- Alle Wagen sind beheizt und ganzjährig einsetzbar.
+- Waschbecken, Spiegel, Innen-/Außenbeleuchtung, Spülung und Tork-Papierspender gehören zur gemeinsamen Ausstattung.
+- Schwierige Aufstellungen werden lösungsorientiert geplant.
+
+Modell S darf zusätzlich warmes und kaltes Wasser sowie Sensorarmaturen nennen. Das vorhandene Foto der Palmen-/Strand-Innenfolierung darf als allgemeine Innenansicht erscheinen; eine Modellzuordnung oder Exklusivität wird erst nach Bestätigung behauptet.
+
+### 6.8 Voraussetzungen vor Ort
+
+Die Seite nennt zusammenhängend und gut auffindbar:
+
+- 230-V-Stromanschluss,
+- Wasseranschluss,
+- festen, ebenen Untergrund,
+- Abwasseranschluss vor Ort,
+- erforderliche Genehmigung für den Abwasseranschluss.
+
+Die Darstellung soll als gemeinsame Aufstellungsplanung verstanden werden, nicht als versteckter Haftungsausschluss.
+
+### 6.9 Ablauf
+
+Verbindliche Reihenfolge:
+
+1. Anfrage per WhatsApp oder Formular.
+2. Persönliches Angebot üblicherweise in unter zwei Stunden innerhalb der Erreichbarkeit.
+3. Auftragsbestätigung; fallweise 30 % Anzahlung.
+4. Lieferung und Aufbau meistens einen Tag vor dem Anlass.
+5. Abholung und Abbau meistens einen Tag danach.
+6. Reinigung, Schlussrechnung und Bitte um Google-Bewertung.
+
+Zusätzlicher Planungshinweis: August-Hochzeiten idealerweise etwa ein Jahr vorher anfragen; sonst meist drei bis sechs Monate Vorlauf.
+
+### 6.10 Einsatzgebiet, Karte und Bewertungen
+
+- Standort der Wagen: Niederdreisbach.
+- Reguläres Einsatzgebiet: ungefähr 125 km; weiter auf Anfrage.
+- Ortsbeispiele dürfen Daaden, Herdorf, Neunkirchen, Niederfischbach, Dillenburg, Haiger und Westerwald nennen.
+- Auch ohne Google Maps bleiben Radius und Ortsinformation vollständig sichtbar.
+- Vor Einwilligung existiert kein Google-iframe und keine Anfrage an Google.
+- Zustände: noch nicht entschieden, zugestimmt, abgelehnt, Karte lädt, Karte fehlgeschlagen.
+- Einwilligung kann später geändert werden.
+- Die fünf echten Kundenstimmen werden mit Quelle Google und nur in freigegebener Namensform gezeigt.
+- Bewertungen bleiben ohne automatische Rotation lesbar.
+
+### 6.11 Anfrage und Kontakt
+
+WhatsApp ist visuell primär. Zusätzlich sichtbar:
+
+- Telefon/WhatsApp: +49 160 2743001,
+- E-Mail: `kontakt@mobile-sanitaeranlagen-hs.de`,
+- Mo–Fr 08:00–13:00 und 15:00–19:00,
+- Sa 10:00–16:00.
+
+Formularfelder:
+
+| Feld | Regel |
+| --- | --- |
+| Name | Pflicht |
+| E-Mail | optional, aber E-Mail oder Telefon muss vorhanden sein; bei Eingabe valide |
+| Telefon | optional, aber E-Mail oder Telefon muss vorhanden sein |
+| Ort/PLZ | Pflicht |
+| Von/Bis bzw. Termin | Pflicht; Ende nicht vor Beginn |
+| Modell | S, M, L oder „weiß nicht“; Vorauswahl möglich |
+| Anlass | Hochzeit, private Feier, Festival/Großveranstaltung, Firmenfeier, Markt, Sportveranstaltung oder Freitext/sonstiges |
+| Nachricht | optional; ausreichend für realistische Rückfragen dimensioniert |
+| Datenschutz | Pflicht, nicht vorausgewählt; Link zu `/datenschutz` |
+| Honeypot | für Menschen unsichtbar und nicht als normale Eingabe angekündigt |
+
+Formularzustände:
+
+- **Initial:** keine irreführende Erfolgsaussage.
+- **Ungültig:** Feldfehler plus fokussierbare Fehlerzusammenfassung; vorhandene Eingaben bleiben erhalten.
+- **Sendet:** Submit gegen Doppelversand gesichert; Felder bleiben lesbar.
+- **Erfolg:** eindeutige Bestätigung und realistischer nächster Schritt; kein Buchungsversprechen.
+- **Server-/Netzwerkfehler:** Eingaben bleiben erhalten; WhatsApp und Telefon als Alternative. Formularinhalte werden nicht ungefragt in einen externen Deeplink übertragen.
+- **Spamverdacht:** neutrale Fehlermeldung ohne Offenlegung der Filterlogik.
+
+Das statische Frontend sendet nach späterer Aktivierung per POST an das PHP-Mail-Skript desselben Hostings. Das Backend antwortet in einem fest definierten JSON-Contract mit Erfolg oder sicherer Fehlermeldung. Zugangsdaten und interne Fehlerdetails erscheinen weder im Client noch in der Antwort.
+
+**Amendment vom 2026-09-05:** Der User hat den produktiven Mailer bis zu einer späteren Umsetzung zurückgestellt. Bis dahin validiert das vollständige Formular lokal, zeigt klar an, dass nichts übertragen wurde, und hält den dokumentierten Transport-Contract austauschbar bereit. Ein echter Versand oder eine positive Eingangsbestätigung darf ohne konfigurierten Endpunkt nicht simuliert werden.
+
+### 6.12 Footer und Rechtsseiten
+
+- Vollständiger Firmenname, Anschrift, Telefon, E-Mail sowie Links zu Impressum und Datenschutz.
+- Impressum enthält vor Go-live Rechtsform, Vertretung, Anschrift, HRB/Registergericht und USt-ID.
+- Datenschutz beschreibt nur tatsächlich eingesetzte Technik, insbesondere Formular, Hosting, Consent-Speicherung und Google Maps.
+- Solange die in `docs/IMPRESSUM.md` und `docs/TODO-DATENSCHUTZ.md` markierten Pflichtangaben offen sind, ist die Seite nicht auslieferbar.
+
+## 7. Verbindliche Modelldaten
+
+| Modell | Maße | Kapazität | Damen | Herren | Urinale | Netto ab/Tag |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| S | 5,67 × 2,50 × 3,00 m | bis 200 Personen | 2 | 1 | 2 | 175 € |
+| M | 7,17 × 2,50 × 2,92 m | bis 400 Personen | 3 | 1 | 3 | 190 € |
+| L | 8,77 × 2,50 × 2,92 m | bis 600 Personen | 4 | 2 | 6 | 210 € |
+
+Gemeinsame Ausstattung und modellspezifische Unterschiede werden in einer zentralen, typisierten Datenquelle gepflegt. Dieselben Daten versorgen Modellgeschichte, Modellwechsler, Auswahlhilfe und Formularoptionen. Widersprüchliche Duplikate sind nicht zulässig.
+
+## 8. Visuelle Umsetzungsregeln
+
+- Grundfläche: warmes Porzellan/Off-White, nicht Reinweiß oder kaltes SaaS-Grau.
+- Text: tiefes warmes Navy/Graphit.
+- Akzent: Hygiene-Blau, kontrollierte Verläufe erlaubt; kleiner warmer Gegenakzent nur gezielt.
+- Keine AI-Texturen, Nebel, dekorativen Flüssigkeitsformen, Glasflächen oder Hintergrundkulissen hinter den Wagen.
+- Display-Schrift eigenständig und breit; Fließtext humanistisch und sehr gut lesbar; beide selbst gehostet. Exakte Auswahl erfolgt in Phase 5 anhand eines visuellen Vergleichs.
+- Große Produktbühnen wechseln mit kompakten Datenzonen. Freie Wagenkonturen dürfen das Raster brechen; Daten und Formular bleiben streng ausgerichtet.
+- Karten nur für echte Gruppierung oder Interaktion. Service, Ablauf und Bewertungen werden nicht als gleichförmige Card-Grids umgesetzt.
+- Ein konsistentes Radius-System, wenig Schatten und keine Cards-in-Cards.
+- Der genaue visuelle Build folgt ausschließlich dem Direction Contract, nicht der alten Produktionsseite oder dem Prototyp-Styling.
+
+## 9. Asset-Anforderungen für die nächste Phase
+
+Phase 5 erstellt den eigentlichen Asset-Plan. Die Spec setzt dafür folgende Rollen:
+
+1. **Hero:** drei transparente Wagen-Freisteller; vorläufig derselbe S-Freisteller dreifach.
+2. **Leitwagen:** transparenter S-Freisteller mit offen sichtbaren Türen und stabiler Perspektive.
+3. **Finale Modelle:** maßhaltige, zueinander passende 2,5D-Assets für S/M/L; L mit zweiter Achse.
+4. **Servicebeweise:** wenige echte Details zu Anschlüssen, Innenraum, Licht oder realer Aufstellung.
+5. **Region/Ablauf:** nur reale Bilder, wenn sie eine konkrete Aussage belegen.
+6. **Logo:** bestehende Symbole und Aussage unverändert; professionelle Reinzeichnung zulässig.
+7. **OG-Bild:** eigenes, später abzunehmendes Social-Preview-Asset.
+
+Alle bearbeiteten Rasterassets erhalten nachvollziehbare Herkunft, Eingabedatei und Bearbeitungsschritte. Generierte oder retuschierte Inhalte dürfen keine nicht vorhandene Ausstattung hinzufügen.
+
+## 10. Responsive Verhalten
+
+### Desktop
+
+- Wagenfamilie und spätere rechte Leitwagenspur erhalten ausreichend Raum, ohne Claim oder CTA zu verdecken.
+- Modellgeschichte nutzt asymmetrische Produkt-/Datenkomposition.
+- Vergleich und Formular dürfen breit, aber nicht als Dashboard wirken.
+
+### Tablet
+
+- Familienkomposition bleibt als Gruppe lesbar; Überlagerungen dürfen keine Logos, Türen oder Labels abschneiden.
+- Statische Modellstationen können alternieren, bleiben aber in logischer DOM-Reihenfolge.
+- Keine Desktop-Pinning-Mechanik wird vorausgesetzt.
+
+### Mobile
+
+- Eigene mobile Komposition statt verkleinertem Desktop.
+- Wagenfamilie darf gestaffelt oder in einer kontrollierten kurzen Sequenz erscheinen, muss aber alle drei Modelle vermitteln.
+- Modellgeschichte steht statisch untereinander. Eine lange gepinnte Scrollspur ist nicht Pflicht und darf nicht ohne spätere Prüfung eingeführt werden.
+- Modellwechsler ist ohne horizontale Präzisionsgeste bedienbar.
+- Formularfelder, CTAs und Consent haben mindestens 44 px große Ziele.
+- Sticky Elemente verdecken weder Inhalte noch Fehlermeldungen.
+
+## 11. Accessibility
+
+- Ziel WCAG 2.2 AA für Kontrast, Fokus, Tastatur und Formulare.
+- Eine H1; danach semantische, logisch verschachtelte Überschriften.
+- Wagenbilder erhalten informative Alternativtexte; dekorative Wiederholungen werden korrekt ausgeblendet.
+- Modell- und Preiswahl verwenden native oder ARIA-konforme Gruppen mit verständlichem Namen und Zustand.
+- Kein Inhalt nur über Farbe, Position, Hover oder Animation.
+- Formularfehler werden mit Feldern verknüpft und bei Absenden zusammengefasst.
+- Consent ablehnen ist ebenso leicht wie zustimmen; erneute Entscheidung erreichbar.
+- `prefers-reduced-motion: reduce` liefert die vollständige statische Geschichte ohne Scrubbing, Pinning oder lange Übergänge.
+
+## 12. Performance und technische Lieferung
+
+- Next.js 16 App Router als statischer Export; keine SSR- oder Next-API-Abhängigkeit.
+- `next/image` nur in einer mit Export kompatiblen, unoptimierten Konfiguration oder äquivalente responsive Bildausgabe.
+- Hero-Asset priorisiert, feste Dimensionen/Seitenverhältnisse gegen Layout Shift.
+- Zielwerte: LCP unter 2,5 s und CLS unter 0,1 auf einem realistischen Mobilprofil.
+- Interaktive Client-Komponenten bleiben kleine Leaves: Navigation, Modell-/Preiswahl, Auswahlhilfe, Formular und Consent.
+- Produkt- und Modelldaten sind statisch verfügbar und indexierbar; Client-JavaScript ist nicht nötig, um Kerninformationen zu lesen.
+- Keine rohen Scroll-Listener oder kontinuierlichen Scrollwerte im React-State.
+- Mechanik/Bibliothek der Phase-8-Choreografie wird erst nach statischer Visual-QA festgelegt.
+- PHP-Mailer validiert und sanitisiert serverseitig erneut, setzt sichere Header, begrenzt Missbrauch und gibt keine Interna aus.
+
+## 13. SEO und rechtliche Auffindbarkeit
+
+- Deutscher Titel und Description für „Toilettenwagen mieten“ plus glaubwürdigen regionalen Bezug.
+- Indexierbare Modellnamen, Kapazitäten, Einsatzgebiet und Kontaktangaben.
+- Canonical, Favicons und OG-Metadaten vor Go-live.
+- Strukturierte Daten für das lokale Unternehmen nur mit bestätigten Fakten.
+- Alle internen Anker und Rechtslinks funktionieren im statischen Export.
+- Keine Tracking- oder Marketingdienste ohne eigene Entscheidung und passende Datenschutzerweiterung.
+
+## 14. Teststrategie — höchster nützlicher Seam
+
+Das vorhandene Vitest-/Testing-Library-Setup bleibt bestehen. Tests prüfen sichtbares Nutzerverhalten, nicht CSS-Klassen oder interne States.
+
+### Komponenten-/Integrationsverhalten
+
+- **Modellwechsler:** korrekte Defaultauswahl, vollständiger Datenwechsel S/M/L, Tastaturbedienung, Formular-Vorauswahl.
+- **Preiswahl:** Privat/brutto als Default, korrekte Werte und Labels, Wechsel auf Gewerbe/netto, Kostenhinweise bleiben sichtbar.
+- **Auswahlhilfe:** Grenzwerte 200/201/400/401/600, ungültige Eingabe, >600, unverbindlicher Hinweis und Formular-Vorauswahl.
+- **Anfrageformular:** Pflichtlogik, mindestens ein Kontaktweg, E-Mail-Format, Datumsreihenfolge, Datenschutz, Honeypot, Doppelversand, Erfolg, Backendfehler und Erhalt der Eingaben.
+- **Map-Consent:** vor Zustimmung kein Google-iframe; Zustimmung lädt; Ablehnung lädt nicht; Änderung der Entscheidung; Ladefehler-Fallback.
+- **Navigation:** Anker und mobiles Menü sind per Tastatur bedienbar; externe und rechtliche Ziele sind korrekt beschriftet.
+
+### Statische/vertragliche Checks
+
+- Ein route-naher Renderingtest bestätigt zentrale Überschriften, S/M/L-Daten, Kontakt und Rechtslinks ohne Interaktion.
+- Eine Datenprüfung stellt sicher, dass alle Verbraucherpreise exakt aus den Nettoquellen und 19 % MwSt. entstehen.
+- Build und Typecheck bestätigen die statische Exportfähigkeit.
+
+### Bewusst außerhalb automatischer DOM-Tests
+
+- Komposition, Typografie, Farbe, Bildqualität, Rhythmus und Nicht-Generik: Browser-Review in Phase 7 mit Desktop und Mobile.
+- Tatsächlicher Mailversand: bis zur späteren Mailer-Aktivierung zurückgestellt; dann Staging-Test des PHP-Endpunkts mit kontrollierter Testanfrage sowie Fehlerfall.
+- Scrollchoreografie: erst Phase 8; danach Browserprüfung inklusive Reduced Motion und Mobilprofil.
+- Google-Netzwerkverhalten wird zusätzlich im Browser-Netzwerkprotokoll vor und nach Consent verifiziert.
+
+## 15. Abnahmekriterien für die statische Website
+
+Phase 6/7 ist erst erfüllt, wenn:
+
+- die komplette One-Page-Erzählung vorhanden ist, nicht nur Hero und Wagenvergleich,
+- der First Viewport Wagenfamilie, Angebot, Region und WhatsApp beweist,
+- alle Modelldaten korrekt und auch ohne JavaScript/Animation verständlich sind,
+- Privat-/Gewerbepreise und Kostenlogik korrekt funktionieren,
+- Auswahlhilfe und Formular sinnvoll zusammenspielen,
+- Service, Voraussetzungen, Ablauf, Einsatzgebiet und echte Bewertungen vollständig sind,
+- Maps vor Consent technisch nicht geladen wird,
+- alle Formularzustände einschließlich des ehrlichen Nicht-konfiguriert-Zustands funktionieren; PHP- und Staging-Prüfung folgen erst mit der späteren Mailer-Aktivierung,
+- Desktop, Tablet und Mobile als eigene Kompositionen funktionieren,
+- Tastatur, Focus, Kontrast und Reduced Motion geprüft sind,
+- keine generische Kartenlandschaft oder austauschbare Dienstleister-Topologie entstanden ist,
+- Produktionsbuild, Typecheck und relevante Tests erfolgreich sind.
+
+Erst danach beginnt Phase 8 mit der finalen Leitwagenanimation.
+
+## 16. Out of Scope
+
+- Online-Buchung, Reservierung, Zahlung oder Live-Verfügbarkeit.
+- CMS, Benutzerkonto, Mehrsprachigkeit und Dark Mode.
+- Automatische Entfernungspreise oder verbindliche Angebotsberechnung.
+- Erfundenes Verfügbarkeits-, Kapazitäts- oder Eignungswissen jenseits der bestätigten Modelldaten.
+- Partnerlogos, Zertifikate oder nicht bestätigte Leistungszahlen.
+- Ein eigenständiger umfangreicher „Über uns“-Block, solange keine freigegebene Firmengeschichte vorliegt.
+- Finale Scrollmotion vor bestandener statischer Visual-QA.
+- Vollständige Erzeugung neuer M-/L-Fahrzeugdetails ohne maßhaltige Referenzgrundlage.
+
+## 17. Offene Entscheidungen, die kein Implementierer selbst treffen darf
+
+- Finale Display- und Textschrift nach visuellem Vergleich in Phase 5.
+- Finale S/M/L-2,5D-Assets und deren maßhaltige Freigabe.
+- Exakte Motion-Technik, Scrolllänge, Easing und Breakpoints erst in Phase 8.
+- Fehlende Pflichtangaben im Impressum und finaler Datenschutztext vor Go-live.
+- Finales `og:image`.
+
+Die Stärke der v1-Auswahlhilfe ist in dieser Spec auf eine kompakte, unverbindliche Personenanzahl-Empfehlung begrenzt. Eine größere Beratung oder weitere Fragen wären eine neue Scope-Entscheidung.
+
+## 18. Nächster Gate
+
+Diese Spec wurde am 2026-09-05 vom User bestätigt. Phase 5 folgt:
+
+1. Asset-Ledger und Freisteller-/Foto-Plan festlegen.
+2. Bestehende alte Tickets verwerfen oder neu schneiden.
+3. Neue vertikale Tickets zur Bestätigung vorlegen.
+4. Erst nach Ticketfreigabe die Produktionsroute umsetzen.

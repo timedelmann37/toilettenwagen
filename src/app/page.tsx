@@ -1,48 +1,101 @@
-// Startseite (One-Pager). Ticket 01 legt nur die Sektions-Anker + Shell an;
-// die einzelnen Sektionen werden in den Tickets 02–07 gefüllt.
+import { InquiryForm } from "@/components/InquiryForm";
+import { ModelJourney } from "@/components/ModelJourney";
+import { ModelSelector } from "@/components/ModelSelector";
+import { ProcessStory } from "@/components/ProcessStory";
+import { RegionTrust } from "@/components/RegionTrust";
+import { ServiceProof } from "@/components/ServiceProof";
+import { VehicleImage } from "@/components/VehicleImage";
+import { WhatsappButton } from "@/components/WhatsappButton";
+import { trailerModels, type TrailerModelId } from "@/lib/models";
+import { site } from "@/lib/site";
+import styles from "./home.module.css";
 
-const sections = [
-  { id: "wagen", title: "Unsere Wagen" },
-  { id: "leistungen", title: "Alles dabei" },
-  { id: "ablauf", title: "So läuft's ab" },
-  { id: "einsatzgebiet", title: "Einsatzgebiet" },
-  { id: "kundenstimmen", title: "Kundenstimmen" },
-  { id: "kontakt", title: "Anfrage" },
-] as const;
+const vehicleClasses: Record<TrailerModelId, string> = {
+  s: styles.vehicleS,
+  m: styles.vehicleM,
+  l: styles.vehicleL,
+};
+
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${site.url}/#unternehmen`,
+  name: site.legalName,
+  url: site.url,
+  telephone: site.phone,
+  email: site.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address.street,
+    postalCode: site.address.postalCode,
+    addressLocality: site.address.locality,
+    addressCountry: "DE",
+  },
+};
 
 export default function Home() {
   return (
     <>
-      {/* Hero-Platzhalter (Ticket 02) */}
-      <section
-        id="hero"
-        className="mx-auto flex max-w-6xl scroll-mt-20 flex-col justify-center px-4 py-24 sm:px-6"
-      >
-        <p className="text-sm font-semibold uppercase tracking-wide text-accent">
-          Mobile Sanitäranlagen HS
-        </p>
-        <h1 className="mt-3 max-w-2xl text-4xl font-bold tracking-tight text-ink sm:text-5xl">
-          Toilettenwagen mieten – gepflegt, beheizt, fair berechnet.
-        </h1>
-        <p className="mt-4 max-w-xl text-lg text-ink-soft">
-          Grundgerüst der Startseite. Hero-Inhalt folgt in Ticket 02.
-        </p>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(localBusinessJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <section id="wagen" className={styles.hero}>
+        <div className={styles.heroInner}>
+          <div className={styles.heroCopy}>
+            <h1 className={styles.headline}>Drei Größen. Sauber gelöst.</h1>
+            <p className={styles.subtext}>
+              Gepflegte, beheizte Toilettenwagen für Feiern, Veranstaltungen
+              und Einsätze rund um Niederdreisbach.
+            </p>
+            <div className={styles.actions}>
+              <WhatsappButton />
+              <a href="#kontakt" className={styles.secondaryAction}>
+                Anfrage vorbereiten
+              </a>
+            </div>
+          </div>
+
+          <div
+            className={styles.family}
+            role="group"
+            aria-label="Toilettenwagen als Modellfamilie S, M und L"
+          >
+            {trailerModels.map((model, index) => (
+              <figure
+                key={model.id}
+                className={`${styles.vehicle} ${vehicleClasses[model.id]}`}
+              >
+                <VehicleImage
+                  alt={
+                    model.id === "s"
+                      ? "Freigestellter Toilettenwagen mit geöffneten Damen- und Herrentüren"
+                      : ""
+                  }
+                  sizes="(max-width: 767px) 62vw, 35vw"
+                  loading={index === 1 ? "eager" : "lazy"}
+                  fetchPriority={index === 1 ? "high" : "auto"}
+                />
+                <figcaption className={styles.vehicleCaption}>
+                  <span className={styles.modelName}>{model.name}</span>
+                  <span className={styles.capacity}>
+                    bis {model.capacity} Personen
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
       </section>
 
-      {sections.map((s) => (
-        <section
-          key={s.id}
-          id={s.id}
-          className="scroll-mt-20 border-t border-line"
-        >
-          <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-            <h2 className="text-2xl font-semibold tracking-tight text-ink">
-              {s.title}
-            </h2>
-            <p className="mt-2 text-sm text-ink-soft">Abschnitt folgt.</p>
-          </div>
-        </section>
-      ))}
+      <ModelJourney />
+      <ModelSelector />
+      <ServiceProof />
+      <ProcessStory />
+      <RegionTrust />
+      <InquiryForm />
     </>
   );
 }
