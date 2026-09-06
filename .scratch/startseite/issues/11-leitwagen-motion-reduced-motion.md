@@ -10,7 +10,7 @@
 
 - `.scratch/startseite/spec.md`, besonders 6.3, 8, 10 bis 12 und 14
 - `docs/design/direction-contract-home.md`, besonders Motion Contract
-- A4 unter `/prototype/family-unfold/?variant=a4` nur als Mechanikbeweis
+- die im Direction Contract dokumentierte Leitwagen-Mechanik als konzeptionelle Referenz
 - statisch freigegebene Produktionsseite aus Ticket 10
 - `C:\Users\timed\Desktop\website-bib` nur gezielt als Technikreferenz, nicht als zu kopierendes Design
 

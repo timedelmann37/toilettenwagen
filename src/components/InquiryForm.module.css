@@ -320,6 +320,7 @@
 
 .privacy {
   display: grid;
+  min-height: 2.75rem;
   grid-template-columns: auto minmax(0, 1fr);
   gap: 0.8rem;
   align-items: start;

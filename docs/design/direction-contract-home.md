@@ -176,8 +176,10 @@ Der Ablauf wird als konkrete Zeitlinie erzählt und darf räumlich mit Servicefo
 
 - Große, klare Bühnen wechseln mit kompakten technischen Zonen. Dieser Wechsel erzeugt Modernität stärker als zusätzliche Effekte.
 - Freie Wagenkonturen dürfen Rastergrenzen überschreiten. Daten und Formulare folgen dagegen einem strengen, ruhigen Raster.
+- Dünne blaue Stations- und Verbindungslinien bilden eine wiederkehrende grafische Grammatik: in der S/M/L-Reise, bei der gemeinsamen Aufstellungsplanung und in der Ablaufzeitlinie. Sie erklären Beziehungen und Wege; sie sind keine dekorative Umrahmung.
 - Dünne Regeln, nummerische Maßangaben und präzise Labels sind erlaubt; Karten nur, wenn sie eine echte Interaktion oder Gruppierung tragen.
 - Ein konsistentes Radius-System, wenig Schatten, keine Glasflächen und keine gestapelten Cards-in-Cards.
+- Die blau beleuchtete Nachtaufnahme bleibt als einmalige fotografische Zäsur zwischen Produkt- und Servicestory reserviert. Ihre Überlagerungslogik wird nicht schematisch in weitere Abschnitte kopiert.
 
 ### Bildwelt
 
@@ -198,7 +200,7 @@ Der Ablauf wird als konkrete Zeitlinie erzählt und darf räumlich mit Servicefo
 6. Zwischen M und L verlängert er sich erneut und erhält die zweite Achse; bei L folgt der letzte Stopp.
 7. Der L-Wagen parkt. Normaler Seitenfluss und Modellwechsler übernehmen.
 
-Der Start der Choreografie folgt deutlich früher als im ersten A-Prototyp. Scrollstrecke entsteht nur dort, wo eine inhaltliche Veränderung stattfindet. Kein leerer Scrollweg, kein Scroll-Hijacking und kein bloßes Ein-/Ausblenden verschiedener Wagen.
+Der Start der Choreografie folgt früh im Übergang aus der Wagenfamilie. Scrollstrecke entsteht nur dort, wo eine inhaltliche Veränderung stattfindet. Kein leerer Scrollweg, kein Scroll-Hijacking und kein bloßes Ein-/Ausblenden verschiedener Wagen.
 
 ### Übrige Bewegung
 

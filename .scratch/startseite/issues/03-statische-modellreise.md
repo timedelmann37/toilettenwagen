@@ -15,26 +15,26 @@
 ## Lieferumfang
 
 - Drei klar verbundene Modellstationen in der Reihenfolge S, M, L.
-- Jede Station zeigt zuerst Modell, Kapazität, Ab-Preis und kurzen Eignungshinweis.
-- Maße, WC-Aufteilung und Ausstattung liegen in einer klar bezeichneten zweiten Informationsebene, die ohne Hover erreichbar ist.
-- Derselbe S-Freisteller bleibt vorläufig als austauschbarer visueller Platzhalter in allen Stationen.
+- Jede Station zeigt knapp Modell, Kapazität und einen kurzen Eignungshinweis.
+- Preis, Maße, WC-Aufteilung und Ausstattung bleiben dem direkt folgenden vollständigen Modellwechsler vorbehalten.
+- Ein gemeinsamer S-Freisteller begleitet die drei Stationen als austauschbare Fahrzeugansicht.
 
 ## Akzeptanzkriterien
 
 - [x] Alle sichtbaren Daten stammen aus der zentralen typisierten Modelldatenquelle: S 5,67 × 2,50 × 3,00 m / bis 200 / 2 Damen / 1 Herren / 2 Urinale / 175 € netto; M 7,17 × 2,50 × 2,92 m / bis 400 / 3 Damen / 1 Herren / 3 Urinale / 190 € netto; L 8,77 × 2,50 × 2,92 m / bis 600 / 4 Damen / 2 Herren / 6 Urinale / 210 € netto.
 - [x] Die Stationen bilden einen erkennbaren Erzählfluss und keine drei gleichförmigen Featurekarten.
 - [x] Die visuelle Verbindung zum Hero bleibt kongruent. Kein Wagen springt im statischen Layout willkürlich von links nach rechts.
-- [x] Detailinformationen sind per sichtbarer Aktion oder als zweite redaktionelle Ebene erreichbar, per Tastatur bedienbar und nicht nur auf Hover verfügbar.
+- [x] Detailinformationen bleiben im unmittelbar folgenden Modellwechsler ohne Hover vollständig erreichbar.
 - [x] Gemeinsame Ausstattung wird nicht dreimal wortgleich wiederholt. Modellspezifische S-Merkmale werden weder M noch L zugeschrieben.
-- [x] Ein kurzer, ehrlicher Hinweis erklärt, dass M und L vorläufig mit demselben Bild dargestellt werden; die Daten bleiben echt.
+- [x] Die gemeinsame Fahrzeugansicht wird keinem falschen M-/L-Maßstab zugeschrieben; die Modelldaten bleiben echt.
 - [x] DOM-Reihenfolge und Überschriftenhierarchie sind auf Desktop und Mobile identisch sinnvoll.
 - [x] Mobile zeigt S/M/L statisch untereinander. Keine lange gepinnte Desktopspur wird simuliert.
 - [x] Nach L führt eine klare visuelle Kante zum späteren Vergleich, ohne bereits die Servicegeschichte vorwegzunehmen.
 
 ## Prüfung
 
-- [x] Renderingtest bestätigt die vollständigen Kernwerte aller drei Modelle ohne Interaktion.
-- [x] Der Verhaltenstest prüft Mausöffnung und den fokussierbaren nativen Summary-Auslöser; die Browserprüfung bestätigt dessen Button-Semantik und Zustände.
+- [x] Renderingtest bestätigt Modell, Kapazität und Eignungshinweis aller drei Stationen ohne Interaktion.
+- [x] Renderingtest bestätigt, dass Preis und Maße nicht redundant in der Modellreise erscheinen.
 - [x] Desktop-, Tablet- und Mobile-Browserreview bestätigt Lesbarkeit, Rhythmus und deutlich unterschiedliche Hierarchiestufen.
 - [x] Typecheck, Lint, fokussierte Tests und statischer Build sind grün.
 
@@ -48,3 +48,4 @@
 
 - 2026-09-05: Neu zugeschnitten nach Freigabe der vollständigen Modellfamilien-Spec.
 - 2026-09-05: Statische Modellreise abgeschlossen. Browserreview bei 1440 × 900, 900 × 1024 und 390 × 844; Details geschlossen und geöffnet geprüft. 7 Tests, Typecheck, Lint, statischer Build, `git diff --check` und Impeccable-Detector sind grün.
+- 2026-09-05: Im Rahmen von Ticket 10 nach Nutzerfeedback verdichtet: drei lange, datenidentische Einzelstationen wurden zu einer kompakten Größenstaffel mit einer gemeinsamen Wagenbühne zusammengeführt. Vollständige Preise, Maße und Ausstattung bleiben im Modellwechsler.

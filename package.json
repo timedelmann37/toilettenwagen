@@ -12,7 +12,8 @@
     "test:watch": "vitest",
     "generate:social-preview": "node scripts/generate-social-preview.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",
-    "prepare:service-images": "node scripts/prepare-service-images.mjs"
+    "prepare:service-images": "node scripts/prepare-service-images.mjs",
+    "prepare:hero-images": "node scripts/prepare-hero-images.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

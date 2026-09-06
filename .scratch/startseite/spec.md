@@ -102,9 +102,9 @@ Die Kapitel dürfen visuell ineinandergreifen. Sie dürfen nicht als zehn gleich
 ### 6.3 Modellgeschichte S/M/L
 
 - Alle drei Stationen sind bereits in Phase 6 statisch und in normaler Dokumentreihenfolge vollständig verständlich.
-- Pro Station werden zuerst Modell, Kapazität, Ab-Preis und ein kurzer Eignungshinweis gezeigt.
-- Maße, WC-Aufteilung und Ausstattung liegen auf einer klar bezeichneten zweiten Informationsebene.
-- Detailinhalte sind nicht nur per Hover erreichbar.
+- Die Modellgeschichte ist eine knappe Größenstaffel: Pro Station erscheinen Modell, Kapazität und ein kurzer Eignungshinweis.
+- Ein gemeinsamer Wagen begleitet die drei Stationen; derselbe Freisteller wird nicht dreimal als separates Bild wiederholt.
+- Ab-Preis, Maße, WC-Aufteilung und Ausstattung erscheinen vollständig und nur einmal im direkt folgenden Modellwechsler.
 - Die spätere Bewegung ist kein Bestandteil des statischen Abnahmetests in Phase 6/7.
 - Für Phase 8 gilt die Choreografie des Direction Contracts: identischer Leitwagen, Hero-Ausbruch, rechte vertikale Spur, Stillstand S/M/L, Verlängerung nur zwischen Stationen, zweite Achse bei L, Parken vor dem Vergleich.
 

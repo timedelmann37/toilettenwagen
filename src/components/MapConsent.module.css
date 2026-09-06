@@ -32,6 +32,8 @@
 
 .consentPanel a {
   display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
   margin-top: 1rem;
   color: #f7f4ec;
   font-weight: 700;

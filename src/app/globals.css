@@ -17,7 +17,7 @@
   --accent: #246bb5;
   --accent-strong: #185894;
   --accent-contrast: #f9fbfc;
-  --whatsapp: #1f8a4c;
+  --whatsapp: #1e8449;
   --whatsapp-strong: #176f3c;
   --font-display: var(--font-bricolage), var(--font-hanken), sans-serif;
 }
@@ -58,6 +58,27 @@ body {
 
 a {
   text-underline-offset: 0.22em;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 50;
+  min-height: 2.75rem;
+  transform: translateY(-200%);
+  border-radius: 999px;
+  background: var(--ink);
+  padding: 0.7rem 1rem;
+  color: var(--accent-contrast);
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 /* Motion-Budget (Dial 3): Bewegung immer reduzierbar. */

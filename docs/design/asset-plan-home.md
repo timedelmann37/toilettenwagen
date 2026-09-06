@@ -23,7 +23,7 @@ Typografie-Freigabe: User bestätigte am 2026-09-05 Kandidat B, Bricolage Grotes
 | ID | Quelle | Verbindliche Rolle | Status | Nächste Bearbeitung |
 | --- | --- | --- | --- | --- |
 | `VEH-S-MASTER` | `public/fotos/wagen-s-freigestellt.webp` | reale Referenz für Form, Logo und Ausstattung des S-Wagens | Quelle vorhanden | Weißfläche sauber entfernen, Kanten und Zugdeichsel prüfen, neutral ausrichten |
-| `VEH-S-HERO-V0` | `public/fotos/wagen-s-cutout-prototype.webp` | vorläufiger Hero-Wagen, dreifach als Familie und später als Leitwagen | sofort einsetzbar, aber provisorisch | Alpha-Kante und rechter Abschluss bereinigen; keine Formänderung |
+| `VEH-S-HERO` | `public/fotos/wagen-s-hero-1600.webp` | Hero-Wagen, dreifach als Familie und später als Leitwagen | produktiv eingesetzt | Form unverändert lassen; mobile Ableitung synchron halten |
 | `VEH-M-OPEN` | `public/fotos/wagen-m-aussen-offen.webp` | maßgebliche M-Referenz mit offenen Türen | Quelle vorhanden | perspektivisch ausrichten, freistellen, Farbwelt an S angleichen |
 | `VEH-M-PROFILE` | `public/fotos/wagen-m-aussen.webp` | Kontrollbild für M-Länge und geschlossene Kontur | Referenz | nicht als Hero-Motiv einplanen; zur Geometrieprüfung verwenden |
 | `VEH-L-OPEN` | `public/fotos/wagen-l-aussen.webp` | maßgebliche L-Referenz mit offener Tür und Doppelachse | Quelle vorhanden | freistellen, Perspektive und Helligkeit angleichen, Logo unverändert lassen |
@@ -120,6 +120,8 @@ Kandidat B ist nach dem Vergleich im echten Hero bestätigt. Die Produktionsrout
 
 AVIF ist bevorzugt, WebP bleibt Fallback. Transparenz, sichtbare Kanten und tatsächliche Browserqualität entscheiden vor einer rein rechnerischen Dateigröße. Oberhalb des ersten Viewports werden Bilder verzögert geladen. Der Hero erhält feste Maße, damit nichts springt.
 
+Für den aktuellen S-Freisteller liefert `wagen-s-hero-1600.webp` die Desktop-Quelle und die reproduzierbar erzeugte Ableitung `wagen-s-hero-960.webp` die mobile Quelle. Das `<picture>`-Element wählt bis 767 px die kleinere Datei; `scripts/prepare-hero-images.mjs` dokumentiert die Ableitung.
+
 ## 7. Nicht veröffentlichen
 
 - `docs/design/concepts/hero-a-curved-stage.png`
@@ -132,7 +134,7 @@ Diese Dateien dokumentieren verworfene oder ungenaue Versuche. Sie sind weder Pr
 
 ## 8. Produktionsreihenfolge
 
-1. S-Prototyp als transparente, saubere Produktionsableitung validieren.
+1. S-Freisteller als transparente, saubere Produktionsableitung validieren.
 2. Den ersten Viewport mit S dreifach, finaler Typografie und echten Größenlabels bauen.
 3. Nur die fünf geplanten redaktionellen Bildrollen aufbereiten und im jeweiligen Layout beurteilen.
 4. Finale M- und L-Freisteller separat produzieren, sobald die statische Seite trägt. Austausch ohne Änderung an Inhalt oder Layout ermöglichen.

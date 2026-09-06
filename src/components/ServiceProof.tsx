@@ -53,6 +53,12 @@ const siteRequirements = [
   },
 ] as const;
 
+const includedConnections = [
+  "Abwasserrohre",
+  "Frischwasserschläuche",
+  "Maßgefertigte Holzabdeckungen",
+] as const;
+
 export function ServiceProof() {
   return (
     <section id="service" className={styles.service}>
@@ -177,11 +183,18 @@ export function ServiceProof() {
         <div className={styles.planningBoard}>
           <div className={styles.ourPart}>
             <h3>Was wir mitbringen</h3>
-            <p>
-              Abwasserrohre, Frischwasserschläuche und maßgefertigte
-              Holzabdeckungen gehören zum Wagen. Auch Unterbauten,
-              Revisionsschächte und schiefe Zufahrten betrachten wir vorab.
-              Schwierige Aufstellungen werden lösungsorientiert geplant.
+            <ul
+              className={styles.includedList}
+              aria-label="Von uns mitgebrachte Anschlüsse und Abdeckungen"
+            >
+              {includedConnections.map((connection) => (
+                <li key={connection}>{connection}</li>
+              ))}
+            </ul>
+            <p className={styles.setupNote}>
+              Unterbauten, Revisionsschächte und schiefe Zufahrten betrachten
+              wir vorab. Schwierige Aufstellungen werden lösungsorientiert
+              geplant.
             </p>
           </div>
 

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import {
   FormEvent,
   KeyboardEvent,
@@ -19,6 +18,7 @@ import {
   trailerModels,
   type TrailerModelId,
 } from "@/lib/models";
+import { VehicleImage } from "./VehicleImage";
 import styles from "./ModelSelector.module.css";
 
 type PriceView = "private" | "business";
@@ -183,7 +183,7 @@ export function ModelSelector() {
       <div className={styles.inner}>
         <header className={styles.header}>
           <h2 id="model-selector-title">Drei Größen. Direkt vergleichbar.</h2>
-          <p>Wähle ein Modell und sieh alle Daten in einer Ansicht.</p>
+          <p>Wählen Sie ein Modell und sehen Sie alle Daten in einer Ansicht.</p>
         </header>
 
         <fieldset className={styles.modelPicker}>
@@ -212,17 +212,14 @@ export function ModelSelector() {
 
         <div className={styles.productView}>
           <figure className={styles.productStage}>
-            <Image
+            <VehicleImage
               key={selectedModel.id}
-              src="/fotos/wagen-s-hero-1600.webp"
-              alt={`Vorläufiger S-Freisteller als Bildplatzhalter für Modell ${selectedModel.name}`}
-              width={1600}
-              height={1229}
+              alt="Freigestellter Toilettenwagen als gemeinsame Fahrzeugansicht"
               sizes="(max-width: 767px) 92vw, 52vw"
             />
             <figcaption>
-              Modell {selectedModel.name}: Der finale maßhaltige Freisteller
-              wird später eingesetzt.
+              Gemeinsame Fahrzeugansicht · Maße und Aufteilung beziehen sich
+              auf Modell {selectedModel.name}.
             </figcaption>
           </figure>
 
@@ -339,6 +336,69 @@ export function ModelSelector() {
             </a>
           </article>
         </div>
+
+        <noscript>
+          <section
+            className={styles.noScriptComparison}
+            aria-labelledby="no-script-comparison-title"
+          >
+            <header>
+              <h3 id="no-script-comparison-title">Alle Modelle im Überblick</h3>
+              <p>
+                Die Auswahl oben benötigt JavaScript. Hier stehen die
+                vollständigen Kerndaten aller drei Größen direkt lesbar.
+              </p>
+            </header>
+            <div className={styles.noScriptModels}>
+              {trailerModels.map((model) => (
+                <article key={model.id}>
+                  <h4>Modell {model.name}</h4>
+                  <p>{model.suitability}</p>
+                  <dl>
+                    <div>
+                      <dt>Kapazität</dt>
+                      <dd>bis {model.capacity} Personen</dd>
+                    </div>
+                    <div>
+                      <dt>Maße</dt>
+                      <dd>{model.dimensions}</dd>
+                    </div>
+                    <div>
+                      <dt>Aufteilung</dt>
+                      <dd>
+                        {model.womensCabins} Damen-WCs · {model.mensCabins}{" "}
+                        Herren-WCs · {model.urinals} Urinale
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>Mietpreis</dt>
+                      <dd>
+                        ab {currency.format(model.priceNetCents / 100)} netto ·{" "}
+                        {currency.format(grossPriceCents(model.priceNetCents) / 100)}{" "}
+                        brutto pro Miettag
+                      </dd>
+                    </div>
+                  </dl>
+                  {model.specificFeatures.length > 0 && (
+                    <p>Zusätzlich: {model.specificFeatures.join(", ")}.</p>
+                  )}
+                </article>
+              ))}
+            </div>
+            <div className={styles.noScriptEquipment}>
+              <h4>In jedem Modell</h4>
+              <ul>
+                {sharedFeatures.map((feature) => (
+                  <li key={feature}>{feature}</li>
+                ))}
+              </ul>
+              <p>
+                Anfahrt kostet 1,10 €/km. Lieferung und Abholung werden
+                separat berechnet; verbindlich ist das individuelle Angebot.
+              </p>
+            </div>
+          </section>
+        </noscript>
 
         <div className={styles.advisor}>
           <div className={styles.advisorIntro}>

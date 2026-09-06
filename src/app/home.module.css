@@ -25,7 +25,6 @@
   font-family: var(--font-display);
   font-size: clamp(3.4rem, 6.25vw, 5.9rem);
   font-weight: 650;
-  font-stretch: 106%;
   line-height: 0.94;
   letter-spacing: -0.035em;
   text-wrap: balance;
@@ -88,9 +87,13 @@
   transform-origin: 50% 100%;
 }
 
+.vehicle picture,
 .vehicle img {
   display: block;
   width: 100%;
+}
+
+.vehicle img {
   height: auto;
   filter: drop-shadow(0 1.25rem 1.55rem rgb(22 43 57 / 0.14));
 }

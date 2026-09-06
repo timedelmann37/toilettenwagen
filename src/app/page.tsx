@@ -1,10 +1,10 @@
-import Image from "next/image";
 import { InquiryForm } from "@/components/InquiryForm";
 import { ModelJourney } from "@/components/ModelJourney";
 import { ModelSelector } from "@/components/ModelSelector";
 import { ProcessStory } from "@/components/ProcessStory";
 import { RegionTrust } from "@/components/RegionTrust";
 import { ServiceProof } from "@/components/ServiceProof";
+import { VehicleImage } from "@/components/VehicleImage";
 import { WhatsappButton } from "@/components/WhatsappButton";
 import { trailerModels, type TrailerModelId } from "@/lib/models";
 import { site } from "@/lib/site";
@@ -68,17 +68,15 @@ export default function Home() {
                 key={model.id}
                 className={`${styles.vehicle} ${vehicleClasses[model.id]}`}
               >
-                <Image
-                  src="/fotos/wagen-s-hero-1600.webp"
+                <VehicleImage
                   alt={
                     model.id === "s"
                       ? "Freigestellter Toilettenwagen mit geöffneten Damen- und Herrentüren"
                       : ""
                   }
-                  width={1600}
-                  height={1229}
                   sizes="(max-width: 767px) 62vw, 35vw"
-                  preload={index === 1}
+                  loading={index === 1 ? "eager" : "lazy"}
+                  fetchPriority={index === 1 ? "high" : "auto"}
                 />
                 <figcaption className={styles.vehicleCaption}>
                   <span className={styles.modelName}>{model.name}</span>

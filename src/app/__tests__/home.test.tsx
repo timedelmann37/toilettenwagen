@@ -1,5 +1,5 @@
 import { render, screen, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import Home from "@/app/page";
 import { trailerModels } from "@/lib/models";
@@ -30,7 +30,7 @@ describe("Startseite", () => {
     }
   });
 
-  it("zeigt die vollständigen Kerndaten der statischen Modellreise", () => {
+  it("zeigt die Größenstaffel der kompakten Modellreise", () => {
     render(<Home />);
 
     const journeyHeading = screen.getByRole("heading", {
@@ -42,7 +42,7 @@ describe("Startseite", () => {
     if (!journey) return;
 
     for (const model of trailerModels) {
-      const station = within(journey).getByRole("article", {
+      const station = within(journey).getByRole("listitem", {
         name: `Modell ${model.name}`,
       });
 
@@ -52,50 +52,29 @@ describe("Startseite", () => {
           name: `Modell ${model.name}`,
         }),
       ).toBeInTheDocument();
-      expect(within(station).getByText(model.dimensions)).toBeInTheDocument();
-      expect(
-        within(station).getByText(
-          new RegExp(
-            `ab\\s+${model.priceNetCents / 100}\\s+€\\s+netto/Tag`,
-          ),
-        ),
-      ).toBeInTheDocument();
+      expect(station).toHaveTextContent(`bis ${model.capacity} Personen`);
       expect(within(station).getByText(model.suitability)).toBeInTheDocument();
-      expect(station).toHaveTextContent(
-        new RegExp(`Damen-WCs\\s*${model.womensCabins}`),
-      );
-      expect(station).toHaveTextContent(
-        new RegExp(`Herren-WCs\\s*${model.mensCabins}`),
-      );
-      expect(station).toHaveTextContent(
-        new RegExp(`Urinale\\s*${model.urinals}`),
-      );
     }
 
+    expect(within(journey).getAllByRole("img")).toHaveLength(1);
     expect(
-      within(journey).getByText("Warmes und kaltes Wasser"),
-    ).toBeInTheDocument();
-    expect(
-      within(journey).getByText("Beheizt und ganzjährig einsetzbar"),
-    ).toBeInTheDocument();
+      within(journey).queryByText(trailerModels[0].dimensions),
+    ).not.toBeInTheDocument();
+    expect(within(journey).queryByText(/netto\/Tag/)).not.toBeInTheDocument();
   });
 
-  it("öffnet Modelldetails per Maus und lässt den nativen Auslöser fokussieren", async () => {
-    const user = userEvent.setup();
-    render(<Home />);
+  it("liefert ohne Client-JavaScript die Kerndaten aller Modelle aus", () => {
+    const markup = renderToStaticMarkup(<Home />);
 
-    const trigger = screen.getAllByText("Details ansehen")[0].closest("summary");
-    expect(trigger).not.toBeNull();
-    if (!trigger) return;
-    const details = trigger.closest("details");
+    expect(markup).toContain("<noscript>");
+    expect(markup).toContain("Alle Modelle im Überblick");
 
-    expect(details).not.toHaveAttribute("open");
-    await user.click(trigger);
-    expect(details).toHaveAttribute("open");
-
-    trigger.focus();
-    expect(trigger).toHaveFocus();
-    expect(trigger.tagName).toBe("SUMMARY");
+    for (const model of trailerModels) {
+      expect(markup).toContain(model.dimensions);
+      expect(markup).toContain(`${model.womensCabins} Damen-WCs`);
+      expect(markup).toContain(`${model.mensCabins}`);
+      expect(markup).toContain(`${model.urinals} Urinale`);
+    }
   });
 
   it("erklärt Service, faire Berechnung und alle Voraussetzungen zusammenhängend", () => {
@@ -132,6 +111,12 @@ describe("Startseite", () => {
     }
 
     expect(section.getAllByRole("img")).toHaveLength(5);
+    expect(service.querySelectorAll("img")).toHaveLength(5);
+    expect(
+      section.getByRole("list", {
+        name: "Von uns mitgebrachte Anschlüsse und Abdeckungen",
+      }),
+    ).toBeInTheDocument();
     expect(
       section.getByRole("list", {
         name: "Gemeinsame Ausstattung aller Wagen",

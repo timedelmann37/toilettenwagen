@@ -297,25 +297,61 @@
 }
 
 .planningBoard {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(18rem, 0.72fr) minmax(0, 1.28fr);
+  grid-template-columns: minmax(18rem, 0.82fr) minmax(24rem, 1.18fr);
+  gap: clamp(4rem, 10vw, 9rem);
   margin-top: clamp(3.5rem, 7vw, 6rem);
   border-top: 1px solid var(--line-strong);
   border-bottom: 1px solid var(--line-strong);
 }
 
+.planningBoard::before {
+  position: absolute;
+  z-index: 0;
+  top: 7.5rem;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--accent) 0%,
+    #78b9df 50%,
+    var(--accent-strong) 100%
+  );
+  content: "";
+}
+
 .ourPart,
 .sitePart {
-  padding: clamp(2rem, 4vw, 3.5rem) 0;
+  position: relative;
+  z-index: 1;
 }
 
-.ourPart {
-  padding-right: clamp(2rem, 5vw, 5rem);
-}
-
+.ourPart,
 .sitePart {
-  border-left: 1px solid var(--line);
-  padding-left: clamp(2rem, 5vw, 5rem);
+  padding: 2.25rem 0 clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.ourPart::before,
+.sitePart::before {
+  position: absolute;
+  z-index: 2;
+  top: 7.05rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: var(--bg);
+  content: "";
+}
+
+.ourPart::before {
+  left: 0;
+}
+
+.sitePart::before {
+  right: 0;
 }
 
 .planningBoard h3 {
@@ -326,7 +362,22 @@
   letter-spacing: -0.025em;
 }
 
-.ourPart p {
+.includedList {
+  display: grid;
+  margin: 4.5rem 0 0;
+  border-top: 1px solid var(--line);
+  padding: 0;
+  list-style: none;
+}
+
+.includedList li {
+  border-bottom: 1px solid var(--line);
+  padding: 0.85rem 0;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.setupNote {
   max-width: 29rem;
   margin-top: 1.2rem;
   color: var(--ink-soft);
@@ -334,7 +385,7 @@
 }
 
 .requirements {
-  margin: 1.5rem 0 0;
+  margin: 4.5rem 0 0;
 }
 
 .requirements > div {
@@ -463,17 +514,46 @@
 
   .planningBoard {
     grid-template-columns: 1fr;
+    gap: 0;
     margin-top: 3rem;
+    padding-left: 2.75rem;
   }
 
-  .ourPart {
-    padding-right: 0;
+  .planningBoard::before {
+    top: 0;
+    right: auto;
+    bottom: 0;
+    left: 0.45rem;
+    width: 2px;
+    height: auto;
+    background: linear-gradient(
+      180deg,
+      var(--accent) 0%,
+      #78b9df 50%,
+      var(--accent-strong) 100%
+    );
+  }
+
+  .ourPart,
+  .sitePart {
+    padding: 2.5rem 0;
+  }
+
+  .ourPart::before,
+  .sitePart::before {
+    top: 2.5rem;
+    right: auto;
+    left: -2.75rem;
+    transform: none;
+  }
+
+  .includedList,
+  .requirements {
+    margin-top: 1.5rem;
   }
 
   .sitePart {
     border-top: 1px solid var(--line-strong);
-    border-left: 0;
-    padding-left: 0;
   }
 
   .requirements > div {

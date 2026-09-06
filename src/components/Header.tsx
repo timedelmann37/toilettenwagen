@@ -69,7 +69,7 @@ export function Header() {
           aria-label="Hauptnavigation"
           className="hidden items-center gap-6 lg:flex"
         >
-          <NavList linkClassName="text-sm font-semibold text-ink-soft underline-offset-8 transition-colors hover:text-ink hover:underline focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent" />
+          <NavList linkClassName="inline-flex min-h-11 items-center px-1 text-sm font-semibold text-ink-soft underline-offset-8 transition-colors hover:text-ink hover:underline focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent" />
         </nav>
 
         <div className="hidden lg:block">
