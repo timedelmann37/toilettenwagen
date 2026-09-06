@@ -124,8 +124,7 @@ export function InquiryForm() {
     setField(field, event.currentTarget.value as InquiryFormValues[typeof field]);
   }
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function handleAttempt() {
     if (submittingRef.current) return;
 
     const nextErrors = validateInquiry(formValues);
@@ -147,6 +146,11 @@ export function InquiryForm() {
     const result = await submitInquiry(formValues);
     submittingRef.current = false;
     setStatus(result.kind);
+  }
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    void handleAttempt();
   }
 
   const errorEntries = Object.entries(errors) as [InquiryFieldName, string][];
@@ -197,6 +201,12 @@ export function InquiryForm() {
           <form
             className={styles.form}
             onSubmit={handleSubmit}
+            action={
+              transportConfigured
+                ? process.env.NEXT_PUBLIC_INQUIRY_ENDPOINT
+                : undefined
+            }
+            method={transportConfigured ? "post" : undefined}
             noValidate
             aria-labelledby="inquiry-form-title"
           >
@@ -489,7 +499,11 @@ export function InquiryForm() {
                   ? "Ihre Angaben werden ausschließlich zur Bearbeitung dieser Anfrage verwendet."
                   : "Vorschau: Der Mailversand folgt später. Aktuell werden keine Angaben übertragen."}
               </p>
-              <button type="submit" disabled={status === "sending"}>
+              <button
+                type={transportConfigured ? "submit" : "button"}
+                onClick={transportConfigured ? undefined : () => void handleAttempt()}
+                disabled={status === "sending"}
+              >
                 {status === "sending"
                   ? "Wird gesendet …"
                   : transportConfigured

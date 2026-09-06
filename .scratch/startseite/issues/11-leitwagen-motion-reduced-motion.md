@@ -4,7 +4,7 @@
 
 **Blocked by:** 10
 
-**Status:** ready-for-user-review
+**Status:** done
 
 ## Verbindliche Quellen
 
@@ -43,7 +43,7 @@
 - [x] Mobile- und statische Zwischenbreiten-Reviews beweisen vollständigen Inhalt ohne störende Übergänge; dieselbe statische Fassung wird durch `prefers-reduced-motion` aktiviert.
 - [x] Der Controller misst nur bei Aktivierung/Resize, bündelt Scrollupdates über `requestAnimationFrame` und setzt `will-change` ausschließlich während Fahrt oder Modellwechsel.
 - [x] Typecheck, Lint, voller Testlauf und statischer Build sind grün.
-- [ ] User bestätigt Timing und Bewegungsgefühl im Live-Browser.
+- [x] User bestätigt Timing und Bewegungsgefühl im Live-Browser.
 
 ## Nicht in diesem Ticket
 
@@ -68,3 +68,4 @@
 - 2026-09-06: Korrektur im 1280 × 720 Browser geprüft. S/M/L liegen nun jeweils 420 px auseinander (S 1108, M 1528, L 1948). S→M und M→L nutzen die echten Assets in einem kurzen Morphfenster von 22–72 % des jeweiligen Wegs; eine rechts nach links laufende, 28 % weiche komplementäre Maske und maximal 0,8 px Blur vermeiden den harten Bildsprung ohne Vollflächen-Kreuzblende. L bleibt nach dem Einrasten weitere 260 px geparkt und wird ab 2209 px synchron mit dem Sticky-Ende nach oben geführt; bei 2668 px ist es noch sichtbar angeschnitten, erst eine Viewportlänge später wird die bereits außerhalb liegende Ebene deaktiviert. Lint, Typecheck über den Next-Build, alle 50 Tests, statischer Export und `git diff --check` sind grün. Finale Bewegungsfreigabe bleibt beim User.
 - 2026-09-06: Erneuter Userreview meldet Scrollblockaden, lange Kategorieabstände und unnatürliche Bewegung. Desktop-Diagnose reproduziert Stillstand bei L/1948 px während fortlaufender Eingabe; der 600-ms-Lock wird mit jedem Ereignis verlängert. Parallel aktives CSS-Snapping und 192 px Grid-Gaps verschärfen das Bewegungsgefühl. Bericht: `docs/design/motion-diagnosis-2026-09-06.md`. Produktionscode unverändert; Ticket wieder offen.
 - 2026-09-06: User beauftragt die vorgeschlagene kontinuierliche Scroll-Choreografie. Wheel-Lock, programmgesteuerte Scroll-Sprünge und CSS-Snapping entfernt; kompakte Lesepositionen mit Ruheabschnitten und echten Modellassets umgesetzt. Desktopintro aus der Wagenbahn genommen; serverseitig stabile Layoutgeometrie verhindert Scrollverschiebungen beim Reload. Tall-Viewport-Hero und L-Ausstieg korrigiert. Browsernachweis und beide geschlossenen Reviewachsen: `docs/design/motion-diagnosis-2026-09-06.md`. 49 Tests, Lint, TypeScript und statischer Build grün; bereit für User-Bewegungsreview.
+- 2026-09-06: User bestätigt Timing und Bewegungsgefühl mit „motion ist ok“. Ticket 11 ist abgeschlossen; Ticket 12 ist der nächste zulässige Abschlussslice.

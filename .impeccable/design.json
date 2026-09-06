@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-06T13:56:09.2091116+02:00",
+  "title": "Design System: Mobile Sanitäranlagen HS",
+  "extensions": {
+    "colorMeta": {
+      "porcelain": {
+        "role": "neutral",
+        "displayName": "Porcelain",
+        "canonical": "#f2f2ee",
+        "tonalRamp": ["color-mix(in oklch, #f2f2ee 20%, black)", "color-mix(in oklch, #f2f2ee 40%, black)", "color-mix(in oklch, #f2f2ee 70%, black)", "#f2f2ee", "color-mix(in oklch, #f2f2ee 80%, white)", "color-mix(in oklch, #f2f2ee 60%, white)", "color-mix(in oklch, #f2f2ee 35%, white)", "color-mix(in oklch, #f2f2ee 15%, white)"]
+      },
+      "mineral-surface": {
+        "role": "neutral",
+        "displayName": "Mineral Surface",
+        "canonical": "#e9ece9",
+        "tonalRamp": ["color-mix(in oklch, #e9ece9 20%, black)", "color-mix(in oklch, #e9ece9 40%, black)", "color-mix(in oklch, #e9ece9 70%, black)", "#e9ece9", "color-mix(in oklch, #e9ece9 80%, white)", "color-mix(in oklch, #e9ece9 60%, white)", "color-mix(in oklch, #e9ece9 35%, white)", "color-mix(in oklch, #e9ece9 15%, white)"]
+      },
+      "porcelain-raised": {
+        "role": "neutral",
+        "displayName": "Porcelain Raised",
+        "canonical": "#f8f8f4",
+        "tonalRamp": ["color-mix(in oklch, #f8f8f4 20%, black)", "color-mix(in oklch, #f8f8f4 40%, black)", "color-mix(in oklch, #f8f8f4 70%, black)", "#f8f8f4", "color-mix(in oklch, #f8f8f4 80%, white)", "color-mix(in oklch, #f8f8f4 60%, white)", "color-mix(in oklch, #f8f8f4 35%, white)", "color-mix(in oklch, #f8f8f4 15%, white)"]
+      },
+      "deep-navy": {
+        "role": "neutral",
+        "displayName": "Deep Navy",
+        "canonical": "#142b3b",
+        "tonalRamp": ["color-mix(in oklch, #142b3b 45%, black)", "color-mix(in oklch, #142b3b 70%, black)", "#142b3b", "color-mix(in oklch, #142b3b 80%, white)", "color-mix(in oklch, #142b3b 65%, white)", "color-mix(in oklch, #142b3b 45%, white)", "color-mix(in oklch, #142b3b 25%, white)", "color-mix(in oklch, #142b3b 10%, white)"]
+      },
+      "muted-navy": {
+        "role": "neutral",
+        "displayName": "Muted Navy",
+        "canonical": "#526471",
+        "tonalRamp": ["color-mix(in oklch, #526471 35%, black)", "color-mix(in oklch, #526471 60%, black)", "color-mix(in oklch, #526471 80%, black)", "#526471", "color-mix(in oklch, #526471 75%, white)", "color-mix(in oklch, #526471 55%, white)", "color-mix(in oklch, #526471 30%, white)", "color-mix(in oklch, #526471 12%, white)"]
+      },
+      "mineral-line": {
+        "role": "neutral",
+        "displayName": "Mineral Line",
+        "canonical": "#d8ddda",
+        "tonalRamp": ["color-mix(in oklch, #d8ddda 20%, black)", "color-mix(in oklch, #d8ddda 40%, black)", "color-mix(in oklch, #d8ddda 70%, black)", "#d8ddda", "color-mix(in oklch, #d8ddda 80%, white)", "color-mix(in oklch, #d8ddda 60%, white)", "color-mix(in oklch, #d8ddda 35%, white)", "color-mix(in oklch, #d8ddda 15%, white)"]
+      },
+      "mineral-line-strong": {
+        "role": "neutral",
+        "displayName": "Mineral Line Strong",
+        "canonical": "#aab6bc",
+        "tonalRamp": ["color-mix(in oklch, #aab6bc 20%, black)", "color-mix(in oklch, #aab6bc 45%, black)", "color-mix(in oklch, #aab6bc 70%, black)", "#aab6bc", "color-mix(in oklch, #aab6bc 80%, white)", "color-mix(in oklch, #aab6bc 60%, white)", "color-mix(in oklch, #aab6bc 35%, white)", "color-mix(in oklch, #aab6bc 15%, white)"]
+      },
+      "hygiene-blue": {
+        "role": "primary",
+        "displayName": "Hygiene Blue",
+        "canonical": "#246bb5",
+        "tonalRamp": ["color-mix(in oklch, #246bb5 35%, black)", "color-mix(in oklch, #246bb5 55%, black)", "color-mix(in oklch, #246bb5 78%, black)", "#246bb5", "color-mix(in oklch, #246bb5 80%, white)", "color-mix(in oklch, #246bb5 60%, white)", "color-mix(in oklch, #246bb5 35%, white)", "color-mix(in oklch, #246bb5 15%, white)"]
+      },
+      "hygiene-blue-strong": {
+        "role": "primary",
+        "displayName": "Hygiene Blue Strong",
+        "canonical": "#185894",
+        "tonalRamp": ["color-mix(in oklch, #185894 35%, black)", "color-mix(in oklch, #185894 55%, black)", "color-mix(in oklch, #185894 78%, black)", "#185894", "color-mix(in oklch, #185894 80%, white)", "color-mix(in oklch, #185894 60%, white)", "color-mix(in oklch, #185894 35%, white)", "color-mix(in oklch, #185894 15%, white)"]
+      },
+      "cool-white": {
+        "role": "neutral",
+        "displayName": "Cool White",
+        "canonical": "#f9fbfc",
+        "tonalRamp": ["color-mix(in oklch, #f9fbfc 20%, black)", "color-mix(in oklch, #f9fbfc 40%, black)", "color-mix(in oklch, #f9fbfc 70%, black)", "#f9fbfc", "color-mix(in oklch, #f9fbfc 80%, white)", "color-mix(in oklch, #f9fbfc 60%, white)", "color-mix(in oklch, #f9fbfc 35%, white)", "color-mix(in oklch, #f9fbfc 15%, white)"]
+      },
+      "whatsapp-green": {
+        "role": "secondary",
+        "displayName": "WhatsApp Green",
+        "canonical": "#1e8449",
+        "tonalRamp": ["color-mix(in oklch, #1e8449 35%, black)", "color-mix(in oklch, #1e8449 55%, black)", "color-mix(in oklch, #1e8449 78%, black)", "#1e8449", "color-mix(in oklch, #1e8449 80%, white)", "color-mix(in oklch, #1e8449 60%, white)", "color-mix(in oklch, #1e8449 35%, white)", "color-mix(in oklch, #1e8449 15%, white)"]
+      },
+      "whatsapp-green-strong": {
+        "role": "secondary",
+        "displayName": "WhatsApp Green Strong",
+        "canonical": "#176f3c",
+        "tonalRamp": ["color-mix(in oklch, #176f3c 35%, black)", "color-mix(in oklch, #176f3c 55%, black)", "color-mix(in oklch, #176f3c 78%, black)", "#176f3c", "color-mix(in oklch, #176f3c 80%, white)", "color-mix(in oklch, #176f3c 60%, white)", "color-mix(in oklch, #176f3c 35%, white)", "color-mix(in oklch, #176f3c 15%, white)"]
+      },
+      "inquiry-navy": {
+        "role": "tertiary",
+        "displayName": "Inquiry Navy",
+        "canonical": "#173548",
+        "tonalRamp": ["color-mix(in oklch, #173548 45%, black)", "color-mix(in oklch, #173548 70%, black)", "#173548", "color-mix(in oklch, #173548 80%, white)", "color-mix(in oklch, #173548 65%, white)", "color-mix(in oklch, #173548 45%, white)", "color-mix(in oklch, #173548 25%, white)", "color-mix(in oklch, #173548 10%, white)"]
+      },
+      "inquiry-white": {
+        "role": "neutral",
+        "displayName": "Inquiry White",
+        "canonical": "#f8f7f0",
+        "tonalRamp": ["color-mix(in oklch, #f8f7f0 20%, black)", "color-mix(in oklch, #f8f7f0 40%, black)", "color-mix(in oklch, #f8f7f0 70%, black)", "#f8f7f0", "color-mix(in oklch, #f8f7f0 80%, white)", "color-mix(in oklch, #f8f7f0 60%, white)", "color-mix(in oklch, #f8f7f0 35%, white)", "color-mix(in oklch, #f8f7f0 15%, white)"]
+      },
+      "focus-blue": {
+        "role": "primary",
+        "displayName": "Focus Blue",
+        "canonical": "#b7daf7",
+        "tonalRamp": ["color-mix(in oklch, #b7daf7 20%, black)", "color-mix(in oklch, #b7daf7 40%, black)", "color-mix(in oklch, #b7daf7 70%, black)", "#b7daf7", "color-mix(in oklch, #b7daf7 80%, white)", "color-mix(in oklch, #b7daf7 60%, white)", "color-mix(in oklch, #b7daf7 35%, white)", "color-mix(in oklch, #b7daf7 15%, white)"]
+      },
+      "error-peach": {
+        "role": "tertiary",
+        "displayName": "Error Peach",
+        "canonical": "#ffd0bd",
+        "tonalRamp": ["color-mix(in oklch, #ffd0bd 20%, black)", "color-mix(in oklch, #ffd0bd 40%, black)", "color-mix(in oklch, #ffd0bd 70%, black)", "#ffd0bd", "color-mix(in oklch, #ffd0bd 80%, white)", "color-mix(in oklch, #ffd0bd 60%, white)", "color-mix(in oklch, #ffd0bd 35%, white)", "color-mix(in oklch, #ffd0bd 15%, white)"]
+      },
+      "map-copy": {
+        "role": "neutral",
+        "displayName": "Map Copy",
+        "canonical": "#d5e0e3",
+        "tonalRamp": ["color-mix(in oklch, #d5e0e3 20%, black)", "color-mix(in oklch, #d5e0e3 40%, black)", "color-mix(in oklch, #d5e0e3 70%, black)", "#d5e0e3", "color-mix(in oklch, #d5e0e3 80%, white)", "color-mix(in oklch, #d5e0e3 60%, white)", "color-mix(in oklch, #d5e0e3 35%, white)", "color-mix(in oklch, #d5e0e3 15%, white)"]
+      },
+      "map-line": {
+        "role": "neutral",
+        "displayName": "Map Line",
+        "canonical": "#91aab7",
+        "tonalRamp": ["color-mix(in oklch, #91aab7 20%, black)", "color-mix(in oklch, #91aab7 40%, black)", "color-mix(in oklch, #91aab7 70%, black)", "#91aab7", "color-mix(in oklch, #91aab7 80%, white)", "color-mix(in oklch, #91aab7 60%, white)", "color-mix(in oklch, #91aab7 35%, white)", "color-mix(in oklch, #91aab7 15%, white)"]
+      },
+      "sand-marker": {
+        "role": "tertiary",
+        "displayName": "Sand Marker",
+        "canonical": "#ded8ca",
+        "tonalRamp": ["color-mix(in oklch, #ded8ca 20%, black)", "color-mix(in oklch, #ded8ca 40%, black)", "color-mix(in oklch, #ded8ca 70%, black)", "#ded8ca", "color-mix(in oklch, #ded8ca 80%, white)", "color-mix(in oklch, #ded8ca 60%, white)", "color-mix(in oklch, #ded8ca 35%, white)", "color-mix(in oklch, #ded8ca 15%, white)"]
+      },
+      "timeline-blue": {
+        "role": "primary",
+        "displayName": "Timeline Blue",
+        "canonical": "#21475e",
+        "tonalRamp": ["color-mix(in oklch, #21475e 35%, black)", "color-mix(in oklch, #21475e 55%, black)", "color-mix(in oklch, #21475e 78%, black)", "#21475e", "color-mix(in oklch, #21475e 80%, white)", "color-mix(in oklch, #21475e 60%, white)", "color-mix(in oklch, #21475e 35%, white)", "color-mix(in oklch, #21475e 15%, white)"]
+      },
+      "timeline-highlight": {
+        "role": "primary",
+        "displayName": "Timeline Highlight",
+        "canonical": "#b9daed",
+        "tonalRamp": ["color-mix(in oklch, #b9daed 20%, black)", "color-mix(in oklch, #b9daed 40%, black)", "color-mix(in oklch, #b9daed 70%, black)", "#b9daed", "color-mix(in oklch, #b9daed 80%, white)", "color-mix(in oklch, #b9daed 60%, white)", "color-mix(in oklch, #b9daed 35%, white)", "color-mix(in oklch, #b9daed 15%, white)"]
+      },
+      "timeline-muted": {
+        "role": "neutral",
+        "displayName": "Timeline Muted",
+        "canonical": "#d3dee2",
+        "tonalRamp": ["color-mix(in oklch, #d3dee2 20%, black)", "color-mix(in oklch, #d3dee2 40%, black)", "color-mix(in oklch, #d3dee2 70%, black)", "#d3dee2", "color-mix(in oklch, #d3dee2 80%, white)", "color-mix(in oklch, #d3dee2 60%, white)", "color-mix(in oklch, #d3dee2 35%, white)", "color-mix(in oklch, #d3dee2 15%, white)"]
+      },
+      "inquiry-muted": {
+        "role": "neutral",
+        "displayName": "Inquiry Muted",
+        "canonical": "#d7e1e4",
+        "tonalRamp": ["color-mix(in oklch, #d7e1e4 20%, black)", "color-mix(in oklch, #d7e1e4 40%, black)", "color-mix(in oklch, #d7e1e4 70%, black)", "#d7e1e4", "color-mix(in oklch, #d7e1e4 80%, white)", "color-mix(in oklch, #d7e1e4 60%, white)", "color-mix(in oklch, #d7e1e4 35%, white)", "color-mix(in oklch, #d7e1e4 15%, white)"]
+      },
+      "success-green": {
+        "role": "secondary",
+        "displayName": "Success Green",
+        "canonical": "#9fd2b2",
+        "tonalRamp": ["color-mix(in oklch, #9fd2b2 20%, black)", "color-mix(in oklch, #9fd2b2 40%, black)", "color-mix(in oklch, #9fd2b2 70%, black)", "#9fd2b2", "color-mix(in oklch, #9fd2b2 80%, white)", "color-mix(in oklch, #9fd2b2 60%, white)", "color-mix(in oklch, #9fd2b2 35%, white)", "color-mix(in oklch, #9fd2b2 15%, white)"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Product Display", "purpose": "Kurze Hero-Claims und die größten Kapitelüberschriften." },
+      "headline": { "displayName": "Section Headline", "purpose": "Kapitel- und Abschlussüberschriften." },
+      "body": { "displayName": "Humanist Body", "purpose": "Fließtext, Daten, Formulare und Rechtstexte." },
+      "label": { "displayName": "Technical Label", "purpose": "Modelle, Preise, Felder und technische Kennzeichnungen." }
+    },
+    "shadows": [
+      { "name": "vehicle-grounding", "value": "drop-shadow(0 1.25rem 1.55rem rgb(22 43 57 / 0.14))", "purpose": "Bindet transparente Wagen an die gemeinsame Bodenlinie." },
+      { "name": "ambient-proof", "value": "0 1.8rem 4rem rgb(20 43 59 / 0.1)", "purpose": "Einmalige weiche Tiefe an einem hervorgehobenen Servicebeweis." },
+      { "name": "motion-marker", "value": "0 0.6rem 1.4rem rgb(20 43 59 / 0.12)", "purpose": "Kleiner räumlicher Hinweis innerhalb der Leitwagen-Choreografie." }
+    ],
+    "motion": [
+      { "name": "interaction-fast", "value": "160ms ease", "purpose": "Hover, Fokus, aktive Schalter und kleine Zustandswechsel." },
+      { "name": "active-press", "value": "translateY(1px)", "purpose": "Taktiles, zurückhaltendes Feedback auf Buttons und Auswahlflächen." },
+      { "name": "reduced-motion", "value": "0.001ms", "purpose": "Globale Reduktion; Leitwagen und Transformationen weichen der statischen Dokumentreihenfolge." },
+      { "name": "model-journey", "value": "native scroll progress via requestAnimationFrame", "purpose": "Kontinuierliche S/M/L-Erzählung ohne Snap, Wheel-Sperre oder programmgesteuertes Scrollen." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "767px" },
+      { "name": "compact", "value": "900px" },
+      { "name": "product", "value": "1040px" },
+      { "name": "timeline", "value": "1100px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "WhatsApp Primary",
+      "kind": "button",
+      "refersTo": "button-whatsapp",
+      "description": "Primärer Kontaktweg; Grün bleibt exklusiv diesem Kanal vorbehalten.",
+      "html": "<a class=\"ds-btn-whatsapp\" href=\"#\">Per WhatsApp anfragen</a>",
+      "css": ".ds-btn-whatsapp { display:inline-flex; min-height:48px; align-items:center; justify-content:center; border-radius:999px; padding:0 24px; background:var(--whatsapp, #1e8449); color:#f9fbfc; font:600 16px/1.2 'Hanken Grotesk',sans-serif; text-decoration:none; transition:background-color 150ms ease,transform 150ms ease; } .ds-btn-whatsapp:hover { background:var(--whatsapp-strong, #176f3c); } .ds-btn-whatsapp:active { transform:translateY(1px); } .ds-btn-whatsapp:focus-visible { outline:2px solid var(--whatsapp, #1e8449); outline-offset:3px; }"
+    },
+    {
+      "name": "Secondary Action",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Ruhiger Sprung in die Anfrage neben dem dominanten WhatsApp-Weg.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\">Anfrage vorbereiten</a>",
+      "css": ".ds-btn-secondary { display:inline-flex; min-height:48px; align-items:center; border-radius:999px; padding:0 22px; color:var(--ink, #142b3b); font:650 16px/1.2 'Hanken Grotesk',sans-serif; text-decoration:underline; text-decoration-color:var(--line-strong, #aab6bc); text-underline-offset:.35rem; transition:color 160ms ease,text-decoration-color 160ms ease,transform 160ms ease; } .ds-btn-secondary:hover { color:var(--accent-strong, #185894); text-decoration-color:currentColor; } .ds-btn-secondary:active { transform:translateY(1px); } .ds-btn-secondary:focus-visible { outline:2px solid var(--accent, #246bb5); outline-offset:4px; }"
+    },
+    {
+      "name": "Model Choice",
+      "kind": "custom",
+      "refersTo": "model-choice-selected",
+      "description": "Große S/M/L-Auswahl, deren aktiver Zustand Bild, Preis und Daten gemeinsam steuert.",
+      "html": "<button class=\"ds-model-choice\"><strong>M</strong><span>bis 400 Personen</span></button>",
+      "css": ".ds-model-choice { display:grid; min-height:116px; align-content:center; gap:6px; border:0; border-radius:14px; padding:18px 28px; background:var(--accent, #246bb5); color:var(--accent-contrast, #f9fbfc); cursor:pointer; text-align:left; transition:background-color 160ms ease,transform 160ms ease; } .ds-model-choice strong { font:700 60px/.9 'Bricolage Grotesque',sans-serif; letter-spacing:-.035em; } .ds-model-choice span { font:700 14px/1.2 'Hanken Grotesk',sans-serif; } .ds-model-choice:hover { background:var(--accent-strong, #185894); } .ds-model-choice:active { transform:translateY(1px); } .ds-model-choice:focus-visible { outline:2px solid var(--ink, #142b3b); outline-offset:4px; }"
+    },
+    {
+      "name": "Price Toggle",
+      "kind": "chip",
+      "refersTo": "model-choice-selected",
+      "description": "Explizite Privat-brutto/Gewerbe-netto-Umschaltung ohne versteckte Preislogik.",
+      "html": "<div class=\"ds-price-toggle\"><button class=\"ds-price-active\">Privat · brutto</button><button>Gewerbe · netto</button></div>",
+      "css": ".ds-price-toggle { display:inline-grid; grid-template-columns:1fr 1fr; border-radius:999px; padding:4px; background:var(--surface, #e9ece9); } .ds-price-toggle button { min-height:44px; border:0; border-radius:999px; padding:0 16px; background:transparent; color:var(--ink-soft, #526471); font:750 13px/1.2 'Hanken Grotesk',sans-serif; cursor:pointer; transition:background-color 160ms ease,color 160ms ease,transform 160ms ease; } .ds-price-toggle .ds-price-active { background:var(--ink, #142b3b); color:var(--accent-contrast, #f9fbfc); } .ds-price-toggle button:active { transform:translateY(1px); } .ds-price-toggle button:focus-visible { outline:2px solid var(--accent, #246bb5); outline-offset:3px; }"
+    },
+    {
+      "name": "Inquiry Field",
+      "kind": "input",
+      "refersTo": "input-dark",
+      "description": "Großes, kontrastreiches Feld für die dunkle Anfragewerkstatt.",
+      "html": "<label class=\"ds-field\"><span>Ort oder PLZ *</span><input placeholder=\"57567 Daaden\"></label>",
+      "css": ".ds-field { display:grid; gap:9px; color:#f8f7f0; font:720 14px/1.2 'Hanken Grotesk',sans-serif; } .ds-field input { min-height:52px; border:1px solid rgb(248 247 240 / .36); border-radius:14px; padding:13px 15px; background:rgb(248 247 240 / .06); color:#f8f7f0; caret-color:#b7daf7; font:400 16px/1.5 'Hanken Grotesk',sans-serif; transition:border-color 160ms ease; } .ds-field input:hover { border-color:rgb(248 247 240 / .65); } .ds-field input:focus-visible { outline:2px solid #b7daf7; outline-offset:3px; } .ds-field input::placeholder { color:#b8c8ce; }"
+    },
+    {
+      "name": "Information Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Tonale Gruppierung für echte Daten oder Handlungszusammenhänge, nicht als dekorative Featurekarte.",
+      "html": "<article class=\"ds-info-panel\"><p class=\"ds-panel-label\">Standort der Wagen</p><h3>Niederdreisbach</h3><p>Reguläres Einsatzgebiet ungefähr 125 km.</p></article>",
+      "css": ".ds-info-panel { max-width:560px; border:1px solid var(--line, #d8ddda); border-radius:14px; padding:clamp(24px,4vw,48px); background:var(--surface-strong, #f8f8f4); color:var(--ink, #142b3b); } .ds-info-panel h3 { margin:8px 0 12px; font:640 clamp(32px,4vw,52px)/.96 'Bricolage Grotesque',sans-serif; letter-spacing:-.03em; } .ds-info-panel p { margin:0; color:var(--ink-soft, #526471); font:400 16px/1.55 'Hanken Grotesk',sans-serif; } .ds-info-panel .ds-panel-label { color:var(--accent-strong, #185894); font-size:14px; font-weight:750; } .ds-info-panel:focus-within { outline:2px solid var(--accent, #246bb5); outline-offset:4px; }"
+    },
+    {
+      "name": "Anchor Navigation",
+      "kind": "nav",
+      "refersTo": "button-secondary",
+      "description": "Einzeilige Orientierung mit ruhigen Ankern und einem klar getrennten Kontaktweg.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\">HS</a><a href=\"#\">Wagen</a><a href=\"#\">Service</a><a href=\"#\">Ablauf</a><a href=\"#\">Region</a><a href=\"#\">Kontakt</a></nav>",
+      "css": ".ds-nav { display:flex; min-height:72px; align-items:center; gap:24px; border-bottom:1px solid var(--line, #d8ddda); background:var(--bg, #f2f2ee); padding:0 24px; font:650 14px/1.2 'Hanken Grotesk',sans-serif; } .ds-nav a { min-height:44px; display:inline-flex; align-items:center; color:var(--ink, #142b3b); text-decoration:none; transition:color 160ms ease; } .ds-nav a:hover { color:var(--accent-strong, #185894); } .ds-nav a:focus-visible { outline:2px solid var(--accent, #246bb5); outline-offset:3px; } .ds-nav .ds-brand { margin-right:auto; font:700 26px/1 'Bricolage Grotesque',sans-serif; letter-spacing:-.03em; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Die Modellfamilie als roter Faden",
+    "overview": "Die Website inszeniert Mobile Sanitäranlagen Herrmann & Smécz wie ein sorgfältig geführtes Produkt- und Servicestudio. Die drei realen Wagen sind Hauptdarsteller und Orientierungssystem: zuerst als Familie, dann als kontinuierliche S/M/L-Reise, schließlich als Ausgangspunkt für Service, Ablauf, Region und Anfrage. Die visuelle Welt verbindet technische Präzision mit regionaler Nähe. Große freie Produktbühnen wechseln mit strengen Daten- und Formularrastern; warmes Porzellan, tiefes Navy und sparsam eingesetztes Hygiene-Blau halten die Seite hochwertig, lesbar und menschlich. Sie vermeidet kalte SaaS-Flächen, künstliche Studiohintergründe, generische Kartenraster und erfundenen Produktbeweis.",
+    "keyCharacteristics": [
+      "Reale Wagenkonturen als visuelle Hauptform statt dekorativer Illustration.",
+      "Großzügige Bühnen im Wechsel mit kompakten, präzisen Informationszonen.",
+      "Dünne blaue Linien als wiederkehrende Grammatik für Stationen, Übergaben und Zeitverläufe.",
+      "Echtes Bildmaterial mit genau einer Rolle je Motiv.",
+      "Motion erklärt das Sortiment, während alle Inhalte statisch vollständig bleiben."
+    ],
+    "rules": [
+      { "name": "The Channel Color Rule", "body": "Grün bezeichnet immer WhatsApp und nie die allgemeine Marke. Hygiene-Blau erklärt Auswahl, Struktur und Präzision; es wird nicht als flächiger Standardgradient benutzt.", "section": "colors" },
+      { "name": "The Short Headline Rule", "body": "Überschriften bleiben inhaltlich knapp und räumlich breit; technische Details wandern in die nächste Hierarchieebene.", "section": "typography" },
+      { "name": "The Flat-by-Default Rule", "body": "Flächen bleiben im Ruhezustand flach; Schatten erklären physische Freistellung oder einen besonderen Übergang, nie bloß Premium.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do reale S/M/L-Wagen, reale Innenräume und überprüfte Produktdaten als primären Beweis verwenden.",
+      "Do große freie Bühnen mit kompakten Daten-, Prozess- und Formularzonen abwechseln.",
+      "Do Hygiene-Blau für aktive Zustände, Fokus und erklärende Linien reservieren.",
+      "Do Privat/brutto standardmäßig zeigen und Gewerbe/netto ausdrücklich benennen.",
+      "Do mindestens 44px große Ziele, sichtbaren Fokus und vollständige statische Fallbacks erhalten.",
+      "Do Motion an die native Scrollposition binden und prefers-reduced-motion vollständig respektieren."
+    ],
+    "donts": [
+      "Don't kaltes Reinweiß, generische SaaS-Blaugrauflächen oder dekorativen AI-Nebel einführen.",
+      "Don't einen Standard-Split-Hero, gleichförmige Featurekarten oder ein automatisch laufendes Testimonial-Karussell bauen.",
+      "Don't Stockbilder, erfundene Ausstattung, Zertifikate, Kundenlogos oder Leistungsstatistiken ergänzen.",
+      "Don't Wagenproportionen, Logos, Achsen, Türen oder technische Daten zugunsten einer schöneren Darstellung verfälschen.",
+      "Don't Google Maps vor Einwilligung oder nicht freigegebene Reserve- und Konzeptassets ausliefern.",
+      "Don't native Scroll-Eingaben sperren, CSS-Snapping erzwingen oder Information ausschließlich in Motion verstecken."
+    ]
+  }
+}

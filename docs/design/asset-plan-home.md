@@ -16,22 +16,22 @@ Typografie-Freigabe: User bestätigte am 2026-09-05 Kandidat B, Bricolage Grotes
 - Korrekturen dienen nur der Freistellung, Perspektive, Farbe, Belichtung, Kantenqualität und behutsamen Retusche. Die Handybilder dürfen hochwertiger wirken, aber nicht künstlich glatt.
 - Jedes Motiv bekommt eine eindeutige Aufgabe. Ähnliche Innenraumfotos werden nicht als wiederholte Kartenserie ausgespielt.
 - Blaue Nachtaufnahmen sind ein gezielter Kontrastmoment. Die gesamte Seite wird dadurch nicht kalt oder dunkel.
-- Originale und vorhandene WebP-Dateien bleiben unangetastet. Optimierte Ableitungen erhalten eigene Dateinamen.
+- Originale und vorhandene WebP-Dateien bleiben unangetastet im nicht ausgelieferten Pool `assets/reserve/fotos/`. Nur freigegebene Produktionsableitungen liegen unter `public/fotos/`.
 
 ## 2. Primäre Fahrzeug-Assets
 
 | ID | Quelle | Verbindliche Rolle | Status | Nächste Bearbeitung |
 | --- | --- | --- | --- | --- |
-| `VEH-S-MASTER` | `public/fotos/wagen-s-freigestellt.webp` | reale Referenz für Form, Logo und Ausstattung des S-Wagens | Quelle vorhanden | Weißfläche sauber entfernen, Kanten und Zugdeichsel prüfen, neutral ausrichten |
+| `VEH-S-MASTER` | `assets/reserve/fotos/wagen-s-freigestellt.webp` | reale Referenz für Form, Logo und Ausstattung des S-Wagens | Quelle vorhanden | Weißfläche sauber entfernen, Kanten und Zugdeichsel prüfen, neutral ausrichten |
 | `VEH-S-HERO` | `public/fotos/wagen-s-hero-1600.webp` | S-Wagen im Hero und Ausgangspunkt des Leitwagens | produktiv eingesetzt | Form unverändert lassen; mobile Ableitung synchron halten |
 | `VEH-M-MASTER` | User-Quelle `m-wagen ohne schatten.jpg` | maßgebliche M-Produktaufnahme in Dreiviertelansicht | bestätigt und produktiv abgeleitet | rechte Türgrafik gezielt von Frau zu Mann korrigiert; übrige Modelllogik erhalten |
 | `VEH-M-HERO` | `public/fotos/wagen-m-model-1600.webp`, `wagen-m-model-960.webp` | M-Wagen im Hero, in der statischen Familie und im Vergleich | produktiv eingesetzt | enger transparenter Freisteller; 1283 × 903 / 960 × 676 px |
-| `VEH-M-OPEN` | `public/fotos/wagen-m-aussen-offen.webp` | ältere M-Referenz mit offenen Türen | Reserve | nur noch zur Produktkontrolle verwenden |
-| `VEH-M-PROFILE` | `public/fotos/wagen-m-aussen.webp` | Kontrollbild für M-Länge und geschlossene Kontur | Referenz | nicht als Hero-Motiv einplanen; zur Geometrieprüfung verwenden |
+| `VEH-M-OPEN` | `assets/reserve/fotos/wagen-m-aussen-offen.webp` | ältere M-Referenz mit offenen Türen | Reserve | nur noch zur Produktkontrolle verwenden |
+| `VEH-M-PROFILE` | `assets/reserve/fotos/wagen-m-aussen.webp` | Kontrollbild für M-Länge und geschlossene Kontur | Referenz | nicht als Hero-Motiv einplanen; zur Geometrieprüfung verwenden |
 | `VEH-L-MASTER` | User-Quelle `wagen L aussen.jpeg` (AVIF-Inhalt) | neue maßgebliche L-Referenz mit zwei offenen Eingängen und Doppelachse | bestätigt und produktiv abgeleitet | Aufbau und Ausstattung unverändert; Perspektive an die Fahrzeugfamilie angleichen |
 | `VEH-L-HERO` | `public/fotos/wagen-l-model-1600.webp`, `wagen-l-model-960.webp` | L-Wagen im Hero, in der statischen Familie und im Vergleich | produktiv eingesetzt | auf M/S abgestimmtes Dreiviertel-Rendering; 1360 × 798 / 960 × 563 px |
-| `VEH-L-OPEN` | `public/fotos/wagen-l-aussen.webp` | ältere L-Referenz mit offener Tür und Doppelachse | Reserve | nur noch zur Produktkontrolle verwenden |
-| `VEH-L-ALT` | `public/fotos/foto-05.webp`, `public/fotos/foto-11.webp` | zusätzliche Kontrolle für L-Proportion und Türzustand | Referenz | nur heranziehen, wenn Konturen oder Details im Hauptfoto unklar sind |
+| `VEH-L-OPEN` | `assets/reserve/fotos/wagen-l-aussen.webp` | ältere L-Referenz mit offener Tür und Doppelachse | Reserve | nur noch zur Produktkontrolle verwenden |
+| `VEH-L-ALT` | `assets/reserve/fotos/foto-05.webp`, `assets/reserve/fotos/foto-11.webp` | zusätzliche Kontrolle für L-Proportion und Türzustand | Referenz | nur heranziehen, wenn Konturen oder Details im Hauptfoto unklar sind |
 
 ### Abnahmeregel für finale S/M/L-Freisteller
 
@@ -57,12 +57,12 @@ Ausgaben:
 
 | Bildrolle | Primärquelle | Platzierung | Zweck | Behandlung |
 | --- | --- | --- | --- | --- |
-| Beleuchtung bei Nacht | `public/fotos/aussenbeleuchtung.webp` | breite Zäsur zwischen Modellwelt und Serviceakt | reales Qualitätsdetail, kontrollierter Hygiene-Blau-Moment | Kontrast und Horizont prüfen; nur einmal groß einsetzen |
-| Waschplatz und Ausstattung | `public/fotos/interieur-2.webp` | asymmetrischer Servicebeweis | Waschbecken, Spiegel, Spender und Sensorik auf einen Blick | gerade richten, Lichter beruhigen, enger redaktioneller Crop |
-| Kabine | `public/fotos/foto-03.webp` | Detailansicht im Modell- oder Ausstattungsabschnitt | reale Innenraumqualität | vertikalen Ausschnitt beibehalten; Weißabgleich wärmer und neutraler |
-| Urinalkapazität | `public/fotos/foto-08.webp` | zweite Detailansicht, nicht direkt neben der Kabine | Kapazität und Sauberkeit belegen | Perspektive korrigieren, Zuschnitt straffen |
-| Innenraum-Türmotiv | `public/fotos/kabinen-aussen.webp` oder `public/fotos/einstieg-herren.webp` | kompakte allgemeine Ausstattungsgalerie | Innenraumvielfalt zeigen, ohne unbestätigte Modellzuordnung | im Build beide Crops testen, nur den stärkeren veröffentlichen |
-| beleuchteter Wagen | `public/fotos/wagen-m-aussen-beleuchtet.webp` | Reserve für mobile oder alternative Nachtkomposition | Außenwirkung am Abend | nur nutzen, wenn das breite Primärmotiv responsiv nicht funktioniert |
+| Beleuchtung bei Nacht | `assets/reserve/fotos/aussenbeleuchtung.webp` | breite Zäsur zwischen Modellwelt und Serviceakt | reales Qualitätsdetail, kontrollierter Hygiene-Blau-Moment | Kontrast und Horizont prüfen; nur einmal groß einsetzen |
+| Waschplatz und Ausstattung | `assets/reserve/fotos/interieur-2.webp` | asymmetrischer Servicebeweis | Waschbecken, Spiegel, Spender und Sensorik auf einen Blick | gerade richten, Lichter beruhigen, enger redaktioneller Crop |
+| Kabine | `assets/reserve/fotos/foto-03.webp` | Detailansicht im Modell- oder Ausstattungsabschnitt | reale Innenraumqualität | vertikalen Ausschnitt beibehalten; Weißabgleich wärmer und neutraler |
+| Urinalkapazität | `assets/reserve/fotos/foto-08.webp` | zweite Detailansicht, nicht direkt neben der Kabine | Kapazität und Sauberkeit belegen | Perspektive korrigieren, Zuschnitt straffen |
+| Innenraum-Türmotiv | `assets/reserve/fotos/kabinen-aussen.webp` oder `assets/reserve/fotos/einstieg-herren.webp` | kompakte allgemeine Ausstattungsgalerie | Innenraumvielfalt zeigen, ohne unbestätigte Modellzuordnung | im Build beide Crops testen, nur den stärkeren veröffentlichen |
+| beleuchteter Wagen | `assets/reserve/fotos/wagen-m-aussen-beleuchtet.webp` | Reserve für mobile oder alternative Nachtkomposition | Außenwirkung am Abend | nur nutzen, wenn das breite Primärmotiv responsiv nicht funktioniert |
 
 ### Ausgewählte Produktionsableitungen für Ticket 05
 
@@ -91,7 +91,7 @@ Nach der Lichtkorrektur wurden die vier Innenmotive als `precise-object-edit` er
 
 Die Nachtaufnahme bleibt in der lichtkorrigierten v1-Fassung, da ihr Außenwinkel bereits natürlich und aussagekräftig ist. Die Startseite verwendet für die vier Innenmotive die v2-Dateien.
 
-### Reservepool
+### Reservepool (`assets/reserve/fotos/`)
 
 - `foto-01.webp`, `wagen-l-kabinen.webp`: zusätzliche Kabinenansichten.
 - `urinale.webp`, `wagen-l-urinale.webp`: alternative Urinalansichten.
@@ -106,7 +106,7 @@ Die genaue Modellzuordnung der neutralen Innenraumfotos gilt bis zur Bestätigun
 | --- | --- | --- | --- |
 | Logo | `public/logo.png` | Navigation, Footer, spätere Social-Vorschau | Symbole und Inhalt unverändert; Navigation zeigt die transparente schwarze Kontrastfassung ohne Hintergrundplatte |
 | Karte | Google-Maps-Einbettung nach Einwilligung | Einsatzgebiet | vor Einwilligung keine fingierte Kartenillustration; stattdessen ruhiges Textpanel mit 125-km-Angabe und Aktivierungsaktion |
-| Social-Vorschau | noch offen | `og:image` | erst aus dem finalen Hero mit echtem S-Freisteller und finaler Typografie ableiten |
+| Social-Vorschau | `public/og/startseite.png`, `public/og/startseite-quadrat.png` | `og:image` | aus finalem Hero, echtem S-Freisteller, schwarzem Logo und finaler Typografie abgeleitet |
 | Icons | code-native, einheitlicher Strichsatz | sparsame Orientierung bei Anschlüssen und Leistungen | keine Emoji, keine wechselnden Icon-Stile, keine dekorativen Mini-Illustrationen |
 
 ## 5. Typografie-Test

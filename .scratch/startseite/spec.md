@@ -158,7 +158,7 @@ Folgende Aussagen werden als wenige große, inhaltlich verschiedene Beweise insz
 - Waschbecken, Spiegel, Innen-/Außenbeleuchtung, Spülung und Tork-Papierspender gehören zur gemeinsamen Ausstattung.
 - Schwierige Aufstellungen werden lösungsorientiert geplant.
 
-Modell S darf zusätzlich warmes und kaltes Wasser sowie Sensorarmaturen nennen. Das vorhandene Foto der Palmen-/Strand-Innenfolierung darf als allgemeine Innenansicht erscheinen; eine Modellzuordnung oder Exklusivität wird erst nach Bestätigung behauptet.
+Alle drei Modelle dürfen gemäß `PRODUCT.md` kaltes Wasser nennen. Ausschließlich Modell S darf zusätzlich Warmwasser und Sensorarmaturen nennen. Das vorhandene Foto der Palmen-/Strand-Innenfolierung darf als allgemeine Innenansicht erscheinen; eine Modellzuordnung oder Exklusivität wird erst nach Bestätigung behauptet.
 
 ### 6.8 Voraussetzungen vor Ort
 

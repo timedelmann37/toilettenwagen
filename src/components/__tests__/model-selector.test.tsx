@@ -55,6 +55,7 @@ describe("ModelSelector", () => {
     expect(
       within(modelM).getByText("Beheizt und ganzjährig einsetzbar"),
     ).toBeInTheDocument();
+    expect(within(modelM).getByText("Kalt fließendes Wasser")).toBeInTheDocument();
     expect(within(modelM).queryByText("Sensorarmaturen")).not.toBeInTheDocument();
 
     await user.click(
@@ -73,6 +74,7 @@ describe("ModelSelector", () => {
     expect(modelL).toHaveTextContent(/Herren-WCs2/);
     expect(modelL).toHaveTextContent(/Urinale6/);
     expect(within(modelL).getByText(/249,90\s*€/)).toBeInTheDocument();
+    expect(within(modelL).getByText("Kalt fließendes Wasser")).toBeInTheDocument();
   });
 
   it("bedient die Modellwahl per Pfeiltaste und übergibt sie an das Anfrage-Draft", async () => {

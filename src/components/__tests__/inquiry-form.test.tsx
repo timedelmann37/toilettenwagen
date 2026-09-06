@@ -82,6 +82,11 @@ describe("InquiryForm", () => {
     render(<InquiryForm />);
     const user = await fillValidForm();
 
+    expect(screen.getByRole("button", { name: "Eingaben prüfen" })).toHaveAttribute(
+      "type",
+      "button",
+    );
+
     await user.click(screen.getByRole("button", { name: "Eingaben prüfen" }));
 
     expect(
@@ -116,6 +121,15 @@ describe("InquiryForm", () => {
     vi.stubGlobal("fetch", fetchMock);
     render(<InquiryForm />);
     const user = await fillValidForm();
+
+    expect(screen.getByRole("button", { name: "Anfrage senden" })).toHaveAttribute(
+      "type",
+      "submit",
+    );
+    expect(screen.getByRole("form", { name: "Ihre Anfrage" })).toHaveAttribute(
+      "method",
+      "post",
+    );
 
     await user.click(screen.getByRole("button", { name: "Anfrage senden" }));
 

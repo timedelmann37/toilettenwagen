@@ -27,7 +27,7 @@
 - [ ] Voraussetzungen stehen zusammenhängend: 230 V, Wasseranschluss, fester ebener Untergrund, Abwasseranschluss und erforderliche Genehmigung.
 - [ ] Voraussetzungen klingen nach gemeinsamer Vorbereitung, nicht nach verstecktem Haftungsausschluss.
 - [ ] `interieur-2.webp`, `foto-03.webp`, `foto-08.webp` sowie eine Ansicht des Türmotivs werden nur dort eingesetzt, wo sie eine konkrete Aussage belegen.
-- [ ] Warmes/kaltes Wasser und Sensorarmaturen erscheinen ausschließlich beim S-Modell. Das Palmen-/Strandmotiv bleibt bis zur bestätigten Modellzuordnung eine neutrale Innenansicht.
+- [ ] Kaltes Wasser erscheint gemäß `PRODUCT.md` bei S, M und L. Warmwasser und Sensorarmaturen erscheinen ausschließlich beim S-Modell. Das Palmen-/Strandmotiv bleibt bis zur bestätigten Modellzuordnung eine neutrale Innenansicht.
 - [ ] Die blaue Nachtaufnahme ist höchstens ein einmaliger breiter Kontrastmoment; die Seite bleibt insgesamt warm und hell.
 - [ ] Fotos sind sinnvoll zugeschnitten, haben feste Dimensionen, beschreibende Alt-Texte und liegen innerhalb der Assetbudgets.
 

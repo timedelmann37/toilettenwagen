@@ -5,7 +5,7 @@ type VehicleImageProps = Omit<ImageProps, "src" | "width" | "height"> & {
   model?: TrailerModelId;
 };
 
-const vehicleAssets = {
+export const vehicleAssets = {
   s: {
     desktop: "/fotos/wagen-s-hero-1600.webp",
     mobile: "/fotos/wagen-s-hero-960.webp",

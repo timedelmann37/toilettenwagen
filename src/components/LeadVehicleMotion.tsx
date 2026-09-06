@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { VehicleImage } from "./VehicleImage";
+import type { TrailerModelId } from "@/lib/models";
+import { VehicleImage, vehicleAssets } from "./VehicleImage";
 import styles from "./LeadVehicleMotion.module.css";
 
-type LeadModel = "s" | "m" | "l";
+type LeadModel = TrailerModelId;
 
 type LeadPose = {
   right: number;
@@ -26,14 +27,7 @@ type MotionMetrics = {
 
 const modelOrder: LeadModel[] = ["s", "m", "l"];
 
-const modelDimensions: Record<
-  LeadModel,
-  { width: number; height: number }
-> = {
-  s: { width: 1600, height: 1229 },
-  m: { width: 1283, height: 903 },
-  l: { width: 1360, height: 798 },
-};
+const modelDimensions = vehicleAssets;
 
 const clamp01 = (value: number) => Math.min(1, Math.max(0, value));
 

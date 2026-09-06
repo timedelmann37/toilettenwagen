@@ -1,11 +1,12 @@
 // Erstellt reproduzierbare, budgetierte Ableitungen der echten Servicefotos.
-// Die Originale in public/fotos bleiben unverändert.
+// Quellen und Ableitungen bleiben im nicht ausgelieferten Reservepool. Eine
+// freigegebene Endfassung wird erst in einem bewussten Schritt veröffentlicht.
 import { mkdir } from "node:fs/promises";
 import { join } from "node:path";
 import sharp from "sharp";
 
 const root = process.cwd();
-const photoDirectory = join(root, "public", "fotos");
+const photoDirectory = join(root, "assets", "reserve", "fotos");
 
 const derivatives = [
   {

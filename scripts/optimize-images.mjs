@@ -1,12 +1,13 @@
-// Konvertiert die echten Quell-Fotos aus dem Repo-Root zu WebP in public/fotos/
-// (ADR-0001: statischer Export, keine next/image-Laufzeitoptimierung).
+// Konvertiert die echten Quell-Fotos aus dem Repo-Root in den nicht ausgelieferten
+// Reservepool. Produktionsassets werden anschließend gezielt nach public/fotos/
+// abgeleitet (ADR-0001: statischer Export, keine Laufzeitoptimierung).
 // Aufruf: node scripts/optimize-images.mjs
 import { readdir, mkdir, copyFile, rm } from "node:fs/promises";
 import { join } from "node:path";
 import sharp from "sharp";
 
 const ROOT = process.cwd();
-const OUT = join(ROOT, "public", "fotos");
+const OUT = join(ROOT, "assets", "reserve", "fotos");
 const MAX_W = 2000;
 const QUALITY = 82;
 
@@ -59,7 +60,7 @@ for (const file of entries) {
     .webp({ quality: QUALITY })
     .toFile(outPath);
   await rm(join(ROOT, file));
-  moved.push(`${file} -> public/fotos/${base}.webp`);
+  moved.push(`${file} -> assets/reserve/fotos/${base}.webp`);
 }
 
 // Logo separat: als PNG (Transparenz) nach public/logo.png.

@@ -49,7 +49,7 @@ export const trailerModels = [
     urinals: 3,
     priceNetCents: 19_000,
     suitability: "Mehr Kapazität für mittelgroße Veranstaltungen.",
-    specificFeatures: [],
+    specificFeatures: ["Kalt fließendes Wasser"],
   },
   {
     id: "l",
@@ -61,6 +61,6 @@ export const trailerModels = [
     urinals: 6,
     priceNetCents: 21_000,
     suitability: "Die größte Kapazität der Familie für große Veranstaltungen.",
-    specificFeatures: [],
+    specificFeatures: ["Kalt fließendes Wasser"],
   },
 ] as const satisfies readonly TrailerModel[];
