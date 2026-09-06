@@ -214,12 +214,14 @@ export function ModelSelector() {
           <figure className={styles.productStage}>
             <VehicleImage
               key={selectedModel.id}
-              alt="Freigestellter Toilettenwagen als gemeinsame Fahrzeugansicht"
+              model={selectedModel.id}
+              alt={`Freigestellter Toilettenwagen Modell ${selectedModel.name}`}
               sizes="(max-width: 767px) 92vw, 52vw"
+              loading="eager"
             />
             <figcaption>
-              Gemeinsame Fahrzeugansicht · Maße und Aufteilung beziehen sich
-              auf Modell {selectedModel.name}.
+              Modell {selectedModel.name} · Maße und Aufteilung beziehen sich
+              auf den gezeigten Wagen.
             </figcaption>
           </figure>
 

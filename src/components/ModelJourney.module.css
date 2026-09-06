@@ -141,6 +141,15 @@
   --capacity-share: 100%;
 }
 
+.modelStop[data-lead-active] .modelLetter,
+.modelStop[data-lead-active] .capacity strong {
+  color: var(--accent-strong);
+}
+
+.modelStop[data-lead-active] .capacityLine::after {
+  box-shadow: 0 0 0.7rem rgb(36 107 181 / 0.2);
+}
+
 .vehicleStage {
   position: relative;
   display: grid;
@@ -151,16 +160,40 @@
   padding: 2rem 3rem 4.5rem 0;
 }
 
-.vehicleStage picture {
+.staticVehicleFamily {
   position: relative;
   z-index: 1;
-  display: block;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
   width: min(100%, 48rem);
+  gap: clamp(0.15rem, 0.75vw, 0.65rem);
 }
 
-.vehicleStage img {
+.staticVehicle {
+  display: block;
+  min-width: 0;
+}
+
+.staticVehicle:nth-child(1) {
+  width: 29%;
+}
+
+.staticVehicle:nth-child(2) {
+  width: 32%;
+}
+
+.staticVehicle:nth-child(3) {
+  width: 37%;
+}
+
+.staticVehicle picture,
+.staticVehicle img {
   display: block;
   width: 100%;
+}
+
+.staticVehicle img {
   height: auto;
   filter: drop-shadow(0 1.5rem 1.7rem rgb(22 43 57 / 0.14));
 }
@@ -249,6 +282,68 @@
   text-align: right;
 }
 
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  :global(html[data-lead-snap="active"]) {
+    scroll-padding-top: 4.5rem;
+    scroll-snap-type: y proximity;
+  }
+
+  .journey[data-lead-motion="active"] .journeyStage {
+    align-items: start;
+  }
+
+  .journey[data-lead-motion="active"] .modelStop {
+    min-height: clamp(23rem, 46svh, 27rem);
+    scroll-snap-stop: always;
+  }
+
+  .journey[data-lead-motion="active"] .modelStop:nth-child(1) {
+    scroll-snap-align: start;
+  }
+
+  .journey[data-lead-motion="active"] .modelStop:nth-child(2) {
+    scroll-snap-align: center;
+  }
+
+  .journey[data-lead-motion="active"] .modelStop:nth-child(3) {
+    scroll-snap-align: end;
+  }
+
+  .journey[data-lead-motion="active"] .modelScale {
+    display: grid;
+    row-gap: max(12rem, calc(58svh - 14.25rem));
+    padding-bottom: clamp(14rem, 36svh, 20rem);
+  }
+
+  .journey[data-lead-motion="active"] .vehicleStage {
+    position: sticky;
+    top: 4.5rem;
+    min-height: calc(100svh - 4.5rem);
+    padding-bottom: 4rem;
+  }
+
+  .journey[data-lead-motion="active"] .stageRail {
+    top: 3rem;
+    bottom: 4rem;
+  }
+
+  .journey[data-lead-motion="active"] .stageRail span:nth-child(1) {
+    top: 25.5%;
+  }
+
+  .journey[data-lead-motion="active"] .stageRail span:nth-child(2) {
+    top: 51.5%;
+  }
+
+  .journey[data-lead-motion="active"] .stageRail span:nth-child(3) {
+    top: 77.6%;
+  }
+
+  .journey[data-lead-motion="active"] .vehicleStage figcaption {
+    opacity: 0;
+  }
+}
+
 @media (max-width: 767px) {
   .journey {
     scroll-margin-top: 4rem;
@@ -298,7 +393,7 @@
     padding: 1rem 1.5rem 3.75rem 0;
   }
 
-  .vehicleStage picture {
+  .staticVehicleFamily {
     width: min(100%, 34rem);
   }
 

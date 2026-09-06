@@ -4,7 +4,11 @@ import styles from "./ModelJourney.module.css";
 
 export function ModelJourney() {
   return (
-    <section className={styles.journey} aria-labelledby="model-journey-title">
+    <section
+      className={styles.journey}
+      aria-labelledby="model-journey-title"
+      data-lead-journey
+    >
       <div className={styles.journeyInner}>
         <header className={styles.intro}>
           <h2 id="model-journey-title" className={styles.title}>
@@ -26,6 +30,7 @@ export function ModelJourney() {
                 key={model.id}
                 className={styles.modelStop}
                 aria-label={`Modell ${model.name}`}
+                data-lead-stop={model.id}
               >
                 <h3
                   id={`model-${model.id}-title`}
@@ -47,19 +52,38 @@ export function ModelJourney() {
             ))}
           </ol>
 
-          <figure className={styles.vehicleStage}>
+          <figure className={styles.vehicleStage} data-lead-stage>
             <div className={styles.stageRail} aria-hidden="true">
-              <span data-model="S" />
-              <span data-model="M" />
-              <span data-model="L" />
+              {trailerModels.map((model) => (
+                <span
+                  key={model.id}
+                  data-model={model.name}
+                  data-lead-level={model.id}
+                />
+              ))}
             </div>
-            <VehicleImage
-              alt="Freigestellter Toilettenwagen als gemeinsame Fahrzeugansicht der Modelle S, M und L"
-              sizes="(max-width: 767px) 92vw, 48vw"
-            />
+            <div
+              className={styles.staticVehicleFamily}
+              data-lead-stage-vehicles
+            >
+              {trailerModels.map((model) => (
+                <span
+                  key={model.id}
+                  className={styles.staticVehicle}
+                  data-model={model.name}
+                >
+                  <VehicleImage
+                    model={model.id}
+                    alt={`Freigestellter Toilettenwagen Modell ${model.name}`}
+                    sizes="(max-width: 767px) 29vw, 16vw"
+                    loading="eager"
+                  />
+                </span>
+              ))}
+            </div>
             <figcaption>
-              Eine gemeinsame Fahrzeugansicht. Die vollständigen Maße und
-              Ausstattungen folgen direkt im Modellvergleich.
+              Drei eigenständige Wagenmodelle, gemeinsam auf einer Größenlinie.
+              Verbindliche Maße und Ausstattung folgen im Modellvergleich.
             </figcaption>
           </figure>
         </div>

@@ -37,6 +37,14 @@ describe("ModelSelector", () => {
       screen.getByRole("radio", { name: "Modell M, bis 400 Personen" }),
     );
 
+    expect(
+      screen
+        .getByRole("img", {
+          name: "Freigestellter Toilettenwagen Modell M",
+        })
+        .getAttribute("src"),
+    ).toContain("wagen-m-model-1600.webp");
+
     const modelM = screen.getByRole("article", { name: "Modell M" });
     expect(within(modelM).getByText("7,17 × 2,50 × 2,92 m")).toBeInTheDocument();
     expect(modelM).toHaveTextContent(/Kapazitätbis 400 Personen/);
@@ -52,6 +60,13 @@ describe("ModelSelector", () => {
     await user.click(
       screen.getByRole("radio", { name: "Modell L, bis 600 Personen" }),
     );
+    expect(
+      screen
+        .getByRole("img", {
+          name: "Freigestellter Toilettenwagen Modell L",
+        })
+        .getAttribute("src"),
+    ).toContain("wagen-l-model-1600.webp");
     const modelL = screen.getByRole("article", { name: "Modell L" });
     expect(within(modelL).getByText("8,77 × 2,50 × 2,92 m")).toBeInTheDocument();
     expect(modelL).toHaveTextContent(/Damen-WCs4/);

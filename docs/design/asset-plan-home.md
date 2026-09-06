@@ -3,7 +3,7 @@
 Status: `approved`  
 Surface: `/`  
 Direction: „Die Modellfamilie als roter Faden“  
-Stand: 2026-09-05
+Stand: 2026-09-06
 
 Freigabe: User bestätigte am 2026-09-05 den Asset- und Ticketplan in der laufenden Session.
 Typografie-Freigabe: User bestätigte am 2026-09-05 Kandidat B, Bricolage Grotesque mit Hanken Grotesk.
@@ -11,7 +11,7 @@ Typografie-Freigabe: User bestätigte am 2026-09-05 Kandidat B, Bricolage Grotes
 ## 1. Leitplanken
 
 - Die Bildwelt basiert auf den echten Wagen und echten Innenräumen. Keine Stockmotive, keine erfundenen Eventkulissen und keine generierten Produktdetails.
-- Der Hero zeigt drei freigestellte Wagen ohne fotografischen Hintergrund. Bis maßhaltige M- und L-Freisteller vorliegen, wird derselbe S-Wagen dreimal verwendet. Bezeichnungen und Daten bleiben trotzdem S, M und L.
+- Der Hero zeigt drei eigenständige freigestellte Wagen ohne fotografischen Hintergrund. Seit Ticket 11 sind reale S- und M-Produktaufnahmen sowie ein aus dem realen L-Foto abgeleitetes Dreiviertel-Rendering produktiv eingesetzt.
 - Logos, Türen, Achsen, Ausstattung und technische Proportionen dürfen bei der späteren Aufbereitung nicht frei interpretiert werden.
 - Korrekturen dienen nur der Freistellung, Perspektive, Farbe, Belichtung, Kantenqualität und behutsamen Retusche. Die Handybilder dürfen hochwertiger wirken, aber nicht künstlich glatt.
 - Jedes Motiv bekommt eine eindeutige Aufgabe. Ähnliche Innenraumfotos werden nicht als wiederholte Kartenserie ausgespielt.
@@ -23,15 +23,35 @@ Typografie-Freigabe: User bestätigte am 2026-09-05 Kandidat B, Bricolage Grotes
 | ID | Quelle | Verbindliche Rolle | Status | Nächste Bearbeitung |
 | --- | --- | --- | --- | --- |
 | `VEH-S-MASTER` | `public/fotos/wagen-s-freigestellt.webp` | reale Referenz für Form, Logo und Ausstattung des S-Wagens | Quelle vorhanden | Weißfläche sauber entfernen, Kanten und Zugdeichsel prüfen, neutral ausrichten |
-| `VEH-S-HERO` | `public/fotos/wagen-s-hero-1600.webp` | Hero-Wagen, dreifach als Familie und später als Leitwagen | produktiv eingesetzt | Form unverändert lassen; mobile Ableitung synchron halten |
-| `VEH-M-OPEN` | `public/fotos/wagen-m-aussen-offen.webp` | maßgebliche M-Referenz mit offenen Türen | Quelle vorhanden | perspektivisch ausrichten, freistellen, Farbwelt an S angleichen |
+| `VEH-S-HERO` | `public/fotos/wagen-s-hero-1600.webp` | S-Wagen im Hero und Ausgangspunkt des Leitwagens | produktiv eingesetzt | Form unverändert lassen; mobile Ableitung synchron halten |
+| `VEH-M-MASTER` | User-Quelle `m-wagen ohne schatten.jpg` | maßgebliche M-Produktaufnahme in Dreiviertelansicht | bestätigt und produktiv abgeleitet | rechte Türgrafik gezielt von Frau zu Mann korrigiert; übrige Modelllogik erhalten |
+| `VEH-M-HERO` | `public/fotos/wagen-m-model-1600.webp`, `wagen-m-model-960.webp` | M-Wagen im Hero, in der statischen Familie und im Vergleich | produktiv eingesetzt | enger transparenter Freisteller; 1283 × 903 / 960 × 676 px |
+| `VEH-M-OPEN` | `public/fotos/wagen-m-aussen-offen.webp` | ältere M-Referenz mit offenen Türen | Reserve | nur noch zur Produktkontrolle verwenden |
 | `VEH-M-PROFILE` | `public/fotos/wagen-m-aussen.webp` | Kontrollbild für M-Länge und geschlossene Kontur | Referenz | nicht als Hero-Motiv einplanen; zur Geometrieprüfung verwenden |
-| `VEH-L-OPEN` | `public/fotos/wagen-l-aussen.webp` | maßgebliche L-Referenz mit offener Tür und Doppelachse | Quelle vorhanden | freistellen, Perspektive und Helligkeit angleichen, Logo unverändert lassen |
+| `VEH-L-MASTER` | User-Quelle `wagen L aussen.jpeg` (AVIF-Inhalt) | neue maßgebliche L-Referenz mit zwei offenen Eingängen und Doppelachse | bestätigt und produktiv abgeleitet | Aufbau und Ausstattung unverändert; Perspektive an die Fahrzeugfamilie angleichen |
+| `VEH-L-HERO` | `public/fotos/wagen-l-model-1600.webp`, `wagen-l-model-960.webp` | L-Wagen im Hero, in der statischen Familie und im Vergleich | produktiv eingesetzt | auf M/S abgestimmtes Dreiviertel-Rendering; 1360 × 798 / 960 × 563 px |
+| `VEH-L-OPEN` | `public/fotos/wagen-l-aussen.webp` | ältere L-Referenz mit offener Tür und Doppelachse | Reserve | nur noch zur Produktkontrolle verwenden |
 | `VEH-L-ALT` | `public/fotos/foto-05.webp`, `public/fotos/foto-11.webp` | zusätzliche Kontrolle für L-Proportion und Türzustand | Referenz | nur heranziehen, wenn Konturen oder Details im Hauptfoto unklar sind |
 
 ### Abnahmeregel für finale S/M/L-Freisteller
 
-Die drei finalen Dateien müssen auf derselben Grundlinie, mit vergleichbarer Kamerahöhe, identischer Farbbalance und glaubwürdiger relativer Länge funktionieren. Vor dem Austausch im Hero werden sie als transparente Einzelansicht und als Dreierfamilie geprüft. Der aktuelle S-Dreifachaufbau bleibt so lange die verlässlichere Produktionslösung.
+Die drei finalen Dateien müssen auf derselben Grundlinie, mit vergleichbarer Kamerahöhe, konsistenter Farbbalance und glaubwürdiger relativer Länge funktionieren. Nach dem verworfenen ersten Einbau wurden M und L neu aufbereitet, eng auf echte Transparenz beschnitten und im Hero auf eine gemeinsame Bodenlinie gesetzt. Die eigenständigen S/M/L-Produktassets werden im Hero, im statischen Fallback, in der animierten Desktop-Leitspur und im Vergleich gezeigt. An den Stationen ist immer genau ein Raster sichtbar. Nur im kurzen Übergangsfenster liegen Ausgangs- und Zielasset deckungsgleich übereinander und werden über komplementäre weiche Masken getrennt; eine Vollflächen-Alphaüberblendung bleibt ausgeschlossen. So bleiben reale Geometrie und saubere Kanten erhalten, ohne S künstlich zu M oder L zu strecken.
+
+### Produktionsableitungen für Ticket 11
+
+Der eingebaute ImageGen-Modus wurde für beide User-Quellen als hochfidele Asset-Aufbereitung genutzt. Beim M-Wagen korrigierte ein gezielter Edit ausschließlich die falsche rechte Frauen-Silhouette zu einem männlichen Türsymbol und hielt die erhöhte Dreiviertelansicht, Doppelachse, offenen Eingänge, Stufen und Aufbauten als Produktvorgabe fest. Beim L-Wagen blieb das reale Seitenfoto die verbindliche Produktwahrheit; zwei gezielte Durchläufe überführten es in denselben erhöhten Dreiviertelwinkel und glichen Licht sowie Silberton an M an. Der zweite Durchlauf stellte die sichtbare kurze Stirnseite, die vollständige Deichsel und alle beiden Eingänge mit Frau links und Mann rechts sicher. `scripts/prepare-vehicle-model.mjs` entfernt anschließend die weiße Studio-Matte, entmattet die Antialias-Kante, beschneidet transparent und erzeugt die responsiven WebP-Ableitungen.
+
+Normalisiertes Prompt-Set:
+
+- **M:** Präziser Produktfoto-Edit der User-Aufnahme; nur die rechte Türgrafik wird zum männlichen Piktogramm nach realer S/L-Referenz. Proportionen, Perspektive, offene Türen, Stufen, Dachaufbauten, Doppelachse, Beschriftungen, Ausstattung und neutraler Weißraum bleiben festgeschrieben.
+- **L:** Dasselbe reale L-Modell aus der User-Aufnahme in der erhöhten Front-links-Dreiviertelansicht des M-Wagens; sichtbare kurze Stirnseite, vollständige Deichsel rechts, langer Mittelteil, zwei Achsen, zwei offene Eingänge, getrennte Stufen, Frau links, Mann rechts, Stützen, Unterbau und Herstellerkennzeichnung; gleiches weiches Studiolicht, keine Kulisse oder neue Ausstattung.
+
+Ausgaben:
+
+| Modell | Desktop | Mobile | Gewicht |
+| --- | --- | --- | --- |
+| M | `wagen-m-model-1600.webp` (1283 × 903) | `wagen-m-model-960.webp` (960 × 676) | 75.298 / 70.600 Byte |
+| L | `wagen-l-model-1600.webp` (1360 × 798) | `wagen-l-model-960.webp` (960 × 563) | 67.632 / 60.042 Byte |
 
 ## 3. Redaktionelle Bildauswahl
 
@@ -137,11 +157,11 @@ Diese Dateien dokumentieren verworfene oder ungenaue Versuche. Sie sind weder Pr
 1. S-Freisteller als transparente, saubere Produktionsableitung validieren.
 2. Den ersten Viewport mit S dreifach, finaler Typografie und echten Größenlabels bauen.
 3. Nur die fünf geplanten redaktionellen Bildrollen aufbereiten und im jeweiligen Layout beurteilen.
-4. Finale M- und L-Freisteller separat produzieren, sobald die statische Seite trägt. Austausch ohne Änderung an Inhalt oder Layout ermöglichen.
+4. Finale M- und L-Freisteller separat produzieren, sobald die statische Seite trägt. **Erledigt in Ticket 11:** Austausch erfolgte über die gemeinsame `VehicleImage`-Schnittstelle ohne Inhaltsumbau.
 5. `og:image` erst nach visueller Freigabe des finalen Hero erzeugen.
 
 ## 9. Offene Asset-Entscheidungen
 
 - Genaue Modellzuordnung des Palmen-/Strandmotivs bestätigen; bis dahin bleibt die veröffentlichte Beschriftung neutral.
 - Ob `aussenbeleuchtung.webp` auf kleinen Geräten ausreichend trägt oder dort durch `wagen-m-aussen-beleuchtet.webp` ersetzt wird.
-- Finale maßhaltige M- und L-Freisteller. Sie blockieren den statischen Erstaufbau ausdrücklich nicht.
+- Feinabnahme des neuen L-Dreiviertelwinkels durch den User; der produktive Austausch ist reversibel und verändert keine Modell- oder Preisangaben.

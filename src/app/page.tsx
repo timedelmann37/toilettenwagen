@@ -1,4 +1,5 @@
 import { InquiryForm } from "@/components/InquiryForm";
+import { LeadVehicleMotion } from "@/components/LeadVehicleMotion";
 import { ModelJourney } from "@/components/ModelJourney";
 import { ModelSelector } from "@/components/ModelSelector";
 import { ProcessStory } from "@/components/ProcessStory";
@@ -42,7 +43,7 @@ export default function Home() {
           __html: JSON.stringify(localBusinessJsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <section id="wagen" className={styles.hero}>
+      <section id="wagen" className={styles.hero} data-lead-hero>
         <div className={styles.heroInner}>
           <div className={styles.heroCopy}>
             <h1 className={styles.headline}>Drei Größen. Sauber gelöst.</h1>
@@ -67,15 +68,13 @@ export default function Home() {
               <figure
                 key={model.id}
                 className={`${styles.vehicle} ${vehicleClasses[model.id]}`}
+                data-lead-origin={model.id === "s" ? "true" : undefined}
               >
                 <VehicleImage
-                  alt={
-                    model.id === "s"
-                      ? "Freigestellter Toilettenwagen mit geöffneten Damen- und Herrentüren"
-                      : ""
-                  }
+                  model={model.id}
+                  alt={`Freigestellter Toilettenwagen Modell ${model.name} mit geöffneten Türen`}
                   sizes="(max-width: 767px) 62vw, 35vw"
-                  loading={index === 1 ? "eager" : "lazy"}
+                  loading="eager"
                   fetchPriority={index === 1 ? "high" : "auto"}
                 />
                 <figcaption className={styles.vehicleCaption}>
@@ -90,6 +89,7 @@ export default function Home() {
         </div>
       </section>
 
+      <LeadVehicleMotion />
       <ModelJourney />
       <ModelSelector />
       <ServiceProof />

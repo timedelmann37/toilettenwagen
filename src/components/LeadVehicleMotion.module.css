@@ -1,0 +1,114 @@
+.leadVehicle {
+  position: fixed;
+  z-index: 8;
+  inset: 0;
+  display: none;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.vehicleLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform-origin: 0 0;
+}
+
+.vehicleLayer:nth-child(1) {
+  width: 1600px;
+}
+
+.vehicleLayer:nth-child(2) {
+  width: 1283px;
+}
+
+.vehicleLayer:nth-child(3) {
+  width: 1360px;
+}
+
+.vehicleLayer[data-lead-visible] {
+  opacity: 1;
+}
+
+.vehicleLayer[data-lead-morph="out"] {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    #000 0%,
+    #000 calc(var(--morph-edge) - 14%),
+    transparent calc(var(--morph-edge) + 14%),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    #000 0%,
+    #000 calc(var(--morph-edge) - 14%),
+    transparent calc(var(--morph-edge) + 14%),
+    transparent 100%
+  );
+  filter: blur(var(--morph-blur));
+}
+
+.vehicleLayer[data-lead-morph="in"] {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent calc(var(--morph-edge) - 14%),
+    #000 calc(var(--morph-edge) + 14%),
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent calc(var(--morph-edge) - 14%),
+    #000 calc(var(--morph-edge) + 14%),
+    #000 100%
+  );
+  filter: blur(var(--morph-blur));
+}
+
+.vehicleLayer picture,
+.vehicleLayer img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.vehicleLayer img {
+  filter: drop-shadow(0 1.5rem 1.7rem rgb(22 43 57 / 0.16));
+}
+
+.modelMarker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  width: 2.6rem;
+  height: 2.6rem;
+  place-items: center;
+  border: 1px solid rgb(36 107 181 / 0.42);
+  border-radius: 50%;
+  background: var(--surface-strong);
+  box-shadow: 0 0.6rem 1.4rem rgb(20 43 59 / 0.12);
+  color: var(--accent-strong);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 750;
+  line-height: 1;
+  opacity: 0;
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .leadVehicle {
+    display: block;
+  }
+
+  .leadVehicle[data-lead-enabled="true"] {
+    opacity: 1;
+  }
+
+  .leadVehicle[data-lead-moving] .vehicleLayer[data-lead-visible],
+  .leadVehicle[data-lead-moving] .modelMarker {
+    will-change: transform, filter, mask-image;
+  }
+}

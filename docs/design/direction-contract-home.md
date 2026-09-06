@@ -35,7 +35,7 @@ VISUAL_DENSITY: 4    (großzügig und lesbar, technische Daten erst auf den zwei
 
 **Eine Modellfamilie, die den Besucher durch die Seite begleitet.**
 
-Die drei Wagen stehen im ersten Bild zusammen. Einer löst sich sichtbar und kongruent aus dieser Familie, führt rechts durch die Größen S, M und L und bleibt danach stehen. Diese Bewegung ist keine Dekoration: Sie erklärt das Sortiment. Anschließend wechselt die Erzählung nahtlos vom Produkt zum echten Mietservice und endet in einer möglichst einfachen Anfrage.
+Die drei Wagen stehen im ersten Bild zusammen. Einer löst sich sichtbar und kongruent aus dieser Familie, führt rechts durch die Größen S, M und L, parkt kurz und verlässt die Bühne mit der auslaufenden Sektion nach oben. Diese Bewegung ist keine Dekoration: Sie erklärt das Sortiment. Anschließend wechselt die Erzählung nahtlos vom Produkt zum echten Mietservice und endet in einer möglichst einfachen Anfrage.
 
 Die Seite verweigert damit sowohl den üblichen „Claim links, Foto rechts“-Hero als auch das austauschbare Muster aus Hero, Featurekarten, Icon-Ablauf, Testimonial-Karussell und Kontaktblock.
 
@@ -62,9 +62,9 @@ Die folgenden Kapitel sind verpflichtend. Ihre Gestaltung darf beim Build rhythm
 
 ### 1. Die Familie — erster Bildschirm
 
-- Drei freigestellte Wagen stehen getrennt, aber als zusammengehörige Familie in einer lebendigen Komposition; keine sterile Größenstaffel auf einer Grundlinie.
+- Drei freigestellte Wagen stehen getrennt, aber als zusammengehörige Familie auf einer gemeinsamen glaubwürdigen Bodenlinie; die relativen Längen bleiben sichtbar, ohne versetzte künstliche Podeste.
 - Die Wagen haben keinen künstlichen Studiohintergrund, keine Texturkulisse und keine fotografische Karte hinter sich.
-- Startasset darf vorläufig dreimal der sauber aufbereitete S-Wagen sein. Beschriftungen und Daten sind dennoch korrekt S/M/L. Finale M- und L-Renderings ersetzen ihn später.
+- S, M und L nutzen seit Ticket 11 eigenständige Freisteller aus realen Produktquellen. Die frühere Übergangslösung mit dreimal S ist beendet; Beschriftungen und Daten bleiben unverändert korrekt.
 - Türen dürfen offen bleiben. Originale Proportionen, Logo, Aufteilung und Ausstattung werden bei finalen 2,5D-Assets erhalten; nur Licht, Freistellung, Materialsauberkeit und perspektivische Konsistenz werden veredelt.
 - Claim maximal zwei kurze Zeilen; begleitender Text knapp, menschlich und regional.
 - Primär-CTA: **Per WhatsApp anfragen**. Sekundär: **Anfrage vorbereiten** bzw. Sprung zum Formular.
@@ -73,7 +73,7 @@ Die folgenden Kapitel sind verpflichtend. Ihre Gestaltung darf beim Build rhythm
 
 - Der S-Wagen aus der Hero-Familie ist konzeptionell derselbe Leitwagen, der die Modellgeschichte fortsetzt.
 - S, M und L erhalten je eine klar erkennbare Station mit eigenem Stillstand/Dwell.
-- Auf der Strecke verändern sich Länge und bei L die Achszahl. An der Station selbst herrscht Ruhe, damit Daten gelesen werden können.
+- Auf der Strecke folgen die drei echten S-/M-/L-Freisteller auf derselben rechten Achse. An jeder Station ist ausschließlich das zugehörige Modell sichtbar und sitzt exakt auf seiner gemessenen Schienenebene. Zwischen den Stationen morphen Ausgangs- und Zielasset in einem kurzen Fenster über komplementäre weiche Materialmasken ineinander; eine Vollflächen-Kreuzblende bleibt ausgeschlossen. Position und Größenverlauf bleiben kontinuierlich.
 - Pro Station zuerst nur: Modellname, Kapazität, Preis ab und ein prägnanter Eignungssatz.
 - Maße, WC-Aufteilung, Ausstattung und weitere Details werden erst durch eine zweite Ebene sichtbar, zum Beispiel über „Details ansehen“, Tabs oder ein fokussiertes Datenfeld.
 - Bis die Animation gebaut wird, funktioniert dieses Kapitel als hochwertige vertikale, statische Modellabfolge. Es darf keine Information ausschließlich in Motion versteckt sein.
@@ -195,12 +195,12 @@ Der Ablauf wird als konkrete Zeitlinie erzählt und darf räumlich mit Servicefo
 1. Die Wagenfamilie steht vollständig im Hero.
 2. Der sichtbare S-Leitwagen löst sich aus der Gruppe und wandert kongruent in eine rechte, vertikale Spur.
 3. Ab dort bewegt er sich nur noch nach unten; keine Seitensprünge zwischen Stationen.
-4. Er rastet bei S ein und bleibt zum Lesen stehen.
-5. Zwischen S und M verlängert er sich kontrolliert; bei M folgt ein zweiter Lesestopp.
-6. Zwischen M und L verlängert er sich erneut und erhält die zweite Achse; bei L folgt der letzte Stopp.
-7. Der L-Wagen parkt. Normaler Seitenfluss und Modellwechsler übernehmen.
+4. Der echte S-Wagen rastet über ein browsernatives Snap-Ziel bündig an der S-Schienenebene ein und bleibt zum Lesen stehen.
+5. Auf dem Weg zu M bleibt die Bewegung auf derselben Achse; der echte S- und M-Wagen morphen in einem kurzen, weich maskierten Materialwechsel ineinander. M rastet bündig an seiner Ebene ein.
+6. Auf dem Weg zu L wiederholt sich derselbe kurze Morph mit den echten M- und L-Assets. L rastet bündig an seiner Ebene ein; S wird weder horizontal noch vertikal zum M- oder L-Ersatz gestreckt.
+7. Der L-Wagen parkt kurz, läuft anschließend mit dem Sticky-Ende im Dokumenttempo nach oben aus dem Viewport und wird erst außerhalb des sichtbaren Bereichs deaktiviert. Danach übernimmt der Modellwechsler.
 
-Der Start der Choreografie folgt früh im Übergang aus der Wagenfamilie. Scrollstrecke entsteht nur dort, wo eine inhaltliche Veränderung stattfindet. Kein leerer Scrollweg, kein Scroll-Hijacking und kein bloßes Ein-/Ausblenden verschiedener Wagen.
+Der Start der Choreografie folgt früh im Übergang aus der Wagenfamilie. Scrollstrecke entsteht nur dort, wo eine inhaltliche Veränderung stattfindet. S, M und L liegen in einem kompakten, gleichmäßigen Takt von rund 58 svh abzüglich Stationshöhe; bei 1280 × 720 sind es 420 px. Native Snap-Ziele werden innerhalb dieser Strecke durch eine begrenzte Gesten-Normalisierung ergänzt: Ein Mausrad-/Trackpad-Gestus führt genau eine Station weiter; seine Folgeereignisse dürfen keine Station überspringen. Oberhalb von S und unterhalb von L wird der normale Dokumentfluss sofort freigegeben. Die Leitspur zeigt verbindliche Modellgeometrie mit den eigenständigen Produktbildern; das kurze Morphfenster verwendet keine erfundene Zwischenform, sondern enthüllt das jeweils echte Zielasset entlang einer gemeinsamen Materialkante.
 
 ### Übrige Bewegung
 
@@ -264,17 +264,15 @@ Der Start der Choreografie folgt früh im Übergang aus der Wagenfamilie. Scroll
 - Ein generischer Split-Hero mit einem einzelnen Wagenbild.
 - Drei Wagen als starre, sterile Größenreihe.
 - Gleichförmige Feature-, Prozess- und Bewertungs-Karten.
-- Animation als Selbstzweck, langer leerer Scrollweg oder Scroll-Hijacking.
+- Animation als Selbstzweck, leerer Scrollweg oder eine Gestenbindung außerhalb der klar begrenzten S/M/L-Strecke.
 - Technische Daten im ersten Blickfeld.
 - Stockfotografie, erfundener Social Proof oder optisch verfälschte Fahrzeuge.
 - Eine Seite, die nur aus Hero, Wagenanimation und Vergleich besteht; die komplette Service- und Anfragegeschichte ist Pflicht.
 
 ## Noch offene Produktionsentscheidungen
 
-- Exakte Display- und Textschrift nach visuellem Fontvergleich.
-- Finale, maßhaltige M- und L-Freisteller; bis dahin bleibt der S-Wagen das provisorische Leitasset.
-- Stärke und genaue Form der leichten Modellauswahlhilfe.
-- Finale Bewegungswerte, Breakpoints und Scrolllängen erst nach statischem Layout und Browserprüfung.
+- User-Abnahme des finalen L-Dreiviertelwinkels.
+- User-Abnahme der Bewegungswerte und des Scrollgefühls aus Ticket 11.
 - Offene Pflichtangaben für Impressum/Datenschutz sowie finale `og:image`-Produktion.
 
 Keine dieser Entscheidungen blockiert die nächste Spezifikationsphase.

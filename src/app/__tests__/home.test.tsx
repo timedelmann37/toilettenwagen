@@ -31,7 +31,7 @@ describe("Startseite", () => {
   });
 
   it("zeigt die Größenstaffel der kompakten Modellreise", () => {
-    render(<Home />);
+    const { container } = render(<Home />);
 
     const journeyHeading = screen.getByRole("heading", {
       level: 2,
@@ -54,9 +54,33 @@ describe("Startseite", () => {
       ).toBeInTheDocument();
       expect(station).toHaveTextContent(`bis ${model.capacity} Personen`);
       expect(within(station).getByText(model.suitability)).toBeInTheDocument();
+      expect(station).toHaveAttribute("data-lead-stop", model.id);
     }
 
-    expect(within(journey).getAllByRole("img")).toHaveLength(1);
+    expect(within(journey).getAllByRole("img")).toHaveLength(3);
+    for (const model of trailerModels) {
+      expect(
+        within(journey).getByAltText(
+          `Freigestellter Toilettenwagen Modell ${model.name}`,
+        ),
+      ).toBeInTheDocument();
+    }
+    expect(journey).toHaveAttribute("data-lead-journey");
+    expect(journey.querySelector("[data-lead-stage]")).not.toBeNull();
+    expect(container.querySelector("[data-lead-origin]")).not.toBeNull();
+    const leadOverlay = container.querySelector("[data-lead-overlay]");
+    expect(leadOverlay).toHaveAttribute("aria-hidden", "true");
+    expect(leadOverlay?.querySelectorAll("[data-vehicle-model]")).toHaveLength(
+      3,
+    );
+    for (const model of trailerModels) {
+      expect(
+        leadOverlay?.querySelector(`[data-vehicle-model="${model.id}"]`),
+      ).not.toBeNull();
+      expect(
+        journey.querySelector(`[data-lead-level="${model.id}"]`),
+      ).not.toBeNull();
+    }
     expect(
       within(journey).queryByText(trailerModels[0].dimensions),
     ).not.toBeInTheDocument();

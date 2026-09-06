@@ -9,7 +9,9 @@
 
 .heroInner {
   display: grid;
-  grid-template-rows: auto minmax(21rem, 1fr);
+  grid-template-rows: auto auto;
+  gap: clamp(2rem, 6vh, 4.25rem);
+  align-content: start;
   width: min(100%, 88rem);
   margin: 0 auto;
 }
@@ -76,13 +78,17 @@
 }
 
 .family {
-  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.42fr) minmax(0, 1.7fr);
+  gap: clamp(0.45rem, 1.25vw, 1.2rem);
+  align-items: end;
   min-height: 21rem;
-  margin-top: -0.5rem;
+  margin-top: 0;
 }
 
 .vehicle {
-  position: absolute;
+  position: relative;
+  min-width: 0;
   margin: 0;
   transform-origin: 50% 100%;
 }
@@ -99,25 +105,15 @@
 }
 
 .vehicleS {
-  top: clamp(3rem, 8vh, 6.5rem);
-  left: 0;
-  width: 29%;
-  transform: rotate(-0.65deg);
+  z-index: 1;
 }
 
 .vehicleM {
-  top: clamp(3.5rem, 9vh, 7.25rem);
-  left: 31.5%;
-  z-index: 1;
-  width: 33%;
-  transform: rotate(0.45deg);
+  z-index: 2;
 }
 
 .vehicleL {
-  right: 0;
-  top: clamp(1.5rem, 4vh, 3.5rem);
-  width: 35%;
-  transform: rotate(-0.25deg);
+  z-index: 1;
 }
 
 .vehicleCaption {
@@ -145,13 +141,13 @@
 
 @media (max-width: 767px) {
   .hero {
-    min-height: calc(100dvh - 4rem);
+    min-height: auto;
     scroll-margin-top: 4rem;
-    padding: 1.35rem 1rem 0.75rem;
+    padding: 1.35rem 1rem 3.75rem;
   }
 
   .heroInner {
-    grid-template-rows: auto minmax(20rem, 1fr);
+    gap: 2.25rem;
   }
 
   .headline {
@@ -180,54 +176,37 @@
   }
 
   .family {
-    min-height: 20rem;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.42fr) minmax(0, 1.7fr);
+    gap: 0.3rem;
+    min-height: 13rem;
     margin-top: 0.25rem;
   }
 
-  .vehicleS {
-    top: 0;
-    bottom: auto;
-    left: -4%;
-    width: 46%;
-  }
-
-  .vehicleM {
-    top: 32%;
-    right: -2%;
-    bottom: auto;
-    left: auto;
-    width: 50%;
-  }
-
-  .vehicleL {
-    top: auto;
-    right: auto;
-    bottom: 0;
-    left: 1%;
-    width: 54%;
-  }
-
   .vehicleCaption {
-    gap: 0.55rem;
-    margin-top: -0.2rem;
+    display: grid;
+    gap: 0.1rem;
+    margin-top: 0.15rem;
+    padding-left: 0;
   }
 
   .modelName {
-    font-size: 1.65rem;
+    font-size: 1.45rem;
   }
 
   .capacity {
-    font-size: 0.7rem;
+    font-size: 0.64rem;
+    line-height: 1.15;
   }
 }
 
 @media (min-width: 768px) and (max-height: 760px) {
   .hero {
-    padding-top: 1.5rem;
+    min-height: calc(100dvh - 4.5rem);
+    padding-top: 1.25rem;
   }
 
   .heroInner {
-    grid-template-rows: auto minmax(17rem, 1fr);
+    gap: 1rem;
   }
 
   .headline {
@@ -240,5 +219,9 @@
 
   .actions {
     margin-top: 1rem;
+  }
+
+  .family {
+    min-height: 13rem;
   }
 }
