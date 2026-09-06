@@ -283,63 +283,60 @@
 }
 
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
-  :global(html[data-lead-snap="active"]) {
-    scroll-padding-top: 4.5rem;
-    scroll-snap-type: y proximity;
+  /* Reserve the same geometry before hydration/image decoding so reloads
+     and browser history keep their native scroll position. */
+  .journey .journeyInner {
+    padding-top: clamp(3rem, 5vw, 5rem);
   }
 
-  .journey[data-lead-motion="active"] .journeyStage {
+  .journey .intro {
+    row-gap: 1.25rem;
+  }
+
+  .journey .lead {
+    grid-column: 1;
+    max-width: 34rem;
+  }
+
+  .journey .journeyStage {
     align-items: start;
+    margin-top: clamp(2rem, 4vw, 4rem);
   }
 
-  .journey[data-lead-motion="active"] .modelStop {
-    min-height: clamp(23rem, 46svh, 27rem);
-    scroll-snap-stop: always;
+  .journey .modelStop {
+    min-height: clamp(26rem, 62svh, 34rem);
   }
 
-  .journey[data-lead-motion="active"] .modelStop:nth-child(1) {
-    scroll-snap-align: start;
-  }
-
-  .journey[data-lead-motion="active"] .modelStop:nth-child(2) {
-    scroll-snap-align: center;
-  }
-
-  .journey[data-lead-motion="active"] .modelStop:nth-child(3) {
-    scroll-snap-align: end;
-  }
-
-  .journey[data-lead-motion="active"] .modelScale {
+  .journey .modelScale {
     display: grid;
-    row-gap: max(12rem, calc(58svh - 14.25rem));
-    padding-bottom: clamp(14rem, 36svh, 20rem);
+    padding-bottom: clamp(6rem, 16svh, 9rem);
   }
 
-  .journey[data-lead-motion="active"] .vehicleStage {
+  .journey .vehicleStage {
     position: sticky;
     top: 4.5rem;
-    min-height: calc(100svh - 4.5rem);
+    min-height: min(56rem, calc(100svh - 4.5rem));
     padding-bottom: 4rem;
   }
 
-  .journey[data-lead-motion="active"] .stageRail {
+  .journey .stageRail {
     top: 3rem;
     bottom: 4rem;
   }
 
-  .journey[data-lead-motion="active"] .stageRail span:nth-child(1) {
+  .journey .stageRail span:nth-child(1) {
     top: 25.5%;
   }
 
-  .journey[data-lead-motion="active"] .stageRail span:nth-child(2) {
+  .journey .stageRail span:nth-child(2) {
     top: 51.5%;
   }
 
-  .journey[data-lead-motion="active"] .stageRail span:nth-child(3) {
+  .journey .stageRail span:nth-child(3) {
     top: 77.6%;
   }
 
-  .journey[data-lead-motion="active"] .vehicleStage figcaption {
+  .journey .vehicleStage figcaption {
     opacity: 0;
   }
 }

@@ -18,7 +18,7 @@ related_targets:
 
 ## Direction contract
 
-**THESIS:** Die Modellfamilie ist der rote Faden. Drei freigestellte Wagen eröffnen die Seite; der S-Wagen löst sich aus der Familie und führt auf einer rechten Achse zu drei exakt eingerasteten Stationen. S, M und L liegen in einem kompakten gleichmäßigen Takt und ein Gestus führt genau eine Station weiter. Zwischen den Stopps morphen die echten Assets über eine kurze komplementäre Materialmaske ineinander; S wird nicht zu den größeren Modellen gestreckt. L parkt kurz und läuft danach mit dem Sticky-Ende nach oben aus dem Bild. Oberhalb von S und unterhalb von L bleibt der normale Dokumentfluss frei. Danach übernimmt die reale Servicestory bis zur Anfrage.
+**THESIS:** Die Modellfamilie ist der rote Faden. Drei freigestellte Wagen eröffnen die Seite; der S-Wagen löst sich aus der Familie und führt auf einer rechten Achse durch S/M/L. Die Choreografie folgt dem freien nativen Scrollen, ohne Wheel-Sperre oder Snap-Zwang. Kurze Ruheabschnitte geben jedem Modell einen Lesemoment. Die echten Assets morphen über eine kurze komplementäre Materialmaske ineinander; S wird nicht zu größeren Modellen gestreckt. Die Modelltexte stehen kompakt ohne zusätzliche Grid-Leerstrecken. L parkt kurz und läuft mit dem Sticky-Ende nach oben aus dem Bild. Danach übernimmt die reale Servicestory bis zur Anfrage.
 
 **OWN-WORLD:** Warmes Porzellan statt Reinweiß; warmes Navy/Graphit; Hygiene-Blau mit kontrollierten Verläufen; mineralische Grautöne und ein kleiner warmer Gegenakzent. Bricolage Grotesque als Display-Schrift plus Hanken Grotesk für Fließtext, beide über `next/font`. Freigestellte originalgetreue 2,5D-Wagen ohne künstliche Hintergründe. Große Produktbühnen wechseln mit streng gerasterten Datenzonen; wenige Karten, wenig Schatten, keine AI-Texturen.
 
@@ -32,7 +32,7 @@ related_targets:
 
 ## Unresolved
 
-Finale User-Abnahme des kurzen Morph-Timings, der Snap-Abstände, des L-Ausstiegs und des L-Dreiviertelwinkels; offene Pflichtangaben für Impressum/Datenschutz; produktiver PHP-Mailer; finales `og:image`.
+Finale User-Abnahme des kurzen Morph-Timings, des freien Scrolltakts, des L-Ausstiegs und des L-Dreiviertelwinkels; offene Pflichtangaben für Impressum/Datenschutz; produktiver PHP-Mailer; finales `og:image`.
 
 ## Full contract
 

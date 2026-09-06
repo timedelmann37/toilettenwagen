@@ -195,12 +195,12 @@ Der Ablauf wird als konkrete Zeitlinie erzählt und darf räumlich mit Servicefo
 1. Die Wagenfamilie steht vollständig im Hero.
 2. Der sichtbare S-Leitwagen löst sich aus der Gruppe und wandert kongruent in eine rechte, vertikale Spur.
 3. Ab dort bewegt er sich nur noch nach unten; keine Seitensprünge zwischen Stationen.
-4. Der echte S-Wagen rastet über ein browsernatives Snap-Ziel bündig an der S-Schienenebene ein und bleibt zum Lesen stehen.
-5. Auf dem Weg zu M bleibt die Bewegung auf derselben Achse; der echte S- und M-Wagen morphen in einem kurzen, weich maskierten Materialwechsel ineinander. M rastet bündig an seiner Ebene ein.
-6. Auf dem Weg zu L wiederholt sich derselbe kurze Morph mit den echten M- und L-Assets. L rastet bündig an seiner Ebene ein; S wird weder horizontal noch vertikal zum M- oder L-Ersatz gestreckt.
+4. Der echte S-Wagen erreicht die S-Schienenebene und bleibt über einen kurzen Abschnitt der freien Scrollstrecke zum Lesen ruhig.
+5. Auf dem Weg zu M bleibt die Bewegung auf derselben Achse; der echte S- und M-Wagen morphen in einem kurzen, weich maskierten Materialwechsel ineinander. M erreicht seine Ebene mit einem kurzen Ruheabschnitt.
+6. Auf dem Weg zu L wiederholt sich derselbe kurze Morph mit den echten M- und L-Assets. L erreicht seine Ebene mit einem kurzen Ruheabschnitt; S wird weder horizontal noch vertikal zum M- oder L-Ersatz gestreckt.
 7. Der L-Wagen parkt kurz, läuft anschließend mit dem Sticky-Ende im Dokumenttempo nach oben aus dem Viewport und wird erst außerhalb des sichtbaren Bereichs deaktiviert. Danach übernimmt der Modellwechsler.
 
-Der Start der Choreografie folgt früh im Übergang aus der Wagenfamilie. Scrollstrecke entsteht nur dort, wo eine inhaltliche Veränderung stattfindet. S, M und L liegen in einem kompakten, gleichmäßigen Takt von rund 58 svh abzüglich Stationshöhe; bei 1280 × 720 sind es 420 px. Native Snap-Ziele werden innerhalb dieser Strecke durch eine begrenzte Gesten-Normalisierung ergänzt: Ein Mausrad-/Trackpad-Gestus führt genau eine Station weiter; seine Folgeereignisse dürfen keine Station überspringen. Oberhalb von S und unterhalb von L wird der normale Dokumentfluss sofort freigegeben. Die Leitspur zeigt verbindliche Modellgeometrie mit den eigenständigen Produktbildern; das kurze Morphfenster verwendet keine erfundene Zwischenform, sondern enthüllt das jeweils echte Zielasset entlang einer gemeinsamen Materialkante.
+Der Start der Choreografie folgt früh im Übergang aus der Wagenfamilie. Seit der Userfreigabe vom 2026-09-06 folgt die gesamte Choreografie der nativen Scrollposition: keine Wheel-Sperre, kein programmgesteuertes Scrollen und kein CSS-Snapping. Die frühere Vorgabe „eine Geste = eine Station“ ist aufgehoben. Vorwärtslauf, Rückwärtslauf und L-Ausstieg bleiben jederzeit unmittelbar bedienbar. Die Modelltexte liegen ohne zusätzliche Grid-Leerstrecken in einem kompakten Takt; ihre Mittelpunkte richten sich am jeweiligen Ruhepunkt zur Schienenebene aus. Die ersten und letzten 16 Prozent eines Stationsübergangs halten die Wagenpose ruhig, der kurze Morph liegt bei 30–70 Prozent. Die Leitspur nutzt weiterhin die eigenständigen echten S-/M-/L-Assets.
 
 ### Übrige Bewegung
 
@@ -264,7 +264,7 @@ Der Start der Choreografie folgt früh im Übergang aus der Wagenfamilie. Scroll
 - Ein generischer Split-Hero mit einem einzelnen Wagenbild.
 - Drei Wagen als starre, sterile Größenreihe.
 - Gleichförmige Feature-, Prozess- und Bewertungs-Karten.
-- Animation als Selbstzweck, leerer Scrollweg oder eine Gestenbindung außerhalb der klar begrenzten S/M/L-Strecke.
+- Animation als Selbstzweck, leerer Scrollweg oder eine Sperre nativer Scroll-Eingaben.
 - Technische Daten im ersten Blickfeld.
 - Stockfotografie, erfundener Social Proof oder optisch verfälschte Fahrzeuge.
 - Eine Seite, die nur aus Hero, Wagenanimation und Vergleich besteht; die komplette Service- und Anfragegeschichte ist Pflicht.

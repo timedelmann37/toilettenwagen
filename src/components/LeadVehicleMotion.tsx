@@ -2,8 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import { VehicleImage } from "./VehicleImage";
-import { getLeadWheelAction, type LeadModel } from "./leadScrollStep";
 import styles from "./LeadVehicleMotion.module.css";
+
+type LeadModel = "s" | "m" | "l";
 
 type LeadPose = {
   right: number;
@@ -117,10 +118,9 @@ export function LeadVehicleMotion() {
     );
     let metrics: MotionMetrics | null = null;
     let frame = 0;
+    let activationFrame = 0;
     let enabled = false;
     let activeModel = "";
-    let wheelLocked = false;
-    let wheelUnlockTimer = 0;
 
     const setActiveModel = (model: LeadModel) => {
       if (activeModel === model) return;
@@ -175,7 +175,6 @@ export function LeadVehicleMotion() {
       const stageRect = stage.getBoundingClientRect();
       const stickyTop =
         Number.parseFloat(window.getComputedStyle(stage).top) || 72;
-      const snapCenter = stickyTop + (viewportHeight - stickyTop) / 2;
       const stageWidth = stageRect.width;
       const rightInset = Math.min(36, stageWidth * 0.045);
       const stageRight = stageRect.right;
@@ -196,22 +195,23 @@ export function LeadVehicleMotion() {
       const stopRects = Object.fromEntries(
         modelOrder.map((model) => [model, stops[model]!.getBoundingClientRect()]),
       ) as Record<LeadModel, DOMRect>;
-      const anchors: Record<LeadModel, number> = {
-        s: stopRects.s.top + scrollY - stickyTop,
-        m:
-          stopRects.m.top +
-          scrollY +
-          stopRects.m.height / 2 -
-          snapCenter,
-        l: stopRects.l.bottom + scrollY - viewportHeight,
-      };
+      // Each reading moment aligns the model copy with its rail level.
+      // These are animation landmarks, never targets for browser scrolling.
+      const anchors = Object.fromEntries(
+        modelOrder.map((model) => [
+          model,
+          stopRects[model].top + scrollY + stopRects[model].height / 2 - levelCenters[model],
+        ]),
+      ) as Record<LeadModel, number>;
       const originPose: LeadPose = {
         right: sourceRect.right,
         centerY: sourceRect.top + scrollY + sourceRect.height / 2,
         width: sourceRect.width,
       };
-      const handoffStart =
-        origin.getBoundingClientRect().bottom + scrollY - viewportHeight * 0.62;
+      const handoffStart = Math.max(
+        0,
+        origin.getBoundingClientRect().bottom + scrollY - viewportHeight * 0.62,
+      );
       const settleDistance = Math.min(38, viewportHeight * 0.045);
       const stageContainerRect = stage.parentElement!.getBoundingClientRect();
       const releaseStart =
@@ -306,8 +306,8 @@ export function LeadVehicleMotion() {
           (scrollY - metrics.anchors.s) /
             (metrics.anchors.m - metrics.anchors.s),
         );
-        const travel = smootherstep(0, 1, linearTravel);
-        const morphProgress = smoothstep(0.22, 0.72, linearTravel);
+        const travel = smootherstep(0.16, 0.84, linearTravel);
+        const morphProgress = smoothstep(0.3, 0.7, linearTravel);
         pose = mixPose(metrics.poses.s, metrics.poses.m, travel);
         model = morphProgress < 0.5 ? "s" : "m";
         morph = { from: "s", to: "m", progress: morphProgress };
@@ -316,8 +316,8 @@ export function LeadVehicleMotion() {
           (scrollY - metrics.anchors.m) /
             (metrics.anchors.l - metrics.anchors.m),
         );
-        const travel = smootherstep(0, 1, linearTravel);
-        const morphProgress = smoothstep(0.22, 0.72, linearTravel);
+        const travel = smootherstep(0.16, 0.84, linearTravel);
+        const morphProgress = smoothstep(0.3, 0.7, linearTravel);
         pose = mixPose(metrics.poses.m, metrics.poses.l, travel);
         model = morphProgress < 0.5 ? "m" : "l";
         morph = { from: "m", to: "l", progress: morphProgress };
@@ -375,51 +375,13 @@ export function LeadVehicleMotion() {
       });
     };
 
-    const scheduleWheelUnlock = () => {
-      if (wheelUnlockTimer) window.clearTimeout(wheelUnlockTimer);
-      wheelUnlockTimer = window.setTimeout(() => {
-        wheelLocked = false;
-        wheelUnlockTimer = 0;
-      }, 600);
-    };
-
-    const handleWheel = (event: WheelEvent) => {
-      if (
-        !enabled ||
-        !metrics ||
-        event.ctrlKey ||
-        Math.abs(event.deltaY) <= Math.abs(event.deltaX)
-      ) {
-        return;
-      }
-
-      const action = getLeadWheelAction({
-        scrollY: window.scrollY,
-        deltaY: event.deltaY,
-        anchors: metrics.anchors,
-        locked: wheelLocked,
-        entryStart: metrics.handoffStart,
-      });
-
-      if (action.type === "release") return;
-
-      event.preventDefault();
-      scheduleWheelUnlock();
-      if (action.type === "hold") return;
-
-      wheelLocked = true;
-      window.scrollTo({ top: action.target, behavior: "smooth" });
-    };
-
     const disable = () => {
+      if (activationFrame) window.cancelAnimationFrame(activationFrame);
+      activationFrame = 0;
       enabled = false;
       metrics = null;
       activeModel = "";
-      wheelLocked = false;
-      if (wheelUnlockTimer) window.clearTimeout(wheelUnlockTimer);
-      wheelUnlockTimer = 0;
       journey.removeAttribute("data-lead-motion");
-      document.documentElement.removeAttribute("data-lead-snap");
       overlay.removeAttribute("data-lead-enabled");
       overlay.removeAttribute("data-lead-moving");
       overlay.removeAttribute("style");
@@ -439,8 +401,8 @@ export function LeadVehicleMotion() {
       if (enabled || !motionQuery.matches) return;
       enabled = true;
       journey.setAttribute("data-lead-motion", "active");
-      document.documentElement.setAttribute("data-lead-snap", "active");
-      window.requestAnimationFrame(() => {
+      activationFrame = window.requestAnimationFrame(() => {
+        activationFrame = 0;
         if (!enabled) return;
         measure();
         update();
@@ -464,7 +426,6 @@ export function LeadVehicleMotion() {
     };
 
     window.addEventListener("scroll", scheduleUpdate, { passive: true });
-    window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("resize", scheduleMeasure);
     motionQuery.addEventListener("change", syncMode);
     for (const image of overlayImages) image.addEventListener("load", syncMode);
@@ -474,7 +435,6 @@ export function LeadVehicleMotion() {
     return () => {
       if (frame) window.cancelAnimationFrame(frame);
       window.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("resize", scheduleMeasure);
       motionQuery.removeEventListener("change", syncMode);
       for (const image of overlayImages) {
