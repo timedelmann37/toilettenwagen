@@ -9,3 +9,17 @@ services:
     ports:
       - "127.0.0.1:8087:80"
 
+  mailer:
+    build:
+      context: ./deploy/mailer
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      RESEND_API_KEY: ${RESEND_API_KEY:?Set RESEND_API_KEY in Portainer}
+      MAIL_FROM: "Website-Anfragen <anfragen@mail.daheim.uk>"
+      MAIL_TO: ${MAIL_TO:?Set MAIL_TO in Portainer}
+      SITE_ORIGIN: "https://tw.daheim.uk"
+

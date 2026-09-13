@@ -9,15 +9,15 @@ type Props = {
 
 /** Primärer Anfrageweg: WhatsApp. Öffnet den Unternehmens-WhatsApp-Chat. */
 export function WhatsappButton({ size = "md", className = "" }: Props) {
-  const pad = size === "sm" ? "h-11 px-5 text-sm" : "h-12 px-6 text-base";
+  const pad = size === "sm" ? "min-h-11 px-5 py-2.5 text-sm" : "min-h-12 px-6 py-3 text-base";
   return (
     <a
       href={site.whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex ${pad} items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-whatsapp font-semibold text-white transition-[transform,background-color] duration-150 hover:bg-whatsapp-strong active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-whatsapp ${className}`}
+      className={`inline-flex ${pad} items-center justify-center gap-3 whitespace-nowrap rounded-full bg-whatsapp font-semibold leading-tight text-white transition-colors duration-150 hover:bg-whatsapp-strong active:bg-whatsapp-strong focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-whatsapp motion-reduce:transition-none ${className}`}
     >
-      <WhatsappLogo aria-hidden="true" weight="fill" className="size-5 shrink-0" />
+      <WhatsappLogo aria-hidden="true" weight="regular" className="size-6 shrink-0" />
       Per WhatsApp anfragen
     </a>
   );
