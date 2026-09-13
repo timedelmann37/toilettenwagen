@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { searchAddress, type AddressSuggestion } from "@/lib/addressSearch";
+import { AddressSearchError, searchAddress, type AddressSuggestion } from "@/lib/addressSearch";
 import styles from "./AddressLookup.module.css";
 
 type Props = { id: string; label: string; onChoose: (address: string) => void };
@@ -33,8 +33,19 @@ export function AddressLookup({ id, label, onChoose }: Props) {
         if (cancelled || version !== revision.current) return;
         setResults(matches);
         setStatus(matches.length ? `${matches.length} Vorschläge verfügbar.` : "Kein Treffer. Bitte ergänzen Sie die Adresse manuell im Adressfeld.");
-      } catch {
-        if (!cancelled && version === revision.current) setStatus("Die Suche ist gerade nicht verfügbar. Bitte geben Sie die Adresse manuell ein.");
+      } catch (error) {
+        if (!cancelled && version === revision.current) {
+          const reason = error instanceof AddressSearchError
+            ? error.status === 401 || error.status === 403
+              ? "Der Adressdienst verweigert den Zugriff. Die Website-Konfiguration muss geprüft werden."
+              : error.status === 429
+                ? "Der Adressdienst hat sein Anfragelimit erreicht. Bitte versuchen Sie es später erneut."
+                : "Der Adressdienst meldet einen Fehler. Bitte versuchen Sie es später erneut."
+            : controller.signal.aborted
+              ? "Die Adresssuche hat zu lange gedauert. Bitte versuchen Sie es erneut."
+              : "Keine Verbindung zum Adressdienst. Bitte prüfen Sie Ihre Verbindung oder mögliche Browser-Blocker.";
+          setStatus(`${reason} Manuelle Eingabe bleibt möglich.`);
+        }
       } finally { clearTimeout(timeout); }
     }, 650);
     return () => { cancelled = true; clearTimeout(timer); controller.abort(); };

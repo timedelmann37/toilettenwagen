@@ -4,12 +4,19 @@ export type AddressSuggestion = {
   street: string;
 };
 
+export class AddressSearchError extends Error {
+  constructor(public readonly status: number) {
+    super(`Address search HTTP ${status}`);
+    this.name = "AddressSearchError";
+  }
+}
+
 export async function searchAddress(
   postcode: string,
   street: string,
   signal: AbortSignal,
 ): Promise<AddressSuggestion[]> {
-  const key = process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY;
+  const key = process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY?.trim();
   if (!key || !/^\d{5}$/.test(postcode)) return [];
   const params = new URLSearchParams({
     text: street.trim() ? `${postcode} ${street.trim()}` : postcode,
@@ -23,7 +30,7 @@ export async function searchAddress(
   const response = await fetch(`https://api.geoapify.com/v1/geocode/autocomplete?${params}`, {
     signal, credentials: "omit", referrerPolicy: "origin",
   });
-  if (!response.ok) throw new Error("Address search unavailable");
+  if (!response.ok) throw new AddressSearchError(response.status);
   const data: unknown = await response.json();
   if (!data || typeof data !== "object" || !("results" in data) || !Array.isArray(data.results)) return [];
   const seen = new Set<string>();

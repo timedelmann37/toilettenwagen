@@ -5,6 +5,22 @@ import { searchAddress } from "@/lib/addressSearch";
 
 afterEach(() => { vi.useRealTimers(); vi.unstubAllGlobals(); vi.unstubAllEnvs(); });
 
+it.each([
+  [403, "verweigert den Zugriff"],
+  [429, "Anfragelimit erreicht"],
+  [503, "meldet einen Fehler"],
+])("explains HTTP %s without exposing credentials", async (status, explanation) => {
+  vi.useFakeTimers();
+  vi.stubEnv("NEXT_PUBLIC_GEOAPIFY_API_KEY", "test-key");
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: false, status }));
+  render(<AddressLookup id="test-error" label="Testadresse" onChoose={vi.fn()} />);
+  fireEvent.click(screen.getByRole("button", { name: "Adresssuche aktivieren" }));
+  fireEvent.change(screen.getByLabelText("PLZ"), { target: { value: "57567" } });
+  await act(async () => { await vi.advanceTimersByTimeAsync(650); });
+  expect(screen.getByRole("status")).toHaveTextContent(explanation);
+  expect(screen.getByRole("status")).not.toHaveTextContent("test-key");
+});
+
 it("filters other postcodes and duplicate streets", async () => {
   vi.stubEnv("NEXT_PUBLIC_GEOAPIFY_API_KEY", "test-key");
   const row = { country_code: "de", postcode: "57567", city: "Daaden", street: "Bahnhofstraße" };
