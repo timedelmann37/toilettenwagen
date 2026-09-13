@@ -1,0 +1,16 @@
+.git
+.github
+.next
+node_modules
+out
+coverage
+.agents
+.claude
+.codex
+.impeccable
+.scratch
+assets/reserve
+docs
+*.log
+.env*
+

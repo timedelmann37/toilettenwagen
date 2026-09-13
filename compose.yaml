@@ -1,0 +1,11 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_INQUIRY_ENDPOINT: ${NEXT_PUBLIC_INQUIRY_ENDPOINT:-}
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8087:80"
+
