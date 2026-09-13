@@ -60,7 +60,7 @@ export function Header() {
             alt=""
             width={455}
             height={161}
-            className="h-auto w-32 brightness-0 md:w-40"
+            className="siteLogo brightness-0"
           />
           <span className="sr-only">{site.name}</span>
         </Link>

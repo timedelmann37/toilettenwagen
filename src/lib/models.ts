@@ -37,7 +37,7 @@ export const trailerModels = [
     urinals: 2,
     priceNetCents: 17_500,
     suitability: "Die kompakte Wahl für kleinere Feiern und Einsätze.",
-    specificFeatures: ["Warmes und kaltes Wasser", "Sensorarmaturen"],
+    specificFeatures: ["Warmes und kaltes Wasser", "Sensorarmaturen", "Erstausstattung: Toilettenpapier", "Selbstabholung möglich"],
   },
   {
     id: "m",
@@ -49,7 +49,7 @@ export const trailerModels = [
     urinals: 3,
     priceNetCents: 19_000,
     suitability: "Mehr Kapazität für mittelgroße Veranstaltungen.",
-    specificFeatures: ["Kalt fließendes Wasser"],
+    specificFeatures: ["Kalt fließendes Wasser", "Erstausstattung: Toilettenpapier, Seife und Tücher", "Selbstabholung möglich"],
   },
   {
     id: "l",
@@ -61,6 +61,6 @@ export const trailerModels = [
     urinals: 6,
     priceNetCents: 21_000,
     suitability: "Die größte Kapazität der Familie für große Veranstaltungen.",
-    specificFeatures: ["Kalt fließendes Wasser"],
+    specificFeatures: ["Kalt fließendes Wasser", "Erstausstattung: Toilettenpapier, Seife und Tücher"],
   },
 ] as const satisfies readonly TrailerModel[];

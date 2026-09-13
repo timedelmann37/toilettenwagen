@@ -1,7 +1,8 @@
 .contact {
   scroll-margin-top: 4.5rem;
-  overflow: hidden;
-  background: #e4e5de;
+  overflow: clip;
+  background: #142b3b;
+  color: #f9fbfc;
 }
 
 .inner {
@@ -12,7 +13,7 @@
 
 .intro {
   display: grid;
-  grid-template-columns: minmax(0, 1.18fr) minmax(20rem, 0.82fr);
+  grid-template-columns: minmax(0, 1.3fr) minmax(20rem, 0.7fr);
   gap: clamp(3rem, 8vw, 8rem);
   align-items: end;
 }
@@ -20,10 +21,10 @@
 .intro h2 {
   max-width: 10ch;
   font-family: var(--font-display);
-  font-size: clamp(3.25rem, 6.4vw, 5.8rem);
-  font-weight: 650;
-  line-height: 0.94;
-  letter-spacing: -0.035em;
+  font-size: clamp(3.5rem, 6.8vw, 6rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
   text-wrap: balance;
 }
 
@@ -36,14 +37,14 @@
 .introAside p,
 .contactRail p {
   max-width: 38rem;
-  color: var(--ink-soft);
+  color: #d5e0e3;
   font-size: clamp(1.05rem, 1.4vw, 1.2rem);
   line-height: 1.55;
 }
 
 .workspace {
   display: grid;
-  grid-template-columns: minmax(17rem, 0.72fr) minmax(0, 1.28fr);
+  grid-template-columns: minmax(17rem, 0.6fr) minmax(0, 1.4fr);
   gap: clamp(3rem, 7vw, 7rem);
   align-items: start;
   margin-top: clamp(5rem, 9vw, 8rem);
@@ -70,20 +71,20 @@
 
 .directLinks {
   display: grid;
-  border-top: 1px solid var(--line-strong);
+  border-top: 1px solid rgb(249 251 252 / 0.32);
 }
 
 .directLinks a {
   overflow-wrap: anywhere;
-  border-bottom: 1px solid var(--line-strong);
+  border-bottom: 1px solid rgb(249 251 252 / 0.32);
   padding: 1.1rem 0;
-  color: var(--ink);
+  color: #f9fbfc;
   font-weight: 700;
   text-decoration: none;
 }
 
 .directLinks a:hover {
-  color: var(--accent-strong);
+  color: #b9daed;
 }
 
 .directLinks a:focus-visible,
@@ -100,17 +101,18 @@
   display: grid;
   grid-template-columns: 4.5rem minmax(0, 1fr);
   gap: 1rem;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid rgb(249 251 252 / 0.2);
   padding: 0.9rem 0;
 }
 
 .hours dt {
+  color: #f9fbfc;
   font-weight: 750;
 }
 
 .hours dd {
   margin: 0;
-  color: var(--ink-soft);
+  color: #d5e0e3;
   font-variant-numeric: tabular-nums;
 }
 
@@ -118,6 +120,7 @@
   position: relative;
   min-width: 0;
   border-radius: var(--radius-card);
+  border: 1px solid rgb(249 251 252 / 0.18);
   padding: clamp(2rem, 5vw, 4.5rem);
   background: #173548;
   color: #f8f7f0;
@@ -146,6 +149,50 @@
   color: #c7d3d7;
   font-size: 0.92rem;
   line-height: 1.5;
+}
+
+.modelHandoff {
+  display: grid;
+  grid-template-columns: 3.15rem minmax(2rem, 6vw) minmax(0, 1fr);
+  align-items: center;
+  gap: 0.9rem;
+  border-bottom: 1px solid rgb(248 247 240 / 0.16);
+  padding: 1.25rem 0;
+}
+
+.modelHandoffMark {
+  display: grid;
+  width: 3.15rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid #b7daf7;
+  border-radius: 50%;
+  background: #f8f7f0;
+  color: #173548;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.modelHandoffLine {
+  height: 1px;
+  background: #b7daf7;
+}
+
+.modelHandoff p {
+  display: grid;
+  gap: 0.2rem;
+  margin: 0;
+  color: #d5e0e3;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.modelHandoff strong {
+  color: #f9fbfc;
+  font-size: 0.92rem;
+  font-weight: 750;
 }
 
 .formGrid {
@@ -475,7 +522,7 @@
 
   .intro h2 {
     max-width: 10ch;
-    font-size: clamp(2.6rem, 11vw, 3.2rem);
+    font-size: clamp(3rem, 12vw, 3.75rem);
   }
 
   .workspace {
@@ -505,6 +552,16 @@
   .formGrid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
+  }
+
+  .modelHandoff {
+    grid-template-columns: 2.8rem minmax(1rem, 3rem) minmax(0, 1fr);
+    gap: 0.7rem;
+  }
+
+  .modelHandoffMark {
+    width: 2.8rem;
+    font-size: 1rem;
   }
 
   .full,

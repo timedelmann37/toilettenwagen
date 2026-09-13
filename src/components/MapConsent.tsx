@@ -79,11 +79,11 @@ export function MapConsent({ loadTimeoutMs = 15_000 }: Props = {}) {
     return (
       <div className={styles.consentPanel}>
         <div>
-          <h3>Google Maps nur mit Ihrer Zustimmung.</h3>
+          <h3>Google Maps erst nach Ihrer Zustimmung.</h3>
           <p>
-            Die Karte hilft bei der räumlichen Orientierung. Beim Laden wird
-            eine Verbindung zu Google hergestellt; dabei können unter anderem
-            Ihre IP-Adresse und technische Browserdaten übermittelt werden.
+            Beim Laden der Karte wird eine Verbindung zu Google hergestellt.
+            Dabei können unter anderem Ihre IP-Adresse und technische
+            Browserdaten übermittelt werden.
           </p>
           <a href="/datenschutz/">Mehr zum Datenschutz</a>
         </div>
@@ -92,7 +92,7 @@ export function MapConsent({ loadTimeoutMs = 15_000 }: Props = {}) {
             Google Maps laden
           </button>
           <button type="button" onClick={() => choose("denied")}>
-            Ohne Karte fortfahren
+            Ohne Google Maps fortfahren
           </button>
         </div>
       </div>
@@ -109,8 +109,8 @@ export function MapConsent({ loadTimeoutMs = 15_000 }: Props = {}) {
             Karte vollständig lesbar.
           </p>
         </div>
-        <button type="button" onClick={() => choose("undecided")}>
-          Karteneinstellung ändern
+        <button type="button" onClick={() => choose("granted")}>
+          Google Maps jetzt laden
         </button>
       </div>
     );
@@ -122,8 +122,9 @@ export function MapConsent({ loadTimeoutMs = 15_000 }: Props = {}) {
         <div>
           <h3>Die Karte konnte nicht geladen werden.</h3>
           <p>
-            Die regionale Information bleibt oben verfügbar. Sie können die
-            Karte erneut laden oder Ihre Entscheidung ändern.
+            Standort, Einsatzgebiet und Ortsbeispiele bleiben oberhalb der
+            Karte lesbar. Sie können Google Maps erneut laden oder ohne Karte
+            fortfahren.
           </p>
         </div>
         <div className={styles.retryActions}>
@@ -134,10 +135,10 @@ export function MapConsent({ loadTimeoutMs = 15_000 }: Props = {}) {
               setAttempt((current) => current + 1);
             }}
           >
-            Erneut versuchen
+            Google Maps erneut laden
           </button>
-          <button type="button" onClick={() => choose("undecided")}>
-            Karteneinstellung ändern
+          <button type="button" onClick={() => choose("denied")}>
+            Ohne Google Maps fortfahren
           </button>
         </div>
       </div>
@@ -166,8 +167,8 @@ export function MapConsent({ loadTimeoutMs = 15_000 }: Props = {}) {
       {loadState === "ready" && (
         <div className={styles.mapControls}>
           <p>Google Maps ist aktiviert.</p>
-          <button type="button" onClick={() => choose("undecided")}>
-            Karteneinstellung ändern
+          <button type="button" onClick={() => choose("denied")}>
+            Google Maps ausblenden
           </button>
         </div>
       )}

@@ -15,7 +15,7 @@ Auslieferung als **statischer Export** (`output: 'export'`) auf Hetzner Webhosti
 
 - **Privatkunden** (Hochzeiten, Gartenpartys, private Feiern) – oft einmalige Anmietung, planen ein persönlich wichtiges Event, teils ältere Gastgeber.
 - **Event-Veranstalter** (Festivals, Märkte, Sportveranstaltungen).
-- **Bau/Gewerbe** (Baustellen, Firmenfeiern).
+- **Gewerbliche Kunden** (Firmenfeiern und Veranstaltungen; keine Baustellen).
 - **Kommunen/Behörden.**
 
 Gemeinsame Situation: ein Termin/Ort im Umkreis ~125 km um Niederdreisbach braucht saubere mobile Sanitäranlagen; Aufgabe des Besuchers: **schnell eine Miet-Anfrage stellen** (bevorzugt WhatsApp).
@@ -29,7 +29,7 @@ Vermietung gepflegter, ganzjährig beheizter Toilettenwagen in drei Größen (S/
 Was eine Nachbar-Firma nicht wahrheitsgemäß kopieren kann:
 - **Faire Berechnung:** Liefer- und Abholtag zählen nicht als Miettage.
 - **„Alles dabei":** Abwasserrohre, Frischwasserschläuche, maßgefertigte Holz-Kanaldeckel inklusive – anderswo muss der Kunde die Hälfte selbst stellen.
-- Meistert schwierige Aufbauten (Unterbau, Revisionsschächte, schiefe Auffahrten).
+- Aufstellung ausschließlich auf festem, ebenem Untergrund.
 - Sehr schneller, persönlicher Kontakt; Angebote meist < 2 h.
 
 ## Operating Context
@@ -37,7 +37,7 @@ Was eine Nachbar-Firma nicht wahrheitsgemäß kopieren kann:
 - **Kunde stellt bereit:** Stromanschluss 230 V, Wasseranschluss, fester ebener Untergrund, Abwasseranschluss vor Ort inkl. Genehmigung.
 - **Ablauf:** Anfrage → Angebot (< 2 h) → Auftragsbestätigung → ggf. 30 % Anzahlung → Anlieferung/Aufbau (meist 1 Tag vorher) → Abholung/Abbau (meist 1 Tag nach Event) → Reinigung → Schlussrechnung + Bitte um Google-Bewertung.
 - **Buchungsvorlauf:** Hochzeit (August) idealerweise 1 Jahr vorher, sonst 3–6 Monate.
-- **Standort der Wagen:** Niederdreisbach. **Anfahrt:** 1,10 €/km, nicht im Mietpreis enthalten.
+- **Standort der Wagen:** Niederdreisbach. **Transport:** je beladener Strecke bis 50 km 50 € brutto, danach 1,10 € brutto pro Mehrkilometer; Lieferung und Abholung, keine Leerfahrten. Brutto vorläufig vom User freigegeben.
 
 ## Capabilities and Constraints
 
@@ -76,3 +76,7 @@ Was eine Nachbar-Firma nicht wahrheitsgemäß kopieren kann:
 ## Accessibility & Inclusion
 
 Breites, teils älteres Privatpublikum → gut lesbare Typo, klarer Kontrast, einfache Sprache, große Touch-Ziele. Ziel WCAG AA.
+
+## Review-Korrekturen vom 2026-09-13
+
+Verbindlich: siehe `docs/review-2026-09-13.md`. Diese Entscheidungen ersetzen widersprechende ältere Ausstattungs-, Bild- und Formulardetails oben.

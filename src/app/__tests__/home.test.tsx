@@ -19,7 +19,7 @@ describe("Startseite", () => {
       screen.getAllByRole("link", { name: "Per WhatsApp anfragen" }).length,
     ).toBeGreaterThan(0);
     expect(
-      screen.getByRole("link", { name: "Anfrage vorbereiten" }),
+      screen.getByRole("link", { name: "Zum Anfrageformular" }),
     ).toHaveAttribute("href", "#kontakt");
 
     for (const model of trailerModels) {
@@ -30,61 +30,13 @@ describe("Startseite", () => {
     }
   });
 
-  it("zeigt die Größenstaffel der kompakten Modellreise", () => {
+  it("führt von der Galerie direkt zum Modellvergleich", () => {
     const { container } = render(<Home />);
-
-    const journeyHeading = screen.getByRole("heading", {
-      level: 2,
-      name: "Ein Wagen. Drei Stationen.",
-    });
-    const journey = journeyHeading.closest("section");
-    expect(journey).not.toBeNull();
-    if (!journey) return;
-
-    for (const model of trailerModels) {
-      const station = within(journey).getByRole("listitem", {
-        name: `Modell ${model.name}`,
-      });
-
-      expect(
-        within(station).getByRole("heading", {
-          level: 3,
-          name: `Modell ${model.name}`,
-        }),
-      ).toBeInTheDocument();
-      expect(station).toHaveTextContent(`bis ${model.capacity} Personen`);
-      expect(within(station).getByText(model.suitability)).toBeInTheDocument();
-      expect(station).toHaveAttribute("data-lead-stop", model.id);
-    }
-
-    expect(within(journey).getAllByRole("img")).toHaveLength(3);
-    for (const model of trailerModels) {
-      expect(
-        within(journey).getByAltText(
-          `Freigestellter Toilettenwagen Modell ${model.name}`,
-        ),
-      ).toBeInTheDocument();
-    }
-    expect(journey).toHaveAttribute("data-lead-journey");
-    expect(journey.querySelector("[data-lead-stage]")).not.toBeNull();
-    expect(container.querySelector("[data-lead-origin]")).not.toBeNull();
-    const leadOverlay = container.querySelector("[data-lead-overlay]");
-    expect(leadOverlay).toHaveAttribute("aria-hidden", "true");
-    expect(leadOverlay?.querySelectorAll("[data-vehicle-model]")).toHaveLength(
-      3,
-    );
-    for (const model of trailerModels) {
-      expect(
-        leadOverlay?.querySelector(`[data-vehicle-model="${model.id}"]`),
-      ).not.toBeNull();
-      expect(
-        journey.querySelector(`[data-lead-level="${model.id}"]`),
-      ).not.toBeNull();
-    }
-    expect(
-      within(journey).queryByText(trailerModels[0].dimensions),
-    ).not.toBeInTheDocument();
-    expect(within(journey).queryByText(/netto\/Tag/)).not.toBeInTheDocument();
+    const hero = container.querySelector("#wagen");
+    expect(hero?.nextElementSibling).toHaveAttribute("id", "modellvergleich");
+    expect(screen.queryByRole("heading", { name: "Von S bis L." })).not.toBeInTheDocument();
+    expect(within(hero as HTMLElement).getAllByRole("img")).toHaveLength(3);
+    expect(container.querySelector("[data-lead-overlay]")).toBeNull();
   });
 
   it("liefert ohne Client-JavaScript die Kerndaten aller Modelle aus", () => {
@@ -112,17 +64,17 @@ describe("Startseite", () => {
     expect(
       section.getByRole("heading", {
         level: 2,
-        name: "Der Wagen parkt. Der Service übernimmt.",
+        name: "Anschlüsse und Aufbau. Vorab geklärt.",
       }),
     ).toBeInTheDocument();
     expect(section.getByText(/Liefer- und Abholtag zählen nicht als Miettage/i)).toBeInTheDocument();
-    expect(section.getByText(/Lieferung und Abholung werden separat berechnet/i)).toBeInTheDocument();
+    expect(section.getByText(/Je Strecke mit angehängtem Wagen/i)).toBeInTheDocument();
     expect(section.getAllByText(/Abwasserrohre/i).length).toBeGreaterThan(0);
-    expect(section.getAllByText(/Frischwasserschläuche/i).length).toBeGreaterThan(0);
+    expect(section.getAllByText(/10 Meter Frischwasserschlauch/i).length).toBeGreaterThan(0);
     expect(section.getAllByText(/maßgefertigte Holzabdeckungen/i).length).toBeGreaterThan(0);
     expect(section.getByText(/beheizt und ganzjährig einsetzbar/i)).toBeInTheDocument();
-    expect(section.getByText(/Waschbecken, Spiegel, Innen- und Außenbeleuchtung, Spülung und Tork-Papierspender/i)).toBeInTheDocument();
-    expect(section.getByText(/Schwierige Aufstellungen werden lösungsorientiert geplant/i)).toBeInTheDocument();
+    expect(section.getByText(/Waschplätze/i)).toBeInTheDocument();
+    expect(section.getByText(/Aufstellplatz muss fest und wirklich eben/i)).toBeInTheDocument();
 
     for (const requirement of [
       "230 V Stromanschluss",
@@ -134,8 +86,19 @@ describe("Startseite", () => {
       expect(section.getByText(requirement)).toBeInTheDocument();
     }
 
-    expect(section.getAllByRole("img")).toHaveLength(5);
-    expect(service.querySelectorAll("img")).toHaveLength(5);
+    expect(section.getAllByRole("img")).toHaveLength(8);
+    const interiorGallery = section.getByRole("group", { name: "Echte Innenansichten" });
+    expect(within(interiorGallery).getAllByRole("img")).toHaveLength(4);
+    for (const caption of [
+      "Waschplatz mit Spiegel und Spendern.",
+      "Gepflegte WC-Kabine.",
+      "Urinale mit Trennwänden.",
+      "Türmotiv in einer Innenansicht.",
+    ]) {
+      expect(within(interiorGallery).getByText(caption)).toBeInTheDocument();
+    }
+    expect(section.getByAltText("Technische Illustration eines männlichen Gardena-Steckteils")).toBeInTheDocument();
+    expect(section.getByAltText("Technische Illustration eines weiblichen Gardena-Schlauchstücks")).toBeInTheDocument();
     expect(
       section.getByRole("list", {
         name: "Von uns mitgebrachte Anschlüsse und Abdeckungen",
@@ -148,7 +111,7 @@ describe("Startseite", () => {
     ).toBeInTheDocument();
     expect(
       section.getByAltText(
-        "Innenansicht mit Palmen- und Strandmotiv auf den Türen",
+        "Technische Illustration einer GEKA-Klauenkupplung mit Dichtungsring",
       ),
     ).toBeInTheDocument();
     expect(section.queryByText(/Eigenständig bis in die Türen/i)).not.toBeInTheDocument();
@@ -171,15 +134,15 @@ describe("Startseite", () => {
     expect(
       section.getByRole("heading", {
         level: 2,
-        name: "Von der ersten Nachricht bis zum sauberen Abschluss.",
+        name: "So läuft Ihre Miete ab.",
       }),
     ).toBeInTheDocument();
 
     const steps = section.getAllByRole("listitem");
     expect(steps).toHaveLength(6);
     expect(steps[0]).toHaveTextContent(/WhatsApp oder Formular/i);
-    expect(steps[1]).toHaveTextContent(/üblicherweise in unter zwei Stunden/i);
-    expect(steps[1]).toHaveTextContent(/innerhalb unserer Erreichbarkeit/i);
+    expect(steps[1]).toHaveTextContent(/üblicherweise innerhalb von zwei Stunden/i);
+    expect(steps[1]).toHaveTextContent(/während unserer Erreichbarkeit/i);
     expect(steps[2]).toHaveTextContent(/Anzahlung von 30 %/i);
     expect(steps[3]).toHaveTextContent(/einen Tag vor/i);
     expect(steps[4]).toHaveTextContent(/einen Tag nach/i);
@@ -187,12 +150,12 @@ describe("Startseite", () => {
     expect(steps[5]).toHaveTextContent(/Schlussrechnung/i);
     expect(steps[5]).toHaveTextContent(/Google-Bewertung/i);
 
-    expect(section.getByText(/August-Hochzeiten/i)).toBeInTheDocument();
+    expect(section.getByText(/Hochzeiten im August/i)).toBeInTheDocument();
     expect(section.getByText(/etwa ein Jahr vorher/i)).toBeInTheDocument();
     expect(section.getByText(/drei bis sechs Monate Vorlauf/i)).toBeInTheDocument();
   });
 
-  it("zeigt Einsatzgebiet, Ortsbeispiele und genau fünf echte Google-Stimmen", () => {
+  it("zeigt Einsatzgebiet, Ortsbeispiele und sieben Screenshot-Rezensionen als Vorschau", () => {
     const { container } = render(<Home />);
     const region = container.querySelector("#region");
 
@@ -207,7 +170,7 @@ describe("Startseite", () => {
       }),
     ).toBeInTheDocument();
     expect(section.getByText(/ungefähr 125 km/i)).toBeInTheDocument();
-    expect(section.getByText(/weitere Strecken sind auf Anfrage/i)).toBeInTheDocument();
+    expect(section.getByText(/weitere Strecken prüfen wir auf Anfrage/i)).toBeInTheDocument();
 
     for (const place of [
       "Daaden",
@@ -221,11 +184,13 @@ describe("Startseite", () => {
       expect(section.getByText(place)).toBeInTheDocument();
     }
 
-    expect(region.querySelectorAll("blockquote")).toHaveLength(5);
-    for (const name of ["Hans D.", "Eileen D.", "Alic.", "Vivien F.", "Ralf B."]) {
-      expect(section.getByText(name)).toBeInTheDocument();
+    const cards = section.getAllByRole("figure");
+    expect(cards).toHaveLength(7);
+    for (const name of ["Ebrar Kargun", "Daniel Gergel", "alic.32", "Jeremy Lückhof", "Saki Egert", "Ralf Baldus", "tom schneider"]) {
+      expect(cards.some(card => card.textContent?.includes(name))).toBe(true);
     }
-    expect(section.getAllByText("Google-Bewertung")).toHaveLength(5);
+    expect(section.getByText(/noch nicht live verbunden/i)).toBeInTheDocument();
+    expect(section.getAllByRole("img", { name: "5 von 5 Sternen" })).toHaveLength(7);
     expect(
       section.getByRole("link", { name: "Per WhatsApp anfragen" }),
     ).toBeInTheDocument();
@@ -242,7 +207,7 @@ describe("Startseite", () => {
     expect(
       section.getByRole("heading", {
         level: 2,
-        name: "Sag uns Ort, Termin und Anlass.",
+        name: "Ihre Veranstaltung. Unser Angebot.",
       }),
     ).toBeInTheDocument();
     expect(section.getByText("+49 160 2743001")).toBeInTheDocument();
@@ -250,7 +215,7 @@ describe("Startseite", () => {
     expect(section.getByText("08:00-13:00 & 15:00-19:00")).toBeInTheDocument();
     expect(section.getByText("10:00-16:00")).toBeInTheDocument();
     expect(section.getByRole("button", { name: "Eingaben prüfen" })).toBeInTheDocument();
-    expect(section.getByText(/Aktuell werden keine Angaben übertragen/i)).toBeInTheDocument();
+    expect(section.getByText(/nur im Browser geprüft und nicht an uns gesendet/i)).toBeInTheDocument();
     expect(
       section.getByRole("checkbox", { name: /Datenschutzerklärung/i }),
     ).not.toBeChecked();

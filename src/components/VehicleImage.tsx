@@ -7,20 +7,20 @@ type VehicleImageProps = Omit<ImageProps, "src" | "width" | "height"> & {
 
 export const vehicleAssets = {
   s: {
-    desktop: "/fotos/wagen-s-hero-1600.webp",
-    mobile: "/fotos/wagen-s-hero-960.webp",
+    desktop: "/fotos/wagen-s-light-v5-1600.webp",
+    mobile: "/fotos/wagen-s-light-v5-960.webp",
     width: 1600,
     height: 1229,
   },
   m: {
-    desktop: "/fotos/wagen-m-model-1600.webp",
-    mobile: "/fotos/wagen-m-model-960.webp",
+    desktop: "/fotos/wagen-m-light-v5-1600.webp",
+    mobile: "/fotos/wagen-m-light-v5-960.webp",
     width: 1283,
     height: 903,
   },
   l: {
-    desktop: "/fotos/wagen-l-model-1600.webp",
-    mobile: "/fotos/wagen-l-model-960.webp",
+    desktop: "/fotos/wagen-l-light-v5-1600.webp",
+    mobile: "/fotos/wagen-l-light-v5-960.webp",
     width: 1360,
     height: 798,
   },

@@ -29,6 +29,17 @@ describe("ModelSelector", () => {
     ).toBeInTheDocument();
   });
 
+  it("zeigt Maße und Kapazität nur im Modelldatenblock", () => {
+    render(<ModelSelector />);
+
+    expect(screen.queryByTestId("model-measurement")).not.toBeInTheDocument();
+    expect(
+      within(screen.getByRole("article", { name: "Modell S" })).getByText(
+        "5,67 × 2,50 × 3,00 m",
+      ),
+    ).toBeVisible();
+  });
+
   it("wechselt sämtliche sichtbaren Modelldaten gemeinsam", async () => {
     const user = userEvent.setup();
     render(<ModelSelector />);
@@ -43,7 +54,7 @@ describe("ModelSelector", () => {
           name: "Freigestellter Toilettenwagen Modell M",
         })
         .getAttribute("src"),
-    ).toContain("wagen-m-model-1600.webp");
+    ).toContain("wagen-m-light-v5-1600.webp");
 
     const modelM = screen.getByRole("article", { name: "Modell M" });
     expect(within(modelM).getByText("7,17 × 2,50 × 2,92 m")).toBeInTheDocument();
@@ -57,7 +68,6 @@ describe("ModelSelector", () => {
     ).toBeInTheDocument();
     expect(within(modelM).getByText("Kalt fließendes Wasser")).toBeInTheDocument();
     expect(within(modelM).queryByText("Sensorarmaturen")).not.toBeInTheDocument();
-
     await user.click(
       screen.getByRole("radio", { name: "Modell L, bis 600 Personen" }),
     );
@@ -67,7 +77,7 @@ describe("ModelSelector", () => {
           name: "Freigestellter Toilettenwagen Modell L",
         })
         .getAttribute("src"),
-    ).toContain("wagen-l-model-1600.webp");
+    ).toContain("wagen-l-light-v5-1600.webp");
     const modelL = screen.getByRole("article", { name: "Modell L" });
     expect(within(modelL).getByText("8,77 × 2,50 × 2,92 m")).toBeInTheDocument();
     expect(modelL).toHaveTextContent(/Damen-WCs4/);
@@ -116,9 +126,11 @@ describe("ModelSelector", () => {
     render(<ModelSelector />);
 
     const notes = screen.getByLabelText("Kostenhinweise");
-    expect(notes).toHaveTextContent("Anfahrt: 1,10 €/km, nicht im Mietpreis enthalten.");
-    expect(notes).toHaveTextContent("Lieferung und Abholung werden separat berechnet.");
-    expect(notes).toHaveTextContent("Liefer- und Abholtag zählen nicht als Miettage.");
+    expect(notes).toHaveTextContent(
+      "Bei längerer Mietdauer erhalten Sie günstigere Konditionen.",
+    );
+    expect(notes).not.toHaveTextContent(/1,10/);
+    expect(notes).toHaveTextContent(/Liefer- und Abholtag zählen nicht als Miettage/);
     expect(notes).toHaveTextContent("Verbindlich ist das individuelle Angebot.");
 
     await user.click(screen.getByRole("radio", { name: "Gewerbe, netto" }));
@@ -139,10 +151,12 @@ describe("ModelSelector", () => {
       screen.getByRole("spinbutton", { name: "Geschätzte Personenzahl" }),
       String(count),
     );
-    await user.click(screen.getByRole("button", { name: "Größe einschätzen" }));
+    await user.click(
+      screen.getByRole("button", { name: "Passende Größe anzeigen" }),
+    );
 
     expect(screen.getByRole("status")).toHaveTextContent(
-      `Unverbindliche Orientierung: Modell ${modelId.toUpperCase()}`,
+      `Orientierung: Modell ${modelId.toUpperCase()}`,
     );
     expect(
       screen.getByRole("radio", {
@@ -151,8 +165,23 @@ describe("ModelSelector", () => {
     ).toBeChecked();
   });
 
-  it.each(["", "0", "-2", "601", "200.5"])(
-    "führt für die Angabe %s zur persönlichen Beratung",
+  it("fordert eine fehlende Personenzahl konkret an", async () => {
+    const user = userEvent.setup();
+    render(<ModelSelector />);
+
+    await user.click(
+      screen.getByRole("button", { name: "Passende Größe anzeigen" }),
+    );
+
+    expect(screen.getByRole("status")).toHaveTextContent("Personenzahl fehlt");
+    expect(screen.getByRole("status")).toHaveTextContent(
+      "Geben Sie eine ganze Zahl zwischen 1 und 600 ein.",
+    );
+    expect(readInquiryDraft(window.sessionStorage).model).toBeUndefined();
+  });
+
+  it.each(["0", "-2", "601", "200.5"])(
+    "führt für die Angabe %s zur persönlichen Auswahl",
     async (count) => {
       const user = userEvent.setup();
       render(<ModelSelector />);
@@ -164,11 +193,11 @@ describe("ModelSelector", () => {
         );
       }
       await user.click(
-        screen.getByRole("button", { name: "Größe einschätzen" }),
+        screen.getByRole("button", { name: "Passende Größe anzeigen" }),
       );
 
       expect(screen.getByRole("status")).toHaveTextContent(
-        "Persönliche Beratung empfohlen",
+        "Persönliche Auswahl empfohlen",
       );
       expect(readInquiryDraft(window.sessionStorage).model).toBeUndefined();
     },
@@ -186,7 +215,9 @@ describe("ModelSelector", () => {
       screen.getByRole("combobox", { name: "Anlass (optional)" }),
       "Hochzeit oder private Feier",
     );
-    await user.click(screen.getByRole("button", { name: "Größe einschätzen" }));
+    await user.click(
+      screen.getByRole("button", { name: "Passende Größe anzeigen" }),
+    );
 
     expect(readInquiryDraft(window.sessionStorage)).toEqual({
       model: "m",

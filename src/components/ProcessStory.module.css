@@ -17,27 +17,17 @@
 }
 
 .intro {
-  display: grid;
-  grid-template-columns: minmax(0, 1.18fr) minmax(20rem, 0.82fr);
-  gap: clamp(3rem, 8vw, 8rem);
-  align-items: end;
+  display: block;
 }
 
 .intro h2 {
   max-width: 12ch;
   font-family: var(--font-display);
-  font-size: clamp(3.25rem, 6.4vw, 5.8rem);
-  font-weight: 650;
-  line-height: 0.94;
-  letter-spacing: -0.035em;
+  font-size: clamp(3.5rem, 6.8vw, 6rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
   text-wrap: balance;
-}
-
-.intro > p {
-  max-width: 34rem;
-  color: var(--ink-soft);
-  font-size: clamp(1.05rem, 1.45vw, 1.22rem);
-  line-height: 1.55;
 }
 
 .advance {
@@ -48,11 +38,11 @@
   margin-top: clamp(3.5rem, 6vw, 5rem);
   border-top: 1px solid var(--line-strong);
   border-bottom: 1px solid var(--line-strong);
-  padding: clamp(1.75rem, 3vw, 2.5rem) 0;
+  background: var(--surface-strong);
+  padding: clamp(2rem, 3.5vw, 3rem) clamp(1.25rem, 3vw, 2.75rem);
 }
 
-.advanceIntro h3,
-.regionBridge h3 {
+.advanceIntro h3 {
   max-width: 15ch;
   font-family: var(--font-display);
   font-size: clamp(1.65rem, 2.6vw, 2.35rem);
@@ -128,7 +118,7 @@
   top: 4.5rem;
   right: 0;
   left: 0;
-  height: 1px;
+  height: 2px;
   background: linear-gradient(
     90deg,
     var(--line-strong) 0 50%,
@@ -164,7 +154,7 @@
 .step {
   position: relative;
   min-width: 0;
-  min-height: 23rem;
+  min-height: 26rem;
   padding: 0 clamp(0.75rem, 1.25vw, 1.25rem) 2.25rem;
 }
 
@@ -188,7 +178,7 @@
 .stepNumber {
   color: var(--accent-strong);
   font-family: var(--font-display);
-  font-size: 0.76rem;
+  font-size: 0.92rem;
   font-variant-numeric: tabular-nums;
   font-weight: 750;
   letter-spacing: 0.04em;
@@ -206,9 +196,9 @@
   position: relative;
   z-index: 3;
   display: block;
-  width: 1rem;
-  height: 1rem;
-  margin-top: -0.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: -0.6rem;
   border: 2px solid var(--accent-strong);
   border-radius: 50%;
   background: var(--bg);
@@ -223,8 +213,8 @@
 .stepCopy h3 {
   max-width: 10ch;
   font-family: var(--font-display);
-  font-size: clamp(1.55rem, 2.05vw, 2rem);
-  font-weight: 650;
+  font-size: clamp(1.7rem, 2.25vw, 2.25rem);
+  font-weight: 680;
   line-height: 1.02;
   letter-spacing: -0.028em;
   text-wrap: balance;
@@ -258,12 +248,7 @@
 }
 
 .eventStep .stepNode {
-  border-color: #c7e4f3;
-  background: #18384d;
-}
-
-.eventEnd .stepNode {
-  background: #21475e;
+  visibility: hidden;
 }
 
 .eventStep .stepCopy p {
@@ -285,23 +270,6 @@
   line-height: 1;
   letter-spacing: 0.01em;
   transform: translateX(-50%);
-}
-
-.regionBridge {
-  display: grid;
-  grid-template-columns: minmax(12rem, 0.62fr) minmax(20rem, 1.38fr);
-  gap: clamp(2rem, 6vw, 6rem);
-  align-items: center;
-  margin-top: clamp(2.5rem, 4vw, 4rem);
-  border-top: 1px solid var(--line-strong);
-  padding-top: clamp(2rem, 3vw, 2.75rem);
-}
-
-.regionBridge p {
-  max-width: 38rem;
-  color: var(--ink-soft);
-  font-size: 1rem;
-  line-height: 1.5;
 }
 
 @media (max-width: 1100px) {
@@ -415,11 +383,6 @@
     padding: 5.5rem 1rem 5rem;
   }
 
-  .intro {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
   .intro h2 {
     max-width: 10ch;
     font-size: clamp(3rem, 14vw, 4rem);
@@ -429,7 +392,7 @@
     grid-template-columns: 1fr;
     gap: 1.75rem;
     margin-top: 3.5rem;
-    padding: 2rem 0;
+    padding: 2rem 1.25rem;
   }
 
   .advance dl {
@@ -448,9 +411,4 @@
     font-size: clamp(1.8rem, 8vw, 2.3rem);
   }
 
-  .regionBridge {
-    grid-template-columns: 1fr;
-    gap: 0.65rem;
-    margin-top: 2.5rem;
-  }
 }

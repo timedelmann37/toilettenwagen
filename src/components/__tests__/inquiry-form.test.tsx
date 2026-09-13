@@ -7,12 +7,21 @@ import { updateInquiryDraft } from "@/lib/inquiryDraft";
 async function fillValidForm() {
   const user = userEvent.setup();
   await user.type(screen.getByLabelText("Name *"), "Mara Beispiel");
-  await user.type(screen.getByLabelText("Ort oder PLZ *"), "57567 Daaden");
-  await user.type(screen.getByLabelText("E-Mail"), "mara@example.de");
-  await user.type(screen.getByLabelText("Von oder Termin *"), "2026-10-12");
+  await user.type(
+    screen.getByLabelText("Aufstellort: Straße, Hausnummer, PLZ und Ort *"),
+    "57567 Daaden",
+  );
+  await user.type(screen.getByLabelText("E-Mail *"), "mara@example.de");
+  await user.type(
+    screen.getByLabelText("Nutzungsbeginn *"),
+    "2026-10-12",
+  );
   await user.click(
     screen.getByRole("checkbox", { name: /Datenschutzerklärung/i }),
   );
+  await user.type(screen.getByLabelText("Telefon *"), "0123456789");
+  await user.type(screen.getByLabelText("Rechnungsanschrift *"), "Mara Beispiel, Musterstraße 1, 57567 Daaden");
+  fireEvent.change(screen.getByLabelText("Gewünschter Liefertag *"), { target: { value: "2026-10-11" } });
   return user;
 }
 
@@ -38,9 +47,9 @@ describe("InquiryForm", () => {
     const summary = await screen.findByRole("alert");
     await waitFor(() => expect(summary).toHaveFocus());
     expect(summary).toHaveTextContent("Ort oder Postleitzahl");
-    expect(summary).toHaveTextContent("E-Mail-Adresse oder Telefonnummer");
-    expect(summary).toHaveTextContent("Termin oder Starttag");
-    expect(summary).toHaveTextContent("Datenschutzerklärung");
+    expect(summary).toHaveTextContent("Telefonnummer");
+    expect(summary).toHaveTextContent("Veranstaltungstag oder Mietbeginn");
+    expect(summary).toHaveTextContent("Verarbeitung Ihrer Angaben");
     expect(screen.getByLabelText("Name *")).toHaveValue("Mara");
   });
 
@@ -49,10 +58,16 @@ describe("InquiryForm", () => {
     render(<InquiryForm />);
 
     await user.type(screen.getByLabelText("Name *"), "Mara Beispiel");
-    await user.type(screen.getByLabelText("Ort oder PLZ *"), "57567 Daaden");
-    await user.type(screen.getByLabelText("E-Mail"), "nicht-gueltig");
-    await user.type(screen.getByLabelText("Von oder Termin *"), "2026-10-12");
-    await user.type(screen.getByLabelText("Bis (optional)"), "2026-10-10");
+    await user.type(
+      screen.getByLabelText("Aufstellort: Straße, Hausnummer, PLZ und Ort *"),
+      "57567 Daaden",
+    );
+    await user.type(screen.getByLabelText("E-Mail *"), "nicht-gueltig");
+    await user.type(
+      screen.getByLabelText("Nutzungsbeginn *"),
+      "2026-10-12",
+    );
+    await user.type(screen.getByLabelText("Nutzungsende (optional bei eintägiger Nutzung)"), "2026-10-10");
     await user.click(
       screen.getByRole("checkbox", { name: /Datenschutzerklärung/i }),
     );
@@ -63,6 +78,7 @@ describe("InquiryForm", () => {
   });
 
   it("übernimmt Modell und Anlass aus der vorherigen Auswahl", async () => {
+    const user = userEvent.setup();
     updateInquiryDraft(window.sessionStorage, {
       model: "m",
       occasion: "Hochzeit oder private Feier",
@@ -76,6 +92,17 @@ describe("InquiryForm", () => {
       ).toBeChecked(),
     );
     expect(screen.getByLabelText("Anlass")).toHaveValue("Hochzeit");
+    expect(screen.getByText("Modell M übernommen")).toBeInTheDocument();
+    expect(
+      screen.getByText("Die Auswahl ist bereits im Formular eingetragen."),
+    ).toBeInTheDocument();
+
+    await user.click(
+      screen.getByRole("radio", { name: "Modell L, bis 600 Personen" }),
+    );
+    expect(
+      screen.getByText("Modell L übernommen"),
+    ).toBeInTheDocument();
   });
 
   it("meldet in der Vorschau ehrlich, dass nichts gesendet wurde", async () => {
@@ -90,9 +117,11 @@ describe("InquiryForm", () => {
     await user.click(screen.getByRole("button", { name: "Eingaben prüfen" }));
 
     expect(
-      await screen.findByText(/vollständig, aber noch nicht gesendet/i),
+      await screen.findByText(/vollständig, wurden aber nicht gesendet/i),
     ).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "WhatsApp öffnen" })).toBeInTheDocument();
+    expect(
+      screen.getAllByRole("link", { name: "Per WhatsApp anfragen" }).length,
+    ).toBeGreaterThan(1);
   });
 
   it("behandelt den Honeypot neutral", async () => {
@@ -108,7 +137,7 @@ describe("InquiryForm", () => {
     await user.click(screen.getByRole("button", { name: "Eingaben prüfen" }));
 
     expect(
-      await screen.findByText("Die Anfrage konnte nicht verarbeitet werden."),
+      await screen.findByText("Ihre Anfrage konnte nicht gesendet werden."),
     ).toBeInTheDocument();
   });
 
@@ -136,12 +165,16 @@ describe("InquiryForm", () => {
     expect(
       await screen.findByText("Vielen Dank. Ihre Anfrage ist eingegangen."),
     ).toBeInTheDocument();
-    expect(screen.getByText(/noch nicht bestätigt/i)).toBeInTheDocument();
+    expect(screen.queryByText(/noch nicht bestätigt/i)).not.toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledTimes(1);
     const [, request] = fetchMock.mock.calls[0];
     expect(JSON.parse(request.body)).toMatchObject({
       name: "Mara Beispiel",
       location: "57567 Daaden",
+      phone: "0123456789",
+      deliveryDate: "2026-10-11",
+      billingAddress: "Mara Beispiel, Musterstraße 1, 57567 Daaden",
+      customerType: "private",
       privacyAccepted: true,
     });
   });
@@ -155,10 +188,10 @@ describe("InquiryForm", () => {
     await user.click(screen.getByRole("button", { name: "Anfrage senden" }));
 
     expect(
-      await screen.findByText("Die Anfrage konnte gerade nicht gesendet werden."),
+      await screen.findByText("Ihre Anfrage konnte gerade nicht gesendet werden."),
     ).toBeInTheDocument();
     expect(screen.getByLabelText("Name *")).toHaveValue("Mara Beispiel");
-    expect(screen.getByLabelText("E-Mail")).toHaveValue("mara@example.de");
+    expect(screen.getByLabelText("E-Mail *")).toHaveValue("mara@example.de");
   });
 
   it("verhindert einen Doppelversand während der Übertragung", async () => {

@@ -34,7 +34,7 @@ Ein Kalendertag, der als Nutzungstag berechnet wird. **Liefer- und Abholtag zäh
 _Avoid_: Nutzungstag, Einsatztag.
 
 **Anfahrt**:
-Die Fahrtstrecke vom Standort (Niederdreisbach) zum Einsatzort, berechnet mit 1,10 €/km. Nicht im Mietpreis enthalten.
+Je Strecke mit angehängtem Wagen: bis 50 km 50 € brutto, danach 1,10 € brutto je Mehrkilometer. Lieferung und Abholung werden jeweils einmal berechnet, Leerfahrten nicht. Nicht im Mietpreis enthalten.
 _Avoid_: Fahrtkosten, Logistik.
 
 **Lieferung / Abholung**:
@@ -64,3 +64,7 @@ _Avoid_: Geschäftskunde, B2B, Gewerbe.
 **Anlass**:
 Der Grund der Anmietung (Hochzeit, private Feier, Festival, Firmenfeier, Markt, Sportveranstaltung). Steuert Ansprache und Wagen-Empfehlung.
 _Avoid_: Event (nur generisch ok), Veranstaltungstyp.
+
+## Aktuelle Produktkorrekturen
+
+Die bestätigten Review-Entscheidungen in `docs/review-2026-09-13.md` haben Vorrang vor älteren Angaben zu Verbrauchsmaterial, Innenraumbildern und Formularfeldern.

@@ -24,7 +24,7 @@
 .nightStage img {
   display: block;
   width: 100%;
-  min-height: clamp(20rem, 36vw, 37rem);
+  min-height: clamp(24rem, 40vw, 42rem);
   object-fit: cover;
   object-position: 50% 54%;
 }
@@ -46,14 +46,16 @@
   position: relative;
   z-index: 2;
   width: min(100%, 88rem);
-  margin: clamp(-5rem, -6vw, -3rem) auto 0;
+  margin: clamp(-7rem, -8vw, -4.5rem) auto 0;
   padding: 0 clamp(1rem, 4vw, 4.5rem);
 }
 
 .intro {
   display: grid;
-  grid-template-columns: minmax(0, 1.14fr) minmax(22rem, 0.86fr);
+  grid-template-columns: minmax(0, 1.25fr) minmax(22rem, 0.75fr);
   gap: clamp(3rem, 8vw, 8rem);
+  width: min(92%, 78rem);
+  margin-left: auto;
   border-radius: var(--radius-card) var(--radius-card) 0 0;
   background: var(--bg);
   padding: clamp(3rem, 6vw, 5.75rem) clamp(1.5rem, 4vw, 4.5rem)
@@ -65,10 +67,10 @@
 .planningIntro h2 {
   max-width: 11ch;
   font-family: var(--font-display);
-  font-size: clamp(3.1rem, 6.4vw, 5.8rem);
-  font-weight: 650;
-  line-height: 0.94;
-  letter-spacing: -0.035em;
+  font-size: clamp(3.5rem, 6.8vw, 6rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
   text-wrap: balance;
 }
 
@@ -76,8 +78,7 @@
   align-self: end;
 }
 
-.introCopy > p,
-.planningIntro p {
+.introCopy > p {
   max-width: 38rem;
   color: var(--ink-soft);
   font-size: clamp(1.05rem, 1.45vw, 1.22rem);
@@ -115,18 +116,11 @@
 }
 
 .storyIntro {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  align-items: end;
+  display: block;
 }
 
 .storyIntro > div {
-  grid-column: 1 / span 6;
-}
-
-.storyIntro > p {
-  grid-column: 9 / -1;
-  margin-bottom: 0.18rem;
+  max-width: 44rem;
 }
 
 .story h3 {
@@ -286,10 +280,12 @@
 }
 
 .planningIntro {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.9fr);
-  gap: clamp(3rem, 8vw, 8rem);
-  align-items: end;
+  display: block;
+}
+
+.equipmentOverview + .largeCopy {
+  max-width: 58ch;
+  margin-top: clamp(2rem, 3.5vw, 3rem);
 }
 
 .planningIntro h2 {
@@ -306,22 +302,6 @@
   border-bottom: 1px solid var(--line-strong);
 }
 
-.planningBoard::before {
-  position: absolute;
-  z-index: 0;
-  top: 7.5rem;
-  right: 0;
-  left: 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    var(--accent) 0%,
-    #78b9df 50%,
-    var(--accent-strong) 100%
-  );
-  content: "";
-}
-
 .ourPart,
 .sitePart {
   position: relative;
@@ -331,27 +311,6 @@
 .ourPart,
 .sitePart {
   padding: 2.25rem 0 clamp(2.5rem, 4vw, 3.5rem);
-}
-
-.ourPart::before,
-.sitePart::before {
-  position: absolute;
-  z-index: 2;
-  top: 7.05rem;
-  width: 0.9rem;
-  height: 0.9rem;
-  border: 2px solid var(--accent);
-  border-radius: 50%;
-  background: var(--bg);
-  content: "";
-}
-
-.ourPart::before {
-  left: 0;
-}
-
-.sitePart::before {
-  right: 0;
 }
 
 .planningBoard h3 {
@@ -364,7 +323,7 @@
 
 .includedList {
   display: grid;
-  margin: 4.5rem 0 0;
+  margin: 2rem 0 0;
   border-top: 1px solid var(--line);
   padding: 0;
   list-style: none;
@@ -385,7 +344,7 @@
 }
 
 .requirements {
-  margin: 4.5rem 0 0;
+  margin: 2rem 0 0;
 }
 
 .requirements > div {
@@ -404,6 +363,37 @@
 .requirements dd {
   color: var(--ink-soft);
   line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .intro {
+    width: 100%;
+  }
+
+  .planningBoard {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 3rem;
+  }
+
+  .includedList,
+  .requirements {
+    margin-top: 1.5rem;
+  }
+
+  .sitePart {
+    border-top: 1px solid var(--line-strong);
+  }
+
+  .requirements > div {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
 }
 
 @media (max-width: 767px) {
@@ -431,6 +421,7 @@
   .intro {
     grid-template-columns: 1fr;
     gap: 2rem;
+    width: 100%;
     padding: 2.5rem 1.25rem 3rem;
   }
 
@@ -442,20 +433,6 @@
 
   .story {
     padding: 5rem 1rem;
-  }
-
-  .storyIntro {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .storyIntro > div,
-  .storyIntro > p {
-    grid-column: 1;
-  }
-
-  .storyIntro > p {
-    margin-top: 0;
   }
 
   .story h3 {
@@ -507,57 +484,55 @@
     padding: 5.5rem 1rem 6rem;
   }
 
-  .planningIntro {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .planningBoard {
-    grid-template-columns: 1fr;
-    gap: 0;
-    margin-top: 3rem;
-    padding-left: 2.75rem;
-  }
-
-  .planningBoard::before {
-    top: 0;
-    right: auto;
-    bottom: 0;
-    left: 0.45rem;
-    width: 2px;
-    height: auto;
-    background: linear-gradient(
-      180deg,
-      var(--accent) 0%,
-      #78b9df 50%,
-      var(--accent-strong) 100%
-    );
-  }
-
   .ourPart,
   .sitePart {
     padding: 2.5rem 0;
   }
+}
+.connectionGuide {
+  margin-top: 1.25rem;
+}
 
-  .ourPart::before,
-  .sitePart::before {
-    top: 2.5rem;
-    right: auto;
-    left: -2.75rem;
-    transform: none;
-  }
+.connectionFigure {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+}
 
-  .includedList,
-  .requirements {
-    margin-top: 1.5rem;
-  }
+.connectionFigure + .connectionFigure {
+  margin-top: 1rem;
+}
 
-  .sitePart {
-    border-top: 1px solid var(--line-strong);
-  }
+.connectionDrawing {
+  flex: 0 0 7rem;
+  height: 7rem;
+}
 
-  .requirements > div {
-    grid-template-columns: 1fr;
-    gap: 0.35rem;
-  }
+.connectionDrawing img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.connectionFigure figcaption {
+  max-width: 25ch;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.connectionFigure strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--ink);
+  font-weight: 750;
+}
+
+.connectionNote {
+  margin-top: 1rem;
+  max-width: 42ch;
+  font-size: 0.78rem;
+  line-height: 1.5;
 }

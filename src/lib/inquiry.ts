@@ -7,7 +7,7 @@ export const inquiryOccasions = [
   "Firmenfeier",
   "Markt",
   "Sportveranstaltung",
-  "Baustelle oder Gewerbe",
+  "Gewerbliche Veranstaltung",
   "Kommune oder öffentlicher Einsatz",
   "Sonstiges",
 ] as const;
@@ -20,6 +20,11 @@ export type InquiryFormValues = {
   email: string;
   phone: string;
   location: string;
+  customerType: "private" | "business";
+  company: string;
+  billingSameAsLocation: boolean;
+  billingAddress: string;
+  deliveryDate: string;
   startDate: string;
   endDate: string;
   model: InquiryModel;
@@ -48,6 +53,11 @@ export const initialInquiryValues: InquiryFormValues = {
   email: "",
   phone: "",
   location: "",
+  customerType: "private",
+  company: "",
+  billingSameAsLocation: false,
+  billingAddress: "",
+  deliveryDate: "",
   startDate: "",
   endDate: "",
   model: "unknown",
@@ -68,22 +78,25 @@ export function validateInquiry(values: InquiryFormValues) {
     errors.location = "Bitte nennen Sie Ort oder Postleitzahl.";
   }
   if (!values.startDate) {
-    errors.startDate = "Bitte wählen Sie einen Termin oder Starttag.";
+    errors.startDate = "Bitte wählen Sie den Veranstaltungstag oder Mietbeginn.";
   }
   if (values.endDate && values.startDate && values.endDate < values.startDate) {
-    errors.endDate = "Das Enddatum darf nicht vor dem Startdatum liegen.";
+    errors.endDate = "Das Enddatum darf nicht vor dem Mietbeginn liegen.";
   }
-  if (!values.email.trim() && !values.phone.trim()) {
-    errors.contact = "Bitte geben Sie eine E-Mail-Adresse oder Telefonnummer an.";
-  }
+  if (!values.email.trim()) errors.email = "Bitte geben Sie Ihre E-Mail-Adresse an.";
+  if (!values.phone.trim()) errors.phone = "Bitte geben Sie Ihre Telefonnummer für dringende Rückfragen an.";
+  if (values.customerType === "business" && !values.company.trim()) errors.company = "Bitte nennen Sie den Firmennamen.";
+  if (!values.billingSameAsLocation && !values.billingAddress.trim()) errors.billingAddress = "Bitte geben Sie Ihre Rechnungsanschrift an.";
+  if (!values.deliveryDate) errors.deliveryDate = "Bitte wählen Sie den gewünschten Liefertag.";
+  if (values.deliveryDate && values.startDate && values.deliveryDate > values.startDate) errors.deliveryDate = "Der Liefertag darf nicht nach dem Nutzungsbeginn liegen.";
   if (values.email.trim() && !emailPattern.test(values.email.trim())) {
-    errors.email = "Bitte prüfen Sie die eingegebene E-Mail-Adresse.";
+    errors.email = "Bitte geben Sie eine gültige E-Mail-Adresse ein.";
   }
   if (values.occasion === "Sonstiges" && !values.occasionOther.trim()) {
     errors.occasionOther = "Bitte beschreiben Sie den Anlass kurz.";
   }
   if (!values.privacyAccepted) {
-    errors.privacyAccepted = "Bitte stimmen Sie der Datenschutzerklärung zu.";
+    errors.privacyAccepted = "Bitte stimmen Sie der Verarbeitung Ihrer Angaben zu.";
   }
 
   return errors;
@@ -105,6 +118,8 @@ export async function submitInquiry(
     email: values.email.trim(),
     phone: values.phone.trim(),
     location: values.location.trim(),
+    company: values.company.trim(),
+    billingAddress: values.billingSameAsLocation ? values.location.trim() : values.billingAddress.trim(),
     occasionOther: values.occasionOther.trim(),
     message: values.message.trim(),
     privacyAccepted: true,

@@ -43,6 +43,11 @@ const errorTargets: Record<InquiryFieldName, string> = {
   phone: "inquiry-phone",
   contact: "inquiry-email",
   location: "inquiry-location",
+  customerType: "inquiry-customer-type",
+  company: "inquiry-company",
+  billingSameAsLocation: "inquiry-billing-same",
+  billingAddress: "inquiry-billing-address",
+  deliveryDate: "inquiry-delivery-date",
   startDate: "inquiry-start-date",
   endDate: "inquiry-end-date",
   model: "inquiry-model-unknown",
@@ -96,6 +101,9 @@ export function InquiryForm() {
       ? { occasion: normalizeDraftOccasion(draft.occasion) }
       : {}),
   };
+  const handedOffModel = draft.model
+    ? trailerModels.find((model) => model.id === formValues.model)
+    : undefined;
 
   function setField<Key extends keyof InquiryFormValues>(
     field: Key,
@@ -163,11 +171,11 @@ export function InquiryForm() {
     <section id="kontakt" className={styles.contact} aria-labelledby="contact-title">
       <div className={styles.inner}>
         <header className={styles.intro}>
-          <h2 id="contact-title">Sag uns Ort, Termin und Anlass.</h2>
+          <h2 id="contact-title">Ihre Veranstaltung. Unser Angebot.</h2>
           <div className={styles.introAside}>
             <p>
-              Ein paar Eckdaten genügen für den Anfang. Wir prüfen persönlich,
-              welcher Wagen und welcher Aufbau zu Ihrem Termin passen.
+              Wir prüfen persönlich, welcher Wagen und welcher Aufbau zu Ihrem
+              Termin passen.
             </p>
             <WhatsappButton />
           </div>
@@ -176,11 +184,7 @@ export function InquiryForm() {
         <div className={styles.workspace}>
           <aside className={styles.contactRail} aria-label="Direkte Kontaktwege">
             <div>
-              <h3>Lieber direkt?</h3>
-              <p>
-                WhatsApp ist der schnellste Weg. Telefon und E-Mail bleiben
-                genauso erreichbar.
-              </p>
+              <h3>Direkt Kontakt aufnehmen.</h3>
             </div>
 
             <div className={styles.directLinks}>
@@ -215,6 +219,23 @@ export function InquiryForm() {
               <p>Pflichtfelder sind mit * gekennzeichnet.</p>
             </div>
 
+            {handedOffModel && (
+              <div
+                className={styles.modelHandoff}
+                role="status"
+                aria-live="polite"
+              >
+                <span className={styles.modelHandoffMark} aria-hidden="true">
+                  {handedOffModel.name}
+                </span>
+                <span className={styles.modelHandoffLine} aria-hidden="true" />
+                <p>
+                  <strong>Modell {handedOffModel.name} übernommen</strong>
+                  <span>Die Auswahl ist bereits im Formular eingetragen.</span>
+                </p>
+              </div>
+            )}
+
             {errorEntries.length > 0 && (
               <div
                 ref={errorSummaryRef}
@@ -235,6 +256,20 @@ export function InquiryForm() {
             )}
 
             <div className={styles.formGrid}>
+              <label className={`${styles.field} ${styles.full}`} htmlFor="inquiry-customer-type">
+                <span>Ich frage an als</span>
+                <select id="inquiry-customer-type" name="customerType" value={formValues.customerType} onChange={handleTextField}>
+                  <option value="private">Privatperson</option>
+                  <option value="business">Firma / gewerblich</option>
+                </select>
+              </label>
+              {formValues.customerType === "business" && (
+                <label className={`${styles.field} ${styles.full}`} htmlFor="inquiry-company">
+                  <span>Firmenname *</span>
+                  <input id="inquiry-company" name="company" autoComplete="organization" required value={formValues.company} onChange={handleTextField} aria-invalid={Boolean(errors.company)} aria-describedby={describedBy("company")} />
+                  {errors.company && <span id="inquiry-company-error" className={styles.fieldError}>{errors.company}</span>}
+                </label>
+              )}
               <label className={styles.field} htmlFor="inquiry-name">
                 <span>Name *</span>
                 <input
@@ -256,12 +291,12 @@ export function InquiryForm() {
               </label>
 
               <label className={styles.field} htmlFor="inquiry-location">
-                <span>Ort oder PLZ *</span>
+                <span>Aufstellort: Straße, Hausnummer, PLZ und Ort *</span>
                 <input
                   id="inquiry-location"
                   name="location"
                   type="text"
-                  autoComplete="postal-code"
+                  autoComplete="section-setup street-address"
                   required
                   value={formValues.location}
                   onChange={handleTextField}
@@ -276,11 +311,12 @@ export function InquiryForm() {
               </label>
 
               <label className={styles.field} htmlFor="inquiry-email">
-                <span>E-Mail</span>
+                <span>E-Mail *</span>
                 <input
                   id="inquiry-email"
                   name="email"
                   type="email"
+                  required
                   autoComplete="email"
                   inputMode="email"
                   value={formValues.email}
@@ -302,27 +338,29 @@ export function InquiryForm() {
               </label>
 
               <label className={styles.field} htmlFor="inquiry-phone">
-                <span>Telefon</span>
+                <span>Telefon *</span>
                 <input
                   id="inquiry-phone"
                   name="phone"
                   type="tel"
+                  required
                   autoComplete="tel"
                   inputMode="tel"
                   value={formValues.phone}
                   onChange={handleTextField}
-                  aria-invalid={Boolean(errors.contact)}
+                  aria-invalid={Boolean(errors.phone)}
                   aria-describedby={[
                     "inquiry-contact-hint",
-                    errors.contact ? "inquiry-contact-error" : undefined,
+                    errors.phone ? "inquiry-phone-error" : undefined,
                   ]
                     .filter(Boolean)
                     .join(" ")}
                 />
+                {errors.phone && <span id="inquiry-phone-error" className={styles.fieldError}>{errors.phone}</span>}
               </label>
 
               <p id="inquiry-contact-hint" className={styles.contactHint}>
-                Bitte mindestens E-Mail oder Telefon angeben.
+                Telefon für dringende Rückfragen, E-Mail für Unterlagen und allgemeine Absprachen. Beides ist erforderlich.
                 {errors.contact && (
                   <span id="inquiry-contact-error" className={styles.fieldError}>
                     {errors.contact}
@@ -330,8 +368,24 @@ export function InquiryForm() {
                 )}
               </p>
 
+              <label className={`${styles.privacy} ${styles.full}`} htmlFor="inquiry-billing-same">
+                <input id="inquiry-billing-same" type="checkbox" checked={formValues.billingSameAsLocation} onChange={(event) => { setField("billingSameAsLocation", event.currentTarget.checked); setErrors((current) => { const next = { ...current }; delete next.billingAddress; return next; }); }} />
+                <span>Rechnungsanschrift entspricht dem Aufstellort</span>
+              </label>
+              {!formValues.billingSameAsLocation && (
+                <label className={`${styles.field} ${styles.full}`} htmlFor="inquiry-billing-address">
+                  <span>Rechnungsanschrift *</span>
+                  <textarea id="inquiry-billing-address" name="billingAddress" autoComplete="section-billing street-address" rows={3} required placeholder="Empfänger, Straße, Hausnummer, PLZ und Ort" value={formValues.billingAddress} onChange={handleTextField} aria-invalid={Boolean(errors.billingAddress)} aria-describedby={describedBy("billingAddress")} />
+                  {errors.billingAddress && <span id="inquiry-billing-address-error" className={styles.fieldError}>{errors.billingAddress}</span>}
+                </label>
+              )}
+              <label className={`${styles.field} ${styles.full}`} htmlFor="inquiry-delivery-date">
+                <span>Gewünschter Liefertag *</span>
+                <input id="inquiry-delivery-date" name="deliveryDate" type="date" required max={formValues.startDate || undefined} value={formValues.deliveryDate} onChange={handleTextField} aria-invalid={Boolean(errors.deliveryDate)} aria-describedby={describedBy("deliveryDate")} />
+                {errors.deliveryDate && <span id="inquiry-delivery-date-error" className={styles.fieldError}>{errors.deliveryDate}</span>}
+              </label>
               <label className={styles.field} htmlFor="inquiry-start-date">
-                <span>Von oder Termin *</span>
+                <span>Nutzungsbeginn *</span>
                 <input
                   id="inquiry-start-date"
                   name="startDate"
@@ -350,7 +404,7 @@ export function InquiryForm() {
               </label>
 
               <label className={styles.field} htmlFor="inquiry-end-date">
-                <span>Bis (optional)</span>
+                <span>Nutzungsende (optional bei eintägiger Nutzung)</span>
                 <input
                   id="inquiry-end-date"
                   name="endDate"
@@ -369,7 +423,7 @@ export function InquiryForm() {
               </label>
 
               <fieldset className={`${styles.fieldset} ${styles.full}`}>
-                <legend>Welches Modell kommt infrage?</legend>
+                <legend>Gewünschtes Modell</legend>
                 <div className={styles.modelChoices}>
                   {trailerModels.map((model) => (
                     <label key={model.id}>
@@ -394,7 +448,7 @@ export function InquiryForm() {
                       type="radio"
                       name="model"
                       value="unknown"
-                      aria-label="Modell noch unsicher, persönliche Beratung"
+                      aria-label="Modell noch unsicher, Beratung gewünscht"
                       checked={formValues.model === "unknown"}
                       onChange={() => setField("model", "unknown")}
                     />
@@ -497,7 +551,7 @@ export function InquiryForm() {
               <p>
                 {transportConfigured
                   ? "Ihre Angaben werden ausschließlich zur Bearbeitung dieser Anfrage verwendet."
-                  : "Vorschau: Der Mailversand folgt später. Aktuell werden keine Angaben übertragen."}
+                  : "Das Formular ist noch nicht aktiv. Mit „Eingaben prüfen“ werden Ihre Angaben nur im Browser geprüft und nicht an uns gesendet."}
               </p>
               <button
                 type={transportConfigured ? "submit" : "button"}
@@ -532,19 +586,19 @@ function FormResult({ status }: { status: FormStatus }) {
   const content = {
     success: {
       title: "Vielen Dank. Ihre Anfrage ist eingegangen.",
-      text: "Wir melden uns innerhalb unserer Erreichbarkeit persönlich. Eine Buchung oder Verfügbarkeit ist damit noch nicht bestätigt.",
+      text: "Wir melden uns innerhalb unserer Erreichbarkeit persönlich bei Ihnen.",
     },
     error: {
-      title: "Die Anfrage konnte gerade nicht gesendet werden.",
-      text: "Ihre Eingaben bleiben erhalten. Nutzen Sie alternativ WhatsApp oder rufen Sie uns an.",
+      title: "Ihre Anfrage konnte gerade nicht gesendet werden.",
+      text: "Ihre Eingaben bleiben erhalten. Bitte nutzen Sie WhatsApp oder rufen Sie uns an.",
     },
     spam: {
-      title: "Die Anfrage konnte nicht verarbeitet werden.",
+      title: "Ihre Anfrage konnte nicht gesendet werden.",
       text: "Bitte versuchen Sie es erneut oder nutzen Sie WhatsApp beziehungsweise Telefon.",
     },
     "not-configured": {
-      title: "Die Angaben sind vollständig, aber noch nicht gesendet.",
-      text: "Der Mailversand ist in dieser Vorschau noch nicht freigeschaltet. Nutzen Sie bis dahin WhatsApp, Telefon oder E-Mail.",
+      title: "Ihre Angaben sind vollständig, wurden aber nicht gesendet.",
+      text: "Das Formular ist noch nicht freigeschaltet. Bitte nutzen Sie WhatsApp, Telefon oder E-Mail.",
     },
   }[status];
 
@@ -559,7 +613,7 @@ function FormResult({ status }: { status: FormStatus }) {
       {status !== "success" && (
         <div className={styles.resultLinks}>
           <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
-            WhatsApp öffnen
+            Per WhatsApp anfragen
           </a>
           <a href={site.phoneHref}>{site.phone}</a>
         </div>

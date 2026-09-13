@@ -16,7 +16,7 @@ describe("Google-Maps-Einwilligung", () => {
       screen.getByRole("button", { name: "Google Maps laden" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "Ohne Karte fortfahren" }),
+      screen.getByRole("button", { name: "Ohne Google Maps fortfahren" }),
     ).toBeInTheDocument();
   });
 
@@ -35,11 +35,11 @@ describe("Google-Maps-Einwilligung", () => {
     expect(screen.getByText("Google Maps ist aktiviert.")).toBeInTheDocument();
 
     await user.click(
-      screen.getByRole("button", { name: "Karteneinstellung ändern" }),
+      screen.getByRole("button", { name: "Google Maps ausblenden" }),
     );
     expect(screen.queryByTitle(/Google Maps/i)).not.toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "Google Maps laden" }),
+      screen.getByRole("button", { name: "Google Maps jetzt laden" }),
     ).toBeInTheDocument();
   });
 
@@ -48,7 +48,7 @@ describe("Google-Maps-Einwilligung", () => {
     render(<MapConsent loadTimeoutMs={20} />);
 
     await user.click(
-      screen.getByRole("button", { name: "Ohne Karte fortfahren" }),
+      screen.getByRole("button", { name: "Ohne Google Maps fortfahren" }),
     );
     expect(screen.queryByTitle(/Google Maps/i)).not.toBeInTheDocument();
     expect(
@@ -56,9 +56,8 @@ describe("Google-Maps-Einwilligung", () => {
     ).toBeInTheDocument();
 
     await user.click(
-      screen.getByRole("button", { name: "Karteneinstellung ändern" }),
+      screen.getByRole("button", { name: "Google Maps jetzt laden" }),
     );
-    await user.click(screen.getByRole("button", { name: "Google Maps laden" }));
     await waitFor(() => {
       expect(screen.queryByTitle(/Google Maps/i)).not.toBeInTheDocument();
     });
@@ -66,7 +65,7 @@ describe("Google-Maps-Einwilligung", () => {
       screen.getByText("Die Karte konnte nicht geladen werden."),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "Erneut versuchen" }),
+      screen.getByRole("button", { name: "Google Maps erneut laden" }),
     ).toBeInTheDocument();
   });
 });

@@ -158,8 +158,9 @@ export default function PrivacyPage() {
           Vorschauzustand hin.
         </p>
         <p>
-          Vorgesehen sind Name, mindestens E-Mail-Adresse oder Telefonnummer,
-          Ort oder Postleitzahl, Termin, gewünschtes Modell, Anlass und eine
+          Vorgesehen sind Name, E-Mail-Adresse und Telefonnummer,
+          Privat- oder Firmenanfrage, gegebenenfalls Firmenname, Aufstellort und
+          Rechnungsanschrift, Liefertag und Nutzungszeitraum, gewünschtes Modell, Anlass und eine
           optionale Nachricht. Vor der späteren Aktivierung des Mailversands wird
           dieser Abschnitt an den tatsächlich eingesetzten Versandweg, die
           Speicherdauer und die Empfänger angepasst.

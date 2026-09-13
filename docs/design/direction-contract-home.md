@@ -103,7 +103,7 @@ Dieser Übergang ist der zweite große Spannungsmoment der Seite. Er erklärt ni
 - Die Wagen sind beheizt und ganzjährig einsetzbar.
 - Waschbecken, Spiegel, Innen-/Außenbeleuchtung, Spülung und Tork-Spender gehören zur Ausstattung.
 - Auch schwierige Aufstellungen werden lösungsorientiert geplant.
-- Anfahrt kostet 1,10 €/km und wird transparent separat berücksichtigt.
+- Transport je beladener Strecke: bis 50 km 50 € brutto, darüber 1,10 € brutto je Mehrkilometer. Keine Kilometerpreise in der Modellansicht.
 
 Die Darstellung nutzt wenige große Beweise, echte Detailbilder und präzise Beschriftungen. Keine gleichförmige Icon-Kartenwand.
 
@@ -138,7 +138,7 @@ Der Ablauf wird als konkrete Zeitlinie erzählt und darf räumlich mit Servicefo
 - WhatsApp bleibt der schnellste, prominenteste Weg. Telefonnummer, E-Mail und Erreichbarkeit sind sichtbar: Mo–Fr 08:00–13:00 und 15:00–19:00, Sa 10:00–16:00.
 - Das Formular ist eine vollwertige Alternative mit folgenden Feldern:
   - Name
-  - mindestens eine Kontaktmöglichkeit: E-Mail oder Telefon
+  - E-Mail und Telefon sind beide Pflichtfelder
   - Veranstaltungsort oder Postleitzahl
   - Zeitraum/Datum
   - Modell S, M, L oder „weiß nicht“
@@ -291,3 +291,12 @@ Vor dem Produktionsbuild muss die Spezifikation jede verpflichtende Kapitel- und
 ## FINISH
 
 unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+
+## Bestätigter Review-Nachtrag 2026-09-13
+
+Die Nutzerkorrekturen aus `../review-2026-09-13.md` ersetzen ältere widersprechende Details dieses Vertrags. Richtung, Farben und Modellreise bleiben bestätigt. Innenraumbilder werden ausgeblendet, GEKA-Illustration und FAQ ergänzt; Google-Stimmen erhalten konsistente, lesbare Quellen- und Autorenzeilen.
+# Verbindlicher Nachtrag: keine mitwandernden Wagen
+
+Weiterer Nutzerentscheid: Die separate statische Größenstaffel „Von S bis L.“ entfällt ebenfalls. Die Galerie enthält bereits die Kapazitäten; direkt danach folgt der interaktive S/M/L-Modellvergleich. Keine zweite Modellfamilie dazwischen.
+
+Nutzerentscheidung 2026-09-13: Die Scrollanimation am Anfang wirkt künstlich und wird entfernt. Dieser Nachtrag ersetzt frühere Vorgaben für LeadVehicleMotion, wandernde Wagen, Sticky-Fahrspur und verlängerte Scrollstationen. Hero und Modellübersicht zeigen S/M/L statisch im normalen Dokumentfluss. Der interaktive Modellvergleich per Klick bleibt bestehen. Bestehende Farben, Typografie, Produktbilder und Inhalte bleiben erhalten.

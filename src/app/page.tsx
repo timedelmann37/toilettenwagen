@@ -1,6 +1,5 @@
 import { InquiryForm } from "@/components/InquiryForm";
-import { LeadVehicleMotion } from "@/components/LeadVehicleMotion";
-import { ModelJourney } from "@/components/ModelJourney";
+import { Faq } from "@/components/Faq";
 import { ModelSelector } from "@/components/ModelSelector";
 import { ProcessStory } from "@/components/ProcessStory";
 import { RegionTrust } from "@/components/RegionTrust";
@@ -43,10 +42,11 @@ export default function Home() {
           __html: JSON.stringify(localBusinessJsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <section id="wagen" className={styles.hero} data-lead-hero>
+      <section id="wagen" className={styles.hero}>
         <div className={styles.heroInner}>
           <div className={styles.heroCopy}>
             <h1 className={styles.headline}>Drei Größen. Sauber gelöst.</h1>
+            <div className={styles.heroDetails}>
             <p className={styles.subtext}>
               Gepflegte, beheizte Toilettenwagen für Feiern, Veranstaltungen
               und Einsätze rund um Niederdreisbach.
@@ -54,26 +54,27 @@ export default function Home() {
             <div className={styles.actions}>
               <WhatsappButton />
               <a href="#kontakt" className={styles.secondaryAction}>
-                Anfrage vorbereiten
+                Zum Anfrageformular
               </a>
+            </div>
             </div>
           </div>
 
           <div
             className={styles.family}
             role="group"
+            tabIndex={0}
             aria-label="Toilettenwagen als Modellfamilie S, M und L"
           >
             {trailerModels.map((model, index) => (
               <figure
                 key={model.id}
                 className={`${styles.vehicle} ${vehicleClasses[model.id]}`}
-                data-lead-origin={model.id === "s" ? "true" : undefined}
               >
                 <VehicleImage
                   model={model.id}
                   alt={`Freigestellter Toilettenwagen Modell ${model.name} mit geöffneten Türen`}
-                  sizes="(max-width: 767px) 62vw, 35vw"
+                  sizes="(max-width: 767px) 78vw, 35vw"
                   loading="eager"
                   fetchPriority={index === 1 ? "high" : "auto"}
                 />
@@ -88,14 +89,12 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <LeadVehicleMotion />
-      <ModelJourney />
       <ModelSelector />
       <ServiceProof />
       <ProcessStory />
       <RegionTrust />
       <InquiryForm />
+      <Faq />
     </>
   );
 }

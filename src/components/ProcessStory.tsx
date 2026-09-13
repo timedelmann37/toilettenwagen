@@ -13,26 +13,26 @@ const processSteps: readonly ProcessStep[] = [
     number: "01",
     title: "Anfrage senden.",
     description:
-      "Ort, Termin und Anlass erreichen uns per WhatsApp oder Formular.",
+      "Senden Sie uns Ort, Termin und Anlass per WhatsApp oder Formular.",
     timing: "Der Ausgangspunkt",
   },
   {
     number: "02",
     title: "Angebot erhalten.",
     description:
-      "Innerhalb unserer Erreichbarkeit üblicherweise in unter zwei Stunden.",
+      "Während unserer Erreichbarkeit erhalten Sie das Angebot üblicherweise innerhalb von zwei Stunden.",
     timing: "Meist unter 2 Std.",
   },
   {
     number: "03",
     title: "Auftrag bestätigen.",
     description:
-      "Fallweise wird mit der Bestätigung eine Anzahlung von 30 % fällig.",
-    timing: "Fallweise 30 %",
+      "Je nach Auftrag wird mit der Bestätigung eine Anzahlung von 30 % fällig.",
+    timing: "Je nach Auftrag",
   },
   {
     number: "04",
-    title: "Lieferung & Aufbau.",
+    title: "Lieferung und Aufbau.",
     description:
       "Meist einen Tag vor Ihrem Anlass steht der Wagen am abgestimmten Platz.",
     timing: "Meist −1 Tag",
@@ -40,7 +40,7 @@ const processSteps: readonly ProcessStep[] = [
   },
   {
     number: "05",
-    title: "Abholung & Abbau.",
+    title: "Abholung und Abbau.",
     description:
       "Meist einen Tag nach Ihrem Anlass übernehmen wir Abbau und Abholung.",
     timing: "Meist +1 Tag",
@@ -48,9 +48,9 @@ const processSteps: readonly ProcessStep[] = [
   },
   {
     number: "06",
-    title: "Sauber abschließen.",
+    title: "Reinigung und Abschluss.",
     description:
-      "Nach der Reinigung folgen Schlussrechnung und die Bitte um eine Google-Bewertung.",
+      "Nach der Rückkehr reinigen wir den Wagen, senden die Schlussrechnung und bitten um eine Google-Bewertung.",
     timing: "Nach der Rückkehr",
   },
 ];
@@ -60,21 +60,17 @@ export function ProcessStory() {
     <section id="ablauf" className={styles.process}>
       <div className={styles.inner}>
         <header className={styles.intro}>
-          <h2>Von der ersten Nachricht bis zum sauberen Abschluss.</h2>
-          <p>
-            Sechs klare Stationen führen von Ihrer Anfrage bis zur
-            Schlussrechnung – persönlich und auf Ihren Termin abgestimmt.
-          </p>
+          <h2>So läuft Ihre Miete ab.</h2>
         </header>
 
         <aside className={styles.advance} aria-labelledby="advance-title">
           <div className={styles.advanceIntro}>
             <h3 id="advance-title">Wie früh sollten Sie anfragen?</h3>
-            <p>Eine Orientierung für die Planung, keine Verfügbarkeitszusage.</p>
+            <p>Von Ihrer Anfrage bis zur Abholung.</p>
           </div>
           <dl>
             <div className={styles.longLead}>
-              <dt>August-Hochzeiten</dt>
+              <dt>Hochzeiten im August</dt>
               <dd>idealerweise etwa ein Jahr vorher</dd>
               <span className={styles.leadBar} aria-hidden="true" />
             </div>
@@ -127,13 +123,6 @@ export function ProcessStory() {
           </ol>
         </div>
 
-        <footer className={styles.regionBridge}>
-          <h3>Weiter zur Region.</h3>
-          <p>
-            Als Nächstes sehen Sie, wo wir rund um Niederdreisbach für Sie
-            unterwegs sind.
-          </p>
-        </footer>
       </div>
     </section>
   );

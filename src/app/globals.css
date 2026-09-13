@@ -92,3 +92,5 @@ a {
     scroll-behavior: auto !important;
   }
 }
+.siteLogo { display: block; width: 11rem; height: auto; max-height: 4rem; object-fit: contain; }
+@media (min-width: 768px) { .siteLogo { width: 13rem; max-height: 4.25rem; } }

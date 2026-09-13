@@ -28,7 +28,9 @@ export const site = {
     { days: "Sa", time: "10:00-16:00" },
   ],
   serviceRadiusKm: 125,
-  travelPricePerKm: "1,10 €",
+  travelBaseDistanceKm: 50,
+  travelBasePriceGross: "50 €",
+  travelPricePerAdditionalKmGross: "1,10 €",
 } as const;
 
 /** Sticky-Ankernavigation: Reihenfolge = Sektionen der Startseite.

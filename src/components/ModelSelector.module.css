@@ -10,25 +10,18 @@
 }
 
 .header {
-  max-width: 54rem;
+  display: block;
+  max-width: none;
 }
 
 .header h2 {
-  max-width: 13ch;
+  max-width: 20ch;
   font-family: var(--font-display);
-  font-size: clamp(3.1rem, 6.5vw, 5.75rem);
-  font-weight: 650;
-  line-height: 0.96;
-  letter-spacing: -0.035em;
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
   text-wrap: balance;
-}
-
-.header p {
-  max-width: 38rem;
-  margin-top: 1.35rem;
-  color: var(--ink-soft);
-  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
-  line-height: 1.5;
 }
 
 .modelPicker {
@@ -49,8 +42,9 @@
 .modelChoices {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--line-strong);
-  border-bottom: 1px solid var(--line-strong);
+  border-top: 1px solid rgb(249 251 252 / 0.32);
+  border-bottom: 1px solid rgb(249 251 252 / 0.32);
+  background: var(--ink);
 }
 
 .modelChoices label {
@@ -59,7 +53,7 @@
 }
 
 .modelChoices label + label {
-  border-left: 1px solid var(--line);
+  border-left: 1px solid rgb(249 251 252 / 0.2);
 }
 
 .modelChoices input,
@@ -77,7 +71,7 @@
   align-content: center;
   gap: 0.35rem;
   padding: 1.1rem clamp(1rem, 2vw, 2rem);
-  color: var(--ink-soft);
+  color: #d5e0e3;
   transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
@@ -131,6 +125,12 @@
   padding-top: clamp(2rem, 8vw, 8rem);
 }
 
+.selectedVehicle {
+  width: 100%;
+  min-width: 0;
+  transform-origin: 50% 78%;
+}
+
 .productStage picture,
 .productStage img {
   display: block;
@@ -142,14 +142,22 @@
   filter: drop-shadow(0 1.5rem 1.7rem rgb(22 43 57 / 0.14));
 }
 
-.productStage figcaption {
-  max-width: 34rem;
-  margin-top: 1rem;
-  border-top: 1px solid var(--line);
-  padding-top: 0.8rem;
-  color: var(--ink-soft);
-  font-size: 0.82rem;
-  line-height: 1.45;
+@media (prefers-reduced-motion: no-preference) {
+  .selectedVehicle {
+    animation: selected-vehicle-enter 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+@keyframes selected-vehicle-enter {
+  from {
+    opacity: 0.72;
+    transform: translateY(0.35rem) scale(0.995);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .modelData {
@@ -160,8 +168,8 @@
 
 .modelLead h3 {
   font-family: var(--font-display);
-  font-size: clamp(1.65rem, 2.3vw, 2.2rem);
-  font-weight: 620;
+  font-size: clamp(1.9rem, 2.8vw, 2.65rem);
+  font-weight: 680;
   line-height: 1;
   letter-spacing: -0.025em;
 }
@@ -234,7 +242,7 @@
 .price {
   margin-top: 1.5rem;
   font-family: var(--font-display);
-  font-size: clamp(2.7rem, 5vw, 4.5rem);
+  font-size: clamp(3.2rem, 5.5vw, 5rem);
   font-weight: 700;
   line-height: 0.95;
   letter-spacing: -0.04em;
@@ -465,12 +473,17 @@
 
 .advisor {
   display: grid;
-  grid-template-columns: minmax(15rem, 0.72fr) minmax(22rem, 1fr) minmax(18rem, 0.82fr);
+  grid-template-columns: minmax(15rem, 0.7fr) minmax(30rem, 1.3fr);
   gap: clamp(2rem, 5vw, 5rem);
   align-items: start;
   margin-top: clamp(5rem, 9vw, 9rem);
   border-top: 1px solid var(--line-strong);
   padding-top: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.advisorTool {
+  display: grid;
+  gap: 1.5rem;
 }
 
 .advisorIntro h3 {
@@ -491,7 +504,9 @@
 
 .advisorForm {
   display: grid;
+  grid-template-columns: minmax(10rem, 0.72fr) minmax(14rem, 1fr) auto;
   gap: 1rem;
+  align-items: end;
 }
 
 .advisorForm label {
@@ -538,12 +553,15 @@
 }
 
 .recommendation {
-  min-height: 8rem;
   border-radius: var(--radius-card);
   background: var(--surface);
   padding: 1.35rem;
   color: var(--ink-soft);
   line-height: 1.45;
+}
+
+.recommendation:empty {
+  display: none;
 }
 
 .recommendation h4 {
@@ -576,8 +594,12 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .recommendation {
-    grid-column: 2;
+  .advisorForm {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .advisorForm button {
+    grid-column: 1 / -1;
   }
 }
 
@@ -624,6 +646,11 @@
     padding-top: 0;
   }
 
+  .selectedVehicle {
+    width: 88%;
+    margin-inline: auto;
+  }
+
   .modelData {
     padding: 1.35rem;
   }
@@ -662,7 +689,11 @@
     max-width: 12ch;
   }
 
-  .recommendation {
+  .advisorForm {
+    grid-template-columns: 1fr;
+  }
+
+  .advisorForm button {
     grid-column: auto;
   }
 
@@ -679,4 +710,5 @@
   .advisorForm button {
     transition: none;
   }
+
 }

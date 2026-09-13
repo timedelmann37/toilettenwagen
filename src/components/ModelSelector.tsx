@@ -25,13 +25,13 @@ type PriceView = "private" | "business";
 type Recommendation =
   | { kind: "idle" }
   | { kind: "model"; modelId: TrailerModelId }
-  | { kind: "advice" };
+  | { kind: "advice"; reason: "missing" | "outside-range" };
 
 const occasions = [
   "Hochzeit oder private Feier",
   "Firmenveranstaltung",
   "Kirmes oder Volksfest",
-  "Baustelle oder Gewerbe",
+  "Gewerbliche Veranstaltung",
   "Kommune oder öffentlicher Einsatz",
   "Sonstiger Anlass",
 ] as const;
@@ -155,8 +155,14 @@ export function ModelSelector() {
     const parsedCount = Number(personCount);
     const modelId = recommendModel(parsedCount);
 
-    if (!personCount.trim() || !modelId) {
-      setRecommendation({ kind: "advice" });
+    if (!personCount.trim()) {
+      setRecommendation({ kind: "advice", reason: "missing" });
+      publishDraft({ model: null, occasion: occasion || null });
+      return;
+    }
+
+    if (!modelId) {
+      setRecommendation({ kind: "advice", reason: "outside-range" });
       publishDraft({ model: null, occasion: occasion || null });
       return;
     }
@@ -166,9 +172,7 @@ export function ModelSelector() {
     publishDraft({ model: modelId, occasion: occasion || null });
   }
 
-  function prepareInquiry() {
-    publishDraft({ model: selectedId, occasion: occasion || null });
-  }
+
 
   function prepareAdvice() {
     publishDraft({ model: null, occasion: occasion || null });
@@ -182,8 +186,7 @@ export function ModelSelector() {
     >
       <div className={styles.inner}>
         <header className={styles.header}>
-          <h2 id="model-selector-title">Drei Größen. Direkt vergleichbar.</h2>
-          <p>Wählen Sie ein Modell und sehen Sie alle Daten in einer Ansicht.</p>
+          <h2 id="model-selector-title">Welcher Wagen passt?</h2>
         </header>
 
         <fieldset className={styles.modelPicker}>
@@ -212,17 +215,18 @@ export function ModelSelector() {
 
         <div className={styles.productView}>
           <figure className={styles.productStage}>
-            <VehicleImage
+            <div
               key={selectedModel.id}
-              model={selectedModel.id}
-              alt={`Freigestellter Toilettenwagen Modell ${selectedModel.name}`}
-              sizes="(max-width: 767px) 92vw, 52vw"
-              loading="eager"
-            />
-            <figcaption>
-              Modell {selectedModel.name} · Maße und Aufteilung beziehen sich
-              auf den gezeigten Wagen.
-            </figcaption>
+              className={styles.selectedVehicle}
+              data-selected-vehicle={selectedModel.id}
+            >
+              <VehicleImage
+                model={selectedModel.id}
+                alt={`Freigestellter Toilettenwagen Modell ${selectedModel.name}`}
+                sizes="(max-width: 767px) 92vw, 52vw"
+                loading="eager"
+              />
+            </div>
           </figure>
 
           <article
@@ -238,7 +242,7 @@ export function ModelSelector() {
 
             <div className={styles.priceBlock}>
               <fieldset className={styles.pricePicker}>
-                <legend>Preisansicht</legend>
+                <legend>Preise anzeigen für</legend>
                 <div>
                   <label>
                     <input
@@ -323,19 +327,13 @@ export function ModelSelector() {
             </div>
 
             <div className={styles.costNotes} aria-label="Kostenhinweise">
-              <p>Anfahrt: 1,10 €/km, nicht im Mietpreis enthalten.</p>
-              <p>Lieferung und Abholung werden separat berechnet.</p>
-              <p>Liefer- und Abholtag zählen nicht als Miettage.</p>
+              <p>
+                Liefer- und Abholtag zählen nicht als Miettage. Bei längerer Mietdauer erhalten Sie günstigere Konditionen.
+              </p>
               <p>Verbindlich ist das individuelle Angebot.</p>
             </div>
 
-            <a
-              href="#kontakt"
-              className={styles.inquiryLink}
-              onClick={prepareInquiry}
-            >
-              Modell {selectedModel.name} anfragen
-            </a>
+
           </article>
         </div>
 
@@ -347,8 +345,8 @@ export function ModelSelector() {
             <header>
               <h3 id="no-script-comparison-title">Alle Modelle im Überblick</h3>
               <p>
-                Die Auswahl oben benötigt JavaScript. Hier stehen die
-                vollständigen Kerndaten aller drei Größen direkt lesbar.
+                Ohne JavaScript finden Sie hier die vollständigen Kerndaten
+                aller drei Modelle.
               </p>
             </header>
             <div className={styles.noScriptModels}>
@@ -395,8 +393,7 @@ export function ModelSelector() {
                 ))}
               </ul>
               <p>
-                Anfahrt kostet 1,10 €/km. Lieferung und Abholung werden
-                separat berechnet; verbindlich ist das individuelle Angebot.
+                Bei längerer Mietdauer erhalten Sie günstigere Konditionen. Verbindlich ist das individuelle Angebot.
               </p>
             </div>
           </section>
@@ -404,75 +401,85 @@ export function ModelSelector() {
 
         <div className={styles.advisor}>
           <div className={styles.advisorIntro}>
-            <h3>Unsicher bei der Größe?</h3>
+            <h3>Passende Größe finden.</h3>
             <p>
-              Eine Personenzahl reicht für eine erste, unverbindliche
-              Orientierung.
+              Welche Größe passt zu Ihrer Veranstaltung?
             </p>
           </div>
 
-          <form className={styles.advisorForm} onSubmit={handleRecommendation} noValidate>
-            <label>
-              <span>Geschätzte Personenzahl</span>
-              <input
-                type="number"
-                inputMode="numeric"
-                min="1"
-                step="1"
-                value={personCount}
-                onChange={(event) => setPersonCount(event.target.value)}
-              />
-            </label>
-            <label>
-              <span>Anlass (optional)</span>
-              <select
-                value={occasion}
-                onChange={(event) => handleOccasionChange(event.target.value)}
-              >
-                <option value="">Bitte auswählen</option>
-                {occasions.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <button type="submit">Größe einschätzen</button>
-          </form>
+          <div className={styles.advisorTool}>
+            <form
+              className={styles.advisorForm}
+              onSubmit={handleRecommendation}
+              noValidate
+            >
+              <label>
+                <span>Geschätzte Personenzahl</span>
+                <input
+                  type="number"
+                  inputMode="numeric"
+                  min="1"
+                  step="1"
+                  value={personCount}
+                  onChange={(event) => setPersonCount(event.target.value)}
+                />
+              </label>
+              <label>
+                <span>Anlass (optional)</span>
+                <select
+                  value={occasion}
+                  onChange={(event) => handleOccasionChange(event.target.value)}
+                >
+                  <option value="">Bitte auswählen</option>
+                  {occasions.map((item) => (
+                    <option key={item} value={item}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <button type="submit">Passende Größe anzeigen</button>
+            </form>
 
-          <div className={styles.recommendation} role="status" aria-live="polite">
-            {recommendation.kind === "idle" && (
-              <p>
-                Das Ergebnis ist eine Orientierung, kein Preisangebot und keine
-                Verfügbarkeitsprüfung.
-              </p>
-            )}
-            {recommendation.kind === "model" && (
-              <>
-                <h4>
-                  Unverbindliche Orientierung: Modell {recommendation.modelId.toUpperCase()}
-                </h4>
-                <p>
-                  Anlass, Zeitraum, Anschlüsse und Verfügbarkeit können die
-                  persönliche Empfehlung verändern.
-                </p>
-                <a href="#kontakt" onClick={prepareInquiry}>
-                  Anfrage vorbereiten
-                </a>
-              </>
-            )}
-            {recommendation.kind === "advice" && (
-              <>
-                <h4>Persönliche Beratung empfohlen</h4>
-                <p>
-                  Für diese Angabe empfehlen wir den passenden Wagen persönlich.
-                  Anlass, Zeitraum, Anschlüsse und Verfügbarkeit entscheiden mit.
-                </p>
-                <a href="#kontakt" onClick={prepareAdvice}>
-                  Beratung anfragen
-                </a>
-              </>
-            )}
+            <div
+              className={styles.recommendation}
+              role="status"
+              aria-live="polite"
+            >
+              {recommendation.kind === "model" && (
+                <>
+                  <h4>
+                    Orientierung: Modell {recommendation.modelId.toUpperCase()}
+                  </h4>
+                  <p>
+                    Wir bestätigen die passende Größe persönlich. Anlass,
+                    Mietdauer, Anschlüsse und Verfügbarkeit können die Empfehlung
+                    verändern.
+                  </p>
+
+                </>
+              )}
+              {recommendation.kind === "advice" &&
+                recommendation.reason === "missing" && (
+                  <>
+                    <h4>Personenzahl fehlt</h4>
+                    <p>Geben Sie eine ganze Zahl zwischen 1 und 600 ein.</p>
+                  </>
+                )}
+              {recommendation.kind === "advice" &&
+                recommendation.reason === "outside-range" && (
+                  <>
+                    <h4>Persönliche Auswahl empfohlen</h4>
+                    <p>
+                      Für diese Personenzahl lässt sich kein Modell automatisch
+                      zuordnen. Wir prüfen die passende Lösung persönlich.
+                    </p>
+                    <a href="#kontakt" onClick={prepareAdvice}>
+                      Persönliche Beratung anfragen
+                    </a>
+                  </>
+                )}
+            </div>
           </div>
         </div>
       </div>
