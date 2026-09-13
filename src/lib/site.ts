@@ -29,8 +29,10 @@ export const site = {
   ],
   serviceRadiusKm: 125,
   travelBaseDistanceKm: 50,
-  travelBasePriceGross: "50 €",
-  travelPricePerAdditionalKmGross: "1,10 €",
+  // Summe aller beladenen Strecken für Lieferung und Abholung; ohne Leerfahrten.
+  travelBasePriceNet: "50 €",
+  travelBasePriceGross: "59,50 €",
+  travelPricePerAdditionalKmNet: "1,10 €",
 } as const;
 
 /** Sticky-Ankernavigation: Reihenfolge = Sektionen der Startseite.

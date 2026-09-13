@@ -37,7 +37,7 @@ Was eine Nachbar-Firma nicht wahrheitsgemäß kopieren kann:
 - **Kunde stellt bereit:** Stromanschluss 230 V, Wasseranschluss, fester ebener Untergrund, Abwasseranschluss vor Ort inkl. Genehmigung.
 - **Ablauf:** Anfrage → Angebot (< 2 h) → Auftragsbestätigung → ggf. 30 % Anzahlung → Anlieferung/Aufbau (meist 1 Tag vorher) → Abholung/Abbau (meist 1 Tag nach Event) → Reinigung → Schlussrechnung + Bitte um Google-Bewertung.
 - **Buchungsvorlauf:** Hochzeit (August) idealerweise 1 Jahr vorher, sonst 3–6 Monate.
-- **Standort der Wagen:** Niederdreisbach. **Transport:** je beladener Strecke bis 50 km 50 € brutto, danach 1,10 € brutto pro Mehrkilometer; Lieferung und Abholung, keine Leerfahrten. Brutto vorläufig vom User freigegeben.
+- **Standort der Wagen:** Niederdreisbach. **Transport:** Lieferung und Abholung zusammen bis insgesamt 50 beladene km pauschal 50 € netto (59,50 € brutto), danach 1,10 € netto pro Mehrkilometer; keine Leerfahrten. Auf- und Abbau separat, ohne Website-Preisangabe. Am 13.09.2026 bestätigt.
 
 ## Capabilities and Constraints
 

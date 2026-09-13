@@ -17,8 +17,8 @@
   --accent: #246bb5;
   --accent-strong: #185894;
   --accent-contrast: #f9fbfc;
-  --whatsapp: #1e8449;
-  --whatsapp-strong: #176f3c;
+  --whatsapp: #25d366;
+  --whatsapp-strong: #20bd5a;
   --font-display: var(--font-bricolage), var(--font-hanken), sans-serif;
 }
 
@@ -94,3 +94,10 @@ a {
 }
 .siteLogo { display: block; width: 11rem; height: auto; max-height: 4rem; object-fit: contain; }
 @media (min-width: 768px) { .siteLogo { width: 13rem; max-height: 4.25rem; } }
+
+/* Keep anchored sections below both persistent contact actions on smaller screens. */
+@media (max-width: 1279px) {
+  #wagen, #modellvergleich, #service, #ablauf, #region, #kontakt, #faq {
+    scroll-margin-top: 8.5rem;
+  }
+}

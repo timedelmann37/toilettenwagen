@@ -256,6 +256,43 @@ export function InquiryForm() {
             )}
 
             <div className={styles.formGrid}>
+              <fieldset className={`${styles.fieldset} ${styles.full}`}>
+                <legend>Gewünschtes Modell</legend>
+                <div className={styles.modelChoices}>
+                  {trailerModels.map((model) => (
+                    <label key={model.id}>
+                      <input
+                        id={`inquiry-model-${model.id}`}
+                        type="radio"
+                        name="model"
+                        value={model.id}
+                        aria-label={`Modell ${model.name}, bis ${model.capacity} Personen`}
+                        checked={formValues.model === model.id}
+                        onChange={() => setField("model", model.id)}
+                      />
+                      <span>
+                        <strong>{model.name}</strong>
+                        <small>bis {model.capacity} Personen</small>
+                      </span>
+                    </label>
+                  ))}
+                  <label>
+                    <input
+                      id="inquiry-model-unknown"
+                      type="radio"
+                      name="model"
+                      value="unknown"
+                      aria-label="Modell noch unsicher, Beratung gewünscht"
+                      checked={formValues.model === "unknown"}
+                      onChange={() => setField("model", "unknown")}
+                    />
+                    <span>
+                      <strong>Noch unsicher</strong>
+                      <small>Wir beraten persönlich</small>
+                    </span>
+                  </label>
+                </div>
+              </fieldset>
               <label className={`${styles.field} ${styles.full}`} htmlFor="inquiry-customer-type">
                 <span>Ich frage an als</span>
                 <select id="inquiry-customer-type" name="customerType" value={formValues.customerType} onChange={handleTextField}>
@@ -375,7 +412,7 @@ export function InquiryForm() {
               {!formValues.billingSameAsLocation && (
                 <label className={`${styles.field} ${styles.full}`} htmlFor="inquiry-billing-address">
                   <span>Rechnungsanschrift *</span>
-                  <textarea id="inquiry-billing-address" name="billingAddress" autoComplete="section-billing street-address" rows={3} required placeholder="Empfänger, Straße, Hausnummer, PLZ und Ort" value={formValues.billingAddress} onChange={handleTextField} aria-invalid={Boolean(errors.billingAddress)} aria-describedby={describedBy("billingAddress")} />
+                  <input id="inquiry-billing-address" name="billingAddress" autoComplete="section-billing street-address" required placeholder="Empfänger, Straße, Hausnummer, PLZ und Ort" value={formValues.billingAddress} onChange={handleTextField} aria-invalid={Boolean(errors.billingAddress)} aria-describedby={describedBy("billingAddress")} />
                   {errors.billingAddress && <span id="inquiry-billing-address-error" className={styles.fieldError}>{errors.billingAddress}</span>}
                 </label>
               )}
@@ -422,43 +459,6 @@ export function InquiryForm() {
                 )}
               </label>
 
-              <fieldset className={`${styles.fieldset} ${styles.full}`}>
-                <legend>Gewünschtes Modell</legend>
-                <div className={styles.modelChoices}>
-                  {trailerModels.map((model) => (
-                    <label key={model.id}>
-                      <input
-                        id={`inquiry-model-${model.id}`}
-                        type="radio"
-                        name="model"
-                        value={model.id}
-                        aria-label={`Modell ${model.name}, bis ${model.capacity} Personen`}
-                        checked={formValues.model === model.id}
-                        onChange={() => setField("model", model.id)}
-                      />
-                      <span>
-                        <strong>{model.name}</strong>
-                        <small>bis {model.capacity} Personen</small>
-                      </span>
-                    </label>
-                  ))}
-                  <label>
-                    <input
-                      id="inquiry-model-unknown"
-                      type="radio"
-                      name="model"
-                      value="unknown"
-                      aria-label="Modell noch unsicher, Beratung gewünscht"
-                      checked={formValues.model === "unknown"}
-                      onChange={() => setField("model", "unknown")}
-                    />
-                    <span>
-                      <strong>Noch unsicher</strong>
-                      <small>Wir beraten persönlich</small>
-                    </span>
-                  </label>
-                </div>
-              </fieldset>
 
               <label className={`${styles.field} ${styles.full}`} htmlFor="inquiry-occasion">
                 <span>Anlass</span>

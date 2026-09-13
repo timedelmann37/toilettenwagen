@@ -68,7 +68,7 @@ describe("Startseite", () => {
       }),
     ).toBeInTheDocument();
     expect(section.getByText(/Liefer- und Abholtag zählen nicht als Miettage/i)).toBeInTheDocument();
-    expect(section.getByText(/Je Strecke mit angehängtem Wagen/i)).toBeInTheDocument();
+    expect(section.getByText(/Für Lieferung und Abholung zusammen/i)).toBeInTheDocument();
     expect(section.getAllByText(/Abwasserrohre/i).length).toBeGreaterThan(0);
     expect(section.getAllByText(/10 Meter Frischwasserschlauch/i).length).toBeGreaterThan(0);
     expect(section.getAllByText(/maßgefertigte Holzabdeckungen/i).length).toBeGreaterThan(0);
@@ -81,7 +81,7 @@ describe("Startseite", () => {
       "Wasseranschluss",
       "Fester, ebener Untergrund",
       "Abwasseranschluss vor Ort",
-      "Erforderliche Genehmigung",
+      "Abwassernutzung vorab klären",
     ]) {
       expect(section.getByText(requirement)).toBeInTheDocument();
     }
@@ -148,7 +148,8 @@ describe("Startseite", () => {
     expect(steps[4]).toHaveTextContent(/einen Tag nach/i);
     expect(steps[5]).toHaveTextContent(/Reinigung/i);
     expect(steps[5]).toHaveTextContent(/Schlussrechnung/i);
-    expect(steps[5]).toHaveTextContent(/Google-Bewertung/i);
+    expect(steps[5]).toHaveTextContent(/Schlussrechnung/i);
+    expect(steps[5]).not.toHaveTextContent(/Google-Bewertung/i);
 
     expect(section.getByText(/Hochzeiten im August/i)).toBeInTheDocument();
     expect(section.getByText(/etwa ein Jahr vorher/i)).toBeInTheDocument();
@@ -179,7 +180,10 @@ describe("Startseite", () => {
       "Niederfischbach",
       "Dillenburg",
       "Haiger",
-      "Westerwald",
+      "Siegen",
+      "Netphen",
+      "Rennerod",
+      "Betzdorf",
     ]) {
       expect(section.getByText(place)).toBeInTheDocument();
     }

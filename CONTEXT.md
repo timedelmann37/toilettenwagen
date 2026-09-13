@@ -34,7 +34,7 @@ Ein Kalendertag, der als Nutzungstag berechnet wird. **Liefer- und Abholtag zäh
 _Avoid_: Nutzungstag, Einsatztag.
 
 **Anfahrt**:
-Je Strecke mit angehängtem Wagen: bis 50 km 50 € brutto, danach 1,10 € brutto je Mehrkilometer. Lieferung und Abholung werden jeweils einmal berechnet, Leerfahrten nicht. Nicht im Mietpreis enthalten.
+Lieferung und Abholung zusammen: bis insgesamt 50 beladene km pauschal 50 € netto (59,50 € brutto), danach 1,10 € netto je Mehrkilometer. Beispiel: 25 km Hinbringen + 25 km Abholen. Leerfahrten zählen nicht. Auf- und Abbau separat und ohne Website-Preisangabe (Nutzerbestätigung 13.09.2026).
 _Avoid_: Fahrtkosten, Logistik.
 
 **Lieferung / Abholung**:

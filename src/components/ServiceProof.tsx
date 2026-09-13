@@ -37,7 +37,7 @@ const siteRequirements = [
   },
   {
     title: "Wasseranschluss",
-    description: "GEKA- oder Gardena-Anschluss, höchstens 5 Meter vom Wagen entfernt",
+    description: "Frischwasseranschluss mit GEKA- oder Gardena-Kupplung",
   },
   {
     title: "Fester, ebener Untergrund",
@@ -45,18 +45,18 @@ const siteRequirements = [
   },
   {
     title: "Abwasseranschluss vor Ort",
-    description: "für den fachgerechten Anschluss des Wagens",
+    description: "Empfehlung: höchstens 5 Meter vom Wagen entfernt. Die genaue Anschlussführung stimmen wir vor Ort ab.",
   },
   {
-    title: "Erforderliche Genehmigung",
-    description: "für die Nutzung des Abwasseranschlusses",
+    title: "Abwassernutzung vorab klären",
+    description: "Klären Sie vor der Veranstaltung mit dem örtlichen Kanalnetzbetreiber, welcher Anschluss genutzt werden darf und ob eine Zustimmung oder Genehmigung erforderlich ist. Reine Regenwasserabläufe sind nicht geeignet.",
   },
 ] as const;
 
 const includedConnections = [
   "Abwasserrohre",
   "10 Meter Frischwasserschlauch",
-  "Maßgefertigte Holzabdeckungen",
+  "Maßgefertigte Holzabdeckungen für Kanaldeckel",
 ] as const;
 
 export function ServiceProof() {
@@ -86,9 +86,10 @@ export function ServiceProof() {
                 Liefer- und Abholtag zählen nicht als Miettage.
               </strong>
               <span>
-                Je Strecke mit angehängtem Wagen: bis 50 km pauschal 50 € brutto,
-                danach 1,10 € brutto je zusätzlichem Kilometer. Berechnet werden
-                Hinbringen und Abholen, keine Leerfahrten.
+                Für Lieferung und Abholung zusammen: bis insgesamt 50 km mit
+                angehängtem Wagen pauschal 50 € netto (59,50 € inkl. MwSt.).
+                Danach 1,10 € netto je zusätzlichem Kilometer, zzgl. 19 % MwSt.
+                Leerfahrten werden nicht berechnet.
               </span>
             </div>
           </div>
@@ -120,7 +121,13 @@ export function ServiceProof() {
           ))}
         </ul>
 
-        <p className={styles.largeCopy}>Die Erstausstattung im S enthält Toilettenpapier. M und L erhalten Toilettenpapier, Seife und Tücher. Weiteren Bedarf bringen Sie selbst mit.</p>
+        <p className={styles.largeCopy}>Die Erstausstattung im S enthält Toilettenpapier. M und L erhalten Toilettenpapier, Seife und Tücher. Wenn die Erstausstattung aufgebraucht ist, können Sie Toilettenpapier, Seife und Papierhandtücher bei Herrmann &amp; Smécz nachkaufen.</p>
+
+        <p className={styles.largeCopy}>
+          Passende TORK-Handtücher: Im Wagen S verwenden wir Tork Matic Advanced
+          Handtuchrollen H1. In den Wagen M und L verwenden wir Tork Express
+          Multifold Handtücher Universal H2.
+        </p>
 
         <div className={styles.gallery} role="group" aria-label="Echte Innenansichten">
           <figure className={styles.editorialFigure}>

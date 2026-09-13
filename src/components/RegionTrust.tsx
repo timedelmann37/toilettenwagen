@@ -11,7 +11,10 @@ const places = [
   "Niederfischbach",
   "Dillenburg",
   "Haiger",
-  "Westerwald",
+  "Siegen",
+  "Netphen",
+  "Rennerod",
+  "Betzdorf",
 ] as const;
 
 export function RegionTrust() {

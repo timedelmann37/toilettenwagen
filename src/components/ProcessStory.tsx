@@ -42,7 +42,7 @@ const processSteps: readonly ProcessStep[] = [
     number: "05",
     title: "Abholung und Abbau.",
     description:
-      "Meist einen Tag nach Ihrem Anlass übernehmen wir Abbau und Abholung.",
+      "Meist einen Tag nach Ihrem Anlass bauen wir den Wagen ab und holen ihn ab.",
     timing: "Meist +1 Tag",
     event: "end",
   },
@@ -50,7 +50,7 @@ const processSteps: readonly ProcessStep[] = [
     number: "06",
     title: "Reinigung und Abschluss.",
     description:
-      "Nach der Rückkehr reinigen wir den Wagen, senden die Schlussrechnung und bitten um eine Google-Bewertung.",
+      "Nach der Rückkehr reinigen wir den Wagen und senden Ihnen die Schlussrechnung.",
     timing: "Nach der Rückkehr",
   },
 ];

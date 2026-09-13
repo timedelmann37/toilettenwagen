@@ -54,7 +54,7 @@ export function Footer() {
 
       <div className="border-t border-line">
         <p className="mx-auto max-w-6xl px-4 py-4 text-xs text-ink-soft sm:px-6">
-          © {new Date().getFullYear()} {site.name}
+          © {new Date().getFullYear()} Mobile Sanitäranlagen Herrmann und Smécz UG (haftungsbeschränkt)
         </p>
       </div>
     </footer>

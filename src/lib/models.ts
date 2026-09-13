@@ -37,7 +37,7 @@ export const trailerModels = [
     urinals: 2,
     priceNetCents: 17_500,
     suitability: "Die kompakte Wahl für kleinere Feiern und Einsätze.",
-    specificFeatures: ["Warmes und kaltes Wasser", "Sensorarmaturen", "Erstausstattung: Toilettenpapier", "Selbstabholung möglich"],
+    specificFeatures: ["Warmes und kaltes Wasser", "Sensorarmaturen", "Handtücher: Tork Matic Advanced Handtuchrolle H1", "Erstausstattung: Toilettenpapier", "Selbstabholung möglich"],
   },
   {
     id: "m",
@@ -49,7 +49,7 @@ export const trailerModels = [
     urinals: 3,
     priceNetCents: 19_000,
     suitability: "Mehr Kapazität für mittelgroße Veranstaltungen.",
-    specificFeatures: ["Kalt fließendes Wasser", "Erstausstattung: Toilettenpapier, Seife und Tücher", "Selbstabholung möglich"],
+    specificFeatures: ["Kalt fließendes Wasser", "Handtücher: Tork Express Multifold Handtücher Universal H2", "Erstausstattung: Toilettenpapier, Seife und Tücher", "Selbstabholung möglich"],
   },
   {
     id: "l",
@@ -61,6 +61,6 @@ export const trailerModels = [
     urinals: 6,
     priceNetCents: 21_000,
     suitability: "Die größte Kapazität der Familie für große Veranstaltungen.",
-    specificFeatures: ["Kalt fließendes Wasser", "Erstausstattung: Toilettenpapier, Seife und Tücher"],
+    specificFeatures: ["Kalt fließendes Wasser", "Handtücher: Tork Express Multifold Handtücher Universal H2", "Erstausstattung: Toilettenpapier, Seife und Tücher"],
   },
 ] as const satisfies readonly TrailerModel[];

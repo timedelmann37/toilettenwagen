@@ -67,12 +67,13 @@ export function Header() {
 
         <nav
           aria-label="Hauptnavigation"
-          className="hidden items-center gap-6 lg:flex"
+          className="hidden items-center gap-4 xl:flex"
         >
           <NavList linkClassName="inline-flex min-h-11 items-center px-1 text-sm font-semibold text-ink-soft underline-offset-8 transition-colors hover:text-ink hover:underline focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent" />
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-3 xl:flex">
+          <Link href="/#kontakt" className="inline-flex min-h-11 items-center justify-center rounded-full border border-line-strong px-5 text-sm font-semibold text-ink hover:border-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">Zum Anfrageformular</Link>
           <WhatsappButton size="sm" />
         </div>
 
@@ -82,14 +83,19 @@ export function Header() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="mobile-menu"
-          className="inline-flex min-h-11 items-center justify-center rounded-full border border-line-strong px-4 text-sm font-semibold text-ink transition-colors hover:border-ink lg:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          className="inline-flex min-h-11 items-center justify-center rounded-full border border-line-strong px-4 text-sm font-semibold text-ink transition-colors hover:border-ink xl:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
           {open ? "Schließen" : "Menü"}
         </button>
       </div>
 
+      <div className="flex justify-center gap-2 border-t border-line px-3 py-2 xl:hidden">
+        <Link href="/#kontakt" onClick={() => setOpen(false)} className="inline-flex min-h-11 items-center justify-center rounded-full border border-line-strong px-3 text-xs font-semibold text-ink hover:border-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">Zum Anfrageformular</Link>
+        <WhatsappButton size="sm" className="!gap-2 !px-3 !text-xs" />
+      </div>
+
       {open && (
-        <div id="mobile-menu" className="border-t border-line bg-bg lg:hidden">
+        <div id="mobile-menu" className="border-t border-line bg-bg xl:hidden">
           <nav
             aria-label="Hauptnavigation (mobil)"
             className="mx-auto flex max-w-[88rem] flex-col gap-1 px-4 py-3"
