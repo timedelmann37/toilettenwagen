@@ -45,11 +45,11 @@ const siteRequirements = [
   },
   {
     title: "Abwasseranschluss vor Ort",
-    description: "Empfehlung: höchstens 5 Meter vom Wagen entfernt. Die genaue Anschlussführung stimmen wir vor Ort ab.",
+    description: "Empfehlung: höchstens 5 Meter vom Wagen entfernt. Der geeignete und zulässige Anschluss muss vor der Lieferung feststehen und nutzbar sein.",
   },
   {
-    title: "Abwassernutzung vorab klären",
-    description: "Klären Sie vor der Veranstaltung mit dem örtlichen Kanalnetzbetreiber, welcher Anschluss genutzt werden darf und ob eine Zustimmung oder Genehmigung erforderlich ist. Reine Regenwasserabläufe sind nicht geeignet.",
+    title: "Genehmigungen vorab selbst einholen",
+    description: "Auf öffentlichen Flächen müssen uns die erforderlichen Genehmigungen vor der Lieferung schriftlich vorliegen. Beantragung und Klärung übernehmen Sie selbst, nicht wir vor Ort. Auf Privatgrund entfällt die Freigabe einer öffentlichen Fläche; Vorgaben zum Abwasseranschluss gelten weiterhin. Reine Regenwasserabläufe sind nicht geeignet.",
   },
 ] as const;
 
@@ -101,7 +101,7 @@ export function ServiceProof() {
           <div>
             <h3>Sauber bis ins Detail.</h3>
             <p className={styles.largeCopy}>
-              Alle Wagen sind beheizt und ganzjährig einsetzbar.
+              Unsere Sanitärwagen sind beheizt und ganzjährig einsetzbar.
             </p>
           </div>
         </div>
@@ -121,13 +121,26 @@ export function ServiceProof() {
           ))}
         </ul>
 
-        <p className={styles.largeCopy}>Die Erstausstattung im S enthält Toilettenpapier. M und L erhalten Toilettenpapier, Seife und Tücher. Wenn die Erstausstattung aufgebraucht ist, können Sie Toilettenpapier, Seife und Papierhandtücher bei Herrmann &amp; Smécz nachkaufen.</p>
-
-        <p className={styles.largeCopy}>
-          Passende TORK-Handtücher: Im Wagen S verwenden wir Tork Matic Advanced
-          Handtuchrollen H1. In den Wagen M und L verwenden wir Tork Express
-          Multifold Handtücher Universal H2.
-        </p>
+        <div className={styles.supplyDetails}>
+          <div>
+            <h4>Erstausstattung</h4>
+            <dl className={styles.supplyList}>
+              <div><dt>Alle Wagen · S, M &amp; L</dt><dd>Toilettenpapier, Seife und Papierhandtücher</dd></div>
+            </dl>
+            <p className={styles.restockNote}>
+              <strong>Nachschub benötigt?</strong> Wenn die Erstausstattung
+              aufgebraucht ist, können Sie Toilettenpapier, Seife und
+              Papierhandtücher bei uns nachkaufen.
+            </p>
+          </div>
+          <div>
+            <h4>Passende TORK-Handtücher</h4>
+            <dl className={styles.supplyList}>
+              <div><dt>Wagen S · H1</dt><dd>Tork Matic Advanced Handtuchrolle</dd></div>
+              <div><dt>Wagen M &amp; L · H2</dt><dd>Tork Express Multifold Handtücher Universal</dd></div>
+            </dl>
+          </div>
+        </div>
 
         <div className={styles.gallery} role="group" aria-label="Echte Innenansichten">
           <figure className={styles.editorialFigure}>

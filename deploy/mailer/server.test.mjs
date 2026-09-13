@@ -11,6 +11,19 @@ const payload = {
   message: 'Nur ein lokaler Test', website: '', privacyAccepted: true,
 };
 
+test('includes self-pickup and pickup date in mail but rejects model L', async t => {
+  const calls = [];
+  const post = await setup(t, async (_url, options) => {
+    calls.push(JSON.parse(options.body));
+    return Response.json({ id: 'test-pickup' });
+  });
+  assert.equal((await post({ ...payload, collectionMethod: 'self-pickup' })).status, 200);
+  assert.match(calls[0].text, /Lieferung \/ Selbstabholung: Selbstabholung/);
+  assert.match(calls[0].text, /Abholtag: 2026-10-01/);
+  assert.equal((await post({ ...payload, model: 'l', collectionMethod: 'self-pickup' })).status, 400);
+  assert.equal(calls.length, 1);
+});
+
 async function setup(t, fetchImpl) {
   const server = createMailer({ apiKey: 'test-key', from: 'Test <test@example.com>', to: 'inbox@example.com', origin: 'https://tw.daheim.uk', fetchImpl });
   server.listen(0, '127.0.0.1');

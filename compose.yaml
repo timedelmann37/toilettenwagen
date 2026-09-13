@@ -5,6 +5,7 @@ services:
       dockerfile: Dockerfile
       args:
         NEXT_PUBLIC_INQUIRY_ENDPOINT: ${NEXT_PUBLIC_INQUIRY_ENDPOINT:-}
+        NEXT_PUBLIC_GEOAPIFY_API_KEY: ${NEXT_PUBLIC_GEOAPIFY_API_KEY:-}
     restart: unless-stopped
     ports:
       - "127.0.0.1:8087:80"

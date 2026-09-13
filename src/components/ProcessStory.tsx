@@ -34,7 +34,7 @@ const processSteps: readonly ProcessStep[] = [
     number: "04",
     title: "Lieferung und Aufbau.",
     description:
-      "Meist einen Tag vor Ihrem Anlass steht der Wagen am abgestimmten Platz.",
+      "Meist einen Tag vor Ihrem Anlass steht die mobile Sanitäranlage am abgestimmten Platz.",
     timing: "Meist −1 Tag",
     event: "start",
   },
@@ -50,7 +50,7 @@ const processSteps: readonly ProcessStep[] = [
     number: "06",
     title: "Reinigung und Abschluss.",
     description:
-      "Nach der Rückkehr reinigen wir den Wagen und senden Ihnen die Schlussrechnung.",
+      "Nach der Rückkehr reinigen und desinfizieren wir die Sanitäranlage und senden Ihnen die Schlussrechnung.",
     timing: "Nach der Rückkehr",
   },
 ];

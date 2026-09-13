@@ -21,9 +21,8 @@ function ReviewCard({ review }: { review: Review }) {
         <span className={styles.stars} role="img" aria-label={`${review.rating} von 5 Sternen`}>
           {Array.from({ length: 5 }, (_, i) => <Star key={i} weight={i < review.rating ? "fill" : "regular"} aria-hidden="true" />)}
         </span>
-        <span>{review.dateLabel}</span>
       </div>
-      <blockquote>{review.text}</blockquote>
+      {review.text ? <blockquote>{review.text}</blockquote> : <p className={styles.excerpt}>Sternebewertung ohne Text</p>}
       {review.isExcerpt && <p className={styles.excerpt}>Auszug aus der Rezension</p>}
     </figure>
   );
@@ -49,7 +48,7 @@ export function ReviewMarquee({ reviews }: { reviews: readonly Review[] }) {
   return (
     <section ref={root} className={styles.reviews} aria-label="Google-Bewertungen" data-running={active && !paused} data-expanded={expanded}>
       <div className={styles.toolbar}>
-        <p>Vorschau mit Rezensionen aus Ihrem Screenshot · noch nicht live verbunden.</p>
+        <p>Stimmen aus Google-Bewertungen · von uns zusammengestellt.</p>
         <div className={styles.controls}>
           {!expanded && <button className={styles.motionButton} type="button" onClick={() => setPaused(!paused)}>
             {paused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}

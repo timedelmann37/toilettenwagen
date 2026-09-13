@@ -4,6 +4,11 @@ Status: **blockiert**, bis alle als Blocker markierten Punkte bestätigt sind.
 
 ## Recht und Datenschutz
 
+- [ ] **Blocker · Betreiber/Rechtsberatung:** Neue AGB-Seite vor Veröffentlichung prüfen, insbesondere Schriftform, Haftung, Stornostaffel, Verbraucherpreise und gegebenenfalls Widerruf. Bestätigte 5-m-Abwasserempfehlung, vorab einzuholende Genehmigungen und immer zusätzlich berechnete Endreinigung inklusive Desinfektion wurden korrigiert; keine Wirksamkeitsfreigabe. Steuerdarstellung der Reinigungspauschale noch eindeutig bestätigen.
+- [ ] Geoapify-Schlüssel vor Veröffentlichung rotieren, auf Produktionsdomains begrenzen und als NEXT_PUBLIC_GEOAPIFY_API_KEY in Portainer/Build-Umgebung setzen. Vertrags-/Datenschutzprüfung des Adressdiensts abschließen. Kein Schlüssel im Repository.
+- [ ] **Blocker · Betreiber:** Rechtsgrundlage für Weiterveröffentlichung der Google-Rezensionen und besonders der Profilbilder dokumentieren; Art.-14-Information, Rechte, Interessenabwägung/Einwilligung und konkrete Überprüfungs-/Löschkriterien klären. Der neue Datenschutzabschnitt beschreibt zunächst den tatsächlichen technischen Stand, keine ungeklärte Einwilligung oder Rechtsgrundlage wird behauptet.
+- [ ] **Blocker · Betreiber:** Für die neue Veröffentlichung Hetzner als tatsächlichen Hoster bestätigen (Altwebsite nennt IONOS); Logfristen, AV-Vertrag, Drittlandgarantien von Maps und WhatsApp sowie Erforderlichkeit der Browser-Speicherung abschließend prüfen.
+
 - [ ] **Blocker · Betreiber/Rechtsberatung:** Registergericht der HRB 30803 bestätigen und in `/impressum/` ergänzen.
 - [ ] **Blocker · Betreiber/Rechtsberatung:** Erforderlichkeit und gegebenenfalls Person nach § 18 Abs. 2 MStV bestätigen.
 - [ ] **Blocker · Betreiber/Rechtsberatung:** Impressum und Datenschutzerklärung abschließend rechtlich prüfen.

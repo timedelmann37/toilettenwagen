@@ -196,6 +196,58 @@
   line-height: 1.35;
 }
 
+.supplyDetails {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem clamp(2rem, 6vw, 6rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.supplyDetails h4 {
+  margin: 0 0 1.25rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2vw, 1.65rem);
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.supplyList {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+}
+
+.supplyList dt {
+  margin-bottom: 0.25rem;
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.supplyList dd,
+.restockNote {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.supplyDetails .restockNote {
+  max-width: 48ch;
+  margin-top: 1.5rem;
+}
+
+.restockNote strong {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+@media (max-width: 767px) {
+  .supplyDetails {
+    grid-template-columns: 1fr;
+  }
+}
+
 .gallery {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));

@@ -17,7 +17,10 @@ const sections = [
   { href: "#maps", label: "Google Maps" },
   { href: "#kontaktwege", label: "Kontaktwege" },
   { href: "#formular", label: "Anfrageformular" },
-  { href: "#inhalte", label: "Schriften und Bewertungen" },
+  { href: "#adresssuche", label: "Adresssuche" },
+  { href: "#inhalte", label: "Lokale Schriften" },
+  { href: "#bewertungen", label: "Google-Bewertungen" },
+  { href: "#speicherdauer", label: "Speicherdauer" },
   { href: "#rechte", label: "Ihre Rechte" },
 ] as const;
 
@@ -26,7 +29,7 @@ export default function PrivacyPage() {
     <LegalDocument
       title="Datenschutz"
       intro="Hier steht, welche Daten diese Website tatsächlich verarbeitet, wann externe Dienste geladen werden und welche Entscheidung bei Ihnen bleibt."
-      updatedAt="5. September 2026"
+      updatedAt="13. September 2026"
       sections={sections}
     >
       <section id="verantwortlich">
@@ -77,7 +80,7 @@ export default function PrivacyPage() {
         <h2>Lokaler Browser-Speicher</h2>
         <p>
           Die Website setzt keine Analyse- oder Marketing-Cookies ein. Für zwei
-          rein funktionale Einstellungen nutzt sie den Speicher Ihres Browsers:
+          funktionale Bereiche nutzt sie den Speicher Ihres Browsers:
         </p>
         <ul>
           <li>
@@ -91,8 +94,16 @@ export default function PrivacyPage() {
           </li>
         </ul>
         <p>
-          Diese Angaben verlassen dadurch nicht Ihren Browser. Sie können den
-          Speicher über die Einstellungen Ihres Browsers löschen.
+          Diese Angaben verlassen dadurch nicht Ihren Browser. Der lokale
+          Speicher hat keine automatische Ablaufzeit; die Kartenentscheidung
+          bleibt gespeichert, bis Sie diese ändern oder den Speicher löschen.
+          Der Sitzungsspeicher ist auf die jeweilige Browsersitzung beschränkt.
+          Sie können beide Speicher über die Einstellungen Ihres Browsers löschen.
+          Soweit die Speicherung unbedingt erforderlich ist, um die von Ihnen
+          ausdrücklich gewünschte Funktion bereitzustellen, erfolgt sie auf
+          Grundlage von § 25 Abs. 2 Nr. 2 TDDDG. Soweit dabei personenbezogene
+          Daten verarbeitet werden, dient dies unserem berechtigten Interesse
+          an einer funktionsfähigen Website gemäß Art. 6 Abs. 1 lit. f DSGVO.
         </p>
       </section>
 
@@ -104,9 +115,15 @@ export default function PrivacyPage() {
           Google her. Nach Ihrer Zustimmung baut Ihr Browser eine direkte
           Verbindung zu Google auf. Dabei können insbesondere Ihre IP-Adresse
           und technische Browserdaten an Google übermittelt werden.
+          Anbieter ist Google Ireland Limited, Gordon House, Barrow Street,
+          Dublin 4, Irland. Eine Verarbeitung durch Google LLC in den USA
+          ist möglich. Sind Sie bei Google angemeldet, kann Google die Nutzung
+          Ihrem Konto zuordnen.
         </p>
         <p>
           Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO.
+          Soweit Google Informationen auf Ihrem Endgerät speichert oder ausliest,
+          umfasst die Einwilligung auch § 25 Abs. 1 TDDDG.
           Sie können Ihre Entscheidung jederzeit für die Zukunft ändern. Öffnen
           Sie dazu die{" "}
           <Link href="/#region">Karteneinstellung im Bereich Region</Link>. Weitere
@@ -165,16 +182,91 @@ export default function PrivacyPage() {
           dieser Abschnitt an den tatsächlich eingesetzten Versandweg, die
           Speicherdauer und die Empfänger angepasst.
         </p>
+        <p>
+          Telefon und E-Mail sind beide erforderlich: die Telefonnummer für
+          dringende Rückfragen, die E-Mail-Adresse für Unterlagen und allgemeine
+          Absprachen. Die optionale Online-Adresssuche ist davon unabhängig und
+          wird im folgenden Abschnitt beschrieben.
+        </p>
+      </section>
+
+      <section id="adresssuche">
+        <h2>Optionale Adresssuche mit Geoapify</h2>
+        <p>Erst nach einem Klick auf „Adresssuche aktivieren“ verbindet sich Ihr
+          Browser für die Suche mit Geoapify. Übermittelt werden die eingegebene
+          PLZ und der Straßen-Suchtext sowie IP-Adresse und technische
+          Verbindungsdaten. Die separat eingegebene Hausnummer, Namen,
+          Telefonnummern und E-Mail-Adressen werden nicht an die Suche übergeben.
+          Sie können die Adresse stattdessen vollständig manuell eingeben.</p>
+        <p>Rechtsgrundlage ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO.
+          Mit „Suche deaktivieren“ beenden Sie weitere Abfragen für die jeweilige
+          Adresshilfe. Beim Neuladen ist eine erneute Aktivierung erforderlich.
+          Die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung bleibt
+          unberührt.</p>
+        <p>Geoapify verarbeitet Anfrage- und Verbindungsdaten unter anderem zur
+          Zugriffskontrolle, Nutzungszählung und Fehleranalyse. Nach Anbieterangaben
+          werden Daten erfolgreicher Abfragen in der Regel höchstens 24 Stunden
+          vorgehalten; Geoapify nutzt für die API unter anderem Cloudflare und
+          Hetzner. Weitere Angaben zu Empfängern und Speicherung finden Sie in den{" "}
+          <a href="https://www.geoapify.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Datenschutzhinweisen von Geoapify</a>.</p>
       </section>
 
       <section id="inhalte">
-        <h2>Schriften und Kundenstimmen</h2>
+        <h2>Lokal bereitgestellte Schriften</h2>
         <p>
           Die verwendeten Webschriften werden mit der Website ausgeliefert. Beim
           Lesen der Seite entsteht deshalb keine Verbindung zu einem externen
-          Schriftenanbieter. Kundenstimmen sind als statische Inhalte hinterlegt;
-          es wird dafür kein Bewertungs-Widget von Google oder einem anderen
-          Anbieter geladen.
+          Schriftenanbieter.
+        </p>
+      </section>
+
+      <section id="bewertungen">
+        <h2>Google-Bewertungen und Profilbilder</h2>
+        <p>
+          Wir zeigen ausgewählte Rezensionen aus unserem Google-Unternehmensprofil
+          als lokal hinterlegte Zusammenstellung. Angezeigt werden die dort verwendeten
+          Anzeigenamen, Sternebewertungen, Bewertungstexte beziehungsweise
+          gekennzeichnete Auszüge und, soweit
+          vorhanden, Profilbilder. Die Quelle sind vom Unternehmen
+          bereitgestellte Screenshots der auf Google veröffentlichten Rezensionen.
+          Die Darstellung dient dazu, Interessierten Erfahrungen mit unserem
+          Angebot zu zeigen.
+        </p>
+        <p>
+          Die Texte und Profilbilder werden mit dieser Website ausgeliefert.
+          Es wird dafür kein Bewertungs-Widget von Google oder einem anderen
+          Anbieter geladen. Allein durch das Lesen der Bewertungen entsteht
+          keine Verbindung zu Google; Ihre IP-Adresse wird dafür nicht an Google
+          übermittelt. Eine Live-Abfrage über eine Google-API findet derzeit
+          nicht statt.
+        </p>
+        <p>
+          Wenn eine hier gezeigte Rezension oder ein Profilbild von Ihnen stammt,
+          können Sie sich bei Fragen zur Veröffentlichung, zur Berichtigung oder
+          zur Entfernung an <a href={`mailto:${site.email}`}>{site.email}</a> wenden.
+          Eine Änderung auf Google wird in dieser statischen Zusammenstellung nicht
+          automatisch übernommen. Die Inhalte sind für Besucher dieser Website
+          einsehbar und werden über unseren Hosting-Anbieter bereitgestellt.
+        </p>
+      </section>
+
+      <section id="speicherdauer">
+        <h2>Dauer der Speicherung</h2>
+        <p>
+          Personenbezogene Daten werden nur so lange verarbeitet, wie dies für
+          den jeweiligen Zweck erforderlich ist. Kontaktanfragen werden nach
+          abschließender Bearbeitung gelöscht, soweit keine gesetzlichen
+          Aufbewahrungspflichten oder berechtigten Gründe zur Geltendmachung,
+          Ausübung oder Verteidigung von Rechtsansprüchen entgegenstehen.
+          Vertrags- und Abrechnungsunterlagen unterliegen gegebenenfalls
+          handels- und steuerrechtlichen Aufbewahrungspflichten.
+        </p>
+        <p>
+          Lokal hinterlegte Rezensionen bleiben bis zur Entfernung aus dem
+          Website-Inhalt sichtbar; eine automatische Synchronisierung oder
+          Löschung anhand des Google-Profils findet derzeit nicht statt.
+          Für den Browser-Speicher gelten die oben beschriebenen
+          Löschmöglichkeiten.
         </p>
       </section>
 
@@ -191,6 +283,20 @@ export default function PrivacyPage() {
           <a href={`mailto:${site.email}`}>{site.email}</a>. Außerdem haben Sie
           das Recht, sich bei einer zuständigen Datenschutzaufsichtsbehörde zu
           beschweren.
+        </p>
+        <p>
+          Bei einer Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO
+          können Sie aus Gründen Ihrer besonderen Situation widersprechen
+          (Art. 21 DSGVO). Ein Widerruf berührt nicht die Rechtmäßigkeit der
+          Verarbeitung bis zum Widerruf.
+        </p>
+        <p>
+          Für unseren Sitz in Rheinland-Pfalz ist der{" "}
+          <a href="https://www.datenschutz.rlp.de/" target="_blank" rel="noopener noreferrer">
+            Landesbeauftragte für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz
+          </a>{" "}
+          eine zuständige Anlaufstelle. Sie können sich auch an die
+          Aufsichtsbehörde Ihres Aufenthaltsorts oder Arbeitsplatzes wenden.
         </p>
       </section>
     </LegalDocument>

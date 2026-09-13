@@ -26,7 +26,7 @@ export function RegionTrust() {
           <div>
             <p className={styles.radiusStatement}>
               Unser reguläres Einsatzgebiet reicht ungefähr 125&nbsp;km um den
-              Standort der Wagen. Weitere Strecken prüfen wir auf Anfrage.
+              Standort unserer Sanitärwagen. Weitere Strecken prüfen wir auf Anfrage.
             </p>
           </div>
         </header>

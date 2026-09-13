@@ -81,7 +81,7 @@ describe("Startseite", () => {
       "Wasseranschluss",
       "Fester, ebener Untergrund",
       "Abwasseranschluss vor Ort",
-      "Abwassernutzung vorab klären",
+      "Genehmigungen vorab selbst einholen",
     ]) {
       expect(section.getByText(requirement)).toBeInTheDocument();
     }
@@ -189,12 +189,12 @@ describe("Startseite", () => {
     }
 
     const cards = section.getAllByRole("figure");
-    expect(cards).toHaveLength(7);
+    expect(cards).toHaveLength(20);
     for (const name of ["Ebrar Kargun", "Daniel Gergel", "alic.32", "Jeremy Lückhof", "Saki Egert", "Ralf Baldus", "tom schneider"]) {
       expect(cards.some(card => card.textContent?.includes(name))).toBe(true);
     }
-    expect(section.getByText(/noch nicht live verbunden/i)).toBeInTheDocument();
-    expect(section.getAllByRole("img", { name: "5 von 5 Sternen" })).toHaveLength(7);
+    expect(section.getByText(/von uns zusammengestellt/i)).toBeInTheDocument();
+    expect(section.getAllByRole("img", { name: "5 von 5 Sternen" })).toHaveLength(20);
     expect(
       section.getByRole("link", { name: "Per WhatsApp anfragen" }),
     ).toBeInTheDocument();

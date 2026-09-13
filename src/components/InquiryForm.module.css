@@ -311,6 +311,13 @@
   cursor: pointer;
 }
 
+.modelChoices.collectionChoices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.collectionChoices strong { overflow-wrap: anywhere; }
+.collectionChoices input:disabled + span { opacity: .5; cursor: not-allowed; }
+@media (max-width: 480px) {
+  .modelChoices.collectionChoices { grid-template-columns: 1fr; }
+}
+
 .modelChoices input {
   position: absolute;
   width: 1px;

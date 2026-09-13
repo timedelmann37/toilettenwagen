@@ -37,7 +37,7 @@ export const trailerModels = [
     urinals: 2,
     priceNetCents: 17_500,
     suitability: "Die kompakte Wahl für kleinere Feiern und Einsätze.",
-    specificFeatures: ["Warmes und kaltes Wasser", "Sensorarmaturen", "Handtücher: Tork Matic Advanced Handtuchrolle H1", "Erstausstattung: Toilettenpapier", "Selbstabholung möglich"],
+    specificFeatures: ["Warmes und kaltes Wasser", "Sensorarmaturen", "Handtücher: Tork Matic Advanced Handtuchrolle H1", "Erstausstattung: Toilettenpapier, Seife und Tücher", "Selbstabholung möglich"],
   },
   {
     id: "m",

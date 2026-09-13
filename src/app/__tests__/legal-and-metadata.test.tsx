@@ -6,6 +6,7 @@ import PrivacyPage, {
   metadata as privacyMetadata,
 } from "@/app/datenschutz/page";
 import Home from "@/app/page";
+import TermsPage, { metadata as termsMetadata } from "@/app/agb/page";
 import ImprintPage, {
   metadata as imprintMetadata,
 } from "@/app/impressum/page";
@@ -14,6 +15,15 @@ import { siteMetadata as rootMetadata } from "@/lib/metadata";
 import { site } from "@/lib/site";
 
 describe("Rechtsseiten und Metadaten", () => {
+  it("zeigt die übernommenen AGB mit bestätigter Reinigung und Abwasserempfehlung", () => {
+    render(<TermsPage />);
+    expect(screen.getByRole("heading", { level: 1, name: "AGB" })).toBeInTheDocument();
+    expect(screen.getAllByRole("heading", { level: 2 })).toHaveLength(12);
+    expect(screen.getByText(/Alle Preise verstehen/)).toHaveTextContent("Endreinigung inklusive Desinfektion wird immer eine Pauschale von 50 € zusätzlich zur Miete berechnet");
+    expect(screen.getByText(/Abstand von höchstens 5 Metern/)).toHaveTextContent("empfohlen");
+    expect(screen.queryByText(/maximal 3 Meter/)).not.toBeInTheDocument();
+    expect(termsMetadata.alternates?.canonical).toBe("/agb/");
+  });
   it("zeigt im Impressum ausschließlich bestätigte Unternehmensdaten", () => {
     render(<ImprintPage />);
 
@@ -38,6 +48,9 @@ describe("Rechtsseiten und Metadaten", () => {
     expect(screen.getByText(/weder an uns übertragen noch serverseitig gespeichert/i)).toBeInTheDocument();
     expect(screen.getByText(/keine Verbindung zu einem externen Schriftenanbieter/i)).toBeInTheDocument();
     expect(screen.getByText(/kein Bewertungs-Widget von Google/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Google-Bewertungen und Profilbilder" })).toBeInTheDocument();
+    expect(screen.getByText(/Eine Live-Abfrage über eine Google-API/)).toHaveTextContent("nicht statt");
+    expect(screen.getByRole("heading", { name: "Optionale Adresssuche mit Geoapify" })).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: "Karteneinstellung im Bereich Region" }),
     ).toHaveAttribute("href", "/#region");
@@ -55,6 +68,7 @@ describe("Rechtsseiten und Metadaten", () => {
       "href",
       expect.stringContaining("/datenschutz"),
     );
+    expect(screen.getByRole("link", { name: "AGB" })).toHaveAttribute("href", expect.stringMatching(/^\/agb\/?$/));
     expect(rootMetadata.alternates?.canonical).toBe("/");
     expect(imprintMetadata.alternates?.canonical).toBe("/impressum/");
     expect(privacyMetadata.alternates?.canonical).toBe("/datenschutz/");

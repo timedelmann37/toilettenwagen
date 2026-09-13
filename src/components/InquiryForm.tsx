@@ -7,6 +7,7 @@ import {
   useState,
   useSyncExternalStore,
 } from "react";
+import { AddressLookup } from "@/components/AddressLookup";
 import { WhatsappButton } from "@/components/WhatsappButton";
 import {
   INQUIRY_DRAFT_EVENT,
@@ -48,6 +49,7 @@ const errorTargets: Record<InquiryFieldName, string> = {
   billingSameAsLocation: "inquiry-billing-same",
   billingAddress: "inquiry-billing-address",
   deliveryDate: "inquiry-delivery-date",
+  collectionMethod: "inquiry-collection-delivery",
   startDate: "inquiry-start-date",
   endDate: "inquiry-end-date",
   model: "inquiry-model-unknown",
@@ -101,6 +103,7 @@ export function InquiryForm() {
       ? { occasion: normalizeDraftOccasion(draft.occasion) }
       : {}),
   };
+  if (formValues.model === "l") formValues.collectionMethod = "delivery";
   const handedOffModel = draft.model
     ? trailerModels.find((model) => model.id === formValues.model)
     : undefined;
@@ -109,7 +112,7 @@ export function InquiryForm() {
     field: Key,
     value: InquiryFormValues[Key],
   ) {
-    setValues((current) => ({ ...current, [field]: value }));
+    setValues((current) => ({ ...current, [field]: value, ...(field === "model" && value === "l" ? { collectionMethod: "delivery" as const } : {}) }));
     if (field === "model" || field === "occasion") {
       setDraftOverrides((current) => ({ ...current, [field]: true }));
     }
@@ -293,6 +296,21 @@ export function InquiryForm() {
                   </label>
                 </div>
               </fieldset>
+              <fieldset className={`${styles.fieldset} ${styles.full}`}>
+                <legend>Lieferung oder Selbstabholung</legend>
+                <div className={`${styles.modelChoices} ${styles.collectionChoices}`}>
+                  <label>
+                    <input id="inquiry-collection-delivery" type="radio" name="collectionMethod" value="delivery" checked={formValues.collectionMethod === "delivery"} onChange={() => setField("collectionMethod", "delivery")} />
+                    <span><strong>Lieferung</strong><small>Wir bringen und holen den Wagen</small></span>
+                  </label>
+                  <label>
+                    <input type="radio" name="collectionMethod" value="self-pickup" disabled={formValues.model === "l"} checked={formValues.collectionMethod === "self-pickup"} onChange={() => setField("collectionMethod", "self-pickup")} />
+                    <span><strong>Selbstabholung</strong><small>Für S und M nach Absprache</small></span>
+                  </label>
+                </div>
+                {formValues.model === "l" && <p>Wagen L ist nur mit Lieferung verfügbar.</p>}
+                {errors.collectionMethod && <p className={styles.fieldError}>{errors.collectionMethod}</p>}
+              </fieldset>
               <label className={`${styles.field} ${styles.full}`} htmlFor="inquiry-customer-type">
                 <span>Ich frage an als</span>
                 <select id="inquiry-customer-type" name="customerType" value={formValues.customerType} onChange={handleTextField}>
@@ -327,6 +345,7 @@ export function InquiryForm() {
                 )}
               </label>
 
+              <div className={styles.field}>
               <label className={styles.field} htmlFor="inquiry-location">
                 <span>Aufstellort: Straße, Hausnummer, PLZ und Ort *</span>
                 <input
@@ -346,6 +365,8 @@ export function InquiryForm() {
                   </span>
                 )}
               </label>
+                <AddressLookup id="setup-search" label="Aufstellort" onChoose={address => setField("location", address)} />
+              </div>
 
               <label className={styles.field} htmlFor="inquiry-email">
                 <span>E-Mail *</span>
@@ -410,14 +431,17 @@ export function InquiryForm() {
                 <span>Rechnungsanschrift entspricht dem Aufstellort</span>
               </label>
               {!formValues.billingSameAsLocation && (
+                <div className={`${styles.field} ${styles.full}`}>
                 <label className={`${styles.field} ${styles.full}`} htmlFor="inquiry-billing-address">
                   <span>Rechnungsanschrift *</span>
                   <input id="inquiry-billing-address" name="billingAddress" autoComplete="section-billing street-address" required placeholder="Empfänger, Straße, Hausnummer, PLZ und Ort" value={formValues.billingAddress} onChange={handleTextField} aria-invalid={Boolean(errors.billingAddress)} aria-describedby={describedBy("billingAddress")} />
                   {errors.billingAddress && <span id="inquiry-billing-address-error" className={styles.fieldError}>{errors.billingAddress}</span>}
                 </label>
+                  <AddressLookup id="billing-search" label="Rechnungsanschrift" onChoose={address => setField("billingAddress", address)} />
+                </div>
               )}
               <label className={`${styles.field} ${styles.full}`} htmlFor="inquiry-delivery-date">
-                <span>Gewünschter Liefertag *</span>
+                <span>{formValues.collectionMethod === "self-pickup" ? "Gewünschter Abholtag *" : "Gewünschter Liefertag *"}</span>
                 <input id="inquiry-delivery-date" name="deliveryDate" type="date" required max={formValues.startDate || undefined} value={formValues.deliveryDate} onChange={handleTextField} aria-invalid={Boolean(errors.deliveryDate)} aria-describedby={describedBy("deliveryDate")} />
                 {errors.deliveryDate && <span id="inquiry-delivery-date-error" className={styles.fieldError}>{errors.deliveryDate}</span>}
               </label>

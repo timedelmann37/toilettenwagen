@@ -25,6 +25,7 @@ export type InquiryFormValues = {
   billingSameAsLocation: boolean;
   billingAddress: string;
   deliveryDate: string;
+  collectionMethod: "delivery" | "self-pickup";
   startDate: string;
   endDate: string;
   model: InquiryModel;
@@ -58,6 +59,7 @@ export const initialInquiryValues: InquiryFormValues = {
   billingSameAsLocation: false,
   billingAddress: "",
   deliveryDate: "",
+  collectionMethod: "delivery",
   startDate: "",
   endDate: "",
   model: "unknown",
@@ -87,8 +89,10 @@ export function validateInquiry(values: InquiryFormValues) {
   if (!values.phone.trim()) errors.phone = "Bitte geben Sie Ihre Telefonnummer für dringende Rückfragen an.";
   if (values.customerType === "business" && !values.company.trim()) errors.company = "Bitte nennen Sie den Firmennamen.";
   if (!values.billingSameAsLocation && !values.billingAddress.trim()) errors.billingAddress = "Bitte geben Sie Ihre Rechnungsanschrift an.";
-  if (!values.deliveryDate) errors.deliveryDate = "Bitte wählen Sie den gewünschten Liefertag.";
-  if (values.deliveryDate && values.startDate && values.deliveryDate > values.startDate) errors.deliveryDate = "Der Liefertag darf nicht nach dem Nutzungsbeginn liegen.";
+  const handoverDay = values.collectionMethod === "self-pickup" ? "Abholtag" : "Liefertag";
+  if (!values.deliveryDate) errors.deliveryDate = `Bitte wählen Sie den gewünschten ${handoverDay}.`;
+  if (values.deliveryDate && values.startDate && values.deliveryDate > values.startDate) errors.deliveryDate = `Der ${handoverDay} darf nicht nach dem Nutzungsbeginn liegen.`;
+  if (values.collectionMethod === "self-pickup" && values.model !== "s" && values.model !== "m") errors.collectionMethod = "Bitte wählen Sie für Selbstabholung Modell S oder M.";
   if (values.email.trim() && !emailPattern.test(values.email.trim())) {
     errors.email = "Bitte geben Sie eine gültige E-Mail-Adresse ein.";
   }

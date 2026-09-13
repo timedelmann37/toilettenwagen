@@ -48,7 +48,7 @@ export default function Home() {
             <h1 className={styles.headline}>Drei Größen. Sauber gelöst.</h1>
             <div className={styles.heroDetails}>
             <p className={styles.subtext}>
-              Gepflegte, beheizte Toilettenwagen für Feiern, Veranstaltungen
+              Gepflegte, beheizte mobile Sanitäranlagen für Feiern, Veranstaltungen
               und Einsätze rund um Niederdreisbach.
             </p>
             <div className={styles.actions}>

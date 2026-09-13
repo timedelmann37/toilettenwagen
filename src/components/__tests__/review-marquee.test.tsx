@@ -7,8 +7,9 @@ describe("ReviewMarquee", () => {
   it("exposes each sourced review once and labels incomplete excerpts", () => {
     render(<ReviewMarquee reviews={reviewPreview} />);
     const cards = screen.getAllByRole("figure");
-    expect(cards).toHaveLength(7);
-    expect(screen.getAllByRole("img", { name: "5 von 5 Sternen" })).toHaveLength(7);
+    expect(cards).toHaveLength(20);
+    expect(screen.getAllByRole("img", { name: "5 von 5 Sternen" })).toHaveLength(20);
+    expect(cards.filter(card => within(card).queryByText("Sternebewertung ohne Text"))).toHaveLength(4);
     expect(cards.filter(card => within(card).queryByText("Auszug aus der Rezension"))).toHaveLength(5);
     expect(screen.queryByRole("heading")).not.toBeInTheDocument();
     expect(screen.queryByText("Emma Thompson")).not.toBeInTheDocument();

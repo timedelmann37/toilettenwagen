@@ -22,6 +22,9 @@ export function validate(input) {
   }
   if (input.privacyAccepted !== true || typeof input.billingSameAsLocation !== 'boolean') return null;
   if (!data.name || !data.phone || !data.location || !emailPattern.test(data.email)) return null;
+  data.collectionMethod = input.collectionMethod ?? 'delivery';
+  if (!['delivery', 'self-pickup'].includes(data.collectionMethod)) return null;
+  if (data.collectionMethod === 'self-pickup' && !['s', 'm'].includes(data.model)) return null;
   if (!['private', 'business'].includes(data.customerType) || !['s', 'm', 'l', 'unknown'].includes(data.model)) return null;
   if (data.customerType === 'business' && !data.company) return null;
   if (input.billingSameAsLocation) data.billingAddress = data.location;
@@ -34,7 +37,10 @@ export function validate(input) {
 
 function message(data) {
   const labels = { name: 'Name', email: 'E-Mail', phone: 'Telefon', customerType: 'Kundentyp', company: 'Firma', location: 'Aufstellort', billingAddress: 'Rechnungsanschrift', deliveryDate: 'Liefertag', startDate: 'Nutzungsbeginn', endDate: 'Nutzungsende', model: 'Modell', occasion: 'Anlass', occasionOther: 'Sonstiger Anlass', message: 'Nachricht' };
-  return Object.entries(labels).map(([key, label]) => `${label}: ${data[key] || '—'}`).join('\n\n');
+  labels.collectionMethod = 'Lieferung / Selbstabholung';
+  labels.deliveryDate = data.collectionMethod === 'self-pickup' ? 'Abholtag' : 'Liefertag';
+  const display = { ...data, collectionMethod: data.collectionMethod === 'self-pickup' ? 'Selbstabholung' : 'Lieferung' };
+  return Object.entries(labels).map(([key, label]) => `${label}: ${display[key] || '—'}`).join('\n\n');
 }
 
 export function createMailer({ apiKey, from, to, origin, fetchImpl = fetch, now = Date.now }) {
