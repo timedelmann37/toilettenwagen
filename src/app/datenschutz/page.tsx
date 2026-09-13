@@ -185,24 +185,22 @@ export default function PrivacyPage() {
         <p>
           Telefon und E-Mail sind beide erforderlich: die Telefonnummer für
           dringende Rückfragen, die E-Mail-Adresse für Unterlagen und allgemeine
-          Absprachen. Die optionale Online-Adresssuche ist davon unabhängig und
+          Absprachen. Die Online-Adresssuche ist davon unabhängig und
           wird im folgenden Abschnitt beschrieben.
         </p>
       </section>
 
       <section id="adresssuche">
-        <h2>Optionale Adresssuche mit Geoapify</h2>
-        <p>Erst nach einem Klick auf „Adresssuche aktivieren“ verbindet sich Ihr
-          Browser für die Suche mit Geoapify. Übermittelt werden die eingegebene
+        <h2>Adresssuche mit Geoapify</h2>
+        <p>Die Adresssuche steht im Anfrageformular direkt bereit. Sobald Sie eine
+          vollständige PLZ eingeben, fragt Ihr Browser Vorschläge bei Geoapify ab.
+          Bei Eingabe einer Straße werden die Vorschläge ergänzt. Übermittelt werden die eingegebene
           PLZ und der Straßen-Suchtext sowie IP-Adresse und technische
           Verbindungsdaten. Die separat eingegebene Hausnummer, Namen,
           Telefonnummern und E-Mail-Adressen werden nicht an die Suche übergeben.
-          Sie können die Adresse stattdessen vollständig manuell eingeben.</p>
-        <p>Rechtsgrundlage ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO.
-          Mit „Suche deaktivieren“ beenden Sie weitere Abfragen für die jeweilige
-          Adresshilfe. Beim Neuladen ist eine erneute Aktivierung erforderlich.
-          Die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung bleibt
-          unberührt.</p>
+          Wenn keine passende Adresse gefunden wird oder der Dienst nicht erreichbar
+          ist, können Sie zur manuellen Adresseingabe wechseln. Dabei enden die
+          weiteren Suchabfragen für dieses Adressfeld.</p>
         <p>Geoapify verarbeitet Anfrage- und Verbindungsdaten unter anderem zur
           Zugriffskontrolle, Nutzungszählung und Fehleranalyse. Nach Anbieterangaben
           werden Daten erfolgreicher Abfragen in der Regel höchstens 24 Stunden

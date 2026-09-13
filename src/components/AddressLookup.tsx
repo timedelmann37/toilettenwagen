@@ -4,11 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import { AddressSearchError, searchAddress, type AddressSuggestion } from "@/lib/addressSearch";
 import styles from "./AddressLookup.module.css";
 
-type Props = { id: string; label: string; onChoose: (address: string) => void };
+type Props = { id: string; label: string; onChoose: (address: string) => void; onManualEntry?: () => void };
 
-/** Optional assistant; the ordinary address input remains editable and authoritative. */
-export function AddressLookup({ id, label, onChoose }: Props) {
-  const [enabled, setEnabled] = useState(false);
+/** Search-first address entry with an explicit fallback after a completed search. */
+export function AddressLookup({ id, label, onChoose, onManualEntry }: Props) {
+  const [enabled, setEnabled] = useState(true);
+  const [canEnterManually, setCanEnterManually] = useState(false);
   const [postcode, setPostcode] = useState("");
   const [street, setStreet] = useState("");
   const [house, setHouse] = useState("");
@@ -32,7 +33,8 @@ export function AddressLookup({ id, label, onChoose }: Props) {
         const matches = await searchAddress(postcode, street, controller.signal);
         if (cancelled || version !== revision.current) return;
         setResults(matches);
-        setStatus(matches.length ? `${matches.length} Vorschläge verfügbar.` : "Kein Treffer. Bitte ergänzen Sie die Adresse manuell im Adressfeld.");
+        setCanEnterManually(true);
+        setStatus(matches.length ? `${matches.length} Vorschläge verfügbar.` : "Kein Treffer. Sie können Ihre Adresse manuell eintragen.");
       } catch (error) {
         if (!cancelled && version === revision.current) {
           const reason = error instanceof AddressSearchError
@@ -45,6 +47,7 @@ export function AddressLookup({ id, label, onChoose }: Props) {
               ? "Die Adresssuche hat zu lange gedauert. Bitte versuchen Sie es erneut."
               : "Keine Verbindung zum Adressdienst. Bitte prüfen Sie Ihre Verbindung oder mögliche Browser-Blocker.";
           setStatus(`${reason} Manuelle Eingabe bleibt möglich.`);
+          setCanEnterManually(true);
         }
       } finally { clearTimeout(timeout); }
     }, 650);
@@ -56,6 +59,7 @@ export function AddressLookup({ id, label, onChoose }: Props) {
   function resetResults() {
     ++revision.current;
     setResults([]); setSelected(null); setStatus(""); setActive(-1); setDismissed(false);
+    setCanEnterManually(false);
   }
 
   function choose(result: AddressSuggestion) {
@@ -73,12 +77,10 @@ export function AddressLookup({ id, label, onChoose }: Props) {
   return (
     <div className={styles.lookup} role="group" aria-label={`Adresshilfe für ${label}`}>
       {!enabled ? (
-        <>
-          <p>Optional: PLZ und Straße online suchen. Nach Aktivierung werden Ihre Suchangaben, IP-Adresse und technische Browserdaten an Geoapify übertragen. Namen und Kontaktdaten senden wir nicht. <a href="/datenschutz/#adresssuche">Datenschutz zur Adresssuche</a></p>
-          <button type="button" onClick={() => setEnabled(true)}>Adresssuche aktivieren</button>
-        </>
+        <p>Bitte tragen Sie Ihre vollständige Adresse in das Adressfeld ein.</p>
       ) : (
         <>
+          <p>Die Adresssuche nutzt Geoapify. Beim Suchen werden PLZ, Straßen-Suchtext und Verbindungsdaten übertragen. <a href="/datenschutz/#adresssuche">Datenschutz zur Adresssuche</a></p>
           <div className={styles.fields}>
             <label htmlFor={`${id}-postcode`}>PLZ
               <input id={`${id}-postcode`} value={postcode} inputMode="numeric" maxLength={5} autoComplete="off"
@@ -114,14 +116,14 @@ export function AddressLookup({ id, label, onChoose }: Props) {
             <button type="button" disabled={!selected || !house.trim()} onClick={() => {
               if (!selected) return;
               onChoose(`${selected.street} ${house.trim()}, ${selected.postcode} ${selected.city}`);
-              setStatus("Adresse eingetragen. Bitte prüfen Sie das Adressfeld und ergänzen Sie bei Bedarf den Empfänger.");
+              setStatus("Adresse eingetragen. Sie können über die Suche eine andere Adresse auswählen.");
             }}>Adresse eintragen</button>
           </div>
           <div className={styles.footer}>
             <a href="https://www.geoapify.com/" target="_blank" rel="noopener noreferrer">Powered by Geoapify</a>
-            <button type="button" onClick={() => { resetResults(); setEnabled(false); setPostcode(""); setStreet(""); setHouse(""); }}>Suche deaktivieren</button>
+            {canEnterManually && <button type="button" onClick={() => { resetResults(); setEnabled(false); onManualEntry?.(); }}>Keine passende Adresse? Manuell eintragen</button>}
           </div>
-          <p>Vorschläge sind keine verbindliche Adressprüfung. Manuelle Eingabe bleibt jederzeit möglich.</p>
+          <p>Vorschläge sind keine verbindliche Adressprüfung.</p>
         </>
       )}
     </div>

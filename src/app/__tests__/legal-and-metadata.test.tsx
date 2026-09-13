@@ -50,7 +50,7 @@ describe("Rechtsseiten und Metadaten", () => {
     expect(screen.getByText(/kein Bewertungs-Widget von Google/i)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Google-Bewertungen und Profilbilder" })).toBeInTheDocument();
     expect(screen.getByText(/Eine Live-Abfrage über eine Google-API/)).toHaveTextContent("nicht statt");
-    expect(screen.getByRole("heading", { name: "Optionale Adresssuche mit Geoapify" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Adresssuche mit Geoapify" })).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: "Karteneinstellung im Bereich Region" }),
     ).toHaveAttribute("href", "/#region");

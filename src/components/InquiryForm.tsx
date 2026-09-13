@@ -79,6 +79,8 @@ function readInquiryDraftSnapshot() {
 
 export function InquiryForm() {
   const [values, setValues] = useState<InquiryFormValues>(initialInquiryValues);
+  const [manualLocation, setManualLocation] = useState(!process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY);
+  const [manualBilling, setManualBilling] = useState(!process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY);
   const [draftOverrides, setDraftOverrides] = useState({
     model: false,
     occasion: false,
@@ -351,6 +353,8 @@ export function InquiryForm() {
                 <input
                   id="inquiry-location"
                   name="location"
+                  readOnly={!manualLocation}
+                  placeholder={manualLocation ? "Straße, Hausnummer, PLZ und Ort" : "Adresse über die Suche auswählen"}
                   type="text"
                   autoComplete="section-setup street-address"
                   required
@@ -365,7 +369,7 @@ export function InquiryForm() {
                   </span>
                 )}
               </label>
-                <AddressLookup id="setup-search" label="Aufstellort" onChoose={address => setField("location", address)} />
+                <AddressLookup id="setup-search" label="Aufstellort" onChoose={address => setField("location", address)} onManualEntry={() => { setManualLocation(true); document.getElementById("inquiry-location")?.focus(); }} />
               </div>
 
               <label className={styles.field} htmlFor="inquiry-email">
@@ -434,10 +438,10 @@ export function InquiryForm() {
                 <div className={`${styles.field} ${styles.full}`}>
                 <label className={`${styles.field} ${styles.full}`} htmlFor="inquiry-billing-address">
                   <span>Rechnungsanschrift *</span>
-                  <input id="inquiry-billing-address" name="billingAddress" autoComplete="section-billing street-address" required placeholder="Empfänger, Straße, Hausnummer, PLZ und Ort" value={formValues.billingAddress} onChange={handleTextField} aria-invalid={Boolean(errors.billingAddress)} aria-describedby={describedBy("billingAddress")} />
+                  <input id="inquiry-billing-address" name="billingAddress" readOnly={!manualBilling} autoComplete="section-billing street-address" required placeholder={manualBilling ? "Empfänger, Straße, Hausnummer, PLZ und Ort" : "Adresse über die Suche auswählen"} value={formValues.billingAddress} onChange={handleTextField} aria-invalid={Boolean(errors.billingAddress)} aria-describedby={describedBy("billingAddress")} />
                   {errors.billingAddress && <span id="inquiry-billing-address-error" className={styles.fieldError}>{errors.billingAddress}</span>}
                 </label>
-                  <AddressLookup id="billing-search" label="Rechnungsanschrift" onChoose={address => setField("billingAddress", address)} />
+                  <AddressLookup id="billing-search" label="Rechnungsanschrift" onChoose={address => setField("billingAddress", address)} onManualEntry={() => { setManualBilling(true); document.getElementById("inquiry-billing-address")?.focus(); }} />
                 </div>
               )}
               <label className={`${styles.field} ${styles.full}`} htmlFor="inquiry-delivery-date">
