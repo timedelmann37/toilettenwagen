@@ -189,7 +189,7 @@ export function ModelSelector() {
           <h2 id="model-selector-title">Welcher Wagen passt?</h2>
         </header>
 
-        <fieldset className={styles.modelPicker}>
+        <fieldset id="modellauswahl" className={styles.modelPicker}>
           <legend>Modell auswählen</legend>
           <div className={styles.modelChoices}>
             {trailerModels.map((model, index) => (
@@ -281,7 +281,7 @@ export function ModelSelector() {
 
             <dl className={styles.facts}>
               <div className={styles.wideFact}>
-                <dt>Maße</dt>
+                <dt>Maße (L × B × H)</dt>
                 <dd>{selectedModel.dimensions}</dd>
               </div>
               <div>
@@ -360,7 +360,7 @@ export function ModelSelector() {
                       <dd>bis {model.capacity} Personen</dd>
                     </div>
                     <div>
-                      <dt>Maße</dt>
+                      <dt>Maße (L × B × H)</dt>
                       <dd>{model.dimensions}</dd>
                     </div>
                     <div>

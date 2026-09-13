@@ -5,6 +5,7 @@ import { ProcessStory } from "@/components/ProcessStory";
 import { RegionTrust } from "@/components/RegionTrust";
 import { ServiceProof } from "@/components/ServiceProof";
 import { VehicleImage } from "@/components/VehicleImage";
+import { VehicleModelLink } from "@/components/VehicleModelLink";
 import { WhatsappButton } from "@/components/WhatsappButton";
 import { trailerModels, type TrailerModelId } from "@/lib/models";
 import { site } from "@/lib/site";
@@ -71,6 +72,7 @@ export default function Home() {
                 key={model.id}
                 className={`${styles.vehicle} ${vehicleClasses[model.id]}`}
               >
+                <VehicleModelLink model={model.id} className={styles.vehicleLink}>
                 <VehicleImage
                   model={model.id}
                   alt={`Freigestellter Toilettenwagen Modell ${model.name} mit geöffneten Türen`}
@@ -78,6 +80,7 @@ export default function Home() {
                   loading="eager"
                   fetchPriority={index === 1 ? "high" : "auto"}
                 />
+                </VehicleModelLink>
                 <figcaption className={styles.vehicleCaption}>
                   <span className={styles.modelName}>{model.name}</span>
                   <span className={styles.capacity}>

@@ -81,6 +81,13 @@ a {
   outline-offset: 3px;
 }
 
+/* Native anchor navigation keeps the page's journey visible on desktop. */
+@media (min-width: 1280px) and (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 /* Motion-Budget (Dial 3): Bewegung immer reduzierbar. */
 @media (prefers-reduced-motion: reduce) {
   *,

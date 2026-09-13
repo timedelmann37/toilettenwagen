@@ -48,7 +48,7 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-20 border-b border-line bg-bg">
+    <header id="site-header" className="sticky top-0 z-20 border-b border-line bg-bg">
       <div className="mx-auto flex h-16 max-w-[88rem] items-center justify-between gap-4 px-4 md:h-[4.5rem] md:px-8 xl:px-12">
         <Link
           href="/"
@@ -73,7 +73,9 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 xl:flex">
-          <Link href="/#kontakt" className="inline-flex min-h-11 items-center justify-center rounded-full border border-line-strong px-5 text-sm font-semibold text-ink hover:border-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">Zum Anfrageformular</Link>
+          {/* Native anchor preserves smooth in-page scrolling; also works from legal pages. */}
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+          <a href="/#kontakt" className="inline-flex min-h-11 items-center justify-center rounded-full border border-line-strong px-5 text-sm font-semibold text-ink hover:border-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">Zum Anfrageformular</a>
           <WhatsappButton size="sm" />
         </div>
 

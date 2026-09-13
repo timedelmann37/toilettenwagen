@@ -24,7 +24,7 @@ export const metadata: Metadata = siteMetadata;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="de" className={`${hanken.variable} ${bricolage.variable} h-full`}>
+    <html lang="de" data-scroll-behavior="smooth" className={`${hanken.variable} ${bricolage.variable} h-full`}>
       <body className="min-h-full flex flex-col bg-bg text-ink">
         <a href="#top" className="skip-link">
           Zum Inhalt springen

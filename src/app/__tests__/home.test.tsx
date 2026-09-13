@@ -89,14 +89,19 @@ describe("Startseite", () => {
     expect(section.getAllByRole("img")).toHaveLength(8);
     const interiorGallery = section.getByRole("group", { name: "Echte Innenansichten" });
     expect(within(interiorGallery).getAllByRole("img")).toHaveLength(4);
-    for (const caption of [
-      "Waschplatz mit Spiegel und Spendern.",
-      "Gepflegte WC-Kabine.",
-      "Urinale mit Trennwänden.",
-      "Türmotiv in einer Innenansicht.",
+    for (const [caption, model] of [
+      ["Waschplatz mit Spiegel und Spendern.", "Wagen S"],
+      ["Gepflegte WC-Kabine.", "Wagen L"],
+      ["Urinale mit Trennwänden.", "Wagen M"],
+      ["Türmotiv in einer Innenansicht.", "Wagen S"],
     ]) {
-      expect(within(interiorGallery).getByText(caption)).toBeInTheDocument();
+      const label = within(interiorGallery).getByText(caption);
+      expect(label.closest("figcaption")).toHaveTextContent(model);
     }
+    expect(section.getByText("Tork Matic Advanced Handtuchrolle H1").tagName).toBe("DD");
+    expect(section.getByText("Tork Express Multifold Handtücher Universal H2").tagName).toBe("DD");
+    expect(section.queryByText("Wagen S · H1")).not.toBeInTheDocument();
+    expect(section.queryByText("Wagen M & L · H2")).not.toBeInTheDocument();
     expect(section.getByAltText("Technische Illustration eines männlichen Gardena-Steckteils")).toBeInTheDocument();
     expect(section.getByAltText("Technische Illustration eines weiblichen Gardena-Schlauchstücks")).toBeInTheDocument();
     expect(

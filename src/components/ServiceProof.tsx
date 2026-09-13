@@ -136,8 +136,8 @@ export function ServiceProof() {
           <div>
             <h4>Passende TORK-Handtücher</h4>
             <dl className={styles.supplyList}>
-              <div><dt>Wagen S · H1</dt><dd>Tork Matic Advanced Handtuchrolle</dd></div>
-              <div><dt>Wagen M &amp; L · H2</dt><dd>Tork Express Multifold Handtücher Universal</dd></div>
+              <div><dt>Wagen S</dt><dd>Tork Matic Advanced Handtuchrolle H1</dd></div>
+              <div><dt>Wagen M &amp; L</dt><dd>Tork Express Multifold Handtücher Universal H2</dd></div>
             </dl>
           </div>
         </div>
@@ -151,7 +151,7 @@ export function ServiceProof() {
               height={1200}
               sizes="(max-width: 767px) 50vw, 35vw"
             />
-            <figcaption>Waschplatz mit Spiegel und Spendern.</figcaption>
+            <figcaption><span>Waschplatz mit Spiegel und Spendern.</span><span className={styles.galleryModel}>Wagen S</span></figcaption>
           </figure>
           <figure className={styles.cabinFigure}>
             <Image
@@ -161,7 +161,7 @@ export function ServiceProof() {
               height={1200}
               sizes="(max-width: 767px) 50vw, 22vw"
             />
-            <figcaption>Gepflegte WC-Kabine.</figcaption>
+            <figcaption><span>Gepflegte WC-Kabine.</span><span className={styles.galleryModel}>Wagen L</span></figcaption>
           </figure>
           <figure className={styles.urinalFigure}>
             <Image
@@ -171,7 +171,7 @@ export function ServiceProof() {
               height={1200}
               sizes="(max-width: 767px) 50vw, 22vw"
             />
-            <figcaption>Urinale mit Trennwänden.</figcaption>
+            <figcaption><span>Urinale mit Trennwänden.</span><span className={styles.galleryModel}>Wagen M</span></figcaption>
           </figure>
           <figure className={styles.doorFigure}>
             <Image
@@ -181,7 +181,7 @@ export function ServiceProof() {
               height={1200}
               sizes="(max-width: 767px) 50vw, 22vw"
             />
-            <figcaption>Türmotiv in einer Innenansicht.</figcaption>
+            <figcaption><span>Türmotiv in einer Innenansicht.</span><span className={styles.galleryModel}>Wagen S</span></figcaption>
           </figure>
         </div>
       </div>

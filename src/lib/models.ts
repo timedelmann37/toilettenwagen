@@ -49,7 +49,7 @@ export const trailerModels = [
     urinals: 3,
     priceNetCents: 19_000,
     suitability: "Mehr Kapazität für mittelgroße Veranstaltungen.",
-    specificFeatures: ["Kalt fließendes Wasser", "Handtücher: Tork Express Multifold Handtücher Universal H2", "Erstausstattung: Toilettenpapier, Seife und Tücher", "Selbstabholung möglich"],
+    specificFeatures: ["Kalt fließendes Wasser", "2 Waschbecken im Damenbereich", "Kleine Mülleimer", "Handtücher: Tork Express Multifold Handtücher Universal H2", "Erstausstattung: Toilettenpapier, Seife und Tücher", "Selbstabholung möglich"],
   },
   {
     id: "l",
@@ -61,6 +61,6 @@ export const trailerModels = [
     urinals: 6,
     priceNetCents: 21_000,
     suitability: "Die größte Kapazität der Familie für große Veranstaltungen.",
-    specificFeatures: ["Kalt fließendes Wasser", "Handtücher: Tork Express Multifold Handtücher Universal H2", "Erstausstattung: Toilettenpapier, Seife und Tücher"],
+    specificFeatures: ["Kalt fließendes Wasser", "2 Waschbecken im Damenbereich", "Kleine Mülleimer", "Handtücher: Tork Express Multifold Handtücher Universal H2", "Erstausstattung: Toilettenpapier, Seife und Tücher"],
   },
 ] as const satisfies readonly TrailerModel[];
