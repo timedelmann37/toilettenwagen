@@ -2,6 +2,7 @@
 
 import type { MouseEvent, ReactNode } from "react";
 import type { TrailerModelId } from "@/lib/models";
+import { scrollToSection } from "@/lib/scrollToSection";
 
 export function VehicleModelLink({ model, className, children }: {
   model: TrailerModelId;
@@ -18,10 +19,7 @@ export function VehicleModelLink({ model, className, children }: {
     input.click();
     input.focus({ preventScroll: true });
     const headerHeight = document.getElementById("site-header")?.getBoundingClientRect().height ?? 0;
-    window.scrollTo({
-      top: Math.max(0, window.scrollY + picker.getBoundingClientRect().top - headerHeight - 16),
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
-    });
+    scrollToSection(window.scrollY + picker.getBoundingClientRect().top - headerHeight - 16);
   }
 
   return <a href="#modellauswahl" className={className} aria-label={`Wagen ${model.toUpperCase()} auswählen und ansehen`} onClick={selectAndScroll}>{children}</a>;

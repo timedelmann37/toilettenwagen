@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { navLinks, site } from "@/lib/site";
 import { WhatsappButton } from "./WhatsappButton";
+import { scrollToSection } from "@/lib/scrollToSection";
 
 /** Die Ankerlinks – einmal definiert, in Desktop- und Mobil-Nav wiederverwendet. */
 function NavList({
@@ -34,6 +35,25 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
+  function navigateOnDesktop(event: MouseEvent<HTMLElement>) {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const anchor = event.target instanceof Element ? event.target.closest("a") : null;
+    if (!anchor || anchor.target === "_blank" || !window.matchMedia("(min-width: 1280px)").matches) return;
+    const url = new URL(anchor.href, window.location.href);
+    if (url.origin !== window.location.origin || url.pathname !== window.location.pathname || url.search !== window.location.search || !url.hash) return;
+    const target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+    if (!target) return;
+    event.preventDefault();
+    const margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+    const top = window.scrollY + target.getBoundingClientRect().top - Math.max(margin, event.currentTarget.getBoundingClientRect().height);
+    if (window.location.hash !== url.hash) window.history.pushState(null, "", url.hash);
+    const hadTabIndex = target.hasAttribute("tabindex");
+    if (!hadTabIndex) target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+    if (!hadTabIndex) target.removeAttribute("tabindex");
+    scrollToSection(top);
+  }
+
   useEffect(() => {
     if (!open) return;
 
@@ -48,7 +68,7 @@ export function Header() {
   }, [open]);
 
   return (
-    <header id="site-header" className="sticky top-0 z-20 border-b border-line bg-bg">
+    <header id="site-header" onClick={navigateOnDesktop} className="sticky top-0 z-20 border-b border-line bg-bg">
       <div className="mx-auto flex h-16 max-w-[88rem] items-center justify-between gap-4 px-4 md:h-[4.5rem] md:px-8 xl:px-12">
         <Link
           href="/"

@@ -15,6 +15,6 @@ describe("Hero-Modellwahl", () => {
     expect(screen.getByRole("radio", { name: "Modell L, bis 600 Personen" })).toBeChecked();
     expect(screen.getByRole("radio", { name: "Modell L, bis 600 Personen" })).toHaveFocus();
     expect(screen.getByRole("heading", { name: "Modell L" })).toBeInTheDocument();
-    expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: reduced ? "instant" : "smooth" });
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: "instant" });
   });
 });
