@@ -15,13 +15,22 @@ import { siteMetadata as rootMetadata } from "@/lib/metadata";
 import { site } from "@/lib/site";
 
 describe("Rechtsseiten und Metadaten", () => {
-  it("zeigt die übernommenen AGB mit bestätigter Reinigung und Abwasserempfehlung", () => {
+  it("zeigt die AGB vom 14.09.2026 mit 21 Paragraphen, Widerrufsbelehrung und Musterformular", () => {
     render(<TermsPage />);
     expect(screen.getByRole("heading", { level: 1, name: "AGB" })).toBeInTheDocument();
-    expect(screen.getAllByRole("heading", { level: 2 })).toHaveLength(12);
-    expect(screen.getByText(/Alle Preise verstehen/)).toHaveTextContent("Endreinigung inklusive Desinfektion wird immer eine Pauschale von 50 € zusätzlich zur Miete berechnet");
-    expect(screen.getByText(/Abstand von höchstens 5 Metern/)).toHaveTextContent("empfohlen");
+    // 21 Paragraphen + Widerrufsbelehrung + Muster-Widerrufsformular
+    expect(screen.getAllByRole("heading", { level: 2 })).toHaveLength(23);
+    expect(screen.getByText("Stand: 14. September 2026")).toBeInTheDocument();
+    expect(screen.getByText(/Der reguläre Auf- und Abbau wird mit 75,00 € netto berechnet/)).toBeInTheDocument();
+    expect(screen.getByText(/bis zu 10 Meter Frischwasserschlauch/)).toBeInTheDocument();
+    expect(screen.getByText(/bis zu etwa 5 Metern empfohlen/)).toBeInTheDocument();
     expect(screen.queryByText(/maximal 3 Meter/)).not.toBeInTheDocument();
+    expect(screen.getByText("ab 4 Wochen vor Mietbeginn: 100 % des vereinbarten Mietpreises")).toBeInTheDocument();
+    expect(screen.getByText(/§ 312g Abs. 2 Nr. 9 BGB/)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 2, name: "Muster-Widerrufsformular" })).toBeInTheDocument();
+    const withdrawalForm = document.getElementById("widerrufsformular");
+    expect(withdrawalForm).toHaveTextContent(site.address.street);
+    expect(withdrawalForm?.querySelector(`a[href="mailto:${site.email}"]`)).not.toBeNull();
     expect(termsMetadata.alternates?.canonical).toBe("/agb/");
   });
   it("zeigt im Impressum ausschließlich bestätigte Unternehmensdaten", () => {
