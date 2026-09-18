@@ -113,6 +113,30 @@ describe("Rechtsseiten und Metadaten", () => {
     expect(JSON.stringify(json)).not.toMatch(/Montabaur|MStV/i);
   });
 
+  it("ergänzt Öffnungszeiten, Einsatzgebiet und die drei Wagen als Angebote im JSON-LD", () => {
+    const { container } = render(<Home />);
+    const script = container.querySelector('script[type="application/ld+json"]');
+    const json = JSON.parse(script?.textContent ?? "{}") as {
+      openingHoursSpecification: Array<{ dayOfWeek: string[]; opens: string; closes: string }>;
+      areaServed: Array<{ name: string }>;
+      hasOfferCatalog: { itemListElement: Array<{ itemOffered: { name: string }; priceSpecification: { price: string; valueAddedTaxIncluded: boolean } }> };
+      image: string;
+    };
+
+    // site.hours: Mo-Fr zweigeteilt + Sa -> drei Zeitfenster, Werte 1:1 aus der Stammdatenquelle.
+    expect(json.openingHoursSpecification).toHaveLength(3);
+    expect(json.openingHoursSpecification[0]).toMatchObject({ dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:00", closes: "13:00" });
+    expect(json.openingHoursSpecification[2]).toMatchObject({ dayOfWeek: ["Saturday"], opens: "10:00", closes: "16:00" });
+
+    // Einsatzgebiet nur mit Orten, die auch in der FAQ genannt werden.
+    expect(json.areaServed.map((place) => place.name)).toEqual(expect.arrayContaining(["Westerwald", "Daaden", "Siegen", "Betzdorf"]));
+
+    // Ein Angebot je Modell mit Nettopreis pro Miettag aus models.ts (17.500 Cent -> "175.00").
+    expect(json.hasOfferCatalog.itemListElement.map((offer) => offer.itemOffered.name)).toEqual(["Toilettenwagen S", "Toilettenwagen M", "Toilettenwagen L"]);
+    expect(json.hasOfferCatalog.itemListElement[0].priceSpecification).toMatchObject({ price: "175.00", valueAddedTaxIncluded: false });
+    expect(json.image).toBe(`${site.url}/social/toilettenwagen-westerwald-og.png`);
+  });
+
   it("erzeugt das Social Preview im vorgesehenen Format", async () => {
     const preview = path.join(
       process.cwd(),

@@ -26,7 +26,9 @@ export function RegionTrust() {
           <div>
             <p className={styles.radiusStatement}>
               Unser reguläres Einsatzgebiet reicht ungefähr 125&nbsp;km um den
-              Standort unserer Sanitärwagen. Weitere Strecken prüfen wir auf Anfrage.
+              Standort unserer Sanitärwagen: vom Westerwald über den Kreis
+              Altenkirchen bis ins Siegerland und nach Mittelhessen. Weitere
+              Strecken prüfen wir auf Anfrage.
             </p>
           </div>
         </header>

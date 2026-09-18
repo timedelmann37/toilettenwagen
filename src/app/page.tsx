@@ -8,30 +8,13 @@ import { VehicleImage } from "@/components/VehicleImage";
 import { VehicleModelLink } from "@/components/VehicleModelLink";
 import { WhatsappButton } from "@/components/WhatsappButton";
 import { trailerModels, type TrailerModelId } from "@/lib/models";
-import { site } from "@/lib/site";
+import { localBusinessJsonLd } from "@/lib/structuredData";
 import styles from "./home.module.css";
 
 const vehicleClasses: Record<TrailerModelId, string> = {
   s: styles.vehicleS,
   m: styles.vehicleM,
   l: styles.vehicleL,
-};
-
-const localBusinessJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": `${site.url}/#unternehmen`,
-  name: site.legalName,
-  url: site.url,
-  telephone: site.phone,
-  email: site.email,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: site.address.street,
-    postalCode: site.address.postalCode,
-    addressLocality: site.address.locality,
-    addressCountry: "DE",
-  },
 };
 
 export default function Home() {
@@ -49,8 +32,9 @@ export default function Home() {
             <h1 className={styles.headline}>Drei Größen. Sauber gelöst.</h1>
             <div className={styles.heroDetails}>
             <p className={styles.subtext}>
-              Gepflegte, beheizte mobile Sanitäranlagen für Feiern, Veranstaltungen
-              und Einsätze rund um Niederdreisbach.
+              Toilettenwagen mieten im Westerwald: gepflegte, beheizte mobile
+              Sanitäranlagen für Feiern, Veranstaltungen und Einsätze rund um
+              Niederdreisbach.
             </p>
             <div className={styles.actions}>
               <WhatsappButton />

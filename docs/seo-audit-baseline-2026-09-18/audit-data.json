@@ -1,0 +1,218 @@
+{
+  "summary": {
+    "health_score": 42,
+    "business_type": "Local Service / Service-Area-Business (Toilettenwagen-Vermietung, Daaden/Westerwald)",
+    "audit_date": "2026-09-18",
+    "domain": "www.mobile-sanitaeranlagen-hs.de",
+    "pages_crawled": 16,
+    "top_findings": [
+      "9 Ecwid-Demoprodukte (Kleidung) indexierbar in wp-sitemap-ecstore-1.xml, alle HTTP 200, self-canonical, kein noindex",
+      "Startseiten-Title 'Mobile Sanitäranlagen: 10% Rabatt bis 30.06.2026' – abgelaufen, ohne Ort/Leistung; Domain in keiner der 6 Ziel-SERPs",
+      "LocalBusiness-JSON-LD auf allen 7 Seiten fehlerhaft: ungültige openingHours (widersprechen /kontakt/), keine PLZ/Land, sameAs = 7 leere Strings",
+      "Keine Vertrauenssignale: 0 Bewertungen, kein Über-uns, kein GBP-Link; NAP inkonsistent (Tippfehler, 2 Telefonnummern, 3 Namensschreibweisen)",
+      "31 von 34 Bildern ohne alt-Text, UUID-Dateinamen, keine width/height; Cookie-Banner verdeckt mobil 35–45 % des Viewports inkl. CTA"
+    ],
+    "quick_wins": [
+      "Demo-Produkte in Ecwid löschen, /shop/ auf 410 setzen",
+      "Home-Title auf 'Toilettenwagen mieten im Westerwald – Daaden & Umgebung' ändern",
+      "JSON-LD mit fertigem Block aus findings/schema.md ersetzen",
+      "tel:/mailto:/wa.me-Links setzen (aktuell kein einziger tel:-Link)",
+      "Security-Header (HSTS, X-Content-Type-Options, frame-ancestors) setzen"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "weight": 22,
+      "score": 58,
+      "what_works": [
+        "HTTP→HTTPS und non-www→www als saubere Single-Hop-301",
+        "Alle 7 Seiten self-canonical, kein noindex, lang=de, Viewport korrekt",
+        "Server-Side-Rendering (WordPress), TTFB ~120 ms",
+        "robots.txt minimal und korrekt, Sitemap referenziert"
+      ],
+      "findings": [
+        {"title": "Ecwid-Demoprodukte indexierbar", "severity": "Critical", "description": "wp-sitemap-ecstore-1.xml listet 9 'MUSTER-…'-Kleidungsartikel; alle HTTP 200, self-canonical, kein noindex, identische Page-ID wie /shop/, kein Product-Schema.", "recommendation": "Produkte in Ecwid löschen; /shop/ → 410 oder 301 auf /unsere-toilettenwagen/; im Relaunch keine Shop-Route, alte Produkt-URLs 410."},
+        {"title": "Keine Security-Header", "severity": "High", "description": "curl -sI: kein Strict-Transport-Security, Content-Security-Policy, X-Frame-Options, X-Content-Type-Options.", "recommendation": "Im Relaunch zentral über headers() in next.config.ts bzw. nginx.conf setzen."},
+        {"title": "Abgelaufene Promo im Title", "severity": "High", "description": "'10% Rabatt bis 30.06.2026' am 18.09.2026 – 80 Tage abgelaufen, Rabatt auf der Seite nicht erwähnt.", "recommendation": "Title ersetzen (siehe On-Page)."},
+        {"title": "/shop/ nur clientseitig gerendert", "severity": "High", "description": "Roh-HTML enthält nur 'Ihr Shop-Inhalt wird jetzt geladen …'; Ecwid-Widget ohne SSR.", "recommendation": "Shop entfernen; falls Katalog nötig, SSG in Next.js."},
+        {"title": "Bilder ohne Dimensionen, Slider lazy via data-splide-lazy", "severity": "High", "description": "31/31 img auf /unsere-toilettenwagen/ ohne width/height; LCP-Element JS-abhängig.", "recommendation": "next/image mit expliziten Maßen, Hero mit priority."},
+        {"title": "IndexNow nicht eingerichtet", "severity": "Low", "description": "Kein Key-File, keine Integration.", "recommendation": "IndexNow-Key + Submit im Deploy-Script für Bing/Copilot."}
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "weight": 23,
+      "score": 32,
+      "what_works": [
+        "Preise (175/190/210 € netto/Tag) und Ausstattung der 3 Wagen stehen im Klartext",
+        "Keine AI-/Filler-Muster erkannt (content_quality.py)",
+        "Rechtstexte vollständig (AGB 532, Datenschutz 1960 Wörter)"
+      ],
+      "findings": [
+        {"title": "Thin Content auf allen kommerziellen Seiten", "severity": "High", "description": "Home 69 Wörter (Ziel ≥ 500), /unsere-toilettenwagen/ 240 (Ziel ≥ 800), Kontakt 180 (Formular-Labels), Shop 50.", "recommendation": "Startseite als lokale Landingpage ≥ 500 Wörter; Detailseiten je Wagen."},
+        {"title": "Keyword-/Ortslücke", "severity": "High", "description": "'Westerwald' 0× site-weit, 'Hochzeit'/'Event' 0×, 'Baustelle' nur in Meta-Description, 'Daaden' nicht auf Home/Wagen-Seite.", "recommendation": "Ort + Leistung in H1, Fließtext, Liefergebiet-Absatz mit Ortsliste."},
+        {"title": "Keine Experience-/Authority-Signale", "severity": "High", "description": "Kein Über-uns, keine Referenzen, keine Bewertungen, keine Einsatzfotos; sameAs leer.", "recommendation": "Über-uns-Seite, 3–5 Referenzen mit Fotos, GBP-Bewertungen einbinden."},
+        {"title": "Intent-Mismatch 'Baustelle'", "severity": "High", "description": "Baustellen-SERP erwartet Kabinen mit Wochenpreis; Produkt ist Event-Anhänger mit Abwasseranschluss ≤ 3 m.", "recommendation": "Positionierung klären: streichen oder als Nische (Richtfest, Baustellenbüro) ehrlich beschreiben."},
+        {"title": "NAP-Inkonsistenzen", "severity": "Medium", "description": "Telefon +4916091633060 (Datenschutz) vs. +49 160 2743001; Tippfehler 'Sanitäranalgen' im Impressum; Firmenname in 3 Schreibweisen (Smécz/Smücz/&amp;).", "recommendation": "Handelsregister-Schreibweise verifizieren; im Relaunch alles aus src/lib/site.ts rendern."},
+        {"title": "Kein Ratgeber-/FAQ-Content", "severity": "Medium", "description": "Keine Antworten auf 'Wie viele Toiletten brauche ich?', Liefergebiet, Anschlüsse, Vorlaufzeit.", "recommendation": "8 Frage-Überschriften mit Antwortpassagen aus findings/geo.md übernehmen (ohne FAQPage-Schema)."},
+        {"title": "Lesbarkeit und Wiederholungen", "severity": "Low", "description": "Flesch-Amstad 23–33; Grammatikfehler ('Wählen sie', '2 Herrentoilette'); MwSt-Hinweis 3× wiederholt.", "recommendation": "Kürzere Sätze, Korrektorat, Hinweisblock einmal am Seitenende."}
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "weight": 20,
+      "score": 41,
+      "what_works": [
+        "Title, Canonical und lang-Attribut auf jeder Seite vorhanden",
+        "Meta-Descriptions auf 6 von 7 Seiten, nicht templatisiert",
+        "Basis-Schrift 16 px, Tap-Targets ausreichend"
+      ],
+      "findings": [
+        {"title": "Title-Tags ohne Leistung/Ort/Marke", "severity": "High", "description": "Home ohne 'mieten'/Ort; /shop/ = 'Shop'; Datenschutz = 'Ihre Daten geschützt!'.", "recommendation": "Vorschläge je Seite in findings/content.md (z. B. 'Toilettenwagen mieten im Westerwald – Daaden & Umgebung')."},
+        {"title": "Meta-Descriptions unvollständig", "severity": "Medium", "description": "/shop/ ohne Description; Home mit Zeilenumbruch; alle < 125 Zeichen.", "recommendation": "Descriptions mit Preis/Kapazität/Ort, 140–155 Zeichen."},
+        {"title": "H1 fehlt / versteckte Fremd-Headings", "severity": "Medium", "description": "Kein H1 auf /kontakt/, /agb/, /shop/; zwei versteckte englische IONOS-H3 ('Your web browser is old') auf jeder Seite.", "recommendation": "Genau ein H1 je Seite; Browser-Warnung nicht als Heading rendern."},
+        {"title": "Interne Verlinkung nur über Navigation", "severity": "Medium", "description": "Keine kontextuellen Links zwischen Home, Wagen-Seite und Kontakt.", "recommendation": "Home → Detailseiten → Kontakt/Anfrage mit sprechenden Ankertexten."},
+        {"title": "Keine tel:/mailto:-Links", "severity": "Medium", "description": "Telefon und E-Mail nur als Text; WhatsApp über wa.link-Shortlink.", "recommendation": "tel:+491602743001, mailto:, wa.me-Links; Telefon im Header sticky auf Mobile."},
+        {"title": "Keine Open-Graph-Tags", "severity": "Low", "description": "Kein og:title/og:image/twitter:card.", "recommendation": "Bereits im Relaunch (src/lib/metadata.ts) vorhanden – beibehalten."}
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "weight": 10,
+      "score": 38,
+      "what_works": [
+        "LocalBusiness-JSON-LD grundsätzlich vorhanden und syntaktisch parsebar",
+        "Keine veralteten Typen (kein HowTo, kein FAQPage)"
+      ],
+      "findings": [
+        {"title": "openingHours ungültig und widersprüchlich", "severity": "Critical", "description": "Objekt {weekDays, timeFormat} statt Schema.org-Format; Werte (Mo geschlossen, Sa 14–18) widersprechen /kontakt/ (Mo–Fr 9–13/15–19, Sa 10–16).", "recommendation": "openingHoursSpecification mit den sichtbaren Zeiten (Block in findings/schema.md)."},
+        {"title": "Adresse unvollständig", "severity": "Critical", "description": "postalCode und addressCountry fehlen, addressRegion: null.", "recommendation": "postalCode 57567, addressLocality Daaden, addressRegion RP, addressCountry DE."},
+        {"title": "Geo/Logo/Image fehlerhaft", "severity": "High", "description": "latitude/longitude top-level statt geo: GeoCoordinates; logo relativer IONOS-Pfad; kein image.", "recommendation": "geo-Objekt, absolute logo-/image-URLs."},
+        {"title": "sameAs leer, Telefon nicht E.164, fehlende Properties", "severity": "Medium", "description": "sameAs = 7 leere Strings; telephone '01602743001'; kein @id, areaServed, priceRange.", "recommendation": "Leere sameAs entfernen (später GBP/Social ergänzen), +491602743001, @id, areaServed (Westerwald/Kreis Altenkirchen/Siegen), priceRange '€€'."},
+        {"title": "Kein Service/Offer für die 3 Wagen, kein BreadcrumbList/WebSite", "severity": "Medium", "description": "Preise und Ausstattung nur im Fließtext.", "recommendation": "Service + OfferCatalog mit 3 Offers (fertig in findings/schema.md), BreadcrumbList, WebSite."},
+        {"title": "Identischer Block auf allen Seiten inkl. AGB/Datenschutz", "severity": "Low", "description": "Globales Widget, nicht seitenbewusst.", "recommendation": "Im Relaunch seitenbezogene Schema-Ausgabe."}
+      ]
+    },
+    {
+      "name": "Performance",
+      "weight": 10,
+      "score": 52,
+      "what_works": [
+        "TTFB ~120–126 ms",
+        "Kein Third-Party-Tracking-JS, moderater DOM (374/647 Knoten) → INP voraussichtlich unkritisch",
+        "Speculation Rules (prefetch) aktiv"
+      ],
+      "findings": [
+        {"title": "Massives CSS-Bloat, unkomprimiert", "severity": "Critical", "description": "Inline-CSS 240 KB (Home) / 377 KB (= 100 % der HTML-Größe auf /unsere-toilettenwagen/) + externe 265 KB go-x/style.css ohne Kompression trotz Accept-Encoding: br.", "recommendation": "Im Relaunch: Tailwind-Purge, Brotli in nginx, kein Inline-CSS > 14 KB."},
+        {"title": "LCP-Element nicht priorisiert", "severity": "High", "description": "preload_check.py 75/100: kein fetchpriority=high, Preload nur für Logo; Hero-JPEG bis 244 KB, kein WebP/AVIF.", "recommendation": "Hero als <img priority fetchpriority=high>, AVIF/WebP via next/image."},
+        {"title": "CLS-Risiko", "severity": "High", "description": "31/31 Bilder ohne width/height; kein font-display in @font-face.", "recommendation": "Explizite Maße, next/font mit display: swap."},
+        {"title": "Cache-Header inkonsistent", "severity": "Medium", "description": "Versionierte Assets 1 Jahr, Upload-Bilder nur ~30 Minuten.", "recommendation": "Cache-Control: public, max-age=31536000, immutable für gehashte Assets."},
+        {"title": "Keine Felddaten", "severity": "Info", "description": "Kein Google-API-Key → keine CrUX-Perzentile; alle Werte Lab-Schätzungen.", "recommendation": "API-Key in ~/.config/claude-seo/google-api.json, dann /seo google."}
+      ]
+    },
+    {
+      "name": "AI Search Readiness",
+      "weight": 10,
+      "score": 40,
+      "what_works": [
+        "robots.txt erlaubt alle AI-Crawler (OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended)",
+        "SSR – Text für Crawler ohne JS lesbar",
+        "agent_ux_check: Home 95/100"
+      ],
+      "findings": [
+        {"title": "Geringe Passage-Zitierfähigkeit", "severity": "High", "description": "Auf 'Toilettenwagen mieten Westerwald – Preise, Größen, Kapazität, Lieferradius?' extrahierbar nur: 3 Wagen, ab 175/190/210 € netto, max. 3 m Abwasser. Keine Frage-Überschriften, keine Gästezahl, kein Liefergebiet, keine Maße.", "recommendation": "8 Frage-Überschriften mit in sich geschlossenen Antwortpassagen (findings/geo.md)."},
+        {"title": "Entity-Unklarheit", "severity": "High", "description": "Firmenname in 3 Schreibweisen; JSON-LD fehlerhaft; einzige externe Entität Handelsregister HRB 30803 Montabaur.", "recommendation": "NAP vereinheitlichen, Schema reparieren, Organization mit @id."},
+        {"title": "Keine Brand Mentions", "severity": "High", "description": "Bing: 0 Treffer für den Firmennamen; keine GBP/Social/Verzeichnisse; einziger ausgehender Link gmpg.org.", "recommendation": "GBP, Bing Places, Verzeichnisse, Vereins-/Presse-Erwähnungen."},
+        {"title": "Ecwid-Demoprodukte verwässern die Entity", "severity": "Medium", "description": "9 Kleidungsartikel in der Sitemap.", "recommendation": "Siehe Technical 1."},
+        {"title": "llms.txt fehlt", "severity": "Low", "description": "/llms.txt, /llms-full.txt, /.well-known/rsl.xml 404 – von Google nicht genutzt.", "recommendation": "Optional; niedrige Priorität."}
+      ]
+    },
+    {
+      "name": "Images",
+      "weight": 5,
+      "score": 12,
+      "what_works": [
+        "Bildmaterial der Wagen vorhanden (31 Galeriebilder)",
+        "Tap-Targets und Schriftgröße auf Mobile in Ordnung"
+      ],
+      "findings": [
+        {"title": "Praktisch keine Alt-Texte", "severity": "High", "description": "31 von 34 Bildern ohne alt, 3 mit alt=''; 0 aussagekräftige Alt-Texte.", "recommendation": "Alt-Text je Bild: 'Toilettenwagen L Innenraum mit 4 Damen-WCs' etc."},
+        {"title": "UUID-Dateinamen, Hero als CSS-Background", "severity": "Medium", "description": "b59c5dd5-…/image-1366x1024.jpg; Hero für Google Images unsichtbar und nicht als LCP priorisierbar.", "recommendation": "Sprechende Dateinamen, Hero als <img>/next/image."},
+        {"title": "Cookie-Banner verdeckt CTA auf Mobile", "severity": "Critical", "description": "35–45 % des Viewports; Home-CTA abgeschnitten; /kontakt/ mobil nur WhatsApp-Icon above the fold.", "recommendation": "Kompakter Banner, Telefon + CTA above the fold."},
+        {"title": "Horizontaler Scroll auf Mobile", "severity": "High", "description": "analyze_visual.py: /unsere-toilettenwagen/ und /kontakt/ (Splide-Slider/Formular sprengen Viewport).", "recommendation": "overflow-x prüfen, Slider/Formular auf 100 % Breite begrenzen."}
+      ]
+    },
+    {
+      "name": "Local SEO",
+      "weight": 0,
+      "score": 22,
+      "what_works": [
+        "Kern-NAP (Name/Adresse/Telefon/E-Mail) zwischen Kontakt, Impressum und JSON-LD im Wesentlichen konsistent",
+        "Google-Maps-Embed auf /kontakt/ vorhanden"
+      ],
+      "findings": [
+        {"title": "Keine Service-Area-Inhalte", "severity": "Critical", "description": "Westerwald, Siegen, Betzdorf, Altenkirchen, Kirchen, Wissen, Herdorf: 0 Nennungen; kein Liefergebiet.", "recommendation": "Liefergebiet-Absatz + 4–6 Regionsseiten (max. 10)."},
+        {"title": "Kein belegtes Google Business Profile, keine Bewertungen", "severity": "High", "description": "Maps-Embed hinter Cookie-Wall ohne place_id; sameAs leer; 0 Bewertungen/aggregateRating.", "recommendation": "GBP als SAB anlegen, Bewertungsprozess nach jedem Einsatz."},
+        {"title": "Kein Ortsbezug in Title/H1 der Kernseiten", "severity": "High", "description": "Home und /unsere-toilettenwagen/ ohne Ortsnamen.", "recommendation": "Ort in Title, H1 und erstem Absatz."},
+        {"title": "Citations fehlen", "severity": "Medium", "description": "Keine Einträge erkennbar bei Das Örtliche, GelbeSeiten, 11880, Bing Places, Apple; mietmeile/Kleinanzeigen ranken für 4 von 6 Queries.", "recommendation": "Tier-1-Citations mit identischem NAP; Inserate auf mietmeile und Kleinanzeigen."}
+      ]
+    },
+    {
+      "name": "Search Experience (SXO)",
+      "weight": 0,
+      "score": 35,
+      "what_works": [
+        "/unsere-toilettenwagen/ enthält bereits WC-Zahl und Preise – die Grundfakten der Ranker"
+      ],
+      "findings": [
+        {"title": "Page-Type-Mismatch der Startseite", "severity": "Critical", "description": "Dünne Marken-Landingpage statt lokaler Service-Landingpage; SERPs zu 80–90 % lokale Seiten mit Ort in Title+H1; Domain in 0 von 6 Ziel-SERPs.", "recommendation": "Startseite als 'Toilettenwagen mieten im Westerwald' mit Modellen, Kapazität, Preisen, Liefergebiet, Bewertungen."},
+        {"title": "Vokabular-Mismatch", "severity": "High", "description": "Kein Ranker nutzt 'Mobile Sanitäranlagen'; Suchvokabular ist 'Toilettenwagen/WC-Wagen mieten'.", "recommendation": "Marke als Suffix, Leistung als Präfix."},
+        {"title": "Vertrauen = schwächste Persona-Dimension", "severity": "High", "description": "Startseite 23–34/100, Wagen-Seite 34–56/100 für Hochzeitspaar/Vereinsfest/Bauleiter.", "recommendation": "Bewertungen, Referenzen, Über-uns, Telefon/WhatsApp mehrfach, Vereinsrabatt."},
+        {"title": "Fehlende Personenkapazität und FAQ 'Wie viele Toiletten brauche ich?'", "severity": "Medium", "description": "SERP-Konsens-Element fehlt.", "recommendation": "Kapazität je Wagen (Gäste) + Bedarfsrechner-Absatz."}
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {"name": "Phase 1: Critical Fixes", "timeframe": "Woche 1 / Relaunch-Tag", "items": [
+        "Ecwid-Demoprodukte löschen, /shop/ → 410, alte Produkt-URLs 410",
+        "Home-Title/Description: 'Toilettenwagen mieten im Westerwald – Daaden & Umgebung'",
+        "LocalBusiness-JSON-LD reparieren (openingHoursSpecification, PLZ, Land, geo, E.164, sameAs bereinigen)",
+        "NAP Single Source of Truth (Handelsregister-Schreibweise, eine Telefonnummer, Tippfehler)",
+        "Security-Header in next.config.ts / nginx.conf",
+        "Mobile: Cookie-Banner verkleinern, horizontalen Scroll beheben, CTA + Telefon above the fold"
+      ]},
+      {"name": "Phase 2: High-Impact Improvements", "timeframe": "Wochen 2–3", "items": [
+        "Startseite ≥ 500 Wörter als lokale Landingpage mit Liefergebiet-Ortsliste und Anlässen",
+        "Detailseiten /toilettenwagen/s|m|l/ mit Kapazität, Maßen, Anschlüssen, Preis, Service+Offer-Schema",
+        "8 Frage-Überschriften mit Antwortpassagen (ohne FAQPage-Schema)",
+        "Alt-Texte, sprechende Dateinamen, next/image, Hero als <img priority>",
+        "Google Business Profile (SAB) + Bing Places + Apple Business Connect",
+        "Bewertungsprozess nach jedem Einsatz, 3–5 Referenzen mit Fotos",
+        "'Baustelle'-Positionierung klären",
+        "Performance: CSS-Purge, Brotli, next/font, immutable Cache, LCP fetchpriority"
+      ]},
+      {"name": "Phase 3: Content & Authority", "timeframe": "Monat 2", "items": [
+        "4–6 Regionsseiten (Siegen, Betzdorf, Altenkirchen, Hachenburg …), ≥ 60 % unique, max. 10",
+        "Anlass-Seiten Hochzeit / Vereinsfest / Firmenevent",
+        "Über-uns-Seite + Organization-Schema",
+        "Tier-1-Citations (Das Örtliche, GelbeSeiten, 11880, mietmeile, Kleinanzeigen)",
+        "Lokaler Linkaufbau (Vereine, Veranstalter, Gemeinden, Partner, Regionalpresse, IHK)",
+        "BreadcrumbList + WebSite-Schema, kontextuelle interne Links",
+        "IndexNow-Key + Submit im Deploy"
+      ]},
+      {"name": "Phase 4: Monitoring & Iteration", "timeframe": "Laufend", "items": [
+        "/seo drift baseline vor Relaunch, /seo drift compare nach Go-Live",
+        "GSC-Property, Sitemap einreichen, wöchentlich Impressions für Orts-Queries",
+        "Google-API-Key hinterlegen → CrUX-Felddaten via /seo google",
+        "Re-Audit nach 8 Wochen, Ziel Health Score ≥ 75"
+      ]}
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "findings/",
+    "screenshots_dir": "screenshots/",
+    "data_dir": "data/"
+  }
+}
