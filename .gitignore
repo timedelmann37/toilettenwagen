@@ -45,3 +45,5 @@ next-env.d.ts
 .impeccable/review/
 .impeccable/build/
 .impeccable/mocks/
+
+deploy/hetzner/tw-mailer/secrets.php
