@@ -79,8 +79,6 @@ function readInquiryDraftSnapshot() {
 
 export function InquiryForm() {
   const [values, setValues] = useState<InquiryFormValues>(initialInquiryValues);
-  const [manualLocation, setManualLocation] = useState(!process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY);
-  const [manualBilling, setManualBilling] = useState(!process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY);
   const [draftOverrides, setDraftOverrides] = useState({
     model: false,
     occasion: false,
@@ -105,7 +103,6 @@ export function InquiryForm() {
       ? { occasion: normalizeDraftOccasion(draft.occasion) }
       : {}),
   };
-  if (formValues.model === "l") formValues.collectionMethod = "delivery";
   const handedOffModel = draft.model
     ? trailerModels.find((model) => model.id === formValues.model)
     : undefined;
@@ -114,7 +111,7 @@ export function InquiryForm() {
     field: Key,
     value: InquiryFormValues[Key],
   ) {
-    setValues((current) => ({ ...current, [field]: value, ...(field === "model" && value === "l" ? { collectionMethod: "delivery" as const } : {}) }));
+    setValues((current) => ({ ...current, [field]: value }));
     if (field === "model" || field === "occasion") {
       setDraftOverrides((current) => ({ ...current, [field]: true }));
     }
@@ -306,8 +303,8 @@ export function InquiryForm() {
                     <span><strong>Lieferung</strong><small>Wir bringen und holen den Wagen</small></span>
                   </label>
                   <label>
-                    <input type="radio" name="collectionMethod" value="self-pickup" disabled={formValues.model === "l"} checked={formValues.collectionMethod === "self-pickup"} onChange={() => setField("collectionMethod", "self-pickup")} />
-                    <span><strong>Selbstabholung</strong><small>Für S und M nach Absprache</small></span>
+                    <input type="radio" name="collectionMethod" value="self-pickup" checked={formValues.collectionMethod === "self-pickup"} onChange={() => setField("collectionMethod", "self-pickup")} />
+                    <span><strong>Selbstabholung</strong><small>Für alle Modelle nach Absprache</small></span>
                   </label>
                 </div>
                 {formValues.model === "l" && <p>Wagen L ist nur mit Lieferung verfügbar.</p>}
@@ -348,28 +345,7 @@ export function InquiryForm() {
               </label>
 
               <div className={styles.field}>
-              <label className={styles.field} htmlFor="inquiry-location">
-                <span>Aufstellort: Straße, Hausnummer, PLZ und Ort *</span>
-                <input
-                  id="inquiry-location"
-                  name="location"
-                  readOnly={!manualLocation}
-                  placeholder={manualLocation ? "Straße, Hausnummer, PLZ und Ort" : "Adresse über die Suche auswählen"}
-                  type="text"
-                  autoComplete="section-setup street-address"
-                  required
-                  value={formValues.location}
-                  onChange={handleTextField}
-                  aria-invalid={Boolean(errors.location)}
-                  aria-describedby={describedBy("location")}
-                />
-                {errors.location && (
-                  <span id="inquiry-location-error" className={styles.fieldError}>
-                    {errors.location}
-                  </span>
-                )}
-              </label>
-                <AddressLookup id="setup-search" label="Aufstellort" onChoose={address => setField("location", address)} onManualEntry={() => { setManualLocation(true); document.getElementById("inquiry-location")?.focus(); }} />
+                <AddressLookup id="inquiry-location" name="location" label="Aufstellort: Straße, Hausnummer, PLZ und Ort *" value={formValues.location} onChoose={address => setField("location", address)} error={errors.location} autoComplete="section-setup street-address" />
               </div>
 
               <label className={styles.field} htmlFor="inquiry-email">
@@ -436,12 +412,7 @@ export function InquiryForm() {
               </label>
               {!formValues.billingSameAsLocation && (
                 <div className={`${styles.field} ${styles.full}`}>
-                <label className={`${styles.field} ${styles.full}`} htmlFor="inquiry-billing-address">
-                  <span>Rechnungsanschrift *</span>
-                  <input id="inquiry-billing-address" name="billingAddress" readOnly={!manualBilling} autoComplete="section-billing street-address" required placeholder={manualBilling ? "Empfänger, Straße, Hausnummer, PLZ und Ort" : "Adresse über die Suche auswählen"} value={formValues.billingAddress} onChange={handleTextField} aria-invalid={Boolean(errors.billingAddress)} aria-describedby={describedBy("billingAddress")} />
-                  {errors.billingAddress && <span id="inquiry-billing-address-error" className={styles.fieldError}>{errors.billingAddress}</span>}
-                </label>
-                  <AddressLookup id="billing-search" label="Rechnungsanschrift" onChoose={address => setField("billingAddress", address)} onManualEntry={() => { setManualBilling(true); document.getElementById("inquiry-billing-address")?.focus(); }} />
+                  <AddressLookup id="inquiry-billing-address" name="billingAddress" label="Rechnungsanschrift *" value={formValues.billingAddress} onChoose={address => setField("billingAddress", address)} error={errors.billingAddress} autoComplete="section-billing street-address" />
                 </div>
               )}
               <label className={`${styles.field} ${styles.full}`} htmlFor="inquiry-delivery-date">

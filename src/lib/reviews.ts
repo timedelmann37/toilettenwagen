@@ -9,7 +9,7 @@ export interface Review {
   sourceUrl?: string;
 }
 
-// Local review data transcribed from user-supplied Google screenshots.
+// Local review data from user-supplied Google screenshots and full texts (2026-10-09).
 // Relative dates belong to that screenshot, not to a live API response.
 // Intentionally maintained locally; no Google API. Dates retained as source notes only.
 export const reviewPreview: readonly Review[] = [
@@ -36,23 +36,23 @@ export const reviewPreview: readonly Review[] = [
   {
     id: "ebrar-kargun", name: "Ebrar Kargun", rating: 5,
     avatarUrl: "/fotos/reviews/ebrar-kargun.webp", dateLabel: "vor 2 Monaten",
-    text: "Sehr zuverlässiger Service! Pünktlich, professionell und super freundlich. Besonders die Flexibilität und das Entgegenkommen haben uns überzeugt. Alles hat …",
-    isExcerpt: true,
+    text: "Sehr zuverlässiger Service! Pünktlich, professionell und super freundlich. Besonders die Flexibilität und das Entgegenkommen haben uns überzeugt. Alles hat reibungslos funktioniert. Klare Weiterempfehlung!\n\nEbrar Cam",
+    isExcerpt: false,
   },
   {
     id: "daniel-gergel", name: "Daniel Gergel", rating: 5, dateLabel: "vor 2 Monaten",
-    text: "Alles hat reibungslos funktioniert, vom Erstkontakt bis zur Abholung. Die beiden sind sehr flexibel und eine kurzfristige Anmietung war kein Problem.. wer eine …",
-    isExcerpt: true,
+    text: "Alles hat reibungslos funktioniert, vom Erstkontakt bis zur Abholung. Die beiden sind sehr flexibel und eine kurzfristige Anmietung war kein Problem.. wer eine saubere neuwertige und bezahlbare mobile Toilette sucht, ist hier genau richtig. Werde auch zukünftig wieder hier mieten und kann die beiden Vermieter wärmstens weiterempfehlen.",
+    isExcerpt: false,
   },
   {
     id: "alic-32", name: "alic.32", rating: 5, dateLabel: "vor 2 Monaten",
-    text: "Top Service von Anfang bis Ende! Freundliches Team, schnelle und unkomplizierte Abwicklung sowie eine zuverlässige und saubere Arbeit. Man merkt, dass hier …",
-    isExcerpt: true,
+    text: "Top Service von Anfang bis Ende! Freundliches Team, schnelle und unkomplizierte Abwicklung sowie eine zuverlässige und saubere Arbeit. Man merkt, dass hier Kundenzufriedenheit an erster Stelle steht. Vielen Dank jederzeit gerne wieder!",
+    isExcerpt: false,
   },
   {
     id: "jeremy-lueckhof", name: "Jeremy Lückhof", rating: 5, dateLabel: "vor 2 Monaten",
-    text: "Absolute Weiterempfehlung !!\nDie Toilettenwagen war sauber und das ganze hat sehr unkompliziert funktioniert. …",
-    isExcerpt: true,
+    text: "Absolute Weiterempfehlung !!\nDie Toilettenwagen war sauber und das ganze hat sehr unkompliziert funktioniert.\n\nBei den nächsten Veranstaltungen werden wir auf jeden Fall wieder auf euch zukommen!\n\nDanke nochmal",
+    isExcerpt: false,
   },
   {
     id: "saki-egert", name: "Saki Egert", rating: 5, dateLabel: "vor einem Monat",
@@ -67,7 +67,13 @@ export const reviewPreview: readonly Review[] = [
   },
   {
     id: "tom-schneider", name: "tom schneider", rating: 5, dateLabel: "vor 3 Monaten",
-    text: "Ich habe über das Onlineportal gebucht alles verlief schnell und unkompliziert. Gerne wieder! …",
-    isExcerpt: true,
+    text: "Ich habe über das Onlineportal gebucht alles verlief schnell und unkompliziert. Gerne wieder! Sehr guter Service mit direkten Ansprechpartnern.",
+    isExcerpt: false,
   },
+  { id: "ekkard-buedenbender", name: "Ekkard Buedenbender", rating: 5, dateLabel: "vor 4 Tagen", isExcerpt: false,
+    sourceUrl: "https://www.google.com/maps/contrib/115322687131316025282/reviews?hl=de-DE",
+    text: "Sehr gepflegte Anlage, die allen Ansprüchen gerecht wird. Zudem ein ausgesprochen freundlicher und zuvorkommender Service. Jederzeit wieder." },
+  { id: "alina-maurer", name: "Alina Maurer", rating: 5, dateLabel: "vor 3 Wochen", isExcerpt: false,
+    sourceUrl: "https://www.google.com/maps/contrib/111803879749564564684/reviews?hl=de-DE",
+    text: "Von Anfang bis Ende alles perfekt! Wir hatten den Toiletten für unsere Hochzeit gemietet und waren vom ersten Kontakt bis zur problemlosen Abholung am nächsten Tag begeistert. Die Kommunikation erfolgte immer super freundlich, transparent und zeitnah. Wir wurden ehrlich hinsichtlich der passenden Größe beraten und auch die Lieferung, die Inbetriebnahme und die Abholung verliefen professionell und zügig. Unsere Gäste haben mehrfach erwähnt, dass der Wagen sehr sauber war. Absolut verdiente fünf Sterne!" },
 ];

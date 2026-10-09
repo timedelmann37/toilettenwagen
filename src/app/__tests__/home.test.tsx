@@ -86,7 +86,7 @@ describe("Startseite", () => {
       expect(section.getByText(requirement)).toBeInTheDocument();
     }
 
-    expect(section.getAllByRole("img")).toHaveLength(8);
+    expect(section.getAllByRole("img")).toHaveLength(7);
     const interiorGallery = section.getByRole("group", { name: "Echte Innenansichten" });
     expect(within(interiorGallery).getAllByRole("img")).toHaveLength(4);
     for (const [caption, model] of [
@@ -102,7 +102,7 @@ describe("Startseite", () => {
     expect(section.getByText("Tork Express Multifold Handtücher Universal H2").tagName).toBe("DD");
     expect(section.queryByText("Wagen S · H1")).not.toBeInTheDocument();
     expect(section.queryByText("Wagen M & L · H2")).not.toBeInTheDocument();
-    expect(section.getByAltText("Technische Illustration eines männlichen Gardena-Steckteils")).toBeInTheDocument();
+    expect(section.queryByAltText("Technische Illustration eines männlichen Gardena-Steckteils")).not.toBeInTheDocument();
     expect(section.getByAltText("Technische Illustration eines weiblichen Gardena-Schlauchstücks")).toBeInTheDocument();
     expect(
       section.getByRole("list", {
@@ -128,7 +128,7 @@ describe("Startseite", () => {
     ).toBeInTheDocument();
   });
 
-  it("zeigt den vollständigen Ablauf und beide Vorlaufhinweise in richtiger Reihenfolge", () => {
+  it("zeigt den vollständigen Ablauf und den August-Vorlaufhinweis in richtiger Reihenfolge", () => {
     const { container } = render(<Home />);
     const process = container.querySelector("#ablauf");
 
@@ -156,12 +156,12 @@ describe("Startseite", () => {
     expect(steps[5]).toHaveTextContent(/Schlussrechnung/i);
     expect(steps[5]).not.toHaveTextContent(/Google-Bewertung/i);
 
-    expect(section.getByText(/Hochzeiten im August/i)).toBeInTheDocument();
+    expect(section.getByText(/Alle Events im August/i)).toBeInTheDocument();
     expect(section.getByText(/etwa ein Jahr vorher/i)).toBeInTheDocument();
-    expect(section.getByText(/drei bis sechs Monate Vorlauf/i)).toBeInTheDocument();
+    expect(section.queryByText(/drei bis sechs Monate Vorlauf/i)).not.toBeInTheDocument();
   });
 
-  it("zeigt Einsatzgebiet, Ortsbeispiele und sieben Screenshot-Rezensionen als Vorschau", () => {
+  it("zeigt Einsatzgebiet, Ortsbeispiele und vollständige lokal gepflegte Rezensionen", () => {
     const { container } = render(<Home />);
     const region = container.querySelector("#region");
 
@@ -194,12 +194,12 @@ describe("Startseite", () => {
     }
 
     const cards = section.getAllByRole("figure");
-    expect(cards).toHaveLength(20);
+    expect(cards).toHaveLength(22);
     for (const name of ["Ebrar Kargun", "Daniel Gergel", "alic.32", "Jeremy Lückhof", "Saki Egert", "Ralf Baldus", "tom schneider"]) {
       expect(cards.some(card => card.textContent?.includes(name))).toBe(true);
     }
     expect(section.getByText(/von uns zusammengestellt/i)).toBeInTheDocument();
-    expect(section.getAllByRole("img", { name: "5 von 5 Sternen" })).toHaveLength(20);
+    expect(section.getAllByRole("img", { name: "5 von 5 Sternen" })).toHaveLength(22);
     expect(
       section.getByRole("link", { name: "Per WhatsApp anfragen" }),
     ).toBeInTheDocument();

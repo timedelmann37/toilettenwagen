@@ -1,5 +1,9 @@
 .lookup { display: grid; gap: .85rem; margin-top: .7rem; color: #d3e1e9; font-size: .85rem; line-height: 1.5; }
 .lookup p { margin: 0; }
+.lookup > label { color: #f8f7f0; font-weight: 650; }
+.lookup .toggle { display: flex; gap: .65rem; align-items: center; min-height: 44px; font-weight: 400; cursor: pointer; }
+.lookup .toggle input { width: 1.1rem; min-height: 1.1rem; padding: 0; accent-color: #b7daf7; }
+.error { color: #ffd2c9; }
 .lookup a { color: #b7daf7; text-decoration: underline; text-underline-offset: 3px; }
 .fields { display: grid; grid-template-columns: minmax(6rem, .65fr) minmax(0, 1.35fr); gap: .75rem; align-items: end; }
 .fields label { display: grid; gap: .4rem; color: #f8f7f0; font-weight: 650; }

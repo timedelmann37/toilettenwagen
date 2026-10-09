@@ -92,7 +92,6 @@ export function validateInquiry(values: InquiryFormValues) {
   const handoverDay = values.collectionMethod === "self-pickup" ? "Abholtag" : "Liefertag";
   if (!values.deliveryDate) errors.deliveryDate = `Bitte wählen Sie den gewünschten ${handoverDay}.`;
   if (values.deliveryDate && values.startDate && values.deliveryDate > values.startDate) errors.deliveryDate = `Der ${handoverDay} darf nicht nach dem Nutzungsbeginn liegen.`;
-  if (values.collectionMethod === "self-pickup" && values.model !== "s" && values.model !== "m") errors.collectionMethod = "Bitte wählen Sie für Selbstabholung Modell S oder M.";
   if (values.email.trim() && !emailPattern.test(values.email.trim())) {
     errors.email = "Bitte geben Sie eine gültige E-Mail-Adresse ein.";
   }

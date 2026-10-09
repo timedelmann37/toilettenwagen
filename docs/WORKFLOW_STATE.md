@@ -1,3 +1,5 @@
+GitHub-Issues 2026-10-09: Phase 9, Preserve. #6–#15 lokal umgesetzt und ready-for-user-review; Quelle `.scratch/github-issues-2026-10/spec.md`, Einzel-Tickets und QA.md. 70 Regressionstests bestätigt (69 im letzten Gesamtlauf plus erfolgreiche Nachprüfung beider Rezension-Suites mit 9 Tests nach Mengenanpassung); 5 Node-Mailer-Tests, PHP-Checks, TypeScript, gezieltes ESLint und Produktionsbuild erfolgreich. Browser 1440/390/320 px: direkte Adresseingabe, simulierte Keyboard-Vorschläge, Selbstabholung L, Netto, Gardena/August/Copyright, 22 vollständige Rezensionen; kein Überlauf oder Text-Clipping, Reduced Motion statisch. Nächster Schritt: Nutzerabnahme und gegebenenfalls frisches Hetzner-Paket. Push vom Nutzer beauftragt; kein Deployment oder echter E-Mail-Versand; GitHub-Issues bleiben offen.
+
 # Workflow-Status
 
 Dieser Block wird an jeder Phasengrenze aktualisiert (siehe `WEB_WORKFLOW.md`).

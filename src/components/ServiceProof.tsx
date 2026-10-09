@@ -235,21 +235,6 @@ export function ServiceProof() {
                       <figure className={styles.connectionFigure}>
                         <div className={styles.connectionDrawing}>
                           <Image
-                            src="/fotos/gardena-male-transparent-v2.webp"
-                            alt="Technische Illustration eines männlichen Gardena-Steckteils"
-                            width={640}
-                            height={640}
-                            sizes="112px"
-                          />
-                        </div>
-                        <figcaption>
-                          <strong>Gardena – männlich</strong>
-                          Steckteil mit hervorstehendem Anschlusszapfen.
-                        </figcaption>
-                      </figure>
-                      <figure className={styles.connectionFigure}>
-                        <div className={styles.connectionDrawing}>
-                          <Image
                             src="/fotos/gardena-female-transparent-v2.webp"
                             alt="Technische Illustration eines weiblichen Gardena-Schlauchstücks"
                             width={640}

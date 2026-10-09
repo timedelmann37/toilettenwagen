@@ -4,13 +4,13 @@ import { ReviewMarquee } from "../ReviewMarquee";
 import { reviewPreview } from "@/lib/reviews";
 
 describe("ReviewMarquee", () => {
-  it("exposes each sourced review once and labels incomplete excerpts", () => {
+  it("exposes each sourced review once with complete texts", () => {
     render(<ReviewMarquee reviews={reviewPreview} />);
     const cards = screen.getAllByRole("figure");
-    expect(cards).toHaveLength(20);
-    expect(screen.getAllByRole("img", { name: "5 von 5 Sternen" })).toHaveLength(20);
+    expect(cards).toHaveLength(22);
+    expect(screen.getAllByRole("img", { name: "5 von 5 Sternen" })).toHaveLength(22);
     expect(cards.filter(card => within(card).queryByText("Sternebewertung ohne Text"))).toHaveLength(4);
-    expect(cards.filter(card => within(card).queryByText("Auszug aus der Rezension"))).toHaveLength(5);
+    expect(cards.filter(card => within(card).queryByText("Auszug aus der Rezension"))).toHaveLength(0);
     expect(screen.queryByRole("heading")).not.toBeInTheDocument();
     expect(screen.queryByText("Emma Thompson")).not.toBeInTheDocument();
   });

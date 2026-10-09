@@ -11,6 +11,25 @@ export class AddressSearchError extends Error {
   }
 }
 
+export async function searchAddressText(text: string, signal: AbortSignal): Promise<string[]> {
+  const key = process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY?.trim();
+  if (!key || text.trim().length < 5) return [];
+  const params = new URLSearchParams({ text: text.trim(), filter: "countrycode:de", lang: "de", format: "json", limit: "6", apiKey: key });
+  const response = await fetch(`https://api.geoapify.com/v1/geocode/autocomplete?${params}`, { signal, credentials: "omit", referrerPolicy: "origin" });
+  if (!response.ok) throw new AddressSearchError(response.status);
+  const data: unknown = await response.json();
+  if (!data || typeof data !== "object" || !("results" in data) || !Array.isArray(data.results)) return [];
+  return [...new Set(data.results.flatMap((item: unknown) => {
+    if (!item || typeof item !== "object") return [];
+    const row = item as Record<string, unknown>;
+    if (row.country_code !== "de" || typeof row.street !== "string" || typeof row.postcode !== "string") return [];
+    const city = row.city ?? row.town ?? row.village;
+    if (typeof city !== "string") return [];
+    const house = typeof row.housenumber === "string" ? ` ${row.housenumber}` : "";
+    return [`${row.street}${house}, ${row.postcode} ${city}`];
+  }))];
+}
+
 export async function searchAddress(
   postcode: string,
   street: string,

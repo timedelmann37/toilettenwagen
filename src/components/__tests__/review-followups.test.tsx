@@ -5,16 +5,16 @@ import { Header } from "../Header";
 import { Faq } from "../Faq";
 
 describe("Bestätigte Review-Korrekturen", () => {
-  it("bietet Selbstabholung für S und M und wechselt bei L zurück zur Lieferung", () => {
+  it("erhält Selbstabholung auch nach dem Wechsel zu Modell L", () => {
     render(<InquiryForm />);
     const form = within(screen.getByRole("form", { name: "Ihre Anfrage" }));
     fireEvent.click(form.getByRole("radio", { name: "Modell S, bis 200 Personen" }));
     fireEvent.click(form.getByRole("radio", { name: /Selbstabholung/ }));
     expect(form.getByLabelText("Gewünschter Abholtag *")).toBeInTheDocument();
     fireEvent.click(form.getByRole("radio", { name: "Modell L, bis 600 Personen" }));
-    expect(form.getByRole("radio", { name: /Selbstabholung/ })).toBeDisabled();
-    expect(form.getByRole("radio", { name: /^Lieferung/ })).toBeChecked();
-    expect(form.getByLabelText("Gewünschter Liefertag *")).toBeInTheDocument();
+    expect(form.getByRole("radio", { name: /Selbstabholung/ })).toBeEnabled();
+    expect(form.getByRole("radio", { name: /Selbstabholung/ })).toBeChecked();
+    expect(form.getByLabelText("Gewünschter Abholtag *")).toBeInTheDocument();
   });
   it("weist Endreinigung und Desinfektion als immer berechnete Pauschale aus", () => {
     render(<Faq />);

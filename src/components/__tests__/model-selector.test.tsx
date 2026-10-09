@@ -14,18 +14,18 @@ describe("ModelSelector", () => {
     window.sessionStorage.clear();
   });
 
-  it("startet mit Modell S und der privaten Bruttopreis-Ansicht", () => {
+  it("startet mit Modell S und der Nettopreis-Ansicht", () => {
     render(<ModelSelector />);
 
     expect(
       screen.getByRole("radio", { name: "Modell S, bis 200 Personen" }),
     ).toBeChecked();
     expect(
-      screen.getByRole("radio", { name: "Privat, brutto inkl. MwSt." }),
+      screen.getByRole("radio", { name: "Gewerbe, netto" }),
     ).toBeChecked();
-    expect(screen.getByText(/208,25\s*€/)).toBeInTheDocument();
+    expect(screen.getByText(/175,00\s*€/)).toBeInTheDocument();
     expect(
-      screen.getByText("brutto inkl. 19 % MwSt. pro Miettag"),
+      screen.getByText("netto zzgl. 19 % MwSt. pro Miettag"),
     ).toBeInTheDocument();
   });
 
@@ -62,7 +62,7 @@ describe("ModelSelector", () => {
     expect(modelM).toHaveTextContent(/Damen-WCs3/);
     expect(modelM).toHaveTextContent(/Herren-WCs1/);
     expect(modelM).toHaveTextContent(/Urinale3/);
-    expect(within(modelM).getByText(/226,10\s*€/)).toBeInTheDocument();
+    expect(within(modelM).getByText(/190,00\s*€/)).toBeInTheDocument();
     expect(
       within(modelM).getByText("Beheizt und ganzjährig einsetzbar"),
     ).toBeInTheDocument();
@@ -83,7 +83,7 @@ describe("ModelSelector", () => {
     expect(modelL).toHaveTextContent(/Damen-WCs4/);
     expect(modelL).toHaveTextContent(/Herren-WCs2/);
     expect(modelL).toHaveTextContent(/Urinale6/);
-    expect(within(modelL).getByText(/249,90\s*€/)).toBeInTheDocument();
+    expect(within(modelL).getByText(/210,00\s*€/)).toBeInTheDocument();
     expect(within(modelL).getByText("Kalt fließendes Wasser")).toBeInTheDocument();
   });
 
@@ -106,6 +106,7 @@ describe("ModelSelector", () => {
   it("zeigt Gewerbepreise und erhält die Preiswahl während des Seitenbesuchs", async () => {
     const user = userEvent.setup();
     const firstRender = render(<ModelSelector />);
+    await user.click(screen.getByRole("radio", { name: "Privat, brutto inkl. MwSt." }));
 
     await user.click(screen.getByRole("radio", { name: "Gewerbe, netto" }));
     expect(screen.getByText(/175,00\s*€/)).toBeInTheDocument();

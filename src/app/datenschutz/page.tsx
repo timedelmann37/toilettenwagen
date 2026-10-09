@@ -192,15 +192,7 @@ export default function PrivacyPage() {
 
       <section id="adresssuche">
         <h2>Adresssuche mit Geoapify</h2>
-        <p>Die Adresssuche steht im Anfrageformular direkt bereit. Sobald Sie eine
-          vollständige PLZ eingeben, fragt Ihr Browser Vorschläge bei Geoapify ab.
-          Bei Eingabe einer Straße werden die Vorschläge ergänzt. Übermittelt werden die eingegebene
-          PLZ und der Straßen-Suchtext sowie IP-Adresse und technische
-          Verbindungsdaten. Die separat eingegebene Hausnummer, Namen,
-          Telefonnummern und E-Mail-Adressen werden nicht an die Suche übergeben.
-          Wenn keine passende Adresse gefunden wird oder der Dienst nicht erreichbar
-          ist, können Sie zur manuellen Adresseingabe wechseln. Dabei enden die
-          weiteren Suchabfragen für dieses Adressfeld.</p>
+        <p>Sie können die Adresse im Anfrageformular direkt und ohne Adressdienst eingeben. Wenn Sie „Adressvorschläge verwenden“ aktivieren, fragt Ihr Browser beim Eingeben Vorschläge bei Geoapify ab. Übermittelt werden der eingegebene Adress-Suchtext einschließlich einer gegebenenfalls eingegebenen Hausnummer sowie IP-Adresse und technische Verbindungsdaten. Bitte geben Sie in dieses Feld keinen Empfängernamen ein. Die separaten Felder für Namen, Telefonnummern und E-Mail-Adressen werden nicht an die Suche übergeben. Sie können die Vorschläge jederzeit deaktivieren; Ihre Adresse bleibt erhalten und weitere Suchabfragen enden.</p>
         <p>Geoapify verarbeitet Anfrage- und Verbindungsdaten unter anderem zur
           Zugriffskontrolle, Nutzungszählung und Fehleranalyse. Nach Anbieterangaben
           werden Daten erfolgreicher Abfragen in der Regel höchstens 24 Stunden

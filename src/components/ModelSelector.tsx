@@ -37,7 +37,7 @@ const occasions = [
 ] as const;
 
 const PRICE_VIEW_EVENT = "mshs:price-view-change";
-let inMemoryPriceView: PriceView = "private";
+let inMemoryPriceView: PriceView = "business";
 
 const currency = new Intl.NumberFormat("de-DE", {
   style: "currency",
@@ -101,7 +101,7 @@ export function ModelSelector() {
   const priceView = useSyncExternalStore(
     subscribeToPriceView,
     readPriceView,
-    () => "private",
+    () => "business",
   );
   const [personCount, setPersonCount] = useState("");
   const [occasion, setOccasion] = useState("");

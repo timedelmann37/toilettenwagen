@@ -1,131 +1,74 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AddressSearchError, searchAddress, type AddressSuggestion } from "@/lib/addressSearch";
+import { searchAddressText } from "@/lib/addressSearch";
 import styles from "./AddressLookup.module.css";
 
-type Props = { id: string; label: string; onChoose: (address: string) => void; onManualEntry?: () => void };
+type Props = { id: string; name?: string; label: string; value: string; onChoose: (address: string) => void; error?: string; autoComplete?: string };
 
-/** Search-first address entry with an explicit fallback after a completed search. */
-export function AddressLookup({ id, label, onChoose, onManualEntry }: Props) {
-  const [enabled, setEnabled] = useState(true);
-  const [canEnterManually, setCanEnterManually] = useState(false);
-  const [postcode, setPostcode] = useState("");
-  const [street, setStreet] = useState("");
-  const [house, setHouse] = useState("");
-  const [selected, setSelected] = useState<AddressSuggestion | null>(null);
-  const [results, setResults] = useState<AddressSuggestion[]>([]);
+export function AddressLookup({ id, name, label, value, onChoose, error, autoComplete }: Props) {
+  const [enabled, setEnabled] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [results, setResults] = useState<string[]>([]);
   const [status, setStatus] = useState("");
   const [active, setActive] = useState(-1);
   const [dismissed, setDismissed] = useState(false);
-  const houseRef = useRef<HTMLInputElement>(null);
+  const input = useRef<HTMLInputElement>(null);
   const revision = useRef(0);
+  const configured = Boolean(process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY?.trim());
 
   useEffect(() => {
     const version = ++revision.current;
-    if (!enabled || !/^\d{5}$/.test(postcode) || selected || dismissed || (street.length > 0 && street.trim().length < 2)) return;
+    if (!enabled || !focused || dismissed || value.trim().length < 5) return;
     const controller = new AbortController();
     let cancelled = false;
     const timer = setTimeout(async () => {
-      setStatus("Vorschläge werden gesucht …");
+      setStatus("Adressvorschläge werden gesucht …");
       const timeout = setTimeout(() => controller.abort(), 8000);
       try {
-        const matches = await searchAddress(postcode, street, controller.signal);
+        const matches = await searchAddressText(value, controller.signal);
         if (cancelled || version !== revision.current) return;
         setResults(matches);
-        setCanEnterManually(true);
-        setStatus(matches.length ? `${matches.length} Vorschläge verfügbar.` : "Kein Treffer. Sie können Ihre Adresse manuell eintragen.");
-      } catch (error) {
+        setStatus(matches.length ? "Vorschlag auswählen oder Adresse selbst vervollständigen." : "Kein passender Vorschlag. Ihre Eingabe bleibt erhalten.");
+      } catch {
         if (!cancelled && version === revision.current) {
-          const reason = error instanceof AddressSearchError
-            ? error.status === 401 || error.status === 403
-              ? "Der Adressdienst verweigert den Zugriff. Die Website-Konfiguration muss geprüft werden."
-              : error.status === 429
-                ? "Der Adressdienst hat sein Anfragelimit erreicht. Bitte versuchen Sie es später erneut."
-                : "Der Adressdienst meldet einen Fehler. Bitte versuchen Sie es später erneut."
-            : controller.signal.aborted
-              ? "Die Adresssuche hat zu lange gedauert. Bitte versuchen Sie es erneut."
-              : "Keine Verbindung zum Adressdienst. Bitte prüfen Sie Ihre Verbindung oder mögliche Browser-Blocker.";
-          setStatus(`${reason} Manuelle Eingabe bleibt möglich.`);
-          setCanEnterManually(true);
+          setResults([]);
+          setStatus("Adressvorschläge sind gerade nicht verfügbar. Sie können Ihre Adresse weiter eingeben.");
         }
       } finally { clearTimeout(timeout); }
     }, 650);
     return () => { cancelled = true; clearTimeout(timer); controller.abort(); };
-  }, [enabled, postcode, street, selected, dismissed]);
+  }, [enabled, focused, dismissed, value]);
 
-  if (!process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY) return null;
-
-  function resetResults() {
-    ++revision.current;
-    setResults([]); setSelected(null); setStatus(""); setActive(-1); setDismissed(false);
-    setCanEnterManually(false);
-  }
-
-  function choose(result: AddressSuggestion) {
-    ++revision.current;
-    setResults([]); setActive(-1);
-    if (!result.street) {
-      setStreet(""); setStatus(`${result.postcode} ${result.city}: Bitte mindestens zwei Buchstaben der Straße eingeben.`);
-      setDismissed(true);
-    } else {
-      setSelected(result); setStreet(result.street); setStatus("Bitte Hausnummer ergänzen und Adresse eintragen.");
-      houseRef.current?.focus();
-    }
-  }
-
+  function dismiss() { ++revision.current; setResults([]); setActive(-1); setDismissed(true); setStatus(""); }
+  function choose(address: string) { dismiss(); onChoose(address); input.current?.focus(); setStatus("Adresse übernommen. Bitte Hausnummer prüfen und bei Bedarf ergänzen."); }
   return (
-    <div className={styles.lookup} role="group" aria-label={`Adresshilfe für ${label}`}>
-      {!enabled ? (
-        <p>Bitte tragen Sie Ihre vollständige Adresse in das Adressfeld ein.</p>
-      ) : (
-        <>
-          <p>Die Adresssuche nutzt Geoapify. Beim Suchen werden PLZ, Straßen-Suchtext und Verbindungsdaten übertragen. <a href="/datenschutz/#adresssuche">Datenschutz zur Adresssuche</a></p>
-          <div className={styles.fields}>
-            <label htmlFor={`${id}-postcode`}>PLZ
-              <input id={`${id}-postcode`} value={postcode} inputMode="numeric" maxLength={5} autoComplete="off"
-                onChange={event => { resetResults(); setPostcode(event.target.value.replace(/\D/g, "")); setStreet(""); setHouse(""); }}
-                aria-describedby={`${id}-status`} />
-            </label>
-            <label htmlFor={`${id}-street`}>Straße suchen
-              <input id={`${id}-street`} value={street} autoComplete="off" disabled={postcode.length !== 5}
-                placeholder="Mindestens 2 Buchstaben"
-                role="combobox" aria-autocomplete="list" aria-expanded={results.length > 0}
-                aria-controls={`${id}-results`} aria-activedescendant={active >= 0 && results[active] ? `${id}-option-${active}` : undefined}
-                onChange={event => { resetResults(); setStreet(event.target.value); }}
-                onKeyDown={event => {
-                  if (event.key === "Escape") { ++revision.current; setResults([]); setActive(-1); setDismissed(true); setStatus(""); }
-                  if (event.key === "ArrowDown" && results.length) { event.preventDefault(); setActive(index => (index + 1) % results.length); }
-                  if (event.key === "ArrowUp" && results.length) { event.preventDefault(); setActive(index => (index <= 0 ? results.length : index) - 1); }
-                  if (event.key === "Enter") { event.preventDefault(); if (results[active]) choose(results[active]); }
-                }} />
-            </label>
-          </div>
-          <ul id={`${id}-results`} role="listbox" aria-label="Adressvorschläge" className={styles.results}>
-            {results.map((result, index) => <li key={`${result.city}-${result.street}`} id={`${id}-option-${index}`}
-              role="option" aria-selected={active === index} tabIndex={0}
-              onClick={() => choose(result)} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); choose(result); } }}>
-              {result.street && <strong>{result.street}</strong>} {result.postcode} {result.city}
-            </li>)}
-          </ul>
-          <p id={`${id}-status`} role="status" aria-live="polite">{status || "Geben Sie zuerst die fünfstellige PLZ ein."}</p>
-          <div className={styles.fields}>
-            <label htmlFor={`${id}-house`}>Hausnummer
-              <input ref={houseRef} id={`${id}-house`} value={house} autoComplete="off" onChange={event => setHouse(event.target.value)} />
-            </label>
-            <button type="button" disabled={!selected || !house.trim()} onClick={() => {
-              if (!selected) return;
-              onChoose(`${selected.street} ${house.trim()}, ${selected.postcode} ${selected.city}`);
-              setStatus("Adresse eingetragen. Sie können über die Suche eine andere Adresse auswählen.");
-            }}>Adresse eintragen</button>
-          </div>
-          <div className={styles.footer}>
-            <a href="https://www.geoapify.com/" target="_blank" rel="noopener noreferrer">Powered by Geoapify</a>
-            {canEnterManually && <button type="button" onClick={() => { resetResults(); setEnabled(false); onManualEntry?.(); }}>Keine passende Adresse? Manuell eintragen</button>}
-          </div>
-          <p>Vorschläge sind keine verbindliche Adressprüfung.</p>
-        </>
-      )}
+    <div className={styles.lookup}>
+      <label htmlFor={id}>{label}</label>
+      <input ref={input} id={id} name={name} value={value} required autoComplete={autoComplete} placeholder="Straße, Hausnummer, PLZ und Ort"
+        role={configured && enabled ? "combobox" : undefined} aria-autocomplete={configured && enabled ? "list" : undefined}
+        aria-expanded={configured && enabled ? results.length > 0 : undefined} aria-controls={configured && enabled ? id + "-results" : undefined}
+        aria-activedescendant={active >= 0 && results[active] ? id + "-option-" + active : undefined}
+        aria-invalid={Boolean(error)} aria-describedby={[id + "-hint", error ? id + "-error" : ""].filter(Boolean).join(" ")}
+        onFocus={() => setFocused(true)} onBlur={() => { setFocused(false); dismiss(); }}
+        onChange={event => { dismiss(); setDismissed(false); onChoose(event.target.value); }}
+        onKeyDown={event => {
+          if (event.key === "Escape") dismiss();
+          if (event.key === "ArrowDown" && results.length) { event.preventDefault(); setActive(index => (index + 1) % results.length); }
+          if (event.key === "ArrowUp" && results.length) { event.preventDefault(); setActive(index => index <= 0 ? results.length - 1 : index - 1); }
+          if (event.key === "Enter" && results.length) { event.preventDefault(); if (results[active]) choose(results[active]); }
+        }} />
+      {error && <p id={id + "-error"} className={styles.error}>{error}</p>}
+      <p id={id + "-hint"}>Adresse direkt eingeben. Eine Auswahl aus Vorschlägen ist nicht erforderlich.</p>
+      {configured && <label className={styles.toggle}><input type="checkbox" checked={enabled} onChange={event => { dismiss(); setDismissed(false); setEnabled(event.target.checked); }} />Adressvorschläge verwenden</label>}
+      {configured && enabled && <>
+        <p>Für Vorschläge wird Ihr Adress-Suchtext an Geoapify übertragen. Bitte nur die Adresse eingeben, keinen Empfängernamen. <a href="/datenschutz/#adresssuche">Datenschutz</a> · <a href="https://www.geoapify.com/" target="_blank" rel="noopener noreferrer">Powered by Geoapify</a></p>
+        <ul id={id + "-results"} role="listbox" aria-label={"Adressvorschläge für " + label} className={styles.results}>
+          {results.map((address, index) => <li key={address} id={id + "-option-" + index} role="option" aria-selected={active === index}
+            onPointerDown={event => event.preventDefault()} onClick={() => choose(address)}>{address}</li>)}
+        </ul>
+        <p role="status" aria-live="polite">{status}</p>
+      </>}
     </div>
   );
 }

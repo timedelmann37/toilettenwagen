@@ -38,7 +38,7 @@ describe("App-Shell", () => {
   it("Footer nennt den vollen Rechtsnamen und die Pflicht-Links", () => {
     render(<Footer />);
     expect(screen.getByText(site.legalName, { exact: true })).toBeInTheDocument();
-    expect(screen.getByText(`© ${new Date().getFullYear()} ${site.legalName}`)).toBeInTheDocument();
+    expect(screen.getByText(`© 2025 ${site.legalName}`)).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: "Impressum" }),
     ).toHaveAttribute("href", expect.stringContaining("/impressum"));

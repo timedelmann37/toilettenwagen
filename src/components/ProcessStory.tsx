@@ -70,13 +70,8 @@ export function ProcessStory() {
           </div>
           <dl>
             <div className={styles.longLead}>
-              <dt>Hochzeiten im August</dt>
+              <dt>Alle Events im August</dt>
               <dd>idealerweise etwa ein Jahr vorher</dd>
-              <span className={styles.leadBar} aria-hidden="true" />
-            </div>
-            <div className={styles.shortLead}>
-              <dt>Andere Anlässe</dt>
-              <dd>meist drei bis sechs Monate Vorlauf</dd>
               <span className={styles.leadBar} aria-hidden="true" />
             </div>
           </dl>

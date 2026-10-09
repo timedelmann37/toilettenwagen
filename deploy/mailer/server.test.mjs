@@ -11,7 +11,7 @@ const payload = {
   message: 'Nur ein lokaler Test', website: '', privacyAccepted: true,
 };
 
-test('includes self-pickup and pickup date in mail but rejects model L', async t => {
+test('includes self-pickup for all models and unknown choice', async t => {
   const calls = [];
   const post = await setup(t, async (_url, options) => {
     calls.push(JSON.parse(options.body));
@@ -20,8 +20,9 @@ test('includes self-pickup and pickup date in mail but rejects model L', async t
   assert.equal((await post({ ...payload, collectionMethod: 'self-pickup' })).status, 200);
   assert.match(calls[0].text, /Lieferung \/ Selbstabholung: Selbstabholung/);
   assert.match(calls[0].text, /Abholtag: 2026-10-01/);
-  assert.equal((await post({ ...payload, model: 'l', collectionMethod: 'self-pickup' })).status, 400);
-  assert.equal(calls.length, 1);
+  assert.equal((await post({ ...payload, model: 'l', collectionMethod: 'self-pickup' })).status, 200);
+  assert.equal((await post({ ...payload, model: 'unknown', collectionMethod: 'self-pickup' })).status, 200);
+  assert.equal(calls.length, 6);
 });
 
 async function setup(t, fetchImpl) {
@@ -42,10 +43,14 @@ test('forwards validated content to fixed recipient, sets reply-to and deduplica
   });
   assert.deepEqual(await (await post({ ...payload, to: 'attacker@example.com' })).json(), { ok: true });
   assert.deepEqual(await (await post()).json(), { ok: true });
-  assert.equal(calls.length, 1);
+  assert.equal(calls.length, 2);
   const mail = JSON.parse(calls[0].body);
   assert.deepEqual(mail.to, ['inbox@example.com']);
   assert.equal(mail.reply_to, payload.email);
+  const receipt = JSON.parse(calls[1].body);
+  assert.deepEqual(receipt.to, [payload.email]);
+  assert.equal(receipt.reply_to, 'inbox@example.com');
+  assert.match(receipt.text, /keine Buchungsbestätigung/);
   assert.match(mail.text, /Rechnungsanschrift: Testort/);
   assert.equal(calls[0].headers.Authorization, 'Bearer test-key');
 });

@@ -1,5 +1,5 @@
 import { createServer } from 'node:http';
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 
 const fields = {
@@ -24,7 +24,6 @@ export function validate(input) {
   if (!data.name || !data.phone || !data.location || !emailPattern.test(data.email)) return null;
   data.collectionMethod = input.collectionMethod ?? 'delivery';
   if (!['delivery', 'self-pickup'].includes(data.collectionMethod)) return null;
-  if (data.collectionMethod === 'self-pickup' && !['s', 'm'].includes(data.model)) return null;
   if (!['private', 'business'].includes(data.customerType) || !['s', 'm', 'l', 'unknown'].includes(data.model)) return null;
   if (data.customerType === 'business' && !data.company) return null;
   if (input.billingSameAsLocation) data.billingAddress = data.location;
@@ -41,6 +40,20 @@ function message(data) {
   labels.deliveryDate = data.collectionMethod === 'self-pickup' ? 'Abholtag' : 'Liefertag';
   const display = { ...data, collectionMethod: data.collectionMethod === 'self-pickup' ? 'Selbstabholung' : 'Lieferung' };
   return Object.entries(labels).map(([key, label]) => `${label}: ${display[key] || '—'}`).join('\n\n');
+}
+
+function htmlMessage(text) {
+  const escape = value => value.replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+  const paragraphs = text.split('\n\n').map(paragraph => {
+    const separator = paragraph.indexOf(': ');
+    return '<p style="margin:0 0 16px">' + (separator >= 0
+      ? '<strong>' + escape(paragraph.slice(0, separator)) + '</strong><br>' + escape(paragraph.slice(separator + 2)).replace(/\n/g, '<br>')
+      : escape(paragraph).replace(/\n/g, '<br>')) + '</p>';
+  });
+  return '<div style="font-family:Arial,sans-serif;line-height:1.6;color:#142b3b">' + paragraphs.join('') + '</div>';
+}
+function receiptText(data, reference) {
+  return `Vielen Dank für Ihre Anfrage. Wir haben Ihre Anfrage erhalten und melden uns bei Ihnen. Dies ist eine Eingangsbestätigung, keine Buchungsbestätigung. Verfügbarkeit und Konditionen stimmen wir persönlich mit Ihnen ab.\n\nReferenz: ${reference}\n\n${message(data)}`;
 }
 
 export function createMailer({ apiKey, from, to, origin, fetchImpl = fetch, now = Date.now }) {
@@ -86,19 +99,27 @@ export function createMailer({ apiKey, from, to, origin, fetchImpl = fetch, now 
       return reply(429, { ok: false });
     }
     attempts.push({ time, email: emailHash });
-    const entry = recent.get(fingerprint) || { expires: time + 600000, sent: false, key: `inquiry-${fingerprint}-${Math.floor(time / 600000)}` };
+    const entry = recent.get(fingerprint) || { expires: time + 600000, sent: false, key: `inquiry-${fingerprint}-${Math.floor(time / 600000)}`, reference: randomUUID() };
     recent.set(fingerprint, entry);
     pending.add(fingerprint);
     try {
       const response = await fetchImpl('https://api.resend.com/emails', {
         method: 'POST',
         headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json', 'Idempotency-Key': entry.key },
-        body: JSON.stringify({ from, to: [to], reply_to: data.email, subject: 'Neue Toilettenwagen-Anfrage', text: message(data) }),
+        body: JSON.stringify({ from, to: [to], reply_to: data.email, subject: `Toilettenwagen-Anfrage ${entry.reference} · ${data.startDate}`, text: message(data), html: htmlMessage(message(data)) }),
         signal: AbortSignal.timeout(15000),
       });
       const result = await response.json();
       if (!response.ok || typeof result?.id !== 'string' || !result.id) return reply(502, { ok: false });
       entry.sent = true;
+      try {
+        const receipt = await fetchImpl('https://api.resend.com/emails', {
+          method: 'POST', headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json', 'Idempotency-Key': entry.key + '-receipt' },
+          body: JSON.stringify({ from, to: [data.email], reply_to: to, subject: `Ihre Toilettenwagen-Anfrage ${entry.reference}`, text: receiptText(data, entry.reference), html: htmlMessage(receiptText(data, entry.reference)) }),
+          signal: AbortSignal.timeout(15000),
+        });
+        if (!receipt.ok) console.error('Inquiry receipt delivery failed');
+      } catch { console.error('Inquiry receipt delivery failed'); }
       return reply(200, { ok: true });
     } catch { return reply(502, { ok: false }); }
     finally { pending.delete(fingerprint); }
